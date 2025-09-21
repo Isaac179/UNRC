@@ -1,272 +1,156 @@
- <!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sitio Académico — Glass UI / Pastel Orange — Interactivo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sitio Académico - Light Glass UI</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-  :root{
-    --bg-dark:#0d1114;
-    --bg-light:#fbf6f3;
-    --accent:#A24E2C; /* naranja óxido */
-    --accent-soft:#FFC9A3;
-    --glass-1: rgba(255,255,255,0.06);
-    --glass-2: rgba(255,255,255,0.08);
-    --glass-3: rgba(255,255,255,0.12);
-    --card-shadow: 0 18px 40px rgba(2,6,23,0.6);
-    --soft-shadow: 0 10px 30px rgba(2,6,23,0.45);
-    --radius: 20px;
-    --glass-border: rgba(255,255,255,0.07);
-    --muted: #bfc9cf;
-    --text-light: #eef6f8;
-    --glass-glow: 0 10px 30px rgba(162,78,44,0.12);
-  }
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-  /* Reset & base */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;font-family:Poppins,Inter,system-ui,Arial; background:linear-gradient(180deg,#071018 0%, #0c1317 60%); color:var(--text-light);
-    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    padding:28px;
-  }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fffaf5, #f0f8ff);
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
 
-  /* Layout grid */
-  .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start}
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 6px 0 20px rgba(0,0,0,0.1);
+      padding: 2rem 1rem;
+      border-right: 1px solid rgba(255,255,255,0.4);
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sidebar h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color:#d97706;
+    }
+    .sidebar nav a {
+      display:block;
+      margin: 0.8rem 0;
+      padding:0.6rem 1rem;
+      border-radius: 16px;
+      font-weight:500;
+      color:#444;
+      text-decoration:none;
+      transition: all 0.3s ease;
+    }
+    .sidebar nav a:hover {
+      background: rgba(255, 175, 100, 0.2);
+      transform: translateX(6px);
+      color:#b45309;
+    }
 
-  /* Sidebar - glass */
-  .sidebar{
-    border-radius:24px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-    border:1px solid var(--glass-border);backdrop-filter: blur(10px) saturate(120%);
-    box-shadow: var(--card-shadow), inset 0 2px 0 rgba(255,255,255,0.02);
-    position:relative;overflow:hidden;
-  }
-  .logo{display:flex;align-items:center;gap:12px}
-  .logo .monogram{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:white;background:linear-gradient(135deg,var(--accent),var(--accent-soft));box-shadow:0 10px 30px rgba(162,78,44,0.18)}
-  .logo h1{margin:0;font-size:18px;font-family:'Playfair Display',serif}
-  .muted{color:var(--muted);font-size:13px}
+    /* Main */
+    .main {
+      flex:1;
+      padding:3rem;
+      overflow-y:auto;
+      animation: fadeIn 1s ease;
+    }
+    .main h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size:2.5rem;
+      color:#b45309;
+      margin-bottom:1rem;
+    }
+    .main p {
+      line-height:1.7;
+      margin-bottom:1.5rem;
+      font-size:1.1rem;
+    }
+    .quote {
+      font-family:'Playfair Display', serif;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px);
+      padding:1.5rem;
+      border-left:6px solid #fb923c;
+      margin:1.5rem 0;
+      border-radius:12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
 
-  .sidebar .info{margin-top:14px}
-  .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.02);color:var(--text-light);font-weight:600;font-size:13px}
+    /* Sphere */
+    .sphere {
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      margin:2rem auto;
+      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80') center/cover no-repeat;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+      border:4px solid rgba(255,255,255,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:bold;
+      text-shadow:0 2px 6px rgba(0,0,0,0.4);
+      animation: float 6s ease-in-out infinite;
+    }
 
-  .stat{display:flex;justify-content:space-between;align-items:center;padding:12px;margin-top:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
-  .stat .label{font-size:13px;color:var(--muted)}
-  .stat .value{font-weight:700;font-size:18px;color:var(--text-light)}
+    /* Buttons */
+    .btn {
+      display:inline-block;
+      background:linear-gradient(135deg,#f97316,#fb923c);
+      color:white;
+      padding:0.8rem 1.5rem;
+      border-radius:24px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(249,115,22,0.4);
+      transition:all 0.3s ease;
+    }
+    .btn:hover {
+      transform:scale(1.05);
+      box-shadow:0 8px 24px rgba(249,115,22,0.6);
+    }
 
-  /* Main card */
-  .main{
-    border-radius:26px;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow: 0 28px 60px rgba(2,6,23,0.6);
-  }
-  header.hero{display:flex;gap:22px;align-items:center}
-  .hero-text{flex:1}
-  .eyebrow{font-family:Inter;font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.08em}
-  .title{font-family:'Playfair Display',serif;font-size:28px;margin:6px 0;color:var(--text-light)}
-  .subtitle{color:var(--muted);font-size:15px;margin:0}
-
-  /* Sphere - with image background and glow */
-  .sphere{
-    width:220px;height:220px;border-radius:50%;flex:0 0 220px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.06);
-    background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=60');
-    background-size:cover;background-position:center;filter:grayscale(10%) contrast(110%);
-    box-shadow: inset -12px -12px 30px rgba(255,255,255,0.06), inset 8px 8px 24px rgba(0,0,0,0.4), 0 24px 60px rgba(162,78,44,0.12);
-    display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-light);font-weight:700;font-family:'Playfair Display',serif;
-    transition:transform .6s cubic-bezier(.2,.9,.2,1), box-shadow .4s;
-  }
-  .sphere::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(162,78,44,0.12), rgba(255,201,163,0.06));mix-blend-mode:overlay}
-  .sphere:hover{transform:translateY(-8px) rotate(-2deg);box-shadow:0 38px 80px rgba(162,78,44,0.2)}
-
-  /* Cards and content */
-  .article{margin-top:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
-  h3{font-family:'Playfair Display',serif;color:var(--text-light);margin-top:0}
-  p.lead{color:var(--muted)}
-
-  /* Buttons + interactions */
-  .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));color:#071018;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.08);box-shadow:0 10px 30px rgba(162,78,44,0.14);transition:transform .18s ease, box-shadow .18s ease}
-  .btn:active{transform:translateY(2px)}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text-light)}
-
-  /* Hover/focus microinteractions */
-  .interactive{transition:all .28s cubic-bezier(.2,.9,.2,1)}
-  .interactive:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(2,6,23,0.5)}
-
-  /* Ripple click effect */
-  .ripple{position:relative;overflow:hidden}
-  .ripple .wave{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,0.12);animation:ripple .6s linear;pointer-events:none}
-  @keyframes ripple{to{transform:scale(6);opacity:0}}
-
-  /* Entrance animations */
-  .fade-in{animation:fadeInUp .8s cubic-bezier(.2,.9,.2,1) both}
-  @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-  /* Modal (entrada/salida animada) */
-  .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);opacity:0;pointer-events:none;transition:opacity .28s}
-  .modal.open{opacity:1;pointer-events:auto}
-  .modal .panel{width:90%;max-width:720px;border-radius:18px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);transform:scale(.96);transition:transform .28s}
-  .modal.open .panel{transform:scale(1)}
-
-  /* Tooltip */
-  .tooltip{position:relative}
-  .tooltip[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 10px);background:#071018;color:var(--text-light);padding:8px 10px;border-radius:8px;font-size:13px;white-space:nowrap}
-
-  /* Footer references */
-  .refs{margin-top:14px;color:var(--muted);font-size:13px}
-
-  /* Responsive */
-  @media (max-width:980px){.container{grid-template-columns:1fr;}.sphere{width:160px;height:160px}.sidebar{order:2}}
+    /* Animations */
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes float { 
+      0%,100%{ transform: translateY(0); } 
+      50%{ transform: translateY(-15px);} 
+    }
   </style>
 </head>
 <body>
-  <div class="container fade-in">
-    <aside class="sidebar interactive ripple" id="sidebar">
-      <div class="logo">
-        <div class="monogram">IA</div>
-        <div>
-          <h1>Laboratorio Digital</h1>
-          <div class="muted">Ensayo & Redacción científica</div>
-        </div>
-      </div>
-
-      <div class="info">
-        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
-          <span class="pill">Web3</span>
-          <span class="pill">IA</span>
-          <span class="pill">Geopolítica</span>
-        </div>
-
-        <div class="stat">
-          <div class="label">Entradas</div>
-          <div class="value">48</div>
-        </div>
-        <div class="stat">
-          <div class="label">Plantillas</div>
-          <div class="value">12</div>
-        </div>
-
-        <div style="margin-top:14px">
-          <a href="#read" class="btn ripple" id="openSample">Leer última</a>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;color:var(--muted);font-size:13px">
-        <strong>Autor:</strong> Isaac Moctezuma<br>
-        <strong>Actualizado:</strong> Oct 2025
-      </div>
-    </aside>
-
-    <main class="main">
-      <header class="hero">
-        <div class="hero-text">
-          <div class="eyebrow">Ensayo & Análisis</div>
-          <div class="title">Hacia una diplomacia codificada: inteligencia artificial, juventud y poder</div>
-          <p class="subtitle">Reflexiones, plantillas y análisis académico orientado a entender cómo la tecnología redefine la política internacional.</p>
-
-          <div style="margin-top:14px;display:flex;gap:12px;align-items:center">
-            <a class="btn ripple" id="openModal">Descargar plantilla</a>
-            <a class="btn btn-ghost ripple" href="#refs">Referencias</a>
-          </div>
-        </div>
-
-        <div class="sphere" id="sphere">Futuro<br>Digital</div>
-      </header>
-
-      <section class="article fade-in" id="read">
-        <h3>Abstract</h3>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sem a arcu facilisis convallis. Integer vel sapien id lectus fermentum ultrices.</p>
-
-        <blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum."</blockquote>
-
-        <h3>Introducción</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel velit eu lacus dictum commodo non eget odio. Suspendisse potenti.</p>
-
-        <h3>Metodología</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer euismod, sapien nec pulvinar maximus, nisi libero tristique tortor.</p>
-
-        <h3>Conclusiones</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non tempor sapien. Sed quis urna vel orci posuere varius.</p>
-
-        <div class="refs" id="refs">
-          <strong>Referencias (selección):</strong>
-          <ul>
-            <li>Lorem, I. (2025). <em>Estudios sobre IA y Diplomacia</em>. Journal of Digital Politics.</li>
-            <li>Ipsum, A. (2024). <em>Web3 y Soberanía Digital</em>. Revista de Tecnología y Estado.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="article fade-in" style="display:flex;gap:20px;flex-wrap:wrap">
-        <div style="flex:1;min-width:280px">
-          <h3>Plantilla: Estructura de ensayo académico</h3>
-          <ol>
-            <li>Título y resumen (Abstract)</li>
-            <li>Introducción y problema de investigación</li>
-            <li>Revisión de literatura</li>
-            <li>Metodología</li>
-            <li>Resultados y discusión</li>
-            <li>Conclusiones y referencias</li>
-          </ol>
-          <p style="color:var(--muted)"><em>Tip:</em> usa <strong>Playfair Display</strong> para títulos, <strong>Poppins</strong> para texto y <strong>Inter</strong> para microcopy y notas.</p>
-        </div>
-
-        <div style="flex:0 0 320px">
-          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)">
-            <h3 style="margin-top:0">Datos Rápidos</h3>
-            <p style="margin:6px 0;color:var(--muted)">Plantilla descargable, formatos .docx y .md. Licencia: uso académico.</p>
-            <button class="btn ripple" id="downloadBtn">Descargar .docx</button>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal"><div class="panel">
-    <h3>Descarga de plantilla</h3>
-    <p>Selecciona el formato que deseas descargar. (Demo)</p>
-    <div style="margin-top:12px;display:flex;gap:10px">
-      <a class="btn ripple" href="#">.docx</a>
-      <a class="btn ripple" href="#">.md</a>
-      <a class="btn btn-ghost ripple" id="closeModal">Cerrar</a>
+  <aside class="sidebar">
+    <div>
+      <h2>Menú</h2>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Ensayos</a>
+        <a href="#">Investigación</a>
+        <a href="#">Citas</a>
+      </nav>
     </div>
-  </div></div>
+    <small>© 2025 Sitio Académico</small>
+  </aside>
 
-  <script>
-    // Small helper for ripple click effect
-    document.querySelectorAll('.ripple').forEach(btn=>{
-      btn.addEventListener('click',function(e){
-        const rect = this.getBoundingClientRect();
-        const wave = document.createElement('span');
-        wave.className='wave';
-        wave.style.width = wave.style.height = Math.max(rect.width,rect.height)+'px';
-        wave.style.left = (e.clientX - rect.left - rect.width/2)+'px';
-        wave.style.top = (e.clientY - rect.top - rect.height/2)+'px';
-        this.appendChild(wave);
-        setTimeout(()=>wave.remove(),600);
-      });
-    });
+  <main class="main">
+    <h1>Lorem Ipsum Académico</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac magna a nibh facilisis luctus. Sed malesuada lorem ut sapien viverra, vel suscipit ligula ultricies.</p>
 
-    // Modal open/close
-    const modal = document.getElementById('modal');
-    document.getElementById('openModal').addEventListener('click',()=>{modal.classList.add('open');});
-    document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');});
+    <div class="quote">“La ciencia es la poesía de la realidad.”</div>
 
-    // Download demo
-    document.getElementById('downloadBtn').addEventListener('click',function(e){
-      e.preventDefault();
-      alert('Descarga demo: plantilla .docx (simulada)');
-    });
+    <div class="sphere">Datos</div>
 
-    // Sphere subtle animation on mousemove (parallax)
-    const sphere = document.getElementById('sphere');
-    document.addEventListener('mousemove', (e)=>{
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      sphere.style.transform = `translate(${x}px, ${y}px) rotate(${x/6}deg)`;
-    });
+    <p>Aliquam erat volutpat. Morbi ultrices metus nec massa ultrices, vitae venenatis lorem convallis. Ut porttitor tellus non ipsum porta, quis vulputate orci sodales.</p>
 
-    // Accessibility: close modal with ESC
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') modal.classList.remove('open'); });
-  </script>
+    <a href="#" class="btn">Leer más</a>
+  </main>
 </body>
 </html>
