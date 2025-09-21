@@ -1,111 +1,272 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoftUI-Moodle</title>
- </head>
- <body>
-    <div style="font-family:Arial, sans-serif; background:#f3f4f6; color:#1e293b; padding:16px; border-radius:16px; max-width:100%; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
+ <!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sitio Académico — Glass UI / Pastel Orange — Interactivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+  :root{
+    --bg-dark:#0d1114;
+    --bg-light:#fbf6f3;
+    --accent:#A24E2C; /* naranja óxido */
+    --accent-soft:#FFC9A3;
+    --glass-1: rgba(255,255,255,0.06);
+    --glass-2: rgba(255,255,255,0.08);
+    --glass-3: rgba(255,255,255,0.12);
+    --card-shadow: 0 18px 40px rgba(2,6,23,0.6);
+    --soft-shadow: 0 10px 30px rgba(2,6,23,0.45);
+    --radius: 20px;
+    --glass-border: rgba(255,255,255,0.07);
+    --muted: #bfc9cf;
+    --text-light: #eef6f8;
+    --glass-glow: 0 10px 30px rgba(162,78,44,0.12);
+  }
 
-  <h2 style="margin-top:0; font-size:22px; color:#1e293b;">Dashboard ODS 2030 — Demo Soft UI / Claro</h2>
-  <p style="color:#64748b; font-size:13px; margin-bottom:16px;">Visualización CSS-only estilo neumorfismo y barras verticales/horizontales</p>
+  /* Reset & base */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;font-family:Poppins,Inter,system-ui,Arial; background:linear-gradient(180deg,#071018 0%, #0c1317 60%); color:var(--text-light);
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    padding:28px;
+  }
 
-  <!-- KPIs -->
-  <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-    <div style="flex:1; min-width:140px; background:#e2e8f0; padding:16px; border-radius:14px; box-shadow: 6px 6px 10px rgba(0,0,0,0.15), -6px -6px 10px rgba(255,255,255,0.7);">
-      <div style="font-size:13px; color:#64748b;">Metas activas</div>
-      <div style="font-size:26px; font-weight:bold; color:#0f172a;">9</div>
-    </div>
-    <div style="flex:1; min-width:140px; background:#e2e8f0; padding:16px; border-radius:14px; box-shadow: 6px 6px 10px rgba(0,0,0,0.15), -6px -6px 10px rgba(255,255,255,0.7);">
-      <div style="font-size:13px; color:#64748b;">Programas ONU</div>
-      <div style="font-size:26px; font-weight:bold; color:#0f172a;">12</div>
-    </div>
-    <div style="flex:1; min-width:140px; background:#e2e8f0; padding:16px; border-radius:14px; box-shadow: 6px 6px 10px rgba(0,0,0,0.15), -6px -6px 10px rgba(255,255,255,0.7);">
-      <div style="font-size:13px; color:#64748b;">Financiamiento (M USD)</div>
-      <div style="font-size:26px; font-weight:bold; color:#0f172a;">126</div>
-    </div>
-    <div style="flex:1; min-width:140px; background:#e2e8f0; padding:16px; border-radius:14px; box-shadow: 6px 6px 10px rgba(0,0,0,0.15), -6px -6px 10px rgba(255,255,255,0.7);">
-      <div style="font-size:13px; color:#64748b;">Cobertura educativa</div>
-      <div style="font-size:26px; font-weight:bold; color:#0f172a;">78%</div>
-    </div>
-  </div>
+  /* Layout grid */
+  .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start}
 
-  <!-- Gráficas Horizontales y Verticales -->
-  <h3 style="margin:10px 0; color:#1e293b;">Progreso por ODS — Barras H y V</h3>
-  <div style="display:flex; flex-wrap:wrap; gap:16px;">
+  /* Sidebar - glass */
+  .sidebar{
+    border-radius:24px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border:1px solid var(--glass-border);backdrop-filter: blur(10px) saturate(120%);
+    box-shadow: var(--card-shadow), inset 0 2px 0 rgba(255,255,255,0.02);
+    position:relative;overflow:hidden;
+  }
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo .monogram{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:white;background:linear-gradient(135deg,var(--accent),var(--accent-soft));box-shadow:0 10px 30px rgba(162,78,44,0.18)}
+  .logo h1{margin:0;font-size:18px;font-family:'Playfair Display',serif}
+  .muted{color:var(--muted);font-size:13px}
 
-    <!-- Barra horizontal -->
-    <div style="flex:1; min-width:200px;">
-      <div style="font-size:13px; color:#64748b; margin-bottom:4px;">ODS 4: Educación</div>
-      <div style="background:#cbd5e1; border-radius:6px; height:18px; overflow:hidden;">
-        <div style="width:78%; height:100%; background:linear-gradient(90deg,#7c3aed,#10b981);"></div>
+  .sidebar .info{margin-top:14px}
+  .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.02);color:var(--text-light);font-weight:600;font-size:13px}
+
+  .stat{display:flex;justify-content:space-between;align-items:center;padding:12px;margin-top:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+  .stat .label{font-size:13px;color:var(--muted)}
+  .stat .value{font-weight:700;font-size:18px;color:var(--text-light)}
+
+  /* Main card */
+  .main{
+    border-radius:26px;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow: 0 28px 60px rgba(2,6,23,0.6);
+  }
+  header.hero{display:flex;gap:22px;align-items:center}
+  .hero-text{flex:1}
+  .eyebrow{font-family:Inter;font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.08em}
+  .title{font-family:'Playfair Display',serif;font-size:28px;margin:6px 0;color:var(--text-light)}
+  .subtitle{color:var(--muted);font-size:15px;margin:0}
+
+  /* Sphere - with image background and glow */
+  .sphere{
+    width:220px;height:220px;border-radius:50%;flex:0 0 220px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.06);
+    background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=60');
+    background-size:cover;background-position:center;filter:grayscale(10%) contrast(110%);
+    box-shadow: inset -12px -12px 30px rgba(255,255,255,0.06), inset 8px 8px 24px rgba(0,0,0,0.4), 0 24px 60px rgba(162,78,44,0.12);
+    display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-light);font-weight:700;font-family:'Playfair Display',serif;
+    transition:transform .6s cubic-bezier(.2,.9,.2,1), box-shadow .4s;
+  }
+  .sphere::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(162,78,44,0.12), rgba(255,201,163,0.06));mix-blend-mode:overlay}
+  .sphere:hover{transform:translateY(-8px) rotate(-2deg);box-shadow:0 38px 80px rgba(162,78,44,0.2)}
+
+  /* Cards and content */
+  .article{margin-top:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+  h3{font-family:'Playfair Display',serif;color:var(--text-light);margin-top:0}
+  p.lead{color:var(--muted)}
+
+  /* Buttons + interactions */
+  .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));color:#071018;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.08);box-shadow:0 10px 30px rgba(162,78,44,0.14);transition:transform .18s ease, box-shadow .18s ease}
+  .btn:active{transform:translateY(2px)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text-light)}
+
+  /* Hover/focus microinteractions */
+  .interactive{transition:all .28s cubic-bezier(.2,.9,.2,1)}
+  .interactive:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(2,6,23,0.5)}
+
+  /* Ripple click effect */
+  .ripple{position:relative;overflow:hidden}
+  .ripple .wave{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,0.12);animation:ripple .6s linear;pointer-events:none}
+  @keyframes ripple{to{transform:scale(6);opacity:0}}
+
+  /* Entrance animations */
+  .fade-in{animation:fadeInUp .8s cubic-bezier(.2,.9,.2,1) both}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  /* Modal (entrada/salida animada) */
+  .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);opacity:0;pointer-events:none;transition:opacity .28s}
+  .modal.open{opacity:1;pointer-events:auto}
+  .modal .panel{width:90%;max-width:720px;border-radius:18px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);transform:scale(.96);transition:transform .28s}
+  .modal.open .panel{transform:scale(1)}
+
+  /* Tooltip */
+  .tooltip{position:relative}
+  .tooltip[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 10px);background:#071018;color:var(--text-light);padding:8px 10px;border-radius:8px;font-size:13px;white-space:nowrap}
+
+  /* Footer references */
+  .refs{margin-top:14px;color:var(--muted);font-size:13px}
+
+  /* Responsive */
+  @media (max-width:980px){.container{grid-template-columns:1fr;}.sphere{width:160px;height:160px}.sidebar{order:2}}
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <aside class="sidebar interactive ripple" id="sidebar">
+      <div class="logo">
+        <div class="monogram">IA</div>
+        <div>
+          <h1>Laboratorio Digital</h1>
+          <div class="muted">Ensayo & Redacción científica</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Barra vertical -->
-    <div style="flex:0 0 50px; display:flex; flex-direction:column-reverse; align-items:center; margin-left:12px;">
-      <div style="height:78px; width:28px; background:linear-gradient(to top,#7c3aed,#10b981); border-radius:4px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(255,255,255,0.3); margin-bottom:6px;"></div>
-      <div style="font-size:12px; color:#64748b;">78%</div>
-      <div style="font-size:12px; color:#64748b; margin-top:4px;">ODS 4</div>
-    </div>
+      <div class="info">
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <span class="pill">Web3</span>
+          <span class="pill">IA</span>
+          <span class="pill">Geopolítica</span>
+        </div>
 
-    <div style="flex:0 0 50px; display:flex; flex-direction:column-reverse; align-items:center;">
-      <div style="height:68px; width:28px; background:linear-gradient(to top,#7c3aed,#10b981); border-radius:4px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(255,255,255,0.3); margin-bottom:6px;"></div>
-      <div style="font-size:12px; color:#64748b;">68%</div>
-      <div style="font-size:12px; color:#64748b; margin-top:4px;">ODS 6</div>
-    </div>
+        <div class="stat">
+          <div class="label">Entradas</div>
+          <div class="value">48</div>
+        </div>
+        <div class="stat">
+          <div class="label">Plantillas</div>
+          <div class="value">12</div>
+        </div>
 
-    <div style="flex:0 0 50px; display:flex; flex-direction:column-reverse; align-items:center;">
-      <div style="height:74px; width:28px; background:linear-gradient(to top,#7c3aed,#10b981); border-radius:4px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(255,255,255,0.3); margin-bottom:6px;"></div>
-      <div style="font-size:12px; color:#64748b;">74%</div>
-      <div style="font-size:12px; color:#64748b; margin-top:4px;">ODS 3</div>
-    </div>
-
-  </div>
-
-  <!-- Gráficas circulares estilo SoftUI -->
-  <h3 style="margin:16px 0 8px; color:#1e293b;">Distribución de fondos</h3>
-  <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:center;">
-
-    <div style="width:140px; height:140px; border-radius:50%; background: conic-gradient(#7c3aed 0 40%, #10b981 40% 70%, #f472b6 70% 100%); box-shadow: inset 4px 4px 8px rgba(0,0,0,0.15), inset -4px -4px 8px rgba(255,255,255,0.7); position:relative; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:14px; color:#1e293b;">126M</div>
-
-    <div style="flex:1; min-width:160px;">
-      <div style="display:flex; flex-direction:column; gap:6px;">
-        <div style="display:flex; gap:6px; align-items:center;"><span style='display:inline-block;width:12px;height:12px;background:#7c3aed; border-radius:2px;'></span> ODS 4 — 40 M</div>
-        <div style="display:flex; gap:6px; align-items:center;"><span style='display:inline-block;width:12px;height:12px;background:#10b981; border-radius:2px;'></span> ODS 3 — 30 M</div>
-        <div style="display:flex; gap:6px; align-items:center;"><span style='display:inline-block;width:12px;height:12px;background:#f472b6; border-radius:2px;'></span> ODS 1 — 12 M</div>
+        <div style="margin-top:14px">
+          <a href="#read" class="btn ripple" id="openSample">Leer última</a>
+        </div>
       </div>
-    </div>
 
+      <div style="margin-top:18px;color:var(--muted);font-size:13px">
+        <strong>Autor:</strong> Isaac Moctezuma<br>
+        <strong>Actualizado:</strong> Oct 2025
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <div class="hero-text">
+          <div class="eyebrow">Ensayo & Análisis</div>
+          <div class="title">Hacia una diplomacia codificada: inteligencia artificial, juventud y poder</div>
+          <p class="subtitle">Reflexiones, plantillas y análisis académico orientado a entender cómo la tecnología redefine la política internacional.</p>
+
+          <div style="margin-top:14px;display:flex;gap:12px;align-items:center">
+            <a class="btn ripple" id="openModal">Descargar plantilla</a>
+            <a class="btn btn-ghost ripple" href="#refs">Referencias</a>
+          </div>
+        </div>
+
+        <div class="sphere" id="sphere">Futuro<br>Digital</div>
+      </header>
+
+      <section class="article fade-in" id="read">
+        <h3>Abstract</h3>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sem a arcu facilisis convallis. Integer vel sapien id lectus fermentum ultrices.</p>
+
+        <blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum."</blockquote>
+
+        <h3>Introducción</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel velit eu lacus dictum commodo non eget odio. Suspendisse potenti.</p>
+
+        <h3>Metodología</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer euismod, sapien nec pulvinar maximus, nisi libero tristique tortor.</p>
+
+        <h3>Conclusiones</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non tempor sapien. Sed quis urna vel orci posuere varius.</p>
+
+        <div class="refs" id="refs">
+          <strong>Referencias (selección):</strong>
+          <ul>
+            <li>Lorem, I. (2025). <em>Estudios sobre IA y Diplomacia</em>. Journal of Digital Politics.</li>
+            <li>Ipsum, A. (2024). <em>Web3 y Soberanía Digital</em>. Revista de Tecnología y Estado.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="article fade-in" style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="flex:1;min-width:280px">
+          <h3>Plantilla: Estructura de ensayo académico</h3>
+          <ol>
+            <li>Título y resumen (Abstract)</li>
+            <li>Introducción y problema de investigación</li>
+            <li>Revisión de literatura</li>
+            <li>Metodología</li>
+            <li>Resultados y discusión</li>
+            <li>Conclusiones y referencias</li>
+          </ol>
+          <p style="color:var(--muted)"><em>Tip:</em> usa <strong>Playfair Display</strong> para títulos, <strong>Poppins</strong> para texto y <strong>Inter</strong> para microcopy y notas.</p>
+        </div>
+
+        <div style="flex:0 0 320px">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)">
+            <h3 style="margin-top:0">Datos Rápidos</h3>
+            <p style="margin:6px 0;color:var(--muted)">Plantilla descargable, formatos .docx y .md. Licencia: uso académico.</p>
+            <button class="btn ripple" id="downloadBtn">Descargar .docx</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 
-  <!-- Tabla SoftUI -->
-  <h3 style="margin:16px 0 6px; color:#1e293b;">Indicadores por meta</h3>
-  <table style="width:100%; border-collapse:collapse; font-size:13px;">
-    <thead>
-      <tr style="background:#e2e8f0; color:#1e293b; font-weight:bold;">
-        <th style="padding:6px; text-align:left;">ODS</th>
-        <th style="padding:6px; text-align:left;">Meta</th>
-        <th style="padding:6px; text-align:left;">Progreso</th>
-        <th style="padding:6px; text-align:left;">Programas</th>
-        <th style="padding:6px; text-align:left;">Fondos</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="border-top:1px solid #cbd5e1; background:#f8fafc; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05), inset -2px -2px 4px rgba(255,255,255,0.7);">
-        <td style="padding:6px;">ODS 4</td><td style="padding:6px;">Educación de calidad</td><td style="padding:6px;">78%</td><td style="padding:6px;">4</td><td style="padding:6px;">40 M</td>
-      </tr>
-      <tr style="border-top:1px solid #cbd5e1; background:#f8fafc; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05), inset -2px -2px 4px rgba(255,255,255,0.7);">
-        <td style="padding:6px;">ODS 3</td><td style="padding:6px;">Salud y bienestar</td><td style="padding:6px;">74%</td><td style="padding:6px;">3</td><td style="padding:6px;">30 M</td>
-      </tr>
-      <tr style="border-top:1px solid #cbd5e1; background:#f8fafc; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05), inset -2px -2px 4px rgba(255,255,255,0.7);">
-        <td style="padding:6px;">ODS 6</td><td style="padding:6px;">Agua limpia</td><td style="padding:6px;">68%</td><td style="padding:6px;">1</td><td style="padding:6px;">8 M</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Modal -->
+  <div class="modal" id="modal"><div class="panel">
+    <h3>Descarga de plantilla</h3>
+    <p>Selecciona el formato que deseas descargar. (Demo)</p>
+    <div style="margin-top:12px;display:flex;gap:10px">
+      <a class="btn ripple" href="#">.docx</a>
+      <a class="btn ripple" href="#">.md</a>
+      <a class="btn btn-ghost ripple" id="closeModal">Cerrar</a>
+    </div>
+  </div></div>
 
-  <p style="font-size:12px; color:#64748b; margin-top:10px;">Fuente: datos demo — ilustración de programas ONU y ODS 2030</p>
-</div>
- </body>
- </html>
+  <script>
+    // Small helper for ripple click effect
+    document.querySelectorAll('.ripple').forEach(btn=>{
+      btn.addEventListener('click',function(e){
+        const rect = this.getBoundingClientRect();
+        const wave = document.createElement('span');
+        wave.className='wave';
+        wave.style.width = wave.style.height = Math.max(rect.width,rect.height)+'px';
+        wave.style.left = (e.clientX - rect.left - rect.width/2)+'px';
+        wave.style.top = (e.clientY - rect.top - rect.height/2)+'px';
+        this.appendChild(wave);
+        setTimeout(()=>wave.remove(),600);
+      });
+    });
+
+    // Modal open/close
+    const modal = document.getElementById('modal');
+    document.getElementById('openModal').addEventListener('click',()=>{modal.classList.add('open');});
+    document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');});
+
+    // Download demo
+    document.getElementById('downloadBtn').addEventListener('click',function(e){
+      e.preventDefault();
+      alert('Descarga demo: plantilla .docx (simulada)');
+    });
+
+    // Sphere subtle animation on mousemove (parallax)
+    const sphere = document.getElementById('sphere');
+    document.addEventListener('mousemove', (e)=>{
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      sphere.style.transform = `translate(${x}px, ${y}px) rotate(${x/6}deg)`;
+    });
+
+    // Accessibility: close modal with ESC
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+  </script>
+</body>
+</html>
