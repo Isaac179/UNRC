@@ -1,74 +1,70 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
   <title>Mapa Conceptual — Ciencias Sociales</title>
   <style>
     body{
-      margin:0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background:#f8fcfc;
-      color:#1f2e2f;
-      padding:30px;
+      font-family:"Segoe UI", Arial, sans-serif;
+      background:#f6fafb;
+      margin:0; padding:20px;
+      color:#222;
     }
     .page{
       max-width:1000px;
       margin:0 auto 40px;
       background:#fff;
-      border-radius:14px;
       padding:30px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.06);
+      border-radius:14px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
       page-break-after:always;
     }
     /* Mapa conceptual */
     .map{
       position:relative;
-      height:650px;
+      height:600px;
     }
     .central{
       position:absolute;
-      top:40%;
-      left:50%;
+      top:50%; left:50%;
       transform:translate(-50%,-50%);
-      width:260px;
-      padding:16px;
+      width:220px; padding:14px;
       text-align:center;
       background:#e8f9f9;
       border:2px solid #0f8388;
-      border-radius:14px;
+      border-radius:12px;
       font-weight:700;
       color:#0f555a;
     }
     .node{
       position:absolute;
-      width:220px;
-      padding:14px;
+      width:200px;
+      padding:12px;
       font-size:13px;
       background:#fff;
       border-radius:12px;
       border:2px solid;
-      line-height:1.45;
+      line-height:1.4;
     }
     .node h4{margin:0 0 6px; font-size:14px;}
-    .comte{ top:8%; left:10%; border-color:#f0b76b; }
-    .durkheim{ top:8%; right:10%; border-color:#0f8388; }
-    .marx{ bottom:8%; left:10%; border-color:#b85a3a; }
-    .weber{ bottom:8%; right:10%; border-color:#66c1bd; }
-    /* Líneas conectoras */
+    .comte{ top:10%; left:10%; border-color:#f0b76b; }
+    .durkheim{ top:10%; right:10%; border-color:#0f8388; }
+    .marx{ bottom:10%; left:10%; border-color:#b85a3a; }
+    .weber{ bottom:10%; right:10%; border-color:#66c1bd; }
+    /* Líneas conectores */
     .line{
       position:absolute;
       width:2px;
-      background:#999;
+      background:#777;
       transform-origin:top left;
     }
-    .line1{ left:260px; top:180px; height:200px; transform:rotate(20deg);}
-    .line2{ right:260px; top:180px; height:200px; transform:rotate(-20deg);}
-    .line3{ left:260px; bottom:180px; height:200px; transform:rotate(-20deg);}
-    .line4{ right:260px; bottom:180px; height:200px; transform:rotate(20deg);}
+    .line1{ left:260px; top:160px; height:200px; transform:rotate(20deg);}
+    .line2{ right:260px; top:160px; height:200px; transform:rotate(-20deg);}
+    .line3{ left:260px; bottom:160px; height:200px; transform:rotate(-20deg);}
+    .line4{ right:260px; bottom:160px; height:200px; transform:rotate(20deg);}
     /* Página 2 */
     .content p{ font-size:14px; margin:0 0 14px; text-align:justify;}
-    .refs{ font-size:13px; line-height:1.5; }
+    .refs{ font-size:13px; line-height:1.5; margin-top:20px;}
     .refs li{ margin-bottom:6px; }
   </style>
 </head>
@@ -77,26 +73,31 @@
   <div class="page">
     <div class="map">
       <div class="central">Ciencias Sociales<br><small>método, teorías, aplicación</small></div>
+
       <div class="node comte">
         <h4>Comte</h4>
-        Método científico, orden y progreso.<br>
-        <strong>Aplicación:</strong> medir huella ambiental y proponer políticas con evidencia.
+        Positivismo, método científico, orden y progreso.<br>
+        <strong>Aplicación:</strong> cuantificar impactos ambientales y políticas basadas en evidencia.
       </div>
+
       <div class="node durkheim">
         <h4>Durkheim</h4>
-        Hechos sociales, cohesión e instituciones.<br>
-        <strong>Aplicación:</strong> impacto del e-waste en la solidaridad comunitaria y debilidad institucional.
+        Hechos sociales, cohesión, instituciones.<br>
+        <strong>Aplicación:</strong> e-waste debilita solidaridad y capacidad institucional.
       </div>
+
       <div class="node marx">
         <h4>Marx</h4>
-        Materialismo histórico, conflicto y desigualdad.<br>
-        <strong>Aplicación:</strong> externalización de costos ambientales = explotación global.
+        Materialismo histórico, conflicto, desigualdad.<br>
+        <strong>Aplicación:</strong> Norte transfiere costos ambientales al Sur como forma de explotación.
       </div>
+
       <div class="node weber">
         <h4>Weber</h4>
-        Acción social, burocracia y racionalización.<br>
-        <strong>Aplicación:</strong> políticas internacionales enfocadas en eficiencia más que en justicia.
+        Acción social, burocracia, racionalización.<br>
+        <strong>Aplicación:</strong> políticas ambientales internacionales priorizan eficiencia sobre justicia.
       </div>
+
       <div class="line line1"></div>
       <div class="line line2"></div>
       <div class="line line3"></div>
@@ -107,18 +108,18 @@
   <!-- Página 2: Reflexión y referencias -->
   <div class="page">
     <div class="content">
-      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero debe fortalecerse como herramienta de transformación social. Desde <strong>Comte</strong>, la enseñanza debe guiarse por el método científico, impulsando competencias para comprender fenómenos como la huella ecológica y proponer soluciones basadas en evidencia.</p>
+      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero puede analizarse desde los fundadores de las Ciencias Sociales. Para <strong>Comte</strong>, es fundamental fomentar un espíritu científico en el aula que forme estudiantes con capacidad crítica y habilidades para aplicar el método científico a problemas sociales y ambientales.</p>
 
-      <p>Para <strong>Durkheim</strong>, la escuela es institución que transmite valores colectivos y cohesión social. En la GAM, puede servir para reforzar la solidaridad frente a desigualdades, promoviendo proyectos comunitarios de reciclaje y conciencia ambiental que fortalezcan el tejido social.</p>
+      <p>Desde la mirada de <strong>Durkheim</strong>, la escuela es institución de cohesión que transmite valores colectivos. En la GAM puede fortalecer la solidaridad frente a desigualdades, impulsando proyectos comunitarios de conciencia ambiental y reciclaje.</p>
 
-      <p>Finalmente, <strong>Marx</strong> señala que la educación reproduce desigualdades de clase: en la GAM existen brechas entre escuelas públicas y privadas. <strong>Weber</strong> advierte que la burocracia educativa puede obstaculizar la innovación pedagógica; por ello se requieren reformas que prioricen la equidad y la calidad sobre la mera gestión administrativa.</p>
+      <p>Finalmente, <strong>Marx</strong> y <strong>Weber</strong> revelan tensiones: la educación reproduce desigualdades de clase (Marx), mientras que la burocracia escolar puede obstaculizar la innovación pedagógica (Weber). Una reforma integral debe reducir brechas sociales y simplificar la gestión educativa para potenciar la equidad y la calidad.</p>
     </div>
 
     <ul class="refs">
       <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar. https://historiadeeuropacontemporenea.files.wordpress.com/2017/12/curso-de-filosofia-positiva.pdf</li>
       <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza. https://sociologiac.net/biblio/Durkheim_las-reglas-metodo-sociologico.pdf</li>
       <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel. https://obtienearchivo.bcn.cl/obtienearchivo?id=documentos/10221.1/19671/1/19742.pdf</li>
-      <li>Weber, M. (1980). <em>La ciencia como vocación</em>. En <em>El político y el científico</em> (pp. 61–89). Premia. http://www.politicascti.net/index.php?option=com_docman&task=doc_view&gid=43&Itemid=74&lang=es</li>
+      <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em> (pp. 61–89). Premia. http://www.politicascti.net/index.php?option=com_docman&task=doc_view&gid=43&Itemid=74&lang=es</li>
       <li>Forti, V., Baldé, C. P., Kuehr, R., & Bel, G. (2020). <em>The Global E-waste Monitor 2020</em>. UNU, ITU & ISWA. https://ewastemonitor.info</li>
       <li>International Resource Panel (IRP). (2019). <em>Global resources outlook 2019</em>. UNEP. https://www.resourcepanel.org/reports/global-resources-outlook</li>
       <li>IPCC. (2022). <em>Climate change 2022: Mitigation of climate change</em>. Cambridge University Press. https://www.ipcc.ch/report/ar6/wg3/</li>
