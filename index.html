@@ -29,16 +29,44 @@
       padding:20px;
     }
 
+    /* Bloque superior */
+    .header-block{
+      background:rgba(0,0,0,0.55);
+      backdrop-filter:blur(14px);
+      border-radius:16px;
+      padding:25px;
+      margin-bottom:25px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.35);
+      text-align:center;
+    }
+    .header-block h1{
+      font-size:22px;
+      margin:0 0 12px;
+      font-weight:700;
+      color:#e3f1ff;
+    }
+    .header-block h2{
+      font-size:18px;
+      margin:0 0 10px;
+      font-weight:500;
+      color:#f0f8ff;
+    }
+    .header-block .meta{
+      font-size:14px;
+      font-style:italic;
+      color:#ddd;
+    }
+
     .map{
       position:relative;
       flex:1;
       min-height:900px;
-      background:rgba(255,255,255,0.08); /* transparencia */
+      background:rgba(255,255,255,0.08);
       backdrop-filter:blur(18px);
       border-radius:22px;
       box-shadow:0 10px 40px rgba(0,0,0,0.15);
       padding:20px;
-      margin-bottom:30px; /* separación del bloque de reflexión */
+      margin-bottom:30px;
     }
 
     /* Sidebar */
@@ -58,7 +86,6 @@
       color:#fff;
     }
     .sidebar h3{margin-top:0; font-size:15px; font-weight:700; text-align:center;}
-
     .sidebar ul{padding-left:15px; margin:0;}
     .sidebar li{margin-bottom:12px;}
 
@@ -103,7 +130,7 @@
 
     /* Reflexión debajo del mapa */
     .page{
-      background:rgba(0,0,0,0.55); /* fondo translúcido oscuro */
+      background:rgba(0,0,0,0.55);
       border-radius:14px;
       padding:30px;
       box-shadow:0 4px 16px rgba(0,0,0,0.4);
@@ -129,6 +156,14 @@
 
     <!-- Contenido principal -->
     <div style="flex:1">
+
+      <!-- Bloque superior -->
+      <div class="header-block">
+        <h1>Módulo I — Las Ciencias Sociales como campo de conocimiento</h1>
+        <h2>Mapa conceptual aplicado al incidente crítico: Externalización ambiental (E-waste)</h2>
+        <div class="meta">Alumno: Isaac Moctezuma — LRIN_M2_apellidopaterno_nombre_TA (v2)</div>
+      </div>
+
       <!-- Mapa Conceptual -->
       <div class="map">
         <!-- Nodo central -->
@@ -177,7 +212,7 @@
         </div>    
       </div>
 
-      <!-- Reflexión inmediatamente debajo -->
+      <!-- Reflexión debajo del mapa -->
       <div class="page">
         <div class="content">
           <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero debe fortalecerse como herramienta de transformación social. Desde <strong>Comte</strong>, la enseñanza debe guiarse por el método científico, impulsando competencias para comprender fenómenos como la huella ecológica y proponer soluciones basadas en evidencia.</p>
