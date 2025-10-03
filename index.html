@@ -1,169 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Académico - Versión Light</title>
-
-  <!-- Fuentes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Raleway:wght@400;600&family=Fira+Sans:wght@400;500&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mapa Conceptual — Ciencias Sociales</title>
   <style>
-    /* Reset */
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(135deg, #fff8f0, #ffe6d1);
-      color: #444;
-      display: flex;
-      min-height: 100vh;
-      overflow-x: hidden;
+    body{
+      margin:0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:#f8fcfc;
+      color:#1f2e2f;
+      padding:30px;
     }
-
-    /* Sidebar */
-    .sidebar {
-      width: 260px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
-      margin: 20px;
-      padding: 25px;
-      box-shadow: 12px 12px 24px rgba(0,0,0,0.12), -12px -12px 24px rgba(255,255,255,0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      animation: slideIn 1.2s ease;
+    .page{
+      max-width:1000px;
+      margin:0 auto 40px;
+      background:#fff;
+      border-radius:14px;
+      padding:30px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.06);
+      page-break-after:always;
     }
-    .sidebar h2 {
-      font-family: 'Playfair Display', serif;
-      color: #d97b44;
-      font-size: 1.5em;
+    /* Mapa conceptual */
+    .map{
+      position:relative;
+      height:650px;
     }
-    .sidebar ul {list-style: none;}
-    .sidebar li {
-      padding: 10px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 15px;
-      box-shadow: inset 6px 6px 12px rgba(0,0,0,0.05), inset -6px -6px 12px #fff;
-      transition: transform .3s, box-shadow .3s;
+    .central{
+      position:absolute;
+      top:40%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:260px;
+      padding:16px;
+      text-align:center;
+      background:#e8f9f9;
+      border:2px solid #0f8388;
+      border-radius:14px;
+      font-weight:700;
+      color:#0f555a;
     }
-    .sidebar li:hover {
-      transform: translateX(8px);
-      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    .node{
+      position:absolute;
+      width:220px;
+      padding:14px;
+      font-size:13px;
+      background:#fff;
+      border-radius:12px;
+      border:2px solid;
+      line-height:1.45;
     }
-
-    /* Main */
-    .main {
-      flex: 1;
-      margin: 20px;
-      padding: 30px;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(15px);
-      border-radius: 25px;
-      box-shadow: 10px 10px 25px rgba(0,0,0,0.12), -10px -10px 25px rgba(255,255,255,0.9);
-      animation: fadeIn 1.5s ease;
+    .node h4{margin:0 0 6px; font-size:14px;}
+    .comte{ top:8%; left:10%; border-color:#f0b76b; }
+    .durkheim{ top:8%; right:10%; border-color:#0f8388; }
+    .marx{ bottom:8%; left:10%; border-color:#b85a3a; }
+    .weber{ bottom:8%; right:10%; border-color:#66c1bd; }
+    /* Líneas conectoras */
+    .line{
+      position:absolute;
+      width:2px;
+      background:#999;
+      transform-origin:top left;
     }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2em;
-      color: #e26a2c;
-      margin-bottom: 10px;
-      animation: float 3s ease-in-out infinite;
-    }
-    .hero p {
-      font-family: 'Fira Sans', sans-serif;
-      font-size: 1.1em;
-      color: #555;
-    }
-
-    /* Sphere */
-    .sphere {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: url('https://picsum.photos/300/300?blur=3') center/cover no-repeat;
-      margin: 30px auto;
-      box-shadow: 10px 10px 25px rgba(0,0,0,0.2), -10px -10px 25px rgba(255,255,255,0.7);
-      position: relative;
-      animation: bounce 5s infinite ease-in-out;
-    }
-
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .card {
-      background: rgba(255,255,255,0.8);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 8px 8px 18px rgba(0,0,0,0.12), -8px -8px 18px rgba(255,255,255,0.9);
-      transition: transform .3s, box-shadow .3s;
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 12px 12px 24px rgba(0,0,0,0.15);
-    }
-    .card h3 {
-      color: #d95f29;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
-    }
-    .card p {
-      font-size: 0.95em;
-      line-height: 1.5;
-    }
-
-    /* Animations */
-    @keyframes slideIn {from{transform:translateX(-100%);} to{transform:translateX(0);}}
-    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
-    @keyframes float {0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);}}
-    @keyframes bounce {0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+    .line1{ left:260px; top:180px; height:200px; transform:rotate(20deg);}
+    .line2{ right:260px; top:180px; height:200px; transform:rotate(-20deg);}
+    .line3{ left:260px; bottom:180px; height:200px; transform:rotate(-20deg);}
+    .line4{ right:260px; bottom:180px; height:200px; transform:rotate(20deg);}
+    /* Página 2 */
+    .content p{ font-size:14px; margin:0 0 14px; text-align:justify;}
+    .refs{ font-size:13px; line-height:1.5; }
+    .refs li{ margin-bottom:6px; }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2>📌 Datos Clave</h2>
-    <ul>
-      <li>🔸 Nepal: Juventud digital y política</li>
-      <li>🔸 Albania: Ministra IA</li>
-      <li>🔸 América Latina: Retos educativos</li>
-      <li>🔸 Global: Diplomacia tecnológica</li>
+  <!-- Página 1: Mapa conceptual -->
+  <div class="page">
+    <div class="map">
+      <div class="central">Ciencias Sociales<br><small>método, teorías, aplicación</small></div>
+      <div class="node comte">
+        <h4>Comte</h4>
+        Método científico, orden y progreso.<br>
+        <strong>Aplicación:</strong> medir huella ambiental y proponer políticas con evidencia.
+      </div>
+      <div class="node durkheim">
+        <h4>Durkheim</h4>
+        Hechos sociales, cohesión e instituciones.<br>
+        <strong>Aplicación:</strong> impacto del e-waste en la solidaridad comunitaria y debilidad institucional.
+      </div>
+      <div class="node marx">
+        <h4>Marx</h4>
+        Materialismo histórico, conflicto y desigualdad.<br>
+        <strong>Aplicación:</strong> externalización de costos ambientales = explotación global.
+      </div>
+      <div class="node weber">
+        <h4>Weber</h4>
+        Acción social, burocracia y racionalización.<br>
+        <strong>Aplicación:</strong> políticas internacionales enfocadas en eficiencia más que en justicia.
+      </div>
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+      <div class="line line4"></div>
+    </div>
+  </div>
+
+  <!-- Página 2: Reflexión y referencias -->
+  <div class="page">
+    <div class="content">
+      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero debe fortalecerse como herramienta de transformación social. Desde <strong>Comte</strong>, la enseñanza debe guiarse por el método científico, impulsando competencias para comprender fenómenos como la huella ecológica y proponer soluciones basadas en evidencia.</p>
+
+      <p>Para <strong>Durkheim</strong>, la escuela es institución que transmite valores colectivos y cohesión social. En la GAM, puede servir para reforzar la solidaridad frente a desigualdades, promoviendo proyectos comunitarios de reciclaje y conciencia ambiental que fortalezcan el tejido social.</p>
+
+      <p>Finalmente, <strong>Marx</strong> señala que la educación reproduce desigualdades de clase: en la GAM existen brechas entre escuelas públicas y privadas. <strong>Weber</strong> advierte que la burocracia educativa puede obstaculizar la innovación pedagógica; por ello se requieren reformas que prioricen la equidad y la calidad sobre la mera gestión administrativa.</p>
+    </div>
+
+    <ul class="refs">
+      <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar. https://historiadeeuropacontemporenea.files.wordpress.com/2017/12/curso-de-filosofia-positiva.pdf</li>
+      <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza. https://sociologiac.net/biblio/Durkheim_las-reglas-metodo-sociologico.pdf</li>
+      <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel. https://obtienearchivo.bcn.cl/obtienearchivo?id=documentos/10221.1/19671/1/19742.pdf</li>
+      <li>Weber, M. (1980). <em>La ciencia como vocación</em>. En <em>El político y el científico</em> (pp. 61–89). Premia. http://www.politicascti.net/index.php?option=com_docman&task=doc_view&gid=43&Itemid=74&lang=es</li>
+      <li>Forti, V., Baldé, C. P., Kuehr, R., & Bel, G. (2020). <em>The Global E-waste Monitor 2020</em>. UNU, ITU & ISWA. https://ewastemonitor.info</li>
+      <li>International Resource Panel (IRP). (2019). <em>Global resources outlook 2019</em>. UNEP. https://www.resourcepanel.org/reports/global-resources-outlook</li>
+      <li>IPCC. (2022). <em>Climate change 2022: Mitigation of climate change</em>. Cambridge University Press. https://www.ipcc.ch/report/ar6/wg3/</li>
+      <li>Gore, T. (2015). <em>Extreme carbon inequality</em>. Oxfam. https://www-cdn.oxfam.org/s3fs-public/file_attachments/mb-extreme-carbon-inequality-021215-en.pdf</li>
     </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="main">
-    <section class="hero">
-      <h1>🌐 Blog Académico</h1>
-      <p>Reflexiones sobre política, tecnología y relaciones internacionales</p>
-    </section>
-
-    <div class="sphere"></div>
-
-    <section class="cards">
-      <div class="card">
-        <h3>Nepal</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula, urna at malesuada.</p>
-      </div>
-      <div class="card">
-        <h3>Albania</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ligula eget justo dictum.</p>
-      </div>
-      <div class="card">
-        <h3>Latinoamérica</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum nisl sed.</p>
-      </div>
-    </section>
-  </main>
+  </div>
 </body>
 </html>
