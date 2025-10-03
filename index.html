@@ -8,50 +8,27 @@
     body{
       margin:0; padding:0;
       display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
       background:linear-gradient(135deg,#eef5ff,#fdfdfe);
       font-family:'Poppins',sans-serif;
       color:#1e2a2f;
     }
 
-    /* Sidebar referencias */
-    aside{
-      width:320px;
-      padding:24px;
-      background:rgba(255,255,255,0.6);
-      backdrop-filter:blur(18px);
-      border-left:2px solid rgba(0,0,0,0.1);
-      box-shadow:-8px 0 25px rgba(0,0,0,0.15);
-      font-size:14px;
-      line-height:1.6;
-      overflow-y:auto;
-      z-index:5;
-    }
-    aside h3{
-      margin-top:0;
-      font-size:17px;
-      font-weight:700;
-      color:#1a3d5c;
-    }
-    aside ul{padding-left:20px; margin:0;}
-    aside li{margin-bottom:10px;}
-
-    /* Área principal */
-    .container{
-      flex:1;
-      padding:30px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
     .map{
       position:relative;
-      width:1000px;
-      height:820px;
+      width:1200px;
+      height:900px;
+      background:rgba(255,255,255,0.55);
+      backdrop-filter:blur(12px);
+      border-radius:22px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.12);
+      padding:20px;
     }
 
-    /* Nodos neumórficos */
-    .node, .central{
+    /* Nodos */
+    .node, .central, .sidebar{
       position:absolute;
       padding:18px 20px;
       border-radius:18px;
@@ -79,20 +56,32 @@
     .node p{margin:0; font-size:13px; text-align:justify;}
     .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
-    /* Posiciones ajustadas (más separación) */
-    .comte{ top:8%; left:12%; background:linear-gradient(145deg,#fff8e6,#fff);}
-    .durkheim{ top:8%; right:12%; background:linear-gradient(145deg,#e6f9f7,#fff);}
-    .marx{ bottom:8%; left:12%; background:linear-gradient(145deg,#ffeaea,#fff);}
-    .weber{ bottom:8%; right:12%; background:linear-gradient(145deg,#eaf0ff,#fff);}
+    /* Posiciones con más separación */
+    .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#fff);}
+    .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#fff);}
+    .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#fff);}
+    .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#fff);}
     .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#fff);}
     .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#fff);}
+    .sidebar{
+      top:20%; right:1%;
+      width:260px;
+      font-size:13px;
+      line-height:1.5;
+      background:rgba(255,255,255,0.7);
+      backdrop-filter:blur(14px);
+      box-shadow:0 6px 22px rgba(0,0,0,0.1);
+    }
+    .sidebar h3{margin-top:0; font-size:15px; font-weight:700; color:#1a3d5c;}
+    .sidebar ul{padding-left:18px; margin:0;}
+    .sidebar li{margin-bottom:6px;}
 
-    /* Flechas curvas */
+    /* Flechas curvas reducidas */
     svg.connector{
       position:absolute;
       width:100%; height:100%;
       pointer-events:none;
-      z-index:1;
+      z-index:0;
     }
     path{
       fill:none;
@@ -106,82 +95,80 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="map">
-      <!-- Nodo central -->
-      <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
+  <div class="map">
+    <!-- Nodo central -->
+    <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
 
-      <!-- Nodos principales -->
-      <div class="node comte">
-        <h4>🔬 Comte</h4>
-        <p>Positivismo y método científico como guía del orden social.<br>
-        <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
-        <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
-      </div>
-
-      <div class="node durkheim">
-        <h4>🏛️ Durkheim</h4>
-        <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
-        <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
-        <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
-      </div>
-
-      <div class="node marx">
-        <h4>⚒️ Marx</h4>
-        <p>Materialismo histórico y lucha de clases.<br>
-        <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
-        <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
-      </div>
-
-      <div class="node weber">
-        <h4>📊 Weber</h4>
-        <p>Acción social y racionalización.<br>
-        <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
-        <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
-      </div>
-
-      <div class="node grupo">
-        <h4>👥 Grupo afectado</h4>
-        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
-        <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
-        <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
-      </div>
-
-      <div class="node coop">
-        <h4>🤝 Cooperación internacional</h4>
-        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
-        <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
-      </div>
-
-      <!-- Flechas más cortas -->
-      <svg class="connector">
-        <defs>
-          <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
-          </marker>
-        </defs>
-        <!-- Ajustadas al 80% del largo -->
-        <path d="M 500 400 C 390 260, 320 240, 250 200"/> <!-- Central -> Comte -->
-        <path d="M 520 400 C 630 260, 700 240, 770 200"/> <!-- Central -> Durkheim -->
-        <path d="M 500 420 C 390 540, 320 560, 250 600"/> <!-- Central -> Marx -->
-        <path d="M 520 420 C 630 540, 700 560, 770 600"/> <!-- Central -> Weber -->
-        <path d="M 470 400 C 340 400, 240 400, 150 400"/> <!-- Central -> Grupo -->
-        <path d="M 540 400 C 660 400, 760 400, 880 400"/> <!-- Central -> Coop -->
-      </svg>
+    <!-- Nodos -->
+    <div class="node comte">
+      <h4>🔬 Comte</h4>
+      <p>Positivismo y método científico como guía del orden social.<br>
+      <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+      <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
     </div>
-  </div>
 
-  <!-- Sidebar -->
-  <aside>
-    <h3>📚 Referencias APA</h3>
-    <ul>
-      <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
-      <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
-      <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel.</li>
-      <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em>. Premia.</li>
-      <li>Wallerstein, I. (2006). <em>Abrir las Ciencias Sociales</em>. Siglo XXI.</li>
-      <li>ONU-UNU. (2020). <em>The Global E-waste Monitor</em>.</li>
-    </ul>
-  </aside>
+    <div class="node durkheim">
+      <h4>🏛️ Durkheim</h4>
+      <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
+      <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+      <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
+    </div>
+
+    <div class="node marx">
+      <h4>⚒️ Marx</h4>
+      <p>Materialismo histórico y lucha de clases.<br>
+      <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+      <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
+    </div>
+
+    <div class="node weber">
+      <h4>📊 Weber</h4>
+      <p>Acción social y racionalización.<br>
+      <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+      <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
+    </div>
+
+    <div class="node grupo">
+      <h4>👥 Grupo afectado</h4>
+      <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
+      <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
+      <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
+    </div>
+
+    <div class="node coop">
+      <h4>🤝 Cooperación internacional</h4>
+      <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
+      <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
+    </div>
+
+    <!-- Sidebar dentro del mapa -->
+    <div class="sidebar">
+      <h3>📚 Referencias APA</h3>
+      <ul>
+        <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
+        <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
+        <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel.</li>
+        <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em>. Premia.</li>
+        <li>Wallerstein, I. (2006). <em>Abrir las Ciencias Sociales</em>. Siglo XXI.</li>
+        <li>ONU-UNU. (2020). <em>The Global E-waste Monitor</em>.</li>
+      </ul>
+    </div>
+
+    <!-- Flechas muy cortas y precisas -->
+    <svg class="connector">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+        </marker>
+      </defs>
+      <!-- Ajustadas al 50% del largo anterior -->
+      <path d="M 600 450 C 520 330, 420 280, 340 240"/> <!-- Central -> Comte -->
+      <path d="M 610 450 C 700 330, 800 280, 860 240"/> <!-- Central -> Durkheim -->
+      <path d="M 600 470 C 520 570, 420 600, 340 640"/> <!-- Central -> Marx -->
+      <path d="M 610 470 C 700 570, 800 600, 860 640"/> <!-- Central -> Weber -->
+      <path d="M 570 460 C 450 460, 340 460, 220 460"/> <!-- Central -> Grupo -->
+      <path d="M 630 460 C 740 460, 860 460, 980 460"/> <!-- Central -> Coop -->
+    </svg>
+  </div>
 </body>
 </html>
