@@ -5,80 +5,189 @@
   <title>Mapa Conceptual — Ciencias Sociales</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Nunito', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f7fb;
-      color: #333;
+    body{
+      margin:0; padding:0;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,rgba(30,58,95,0.8),rgba(0,191,166,0.8)),
+                 url("https://images.unsplash.com/photo-1535909339361-9b8e6f7f7b17?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+      overflow-x:hidden;
+      color:#fff;
     }
-    header, footer {
-      background: #e3f1ff;
-      padding: 20px;
-      border-radius: 16px;
-      margin: 20px auto;
-      width: 85%;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+
+    .container{
+      display:flex;
+      gap:20px;
+      width:100%;
+      max-width:1600px;
+      padding:20px;
     }
-    header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.6rem;
-      color: #044d8d;
-      margin: 0 0 10px 0;
+
+    .map{
+      position:relative;
+      flex:1;
+      min-height:900px;
+      background:rgba(255,255,255,0.08); /* transparencia */
+      backdrop-filter:blur(18px);
+      border-radius:22px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.15);
+      padding:20px;
+      margin-bottom:30px; /* separación del bloque de reflexión */
     }
-    header h2 {
-      font-size: 1.2rem;
-      margin: 0 0 10px 0;
-      color: #222;
+
+    /* Sidebar */
+    .sidebar{
+      width:200px;
+      position:sticky;
+      top:20px;
+      align-self:flex-start;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter:blur(16px);
+      border-radius:18px;
+      padding:20px 15px;
+      font-size:13px;
+      line-height:1.6;
+      box-shadow:0 6px 22px rgba(0,0,0,0.15);
+      z-index:10;
+      color:#fff;
     }
-    header .meta {
-      font-size: 0.9rem;
-      color: #555;
-      font-style: italic;
+    .sidebar h3{margin-top:0; font-size:15px; font-weight:700; text-align:center;}
+
+    .sidebar ul{padding-left:15px; margin:0;}
+    .sidebar li{margin-bottom:12px;}
+
+    /* Nodos */
+    .node, .central{
+      position:absolute;
+      padding:20px;
+      border-radius:18px;
+      background:#fefefe;
+      box-shadow:6px 6px 12px rgba(0,0,0,0.12),
+                 -6px -6px 12px rgba(255,255,255,0.9);
+      border:1px solid rgba(255,255,255,0.5);
+      max-width:240px;
+      margin:15px;
+      color:#123;
     }
-    .mapa {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
+
+    .central{
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:300px;
+      text-align:center;
+      background:rgba(255,255,255,0.5);
+      backdrop-filter:blur(20px);
+      font-weight:700;
+      font-size:20px;
+      color:#124d47;
+      z-index:2;
     }
-    .mapa img {
-      max-width: 90%;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    .node h4{margin:0 0 10px; font-size:16px; font-weight:700; font-family:'Nunito',sans-serif;}
+    .node p{margin:0; font-size:13px; text-align:justify;}
+    .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
+
+    /* Colores nodos */
+    .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#ffffff);}
+    .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#ffffff);}
+    .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#ffffff);}
+    .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#ffffff);}
+    .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#ffffff);}
+    .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#ffffff);}
+
+    /* Reflexión debajo del mapa */
+    .page{
+      background:rgba(0,0,0,0.55); /* fondo translúcido oscuro */
+      border-radius:14px;
+      padding:30px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.4);
+      color:#fff;
     }
-    footer h3 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.4rem;
-      color: #044d8d;
-      margin-bottom: 10px;
-    }
-    footer p {
-      margin: 8px 0;
-    }
+    .content p{ font-size:15px; margin:0 0 16px; text-align:justify;}
   </style>
 </head>
 <body>
+  <div class="container">   
+    <!-- Sidebar APA -->
+    <div class="sidebar">
+      <h3>📚 Referencias APA</h3>
+      <ul>
+        <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
+        <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
+        <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel.</li>
+        <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em>. Premia.</li>
+        <li>Wallerstein, I. (2006). <em>Abrir las Ciencias Sociales</em>. Siglo XXI.</li>
+        <li>ONU-UNU. (2020). <em>The Global E-waste Monitor</em>.</li>
+      </ul>
+    </div>
 
-  <!-- Bloque superior con datos -->
-  <header>
-    <h1>Módulo I — Las Ciencias Sociales como campo de conocimiento</h1>
-    <h2>Mapa conceptual aplicado al incidente crítico: Externalización ambiental (E-waste)</h2>
-    <div class="meta">Alumno: Isaac Moctezuma — LRIN_M2_apellidopaterno_nombre_TA (v2)</div>
-  </header>
+    <!-- Contenido principal -->
+    <div style="flex:1">
+      <!-- Mapa Conceptual -->
+      <div class="map">
+        <!-- Nodo central -->
+        <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
 
-  <!-- Mapa conceptual -->
-  <div class="mapa">
-    <img src="mapa_conceptual.png" alt="Mapa Conceptual sobre Ciencias Sociales">
+        <!-- Nodos -->
+        <div class="node comte">
+          <h4>🔬 Comte</h4>
+          <p>Positivismo y método científico como guía del orden social.<br>
+          <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+          <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
+        </div>
+
+        <div class="node durkheim">
+          <h4>🏛️ Durkheim</h4>
+          <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
+          <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+          <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
+        </div>
+
+        <div class="node marx">
+          <h4>⚒️ Marx</h4>
+          <p>Materialismo histórico y lucha de clases.<br>
+          <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+          <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
+        </div>
+
+        <div class="node weber">
+          <h4>📊 Weber</h4>
+          <p>Acción social y racionalización.<br>
+          <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+          <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
+        </div>
+
+        <div class="node grupo">
+          <h4>👥 Grupo afectado</h4>
+          <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
+          <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
+          <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
+        </div>
+
+        <div class="node coop">
+          <h4>🤝 Cooperación internacional</h4>
+          <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
+          <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
+        </div>    
+      </div>
+
+      <!-- Reflexión inmediatamente debajo -->
+      <div class="page">
+        <div class="content">
+          <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero debe fortalecerse como herramienta de transformación social. Desde <strong>Comte</strong>, la enseñanza debe guiarse por el método científico, impulsando competencias para comprender fenómenos como la huella ecológica y proponer soluciones basadas en evidencia.</p>
+
+          <p>Para <strong>Durkheim</strong>, la escuela es institución que transmite valores colectivos y cohesión social. En la GAM, puede servir para reforzar la solidaridad frente a desigualdades, promoviendo proyectos comunitarios de reciclaje y conciencia ambiental que fortalezcan el tejido social.</p>
+
+          <p>Finalmente, <strong>Marx</strong> señala que la educación reproduce desigualdades de clase: en la GAM existen brechas entre escuelas públicas y privadas. <strong>Weber</strong> advierte que la burocracia educativa puede obstaculizar la innovación pedagógica; por ello se requieren reformas que prioricen la equidad y la calidad sobre la mera gestión administrativa.</p>
+        </div> 
+      </div>
+    </div>
   </div>
-
-  <!-- Bloque inferior con datos -->
-  <footer>
-    <h3>Ficha técnica</h3>
-    <p><strong>Materia:</strong> Ciencias Sociales</p>
-    <p><strong>Actividad:</strong> Incidente crítico</p>
-    <p><strong>Alumno:</strong> Isaac Moctezuma</p>
-    <p><strong>Archivo:</strong> LRIN_M2_apellidopaterno_nombre_TA (v2)</p>
-  </footer>
-
 </body>
 </html>
