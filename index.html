@@ -9,26 +9,68 @@
       margin:0; padding:0;
       display:flex;
       justify-content:center;
-      align-items:center;
+      align-items:flex-start;
       min-height:100vh;
-      background:linear-gradient(135deg,#eef5ff,#fdfdfe);
       font-family:'Poppins',sans-serif;
       color:#1e2a2f;
+      background:linear-gradient(135deg,rgba(30,58,95,0.8),rgba(0,191,166,0.8)),
+                 url("https://images.unsplash.com/photo-1535909339361-9b8e6f7f7b17?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+      overflow-x:hidden;
+    }
+
+    .container{
+      display:flex;
+      gap:20px;
+      width:100%;
+      max-width:1600px;
+      padding:20px;
     }
 
     .map{
       position:relative;
-      width:1200px;
-      height:900px;
-      background:rgba(255,255,255,0.55);
-      backdrop-filter:blur(12px);
+      flex:1;
+      min-height:900px;
+      background:rgba(255,255,255,0.4);
+      backdrop-filter:blur(14px);
       border-radius:22px;
-      box-shadow:0 10px 40px rgba(0,0,0,0.12);
+      box-shadow:0 10px 40px rgba(0,0,0,0.15);
       padding:20px;
     }
 
+    /* Sidebar APA */
+    .sidebar{
+      width:280px;
+      position:sticky;
+      top:20px;
+      align-self:flex-start;
+      background:rgba(255,255,255,0.25);
+      backdrop-filter:blur(16px);
+      border-radius:18px;
+      padding:25px 20px;
+      font-size:14px;
+      line-height:1.5;
+      box-shadow:0 6px 22px rgba(0,0,0,0.15);
+      z-index:10;
+    }
+    .sidebar h3{
+      margin-top:0;
+      font-size:16px;
+      font-weight:700;
+      color:#123c5c;
+      text-align:center;
+    }
+    .sidebar ul{
+      padding-left:18px; margin:0;
+    }
+    .sidebar li{
+      margin-bottom:10px;
+    }
+
     /* Nodos */
-    .node, .central, .sidebar{
+    .node, .central{
       position:absolute;
       padding:18px 20px;
       border-radius:18px;
@@ -44,7 +86,7 @@
       transform:translate(-50%,-50%);
       width:280px;
       text-align:center;
-      background:rgba(255,255,255,0.4);
+      background:rgba(255,255,255,0.5);
       backdrop-filter:blur(20px);
       font-weight:700;
       font-size:20px;
@@ -56,27 +98,15 @@
     .node p{margin:0; font-size:13px; text-align:justify;}
     .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
-    /* Posiciones con más separación */
-    .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#fff);}
-    .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#fff);}
-    .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#fff);}
-    .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#fff);}
-    .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#fff);}
-    .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#fff);}
-    .sidebar{
-      top:20%; right:1%;
-      width:260px;
-      font-size:13px;
-      line-height:1.5;
-      background:rgba(255,255,255,0.7);
-      backdrop-filter:blur(14px);
-      box-shadow:0 6px 22px rgba(0,0,0,0.1);
-    }
-    .sidebar h3{margin-top:0; font-size:15px; font-weight:700; color:#1a3d5c;}
-    .sidebar ul{padding-left:18px; margin:0;}
-    .sidebar li{margin-bottom:6px;}
+    /* Colores gradientes de cada autor */
+    .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#ffffff);}
+    .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#ffffff);}
+    .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#ffffff);}
+    .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#ffffff);}
+    .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#ffffff);}
+    .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#ffffff);}
 
-    /* Flechas curvas reducidas */
+    /* Flechas curvas */
     svg.connector{
       position:absolute;
       width:100%; height:100%;
@@ -85,7 +115,7 @@
     }
     path{
       fill:none;
-      stroke:#555;
+      stroke:#444;
       stroke-width:2.4;
       stroke-linecap:round;
       marker-end:url(#arrow);
@@ -95,53 +125,8 @@
   </style>
 </head>
 <body>
-  <div class="map">
-    <!-- Nodo central -->
-    <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
-
-    <!-- Nodos -->
-    <div class="node comte">
-      <h4>🔬 Comte</h4>
-      <p>Positivismo y método científico como guía del orden social.<br>
-      <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
-      <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
-    </div>
-
-    <div class="node durkheim">
-      <h4>🏛️ Durkheim</h4>
-      <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
-      <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
-      <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
-    </div>
-
-    <div class="node marx">
-      <h4>⚒️ Marx</h4>
-      <p>Materialismo histórico y lucha de clases.<br>
-      <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
-      <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
-    </div>
-
-    <div class="node weber">
-      <h4>📊 Weber</h4>
-      <p>Acción social y racionalización.<br>
-      <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
-      <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
-    </div>
-
-    <div class="node grupo">
-      <h4>👥 Grupo afectado</h4>
-      <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
-      <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
-      <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
-    </div>
-
-    <div class="node coop">
-      <h4>🤝 Cooperación internacional</h4>
-      <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
-      <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
-    </div>
-
-    <!-- Sidebar dentro del mapa -->
+  <div class="container">
+    <!-- Sidebar APA -->
     <div class="sidebar">
       <h3>📚 Referencias APA</h3>
       <ul>
@@ -154,21 +139,68 @@
       </ul>
     </div>
 
-    <!-- Flechas muy cortas y precisas -->
-    <svg class="connector">
-      <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-          <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
-        </marker>
-      </defs>
-      <!-- Ajustadas al 50% del largo anterior -->
-      <path d="M 600 450 C 520 330, 420 280, 340 240"/> <!-- Central -> Comte -->
-      <path d="M 610 450 C 700 330, 800 280, 860 240"/> <!-- Central -> Durkheim -->
-      <path d="M 600 470 C 520 570, 420 600, 340 640"/> <!-- Central -> Marx -->
-      <path d="M 610 470 C 700 570, 800 600, 860 640"/> <!-- Central -> Weber -->
-      <path d="M 570 460 C 450 460, 340 460, 220 460"/> <!-- Central -> Grupo -->
-      <path d="M 630 460 C 740 460, 860 460, 980 460"/> <!-- Central -> Coop -->
-    </svg>
+    <!-- Mapa Conceptual -->
+    <div class="map">
+      <!-- Nodo central -->
+      <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
+
+      <!-- Nodos -->
+      <div class="node comte">
+        <h4>🔬 Comte</h4>
+        <p>Positivismo y método científico como guía del orden social.<br>
+        <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+        <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
+      </div>
+
+      <div class="node durkheim">
+        <h4>🏛️ Durkheim</h4>
+        <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
+        <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+        <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
+      </div>
+
+      <div class="node marx">
+        <h4>⚒️ Marx</h4>
+        <p>Materialismo histórico y lucha de clases.<br>
+        <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+        <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
+      </div>
+
+      <div class="node weber">
+        <h4>📊 Weber</h4>
+        <p>Acción social y racionalización.<br>
+        <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+        <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
+      </div>
+
+      <div class="node grupo">
+        <h4>👥 Grupo afectado</h4>
+        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
+        <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
+        <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
+      </div>
+
+      <div class="node coop">
+        <h4>🤝 Cooperación internacional</h4>
+        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
+        <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
+      </div>
+
+      <!-- Flechas -->
+      <svg class="connector">
+        <defs>
+          <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+          </marker>
+        </defs>
+        <path d="M 600 450 C 520 330, 420 280, 340 240"/> <!-- Central -> Comte -->
+        <path d="M 610 450 C 700 330, 800 280, 860 240"/> <!-- Central -> Durkheim -->
+        <path d="M 600 470 C 520 570, 420 600, 340 640"/> <!-- Central -> Marx -->
+        <path d="M 610 470 C 700 570, 800 600, 860 640"/> <!-- Central -> Weber -->
+        <path d="M 570 460 C 450 460, 340 460, 220 460"/> <!-- Central -> Grupo -->
+        <path d="M 630 460 C 740 460, 860 460, 980 460"/> <!-- Central -> Coop -->
+      </svg>
+    </div>
   </div>
 </body>
 </html>
