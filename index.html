@@ -5,160 +5,156 @@
   <title>Mapa Conceptual — Ciencias Sociales</title>
   <style>
     body{
-      font-family:"Segoe UI", Arial, sans-serif;
-      background:#f4f8fa;
-      margin:0; padding:24px;
-      color:#1d2a2b;
+      font-family:"Segoe UI", "Poppins", sans-serif;
+      margin:0; padding:0;
+      display:flex;
+      background:linear-gradient(135deg,#dceefc,#f4f9f7);
+      color:#1e2a2f;
     }
-    .page{
-      max-width:1100px;
-      margin:0 auto 40px;
-      background:#fff;
+
+    /* Sidebar referencias */
+    aside{
+      width:280px;
+      padding:20px;
+      background:rgba(255,255,255,0.35);
+      backdrop-filter:blur(14px);
+      border-left:1px solid rgba(255,255,255,0.3);
+      box-shadow:-4px 0 18px rgba(0,0,0,0.08);
+      font-size:13px;
+      line-height:1.6;
+      overflow-y:auto;
+    }
+    aside h3{margin-top:0; font-size:15px; color:#444;}
+    aside ul{padding-left:18px; margin:0;}
+    aside li{margin-bottom:8px;}
+
+    /* Área principal */
+    .container{
+      flex:1;
       padding:30px;
-      border-radius:14px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.08);
-      page-break-after:always;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
-    /* Mapa conceptual */
+
     .map{
       position:relative;
-      height:720px;
+      width:900px;
+      height:700px;
+    }
+
+    /* Nodos estilo neumórfico */
+    .node, .central{
+      position:absolute;
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fefefe;
+      box-shadow:
+        6px 6px 12px rgba(0,0,0,0.1),
+        -6px -6px 12px rgba(255,255,255,0.8);
+      border:1px solid rgba(255,255,255,0.4);
     }
     .central{
-      position:absolute;
       top:50%; left:50%;
       transform:translate(-50%,-50%);
-      width:260px; padding:18px;
-      text-align:center;
-      background:#e8f9f7;
-      border:2.5px solid #12736c;
-      border-radius:14px;
+      width:260px; text-align:center;
+      background:rgba(255,255,255,0.4);
+      backdrop-filter:blur(18px);
+      font-weight:700;
       font-size:18px;
-      font-weight:800;
-      color:#114d47;
-      font-family:"Segoe UI Semibold","Verdana",sans-serif;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      color:#124d47;
     }
-    .node{
-      position:absolute;
-      width:240px;
-      padding:14px;
-      font-size:14px;
-      background:#fff;
-      border-radius:12px;
-      border:2.5px solid;
-      line-height:1.4;
-      box-shadow:0 3px 8px rgba(0,0,0,0.05);
-    }
-    .node h4{margin:0 0 6px; font-size:15px; font-weight:700;}
-    .comte{ top:6%; left:8%; border-color:#e5a74a; }
-    .durkheim{ top:6%; right:8%; border-color:#12736c; }
-    .marx{ bottom:8%; left:8%; border-color:#b5442c; }
-    .weber{ bottom:8%; right:8%; border-color:#45a8a1; }
-    .grupo{ top:50%; left:4%; border-color:#7d5ba6; background:#f7f2fb;}
-    .coop{ top:50%; right:4%; border-color:#a66a00; background:#fff8ee;}
-
-    /* Texto dentro de nodos */
+    .node h4{margin:0 0 8px; font-size:15px;}
     .node p{margin:0; font-size:13px; text-align:justify;}
 
-    /* Flechas (SVG absolutas) */
+    /* Posiciones */
+    .comte{ top:6%; left:8%; background:linear-gradient(135deg,#fff,#fdeacc);}
+    .durkheim{ top:6%; right:8%; background:linear-gradient(135deg,#fff,#d6f5f0);}
+    .marx{ bottom:8%; left:8%; background:linear-gradient(135deg,#fff,#fddbd3);}
+    .weber{ bottom:8%; right:8%; background:linear-gradient(135deg,#fff,#dfe9ff);}
+    .grupo{ top:50%; left:4%; background:linear-gradient(135deg,#fff,#f4e6ff);}
+    .coop{ top:50%; right:4%; background:linear-gradient(135deg,#fff,#ffe8cc);}
+
+    /* Flechas curvas estilizadas */
     svg.connector{
       position:absolute;
-      overflow:visible;
+      width:100%; height:100%;
       pointer-events:none;
     }
     path{
       fill:none;
-      stroke:#666;
-      stroke-width:2;
+      stroke:#444;
+      stroke-width:2.5;
+      stroke-linecap:round;
       marker-end:url(#arrow);
     }
-
-    /* Página 2 */
-    .content p{ font-size:15px; margin:0 0 16px; text-align:justify;}
-    .refs{ font-size:13px; line-height:1.6; margin-top:20px;}
-    .refs li{ margin-bottom:6px; }
+    path:hover{stroke:#12736c; stroke-width:3;}
   </style>
 </head>
 <body>
-  <!-- Página 1: Mapa conceptual -->
-  <div class="page">
+  <div class="container">
     <div class="map">
+      <!-- Nodos -->
+      <div class="central">Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
 
-      <!-- Nodo central -->
-      <div class="central">Ciencias Sociales<br><small style="font-weight:500;font-size:13px;">tradición, método y aplicación</small></div>
-
-      <!-- Nodos autores -->
       <div class="node comte">
         <h4>Comte</h4>
         <p>Positivismo y método científico como guía del orden social.<br><strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
       </div>
+
       <div class="node durkheim">
         <h4>Durkheim</h4>
         <p>Los hechos sociales son “cosas” que moldean la conducta.<br><strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
       </div>
+
       <div class="node marx">
         <h4>Marx</h4>
         <p>Materialismo histórico y lucha de clases.<br><strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
       </div>
+
       <div class="node weber">
         <h4>Weber</h4>
         <p>Acción social y racionalización.<br><strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
       </div>
 
-      <!-- Bloques adicionales -->
       <div class="node grupo">
         <h4>Grupo afectado</h4>
         <p>Comunidades vulnerables receptoras de residuos electrónicos.<br><em>Características:</em> informalidad cultural en reciclaje, débil organización comunitaria, poca representación política.</p>
       </div>
+
       <div class="node coop">
         <h4>Cooperación internacional</h4>
-        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático para un desarrollo sostenible y equitativo.</p>
+        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático para un desarrollo sostenible.</p>
       </div>
 
-      <!-- Flechas con SVG -->
-      <svg class="connector" width="100%" height="100%">
+      <!-- Flechas -->
+      <svg class="connector">
         <defs>
-          <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+          <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#444"/>
           </marker>
         </defs>
-        <!-- Central a Comte -->
-        <path d="M 540 360 C 380 200, 280 200, 200 120"/>
-        <!-- Central a Durkheim -->
-        <path d="M 560 360 C 720 200, 820 200, 920 120"/>
-        <!-- Central a Marx -->
-        <path d="M 540 380 C 380 520, 280 520, 200 600"/>
-        <!-- Central a Weber -->
-        <path d="M 560 380 C 720 520, 820 520, 920 600"/>
-        <!-- Central a Grupo -->
-        <path d="M 520 380 C 360 420, 200 420, 140 360"/>
-        <!-- Central a Coop -->
-        <path d="M 580 380 C 740 420, 900 420, 960 360"/>
+        <path d="M 450 350 C 320 200, 240 200, 180 130"/> <!-- Central -> Comte -->
+        <path d="M 460 350 C 600 200, 740 200, 880 130"/> <!-- Central -> Durkheim -->
+        <path d="M 450 370 C 320 520, 240 520, 180 600"/> <!-- Central -> Marx -->
+        <path d="M 460 370 C 600 520, 740 520, 880 600"/> <!-- Central -> Weber -->
+        <path d="M 420 360 C 300 380, 220 380, 130 360"/> <!-- Central -> Grupo -->
+        <path d="M 480 360 C 600 380, 740 380, 920 360"/> <!-- Central -> Coop -->
       </svg>
     </div>
   </div>
 
-  <!-- Página 2: Reflexión y referencias -->
-  <div class="page">
-    <div class="content">
-      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero representa un espacio clave para comprender y transformar la realidad social. Siguiendo a <strong>Comte</strong>, considero vital que los estudiantes adquieran un enfoque científico que les permita analizar problemáticas como la gestión de residuos y la justicia ambiental, con base en datos y no sólo en percepciones.</p>
-
-      <p>Para <strong>Durkheim</strong>, la escuela transmite cohesión y valores colectivos. En mi experiencia personal como estudiante, pienso que los planteles en GAM pueden ser espacios donde la solidaridad y el trabajo comunitario se fortalezcan, contrarrestando desigualdades y violencia a través de proyectos ambientales escolares.</p>
-
-      <p>Finalmente, tanto <strong>Marx</strong> como <strong>Weber</strong> nos ayudan a mirar tensiones estructurales: la educación pública y privada reproduce desigualdades sociales, y la burocracia escolar a veces sofoca la creatividad. Mi visión es que necesitamos un modelo más justo y participativo, donde la voz estudiantil también influya en las políticas educativas.</p>
-    </div>
-
-    <ul class="refs">
-      <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar. https://historiadeeuropacontemporenea.files.wordpress.com/2017/12/curso-de-filosofia-positiva.pdf</li>
-      <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza. https://sociologiac.net/biblio/Durkheim_las-reglas-metodo-sociologico.pdf</li>
-      <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel. https://obtienearchivo.bcn.cl/obtienearchivo?id=documentos/10221.1/19671/1/19742.pdf</li>
-      <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em> (pp. 61–89). Premia. http://www.politicascti.net/index.php?option=com_docman&task=doc_view&gid=43&Itemid=74&lang=es</li>
-      <li>Forti, V., Baldé, C. P., Kuehr, R., & Bel, G. (2020). <em>The Global E-waste Monitor 2020</em>. UNU, ITU & ISWA. https://ewastemonitor.info</li>
-      <li>International Resource Panel (IRP). (2019). <em>Global resources outlook 2019</em>. UNEP. https://www.resourcepanel.org/reports/global-resources-outlook</li>
-      <li>IPCC. (2022). <em>Climate change 2022: Mitigation of climate change</em>. Cambridge University Press. https://www.ipcc.ch/report/ar6/wg3/</li>
-      <li>Gore, T. (2015). <em>Extreme carbon inequality</em>. Oxfam. https://www-cdn.oxfam.org/s3fs-public/file_attachments/mb-extreme-carbon-inequality-021215-en.pdf</li>
+  <!-- Sidebar -->
+  <aside>
+    <h3>Referencias APA</h3>
+    <ul>
+      <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
+      <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
+      <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel.</li>
+      <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em>. Premia.</li>
+      <li>Wallerstein, I. (2006). <em>Abrir las Ciencias Sociales</em>. Siglo XXI.</li>
+      <li>ONU-UNU. (2020). <em>The Global E-waste Monitor</em>.</li>
     </ul>
-  </div>
+  </aside>
 </body>
 </html>
