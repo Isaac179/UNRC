@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
@@ -18,7 +18,7 @@
       background-position:center;
       background-attachment:fixed;
       overflow-x:hidden;
-      color:#fff; /* textos blancos por defecto */
+      color:#fff;
     }
 
     .container{
@@ -28,27 +28,19 @@
       max-width:1600px;
       padding:20px;
     }
-    .page{
-      max-width:1000px;
-      margin:0 auto 40px;
-      background:#fff;
-      border-radius:14px;
-      padding:30px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.06);
-      page-break-after:always;
-    }
+
     .map{
       position:relative;
       flex:1;
       min-height:900px;
-      background:rgba(255,255,255,0.15);
-      backdrop-filter:blur(14px);
+      background:rgba(255,255,255,0.08); /* más transparente */
+      backdrop-filter:blur(18px);
       border-radius:22px;
       box-shadow:0 10px 40px rgba(0,0,0,0.15);
       padding:20px;
     }
- .content p{ font-size:14px; margin:0 0 14px; text-align:justify;}
-    /* Sidebar reducido 30% y texto blanco */
+
+    /* Sidebar */
     .sidebar{
       width:200px;
       position:sticky;
@@ -64,21 +56,12 @@
       z-index:10;
       color:#fff;
     }
-    .sidebar h3{
-      margin-top:0;
-      font-size:15px;
-      font-weight:700;
-      color:#fff;
-      text-align:center;
-    }
-    .sidebar ul{
-      padding-left:15px; margin:0;
-    }
-    .sidebar li{
-      margin-bottom:12px;
-    }
+    .sidebar h3{margin-top:0; font-size:15px; font-weight:700; text-align:center;}
 
-    /* Nodos con mayor separación */
+    .sidebar ul{padding-left:15px; margin:0;}
+    .sidebar li{margin-bottom:12px;}
+
+    /* Nodos */
     .node, .central{
       position:absolute;
       padding:20px;
@@ -88,7 +71,7 @@
                  -6px -6px 12px rgba(255,255,255,0.9);
       border:1px solid rgba(255,255,255,0.5);
       max-width:240px;
-      margin:15px; /* separación mínima entre nodos */
+      margin:15px;
       color:#123;
     }
 
@@ -109,13 +92,25 @@
     .node p{margin:0; font-size:13px; text-align:justify;}
     .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
-    /* Colores gradientes para cada autor */
+    /* Colores nodos */
     .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#ffffff);}
     .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#ffffff);}
     .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#ffffff);}
     .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#ffffff);}
     .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#ffffff);}
     .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#ffffff);}
+
+    /* Página independiente para reflexión */
+    .page{
+      max-width:1000px;
+      margin:40px auto;
+      background:rgba(0,0,0,0.5); /* fondo translúcido oscuro */
+      border-radius:14px;
+      padding:30px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.4);
+      color:#fff;
+    }
+    .content p{ font-size:15px; margin:0 0 16px; text-align:justify;}
   </style>
 </head>
 <body>
@@ -134,7 +129,7 @@
     </div>
 
     <!-- Mapa Conceptual -->
-    <div class="map">      <
+    <div class="map">
       <!-- Nodo central -->
       <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
 
@@ -152,7 +147,7 @@
         <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
         <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
       </div>
-<br><br>
+
       <div class="node marx">
         <h4>⚒️ Marx</h4>
         <p>Materialismo histórico y lucha de clases.<br>
@@ -179,10 +174,18 @@
         <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
         <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
       </div>    
-  <!-- Página 2: Reflexión y referencias -->
-
     </div>
-  </div> 
+  </div>
 
+  <!-- Página 2: Reflexión independiente -->
+  <div class="page">
+    <div class="content">
+      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero debe fortalecerse como herramienta de transformación social. Desde <strong>Comte</strong>, la enseñanza debe guiarse por el método científico, impulsando competencias para comprender fenómenos como la huella ecológica y proponer soluciones basadas en evidencia.</p>
+
+      <p>Para <strong>Durkheim</strong>, la escuela es institución que transmite valores colectivos y cohesión social. En la GAM, puede servir para reforzar la solidaridad frente a desigualdades, promoviendo proyectos comunitarios de reciclaje y conciencia ambiental que fortalezcan el tejido social.</p>
+
+      <p>Finalmente, <strong>Marx</strong> señala que la educación reproduce desigualdades de clase: en la GAM existen brechas entre escuelas públicas y privadas. <strong>Weber</strong> advierte que la burocracia educativa puede obstaculizar la innovación pedagógica; por ello se requieren reformas que prioricen la equidad y la calidad sobre la mera gestión administrativa.</p>
+    </div> 
+  </div>
 </body>
 </html>
