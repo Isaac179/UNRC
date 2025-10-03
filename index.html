@@ -3,35 +3,42 @@
 <head>
   <meta charset="utf-8"/>
   <title>Mapa Conceptual — Ciencias Sociales</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body{
-      font-family:"Segoe UI", "Poppins", sans-serif;
       margin:0; padding:0;
       display:flex;
-      background:linear-gradient(135deg,#dceefc,#f4f9f7);
+      background:linear-gradient(135deg,#eef5ff,#fdfdfe);
+      font-family:'Poppins',sans-serif;
       color:#1e2a2f;
     }
 
     /* Sidebar referencias */
     aside{
-      width:280px;
-      padding:20px;
-      background:rgba(255,255,255,0.35);
-      backdrop-filter:blur(14px);
+      width:300px;
+      padding:24px;
+      background:rgba(255,255,255,0.45);
+      backdrop-filter:blur(16px);
       border-left:1px solid rgba(255,255,255,0.3);
-      box-shadow:-4px 0 18px rgba(0,0,0,0.08);
-      font-size:13px;
+      box-shadow:-6px 0 20px rgba(0,0,0,0.08);
+      font-size:14px;
       line-height:1.6;
       overflow-y:auto;
     }
-    aside h3{margin-top:0; font-size:15px; color:#444;}
-    aside ul{padding-left:18px; margin:0;}
-    aside li{margin-bottom:8px;}
+    aside h3{
+      margin-top:0;
+      font-size:16px;
+      font-weight:700;
+      color:#333;
+    }
+    aside ul{padding-left:20px; margin:0;}
+    aside li{margin-bottom:10px;}
 
     /* Área principal */
     .container{
       flex:1;
-      padding:30px;
+      padding:20px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -39,43 +46,47 @@
 
     .map{
       position:relative;
-      width:900px;
-      height:700px;
+      width:1000px;
+      height:800px;
     }
 
-    /* Nodos estilo neumórfico */
+    /* Nodos neumórficos */
     .node, .central{
       position:absolute;
-      padding:16px 18px;
-      border-radius:16px;
+      padding:18px 20px;
+      border-radius:18px;
       background:#fefefe;
-      box-shadow:
-        6px 6px 12px rgba(0,0,0,0.1),
-        -6px -6px 12px rgba(255,255,255,0.8);
-      border:1px solid rgba(255,255,255,0.4);
+      box-shadow:6px 6px 12px rgba(0,0,0,0.12),
+                 -6px -6px 12px rgba(255,255,255,0.9);
+      border:1px solid rgba(255,255,255,0.5);
+      max-width:220px;
     }
+
     .central{
       top:50%; left:50%;
       transform:translate(-50%,-50%);
-      width:260px; text-align:center;
+      width:280px;
+      text-align:center;
       background:rgba(255,255,255,0.4);
-      backdrop-filter:blur(18px);
+      backdrop-filter:blur(20px);
       font-weight:700;
-      font-size:18px;
+      font-size:20px;
       color:#124d47;
     }
-    .node h4{margin:0 0 8px; font-size:15px;}
+
+    .node h4{margin:0 0 10px; font-size:16px; font-weight:700; font-family:'Nunito',sans-serif;}
     .node p{margin:0; font-size:13px; text-align:justify;}
+    .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
     /* Posiciones */
-    .comte{ top:6%; left:8%; background:linear-gradient(135deg,#fff,#fdeacc);}
-    .durkheim{ top:6%; right:8%; background:linear-gradient(135deg,#fff,#d6f5f0);}
-    .marx{ bottom:8%; left:8%; background:linear-gradient(135deg,#fff,#fddbd3);}
-    .weber{ bottom:8%; right:8%; background:linear-gradient(135deg,#fff,#dfe9ff);}
-    .grupo{ top:50%; left:4%; background:linear-gradient(135deg,#fff,#f4e6ff);}
-    .coop{ top:50%; right:4%; background:linear-gradient(135deg,#fff,#ffe8cc);}
+    .comte{ top:5%; left:15%; background:linear-gradient(145deg,#fff8e6,#fff);}
+    .durkheim{ top:5%; right:15%; background:linear-gradient(145deg,#e6f9f7,#fff);}
+    .marx{ bottom:5%; left:15%; background:linear-gradient(145deg,#ffeaea,#fff);}
+    .weber{ bottom:5%; right:15%; background:linear-gradient(145deg,#eaf0ff,#fff);}
+    .grupo{ top:50%; left:3%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#fff);}
+    .coop{ top:50%; right:3%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#fff);}
 
-    /* Flechas curvas estilizadas */
+    /* Flechas curvas */
     svg.connector{
       position:absolute;
       width:100%; height:100%;
@@ -83,70 +94,83 @@
     }
     path{
       fill:none;
-      stroke:#444;
-      stroke-width:2.5;
+      stroke:#555;
+      stroke-width:2.4;
       stroke-linecap:round;
       marker-end:url(#arrow);
     }
-    path:hover{stroke:#12736c; stroke-width:3;}
+    path:hover{stroke:#0c7266; stroke-width:3;}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="map">
-      <!-- Nodos -->
-      <div class="central">Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
+      <!-- Nodo central -->
+      <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
 
+      <!-- Nodos principales -->
       <div class="node comte">
-        <h4>Comte</h4>
-        <p>Positivismo y método científico como guía del orden social.<br><strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+        <h4>🔬 Comte</h4>
+        <p>Positivismo y método científico como guía del orden social.<br>
+        <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+        <div class="sub">➤ Subtemas:<br> • Orden y progreso<br> • Método experimental<br> • Ciencia de la sociedad</div>
       </div>
 
       <div class="node durkheim">
-        <h4>Durkheim</h4>
-        <p>Los hechos sociales son “cosas” que moldean la conducta.<br><strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+        <h4>🏛️ Durkheim</h4>
+        <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
+        <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+        <div class="sub">➤ Subtemas:<br> • Hecho social<br> • Solidaridad mecánica/orgánica<br> • Instituciones</div>
       </div>
 
       <div class="node marx">
-        <h4>Marx</h4>
-        <p>Materialismo histórico y lucha de clases.<br><strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+        <h4>⚒️ Marx</h4>
+        <p>Materialismo histórico y lucha de clases.<br>
+        <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+        <div class="sub">➤ Subtemas:<br> • Capital vs trabajo<br> • Alienación<br> • Desigualdad global</div>
       </div>
 
       <div class="node weber">
-        <h4>Weber</h4>
-        <p>Acción social y racionalización.<br><strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+        <h4>📊 Weber</h4>
+        <p>Acción social y racionalización.<br>
+        <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+        <div class="sub">➤ Subtemas:<br> • Tipos de acción<br> • Ética protestante<br> • Burocracia</div>
       </div>
 
       <div class="node grupo">
-        <h4>Grupo afectado</h4>
-        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br><em>Características:</em> informalidad cultural en reciclaje, débil organización comunitaria, poca representación política.</p>
+        <h4>👥 Grupo afectado</h4>
+        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
+        <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
+        <div class="sub">➤ Subtemas:<br> • Cultura de subsistencia<br> • Economía informal<br> • Exclusión social</div>
       </div>
 
       <div class="node coop">
-        <h4>Cooperación internacional</h4>
+        <h4>🤝 Cooperación internacional</h4>
         <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático para un desarrollo sostenible.</p>
+        <div class="sub">➤ Subtemas:<br> • ODS y sostenibilidad<br> • Diplomacia ambiental<br> • Financiamiento verde</div>
       </div>
 
       <!-- Flechas -->
       <svg class="connector">
         <defs>
           <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#444"/>
+            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
           </marker>
         </defs>
-        <path d="M 450 350 C 320 200, 240 200, 180 130"/> <!-- Central -> Comte -->
-        <path d="M 460 350 C 600 200, 740 200, 880 130"/> <!-- Central -> Durkheim -->
-        <path d="M 450 370 C 320 520, 240 520, 180 600"/> <!-- Central -> Marx -->
-        <path d="M 460 370 C 600 520, 740 520, 880 600"/> <!-- Central -> Weber -->
-        <path d="M 420 360 C 300 380, 220 380, 130 360"/> <!-- Central -> Grupo -->
-        <path d="M 480 360 C 600 380, 740 380, 920 360"/> <!-- Central -> Coop -->
+        <!-- Curvas ajustadas -->
+        <path d="M 500 400 C 350 200, 280 180, 220 140"/> <!-- Central -> Comte -->
+        <path d="M 520 400 C 650 200, 720 180, 800 140"/> <!-- Central -> Durkheim -->
+        <path d="M 500 420 C 350 600, 280 620, 220 660"/> <!-- Central -> Marx -->
+        <path d="M 520 420 C 650 600, 720 620, 800 660"/> <!-- Central -> Weber -->
+        <path d="M 470 400 C 300 400, 200 400, 100 400"/> <!-- Central -> Grupo -->
+        <path d="M 540 400 C 700 400, 800 400, 950 400"/> <!-- Central -> Coop -->
       </svg>
     </div>
   </div>
 
   <!-- Sidebar -->
   <aside>
-    <h3>Referencias APA</h3>
+    <h3>📚 Referencias APA</h3>
     <ul>
       <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
       <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
