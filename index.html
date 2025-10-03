@@ -6,65 +6,77 @@
   <style>
     body{
       font-family:"Segoe UI", Arial, sans-serif;
-      background:#f6fafb;
-      margin:0; padding:20px;
-      color:#222;
+      background:#f4f8fa;
+      margin:0; padding:24px;
+      color:#1d2a2b;
     }
     .page{
-      max-width:1000px;
+      max-width:1100px;
       margin:0 auto 40px;
       background:#fff;
       padding:30px;
       border-radius:14px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      box-shadow:0 4px 14px rgba(0,0,0,0.08);
       page-break-after:always;
     }
     /* Mapa conceptual */
     .map{
       position:relative;
-      height:600px;
+      height:720px;
     }
     .central{
       position:absolute;
       top:50%; left:50%;
       transform:translate(-50%,-50%);
-      width:220px; padding:14px;
+      width:260px; padding:18px;
       text-align:center;
-      background:#e8f9f9;
-      border:2px solid #0f8388;
-      border-radius:12px;
-      font-weight:700;
-      color:#0f555a;
+      background:#e8f9f7;
+      border:2.5px solid #12736c;
+      border-radius:14px;
+      font-size:18px;
+      font-weight:800;
+      color:#114d47;
+      font-family:"Segoe UI Semibold","Verdana",sans-serif;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
     }
     .node{
       position:absolute;
-      width:200px;
-      padding:12px;
-      font-size:13px;
+      width:240px;
+      padding:14px;
+      font-size:14px;
       background:#fff;
       border-radius:12px;
-      border:2px solid;
+      border:2.5px solid;
       line-height:1.4;
+      box-shadow:0 3px 8px rgba(0,0,0,0.05);
     }
-    .node h4{margin:0 0 6px; font-size:14px;}
-    .comte{ top:10%; left:10%; border-color:#f0b76b; }
-    .durkheim{ top:10%; right:10%; border-color:#0f8388; }
-    .marx{ bottom:10%; left:10%; border-color:#b85a3a; }
-    .weber{ bottom:10%; right:10%; border-color:#66c1bd; }
-    /* Líneas conectores */
-    .line{
+    .node h4{margin:0 0 6px; font-size:15px; font-weight:700;}
+    .comte{ top:6%; left:8%; border-color:#e5a74a; }
+    .durkheim{ top:6%; right:8%; border-color:#12736c; }
+    .marx{ bottom:8%; left:8%; border-color:#b5442c; }
+    .weber{ bottom:8%; right:8%; border-color:#45a8a1; }
+    .grupo{ top:50%; left:4%; border-color:#7d5ba6; background:#f7f2fb;}
+    .coop{ top:50%; right:4%; border-color:#a66a00; background:#fff8ee;}
+
+    /* Texto dentro de nodos */
+    .node p{margin:0; font-size:13px; text-align:justify;}
+
+    /* Flechas (SVG absolutas) */
+    svg.connector{
       position:absolute;
-      width:2px;
-      background:#777;
-      transform-origin:top left;
+      overflow:visible;
+      pointer-events:none;
     }
-    .line1{ left:260px; top:160px; height:200px; transform:rotate(20deg);}
-    .line2{ right:260px; top:160px; height:200px; transform:rotate(-20deg);}
-    .line3{ left:260px; bottom:160px; height:200px; transform:rotate(-20deg);}
-    .line4{ right:260px; bottom:160px; height:200px; transform:rotate(20deg);}
+    path{
+      fill:none;
+      stroke:#666;
+      stroke-width:2;
+      marker-end:url(#arrow);
+    }
+
     /* Página 2 */
-    .content p{ font-size:14px; margin:0 0 14px; text-align:justify;}
-    .refs{ font-size:13px; line-height:1.5; margin-top:20px;}
+    .content p{ font-size:15px; margin:0 0 16px; text-align:justify;}
+    .refs{ font-size:13px; line-height:1.6; margin-top:20px;}
     .refs li{ margin-bottom:6px; }
   </style>
 </head>
@@ -72,47 +84,69 @@
   <!-- Página 1: Mapa conceptual -->
   <div class="page">
     <div class="map">
-      <div class="central">Ciencias Sociales<br><small>método, teorías, aplicación</small></div>
 
+      <!-- Nodo central -->
+      <div class="central">Ciencias Sociales<br><small style="font-weight:500;font-size:13px;">tradición, método y aplicación</small></div>
+
+      <!-- Nodos autores -->
       <div class="node comte">
         <h4>Comte</h4>
-        Positivismo, método científico, orden y progreso.<br>
-        <strong>Aplicación:</strong> cuantificar impactos ambientales y políticas basadas en evidencia.
+        <p>Positivismo y método científico como guía del orden social.<br><strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
       </div>
-
       <div class="node durkheim">
         <h4>Durkheim</h4>
-        Hechos sociales, cohesión, instituciones.<br>
-        <strong>Aplicación:</strong> e-waste debilita solidaridad y capacidad institucional.
+        <p>Los hechos sociales son “cosas” que moldean la conducta.<br><strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
       </div>
-
       <div class="node marx">
         <h4>Marx</h4>
-        Materialismo histórico, conflicto, desigualdad.<br>
-        <strong>Aplicación:</strong> Norte transfiere costos ambientales al Sur como forma de explotación.
+        <p>Materialismo histórico y lucha de clases.<br><strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
       </div>
-
       <div class="node weber">
         <h4>Weber</h4>
-        Acción social, burocracia, racionalización.<br>
-        <strong>Aplicación:</strong> políticas ambientales internacionales priorizan eficiencia sobre justicia.
+        <p>Acción social y racionalización.<br><strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
       </div>
 
-      <div class="line line1"></div>
-      <div class="line line2"></div>
-      <div class="line line3"></div>
-      <div class="line line4"></div>
+      <!-- Bloques adicionales -->
+      <div class="node grupo">
+        <h4>Grupo afectado</h4>
+        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br><em>Características:</em> informalidad cultural en reciclaje, débil organización comunitaria, poca representación política.</p>
+      </div>
+      <div class="node coop">
+        <h4>Cooperación internacional</h4>
+        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático para un desarrollo sostenible y equitativo.</p>
+      </div>
+
+      <!-- Flechas con SVG -->
+      <svg class="connector" width="100%" height="100%">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+          </marker>
+        </defs>
+        <!-- Central a Comte -->
+        <path d="M 540 360 C 380 200, 280 200, 200 120"/>
+        <!-- Central a Durkheim -->
+        <path d="M 560 360 C 720 200, 820 200, 920 120"/>
+        <!-- Central a Marx -->
+        <path d="M 540 380 C 380 520, 280 520, 200 600"/>
+        <!-- Central a Weber -->
+        <path d="M 560 380 C 720 520, 820 520, 920 600"/>
+        <!-- Central a Grupo -->
+        <path d="M 520 380 C 360 420, 200 420, 140 360"/>
+        <!-- Central a Coop -->
+        <path d="M 580 380 C 740 420, 900 420, 960 360"/>
+      </svg>
     </div>
   </div>
 
   <!-- Página 2: Reflexión y referencias -->
   <div class="page">
     <div class="content">
-      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero puede analizarse desde los fundadores de las Ciencias Sociales. Para <strong>Comte</strong>, es fundamental fomentar un espíritu científico en el aula que forme estudiantes con capacidad crítica y habilidades para aplicar el método científico a problemas sociales y ambientales.</p>
+      <p>La educación en secundaria y bachillerato en la alcaldía Gustavo A. Madero representa un espacio clave para comprender y transformar la realidad social. Siguiendo a <strong>Comte</strong>, considero vital que los estudiantes adquieran un enfoque científico que les permita analizar problemáticas como la gestión de residuos y la justicia ambiental, con base en datos y no sólo en percepciones.</p>
 
-      <p>Desde la mirada de <strong>Durkheim</strong>, la escuela es institución de cohesión que transmite valores colectivos. En la GAM puede fortalecer la solidaridad frente a desigualdades, impulsando proyectos comunitarios de conciencia ambiental y reciclaje.</p>
+      <p>Para <strong>Durkheim</strong>, la escuela transmite cohesión y valores colectivos. En mi experiencia personal como estudiante, pienso que los planteles en GAM pueden ser espacios donde la solidaridad y el trabajo comunitario se fortalezcan, contrarrestando desigualdades y violencia a través de proyectos ambientales escolares.</p>
 
-      <p>Finalmente, <strong>Marx</strong> y <strong>Weber</strong> revelan tensiones: la educación reproduce desigualdades de clase (Marx), mientras que la burocracia escolar puede obstaculizar la innovación pedagógica (Weber). Una reforma integral debe reducir brechas sociales y simplificar la gestión educativa para potenciar la equidad y la calidad.</p>
+      <p>Finalmente, tanto <strong>Marx</strong> como <strong>Weber</strong> nos ayudan a mirar tensiones estructurales: la educación pública y privada reproduce desigualdades sociales, y la burocracia escolar a veces sofoca la creatividad. Mi visión es que necesitamos un modelo más justo y participativo, donde la voz estudiantil también influya en las políticas educativas.</p>
     </div>
 
     <ul class="refs">
