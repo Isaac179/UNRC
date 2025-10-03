@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8"/>
   <title>Mapa Conceptual — Ciencias Sociales</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body{
@@ -16,21 +15,22 @@
 
     /* Sidebar referencias */
     aside{
-      width:300px;
+      width:320px;
       padding:24px;
-      background:rgba(255,255,255,0.45);
-      backdrop-filter:blur(16px);
-      border-left:1px solid rgba(255,255,255,0.3);
-      box-shadow:-6px 0 20px rgba(0,0,0,0.08);
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(18px);
+      border-left:2px solid rgba(0,0,0,0.1);
+      box-shadow:-8px 0 25px rgba(0,0,0,0.15);
       font-size:14px;
       line-height:1.6;
       overflow-y:auto;
+      z-index:5;
     }
     aside h3{
       margin-top:0;
-      font-size:16px;
+      font-size:17px;
       font-weight:700;
-      color:#333;
+      color:#1a3d5c;
     }
     aside ul{padding-left:20px; margin:0;}
     aside li{margin-bottom:10px;}
@@ -38,7 +38,7 @@
     /* Área principal */
     .container{
       flex:1;
-      padding:20px;
+      padding:30px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -47,7 +47,7 @@
     .map{
       position:relative;
       width:1000px;
-      height:800px;
+      height:820px;
     }
 
     /* Nodos neumórficos */
@@ -72,25 +72,27 @@
       font-weight:700;
       font-size:20px;
       color:#124d47;
+      z-index:2;
     }
 
     .node h4{margin:0 0 10px; font-size:16px; font-weight:700; font-family:'Nunito',sans-serif;}
     .node p{margin:0; font-size:13px; text-align:justify;}
     .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
-    /* Posiciones */
-    .comte{ top:5%; left:15%; background:linear-gradient(145deg,#fff8e6,#fff);}
-    .durkheim{ top:5%; right:15%; background:linear-gradient(145deg,#e6f9f7,#fff);}
-    .marx{ bottom:5%; left:15%; background:linear-gradient(145deg,#ffeaea,#fff);}
-    .weber{ bottom:5%; right:15%; background:linear-gradient(145deg,#eaf0ff,#fff);}
-    .grupo{ top:50%; left:3%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#fff);}
-    .coop{ top:50%; right:3%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#fff);}
+    /* Posiciones ajustadas (más separación) */
+    .comte{ top:8%; left:12%; background:linear-gradient(145deg,#fff8e6,#fff);}
+    .durkheim{ top:8%; right:12%; background:linear-gradient(145deg,#e6f9f7,#fff);}
+    .marx{ bottom:8%; left:12%; background:linear-gradient(145deg,#ffeaea,#fff);}
+    .weber{ bottom:8%; right:12%; background:linear-gradient(145deg,#eaf0ff,#fff);}
+    .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#fff);}
+    .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#fff);}
 
     /* Flechas curvas */
     svg.connector{
       position:absolute;
       width:100%; height:100%;
       pointer-events:none;
+      z-index:1;
     }
     path{
       fill:none;
@@ -98,6 +100,7 @@
       stroke-width:2.4;
       stroke-linecap:round;
       marker-end:url(#arrow);
+      transition:all 0.2s ease;
     }
     path:hover{stroke:#0c7266; stroke-width:3;}
   </style>
@@ -113,57 +116,57 @@
         <h4>🔬 Comte</h4>
         <p>Positivismo y método científico como guía del orden social.<br>
         <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
-        <div class="sub">➤ Subtemas:<br> • Orden y progreso<br> • Método experimental<br> • Ciencia de la sociedad</div>
+        <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
       </div>
 
       <div class="node durkheim">
         <h4>🏛️ Durkheim</h4>
         <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
         <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
-        <div class="sub">➤ Subtemas:<br> • Hecho social<br> • Solidaridad mecánica/orgánica<br> • Instituciones</div>
+        <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
       </div>
 
       <div class="node marx">
         <h4>⚒️ Marx</h4>
         <p>Materialismo histórico y lucha de clases.<br>
         <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
-        <div class="sub">➤ Subtemas:<br> • Capital vs trabajo<br> • Alienación<br> • Desigualdad global</div>
+        <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
       </div>
 
       <div class="node weber">
         <h4>📊 Weber</h4>
         <p>Acción social y racionalización.<br>
         <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
-        <div class="sub">➤ Subtemas:<br> • Tipos de acción<br> • Ética protestante<br> • Burocracia</div>
+        <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
       </div>
 
       <div class="node grupo">
         <h4>👥 Grupo afectado</h4>
         <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
         <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
-        <div class="sub">➤ Subtemas:<br> • Cultura de subsistencia<br> • Economía informal<br> • Exclusión social</div>
+        <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
       </div>
 
       <div class="node coop">
         <h4>🤝 Cooperación internacional</h4>
-        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático para un desarrollo sostenible.</p>
-        <div class="sub">➤ Subtemas:<br> • ODS y sostenibilidad<br> • Diplomacia ambiental<br> • Financiamiento verde</div>
+        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
+        <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
       </div>
 
-      <!-- Flechas -->
+      <!-- Flechas más cortas -->
       <svg class="connector">
         <defs>
           <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
             <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
           </marker>
         </defs>
-        <!-- Curvas ajustadas -->
-        <path d="M 500 400 C 350 200, 280 180, 220 140"/> <!-- Central -> Comte -->
-        <path d="M 520 400 C 650 200, 720 180, 800 140"/> <!-- Central -> Durkheim -->
-        <path d="M 500 420 C 350 600, 280 620, 220 660"/> <!-- Central -> Marx -->
-        <path d="M 520 420 C 650 600, 720 620, 800 660"/> <!-- Central -> Weber -->
-        <path d="M 470 400 C 300 400, 200 400, 100 400"/> <!-- Central -> Grupo -->
-        <path d="M 540 400 C 700 400, 800 400, 950 400"/> <!-- Central -> Coop -->
+        <!-- Ajustadas al 80% del largo -->
+        <path d="M 500 400 C 390 260, 320 240, 250 200"/> <!-- Central -> Comte -->
+        <path d="M 520 400 C 630 260, 700 240, 770 200"/> <!-- Central -> Durkheim -->
+        <path d="M 500 420 C 390 540, 320 560, 250 600"/> <!-- Central -> Marx -->
+        <path d="M 520 420 C 630 540, 700 560, 770 600"/> <!-- Central -> Weber -->
+        <path d="M 470 400 C 340 400, 240 400, 150 400"/> <!-- Central -> Grupo -->
+        <path d="M 540 400 C 660 400, 760 400, 880 400"/> <!-- Central -> Coop -->
       </svg>
     </div>
   </div>
