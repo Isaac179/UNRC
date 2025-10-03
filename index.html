@@ -1,88 +1,177 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mapa conceptual con referencias</title>
+  <meta charset="utf-8"/>
+  <title>Mapa Conceptual — Ciencias Sociales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      font-family: Arial, sans-serif;
+    body{
+      margin:0; padding:0;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,rgba(30,58,95,0.8),rgba(0,191,166,0.8)),
+                 url("https://images.unsplash.com/photo-1535909339361-9b8e6f7f7b17?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+      overflow-x:hidden;
+      color:#fff; /* textos blancos por defecto */
     }
 
-    /* Sidebar reducido y con texto blanco */
-    #sidebar {
-      width: 14%; /* 30% menos que antes */
-      background: #222;
-      color: #fff; /* ← fuentes blancas */
-      padding: 15px;
-      overflow-y: auto;
+    .container{
+      display:flex;
+      gap:20px;
+      width:100%;
+      max-width:1600px;
+      padding:20px;
     }
 
-    #sidebar h2 {
-      margin-top: 0;
-      color: #fff;
+    .map{
+      position:relative;
+      flex:1;
+      min-height:900px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(14px);
+      border-radius:22px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.15);
+      padding:20px;
     }
 
-    #cy {
-      flex: 1;
-      height: 100%;
+    /* Sidebar reducido 30% y texto blanco */
+    .sidebar{
+      width:200px;
+      position:sticky;
+      top:20px;
+      align-self:flex-start;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter:blur(16px);
+      border-radius:18px;
+      padding:20px 15px;
+      font-size:13px;
+      line-height:1.6;
+      box-shadow:0 6px 22px rgba(0,0,0,0.15);
+      z-index:10;
+      color:#fff;
     }
+    .sidebar h3{
+      margin-top:0;
+      font-size:15px;
+      font-weight:700;
+      color:#fff;
+      text-align:center;
+    }
+    .sidebar ul{
+      padding-left:15px; margin:0;
+    }
+    .sidebar li{
+      margin-bottom:12px;
+    }
+
+    /* Nodos con mayor separación */
+    .node, .central{
+      position:absolute;
+      padding:20px;
+      border-radius:18px;
+      background:#fefefe;
+      box-shadow:6px 6px 12px rgba(0,0,0,0.12),
+                 -6px -6px 12px rgba(255,255,255,0.9);
+      border:1px solid rgba(255,255,255,0.5);
+      max-width:240px;
+      margin:15px; /* separación mínima entre nodos */
+      color:#123;
+    }
+
+    .central{
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:300px;
+      text-align:center;
+      background:rgba(255,255,255,0.5);
+      backdrop-filter:blur(20px);
+      font-weight:700;
+      font-size:20px;
+      color:#124d47;
+      z-index:2;
+    }
+
+    .node h4{margin:0 0 10px; font-size:16px; font-weight:700; font-family:'Nunito',sans-serif;}
+    .node p{margin:0; font-size:13px; text-align:justify;}
+    .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
+
+    /* Colores gradientes para cada autor */
+    .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#ffffff);}
+    .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#ffffff);}
+    .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#ffffff);}
+    .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#ffffff);}
+    .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#ffffff);}
+    .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#ffffff);}
   </style>
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 </head>
 <body>
-  <div id="sidebar">
-    <h2>Referencias</h2>
-    <ul>
-      <li>Referencia 1</li>
-      <li>Referencia 2</li>
-      <li>Referencia 3</li>
-    </ul>
-  </div>
-  <div id="cy"></div>
+  <div class="container">
+    <!-- Sidebar APA -->
+    <div class="sidebar">
+      <h3>📚 Referencias APA</h3>
+      <ul>
+        <li>Comte, A. (2002). <em>Curso de filosofía positiva</em>. Aguilar.</li>
+        <li>Durkheim, É. (2007). <em>Las reglas del método sociológico</em>. Alianza.</li>
+        <li>Marx, K., & Engels, F. (1997). <em>El manifiesto del Partido Comunista</em>. Babel.</li>
+        <li>Weber, M. (1980). La ciencia como vocación. En <em>El político y el científico</em>. Premia.</li>
+        <li>Wallerstein, I. (2006). <em>Abrir las Ciencias Sociales</em>. Siglo XXI.</li>
+        <li>ONU-UNU. (2020). <em>The Global E-waste Monitor</em>.</li>
+      </ul>
+    </div>
 
-  <script>
-    var cy = cytoscape({
-      container: document.getElementById('cy'),
-      elements: [
-        { data: { id: 'a', label: 'Concepto A' } },
-        { data: { id: 'b', label: 'Concepto B' } },
-        { data: { id: 'c', label: 'Concepto C' } },
-        { data: { id: 'd', label: 'Concepto D' } },
-        { data: { id: 'ab', source: 'a', target: 'b' } },
-        { data: { id: 'bc', source: 'b', target: 'c' } },
-        { data: { id: 'cd', source: 'c', target: 'd' } }
-      ],
-      style: [
-        {
-          selector: 'node',
-          style: {
-            'background-color': '#0074D9',
-            'label': 'data(label)',
-            'text-valign': 'center',
-            'color': '#fff',
-            'font-size': 14,
-            'text-outline-width': 2,
-            'text-outline-color': '#0074D9'
-          }
-        },
-        {
-          selector: 'edge',
-          style: {
-            'width': 2,
-            'line-color': '#aaa'
-            // sin flechas
-          }
-        }
-      ],
-      layout: {
-        name: 'cose',
-        spacingFactor: 2.0, /* ← más separación aún */
-        animate: true
-      }
-    });
-  </script>
+    <!-- Mapa Conceptual -->
+    <div class="map">
+      <!-- Nodo central -->
+      <div class="central">🌐 Ciencias Sociales<br><small>tradición, método y aplicación</small></div>
+
+      <!-- Nodos -->
+      <div class="node comte">
+        <h4>🔬 Comte</h4>
+        <p>Positivismo y método científico como guía del orden social.<br>
+        <strong>Aplicación:</strong> medir huella ambiental y diseñar políticas basadas en evidencia.</p>
+        <div class="sub">➤ Orden y progreso<br>➤ Método experimental<br>➤ Ciencia de la sociedad</div>
+      </div>
+
+      <div class="node durkheim">
+        <h4>🏛️ Durkheim</h4>
+        <p>Los hechos sociales son “cosas” que moldean la conducta.<br>
+        <strong>Aplicación:</strong> el e-waste debilita instituciones y cohesión comunitaria.</p>
+        <div class="sub">➤ Hecho social<br>➤ Solidaridad<br>➤ Instituciones</div>
+      </div>
+
+      <div class="node marx">
+        <h4>⚒️ Marx</h4>
+        <p>Materialismo histórico y lucha de clases.<br>
+        <strong>Aplicación:</strong> la externalización ambiental refleja explotación del Sur por el Norte.</p>
+        <div class="sub">➤ Capital vs trabajo<br>➤ Alienación<br>➤ Desigualdad global</div>
+      </div>
+
+      <div class="node weber">
+        <h4>📊 Weber</h4>
+        <p>Acción social y racionalización.<br>
+        <strong>Aplicación:</strong> la burocracia internacional prioriza eficiencia antes que justicia ambiental.</p>
+        <div class="sub">➤ Tipos de acción<br>➤ Ética protestante<br>➤ Burocracia</div>
+      </div>
+
+      <div class="node grupo">
+        <h4>👥 Grupo afectado</h4>
+        <p>Comunidades vulnerables receptoras de residuos electrónicos.<br>
+        <em>Características:</em> informalidad en reciclaje, débil organización comunitaria, poca representación política.</p>
+        <div class="sub">➤ Subsistencia<br>➤ Economía informal<br>➤ Exclusión social</div>
+      </div>
+
+      <div class="node coop">
+        <h4>🤝 Cooperación internacional</h4>
+        <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
+        <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
