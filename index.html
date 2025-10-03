@@ -40,36 +40,36 @@
       padding:20px;
     }
 
-    /* Sidebar APA */
+    /* Sidebar APA reducido 30% */
     .sidebar{
-      width:280px;
+      width:200px; /* antes 280px */
       position:sticky;
       top:20px;
       align-self:flex-start;
       background:rgba(255,255,255,0.25);
       backdrop-filter:blur(16px);
       border-radius:18px;
-      padding:25px 20px;
-      font-size:14px;
+      padding:20px 15px;
+      font-size:13px;
       line-height:1.5;
       box-shadow:0 6px 22px rgba(0,0,0,0.15);
       z-index:10;
     }
     .sidebar h3{
       margin-top:0;
-      font-size:16px;
+      font-size:15px;
       font-weight:700;
       color:#123c5c;
       text-align:center;
     }
     .sidebar ul{
-      padding-left:18px; margin:0;
+      padding-left:15px; margin:0;
     }
     .sidebar li{
       margin-bottom:10px;
     }
 
-    /* Nodos */
+    /* Nodos con margen de seguridad */
     .node, .central{
       position:absolute;
       padding:18px 20px;
@@ -79,6 +79,7 @@
                  -6px -6px 12px rgba(255,255,255,0.9);
       border:1px solid rgba(255,255,255,0.5);
       max-width:220px;
+      margin:10px; /* separación mínima */
     }
 
     .central{
@@ -98,30 +99,13 @@
     .node p{margin:0; font-size:13px; text-align:justify;}
     .sub{margin-top:6px; font-size:12px; color:#444; padding-left:10px;}
 
-    /* Colores gradientes de cada autor */
+    /* Colores gradientes */
     .comte{ top:10%; left:15%; background:linear-gradient(145deg,#fff8e6,#ffffff);}
     .durkheim{ top:10%; right:15%; background:linear-gradient(145deg,#e6f9f7,#ffffff);}
     .marx{ bottom:10%; left:15%; background:linear-gradient(145deg,#ffeaea,#ffffff);}
     .weber{ bottom:10%; right:15%; background:linear-gradient(145deg,#eaf0ff,#ffffff);}
     .grupo{ top:50%; left:5%; transform:translateY(-50%); background:linear-gradient(145deg,#f4e6ff,#ffffff);}
     .coop{ top:50%; right:5%; transform:translateY(-50%); background:linear-gradient(145deg,#fff3e6,#ffffff);}
-
-    /* Flechas curvas */
-    svg.connector{
-      position:absolute;
-      width:100%; height:100%;
-      pointer-events:none;
-      z-index:0;
-    }
-    path{
-      fill:none;
-      stroke:#444;
-      stroke-width:2.4;
-      stroke-linecap:round;
-      marker-end:url(#arrow);
-      transition:all 0.2s ease;
-    }
-    path:hover{stroke:#0c7266; stroke-width:3;}
   </style>
 </head>
 <body>
@@ -185,21 +169,6 @@
         <p>El fenómeno exige acuerdos multilaterales: justicia ambiental, transferencia tecnológica y financiamiento climático.</p>
         <div class="sub">➤ ODS<br>➤ Diplomacia ambiental<br>➤ Financiamiento verde</div>
       </div>
-
-      <!-- Flechas -->
-      <svg class="connector">
-        <defs>
-          <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
-          </marker>
-        </defs>
-        <path d="M 600 450 C 520 330, 420 280, 340 240"/> <!-- Central -> Comte -->
-        <path d="M 610 450 C 700 330, 800 280, 860 240"/> <!-- Central -> Durkheim -->
-        <path d="M 600 470 C 520 570, 420 600, 340 640"/> <!-- Central -> Marx -->
-        <path d="M 610 470 C 700 570, 800 600, 860 640"/> <!-- Central -> Weber -->
-        <path d="M 570 460 C 450 460, 340 460, 220 460"/> <!-- Central -> Grupo -->
-        <path d="M 630 460 C 740 460, 860 460, 980 460"/> <!-- Central -> Coop -->
-      </svg>
     </div>
   </div>
 </body>
