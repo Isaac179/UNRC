@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Deploy Static HTML to Azure
 
 on:
   push:
@@ -9,19 +9,19 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Clona el repositorio
       - uses: actions/checkout@v3
 
-      - name: Build And Deploy
-        id: builddeploy
+      # 2️⃣ Despliega archivos estáticos
+      - name: Deploy Static HTML
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "upload"
-          app_location: "/"         
-          api_location: ""        
-          output_location: "/"     
-          app_build_command: ""    
-          skip_app_build: true     # <--- esto evita que Oryx intente build
+          app_location: "/"          # archivos HTML en la raíz
+          api_location: ""           # no hay backend
+          output_location: "/"       # sube la raíz tal cual
+          skip_app_build: true       # ❌ evita cualquier intento de build
