@@ -1,0 +1,651 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Foro RSU M3 · Isaac Moctezuma v14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0b;
+    --paper: #f5f0e8;
+    --warm: #f0ead8;
+    --rust: #c4440a;
+    --rust-light: #f0d4c4;
+    --gold: #c89b2a;
+    --gold-pale: #f7eecc;
+    --sage: #3d5a47;
+    --sage-light: #d4e4d8;
+    --cream-border: #d8cfc0;
+    --muted: #6b6455;
+    --accent-line: 3px solid var(--rust);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1410;
+    font-family: 'Syne', system-ui, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* === CORNER LABEL === */
+  .corner-meta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    writing-mode: vertical-rl;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: #6b5a44;
+    text-transform: uppercase;
+    opacity: 0.7;
+    user-select: none;
+  }
+
+  /* === MASTHEAD === */
+  .masthead {
+    background: var(--paper);
+    border-top: 5px solid var(--rust);
+    padding: 3.5rem 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: var(--rust);
+    opacity: 0.04;
+  }
+
+  .issue-line {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .issue-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 500;
+  }
+
+  .issue-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--cream-border);
+  }
+
+  .issue-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  .masthead h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    max-width: 85%;
+  }
+
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .lead-quote {
+    border-left: var(--accent-line);
+    padding: 0.8rem 0 0.8rem 1.4rem;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--sage);
+    max-width: 80%;
+    margin-top: 1rem;
+  }
+
+  .lead-quote cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    font-style: normal;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* === BODY === */
+  .body-zone {
+    background: var(--paper);
+    border-top: 1px solid var(--cream-border);
+    padding: 3rem 3.5rem;
+  }
+
+  /* === INTRO BLOCK === */
+  .intro-saludo {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--cream-border);
+  }
+
+  .intro-saludo .vertical-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  /* === SECTION BLOCK === */
+  .section-block {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--cream-border);
+  }
+
+  .section-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--rust);
+    min-width: 32px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .section-title span {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.15rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* === TYPOGRAPHY === */
+  p {
+    font-size: 1rem;
+    line-height: 1.78;
+    margin-bottom: 1.3rem;
+    text-align: justify;
+    color: #2a261e;
+    hyphens: auto;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  em {
+    font-style: italic;
+    font-family: 'Instrument Serif', serif;
+  }
+
+  /* === CHIPS === */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+  }
+
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--cream-border);
+    border-radius: 2px;
+    color: var(--muted);
+    background: var(--warm);
+  }
+
+  /* === PULL QUOTE ASIDE === */
+  .pull-quote {
+    float: right;
+    width: 38%;
+    margin: 0 0 1.5rem 2rem;
+    padding: 1.2rem 1.4rem;
+    border-top: 3px solid var(--gold);
+    border-bottom: 1px solid var(--cream-border);
+    background: var(--gold-pale);
+  }
+
+  .pull-quote p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #4a3c18;
+    text-align: left;
+    margin: 0;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.7rem;
+  }
+
+  /* === HIGHLIGHT BOX === */
+  .highlight-box {
+    background: var(--sage-light);
+    border-left: 4px solid var(--sage);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .highlight-box p {
+    font-size: 0.93rem;
+    color: #233328;
+    margin: 0;
+    line-height: 1.65;
+    text-align: left;
+  }
+
+  .highlight-box strong {
+    color: var(--sage);
+  }
+
+  /* === RITUAL CLOSER === */
+  .ritual-closer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ritual-closer::before {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18rem;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+  }
+
+  .ritual-closer p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: #d4c9b0;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 0;
+  }
+
+  .ritual-closer strong {
+    color: var(--gold);
+  }
+
+  /* === GLOSSARY & MANIFESTO === */
+  .glossary-zone {
+    background: var(--sage-light);
+    padding: 2.5rem 3.5rem;
+    border-top: 1px solid var(--cream-border);
+  }
+  
+  .glossary-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .glossary-term { 
+    font-weight: 700; 
+    color: var(--sage); 
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 0.85rem; 
+    display: inline-block;
+    margin-bottom: 0.3rem;
+  }
+
+  .glossary-def { 
+    font-size: 0.95rem; 
+    margin-bottom: 1.2rem; 
+    color: #233328; 
+    line-height: 1.6;
+  }
+
+  .manifesto-zone {
+    background: var(--paper);
+    padding: 2.5rem 3.5rem;
+    border-top: 1px solid var(--cream-border);
+    border-left: 4px solid var(--gold);
+  }
+
+  .manifesto-title { 
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 0.75rem; 
+    color: var(--gold); 
+    margin-bottom: 0.8rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+  }
+
+  .manifesto-text { 
+    font-size: 0.85rem; 
+    line-height: 1.6; 
+    color: var(--muted); 
+    text-align: justify;
+  }
+
+  /* === REFERENCES === */
+  .refs-zone {
+    background: var(--warm);
+    padding: 2rem 3.5rem;
+    border-top: 1px solid var(--cream-border);
+  }
+
+  .refs-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.2rem;
+  }
+
+  .ref-item {
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    padding-left: 1.2rem;
+    text-indent: -1.2rem;
+  }
+
+  .ref-item em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* === FOOTER === */
+  .footer-bar {
+    background: #0f0e0b;
+    padding: 1.2rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-bar .f-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--paper);
+  }
+
+  .footer-bar .f-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5a5040;
+  }
+
+  .footer-bar .f-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    flex-shrink: 0;
+  }
+
+  /* === CLEARFIX === */
+  .clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 680px) {
+    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
+    .masthead h1 { max-width: 100%; }
+    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
+    .intro-saludo { grid-template-columns: 1fr; }
+    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="corner-meta">M3 · DES6 · FORO · RSU · UNRC · 2026</div>
+
+  <div class="masthead">
+    <div class="issue-line">
+      <span class="issue-tag">Foro Integrador · Módulo 3</span>
+      <div class="issue-divider"></div>
+      <span class="issue-num">RSU · Mayo 2026</span>
+    </div>
+    <h1>La <em>desobediencia</em> del saber:<br>Comités RSU y justicia epistémica</h1>
+    <div class="lead-quote">
+      "No hay justicia en seguir leyes injustas. Es tiempo de salir a la luz y declarar nuestra oposición a este robo privado de la cultura pública."
+      <cite>— Aaron Swartz, Guerrilla Open Access Manifesto (2008)</cite>
+    </div>
+  </div>
+
+  <div class="body-zone">
+
+    <div class="intro-saludo">
+      <span class="vertical-label">Apertura</span>
+      <div>
+        <p><strong>Estimada profesora Ana Delia, compañeras y compañeros:</strong> Sean bienvenidos a este espacio dialógico donde, tocando tierra, les comparto una reflexión tejida entre la teoría de Relaciones Internacionales, los expedientes reales del DIF Guerrero y mi formación empírica. <em>Peut-être</em> mi perspectiva oscile esta semana entre la crudeza operativa de mis despliegues en la Montaña y la esperanza de quien cree genuinamente en el Tikun Olam. No busco imponer verdades, sino aportar al debate desde mi trinchera. Que este foro se convierta en un auténtico tequio académico: una faena comunitaria donde todos lleguemos dignos, a debatir con la misma intensidad con la que Aaron Swartz preguntaría si realmente creemos en lo que escribimos.</p>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-num">01 /</span>
+        <div class="section-title">
+          ¿Qué entiendes por Responsabilidad Social Universitaria?
+          <span>Primera aportación · Conceptualización</span>
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <div class="pull-quote">
+          <p>"La RSU es gestión de impactos organizacionales, formativos, cognitivos y sociales, no filantropía episódica."</p>
+          <cite>Vallaeys, 2014 · adaptación propia</cite>
+        </div>
+
+        <p>Tocando tierra: entiendo que la RSU es un acto de valentía institucional que supera con creces la ayuda filantrópica o el voluntariado esporádico. Es una política integral que audita y gestiona los cuatro impactos fundamentales que genera la universidad: los organizacionales, los educativos, los cognitivos y los sociales (Vallaeys, 2014). Es un ejercicio de autoconsciencia profunda donde la academia abandona la pretensión de neutralidad apolítica, reconociendo que la ciencia misma es un problema ético, político y económico.</p>
+
+        <p>No podemos formar profesionistas en las aulas matutinas ignorando que el modelo que enseñamos contriubye a destruir los ecosistemas por la tarde. La universidad debe actuar entonces como garante de la racionalidad y legitimidad del conocimiento frente a los embates de la mercantilización (Vallaeys, 2014). En mi cosmovisión personal, la RSU es la herramienta académica del Tikun Olam: la obligación metódica e irrenunciable de reparar un mundo fragmentado, asumiendo la responsabilidad por las consecuencias de nuestras investigaciones y, sobre todo, de nuestros silencios cómplices.</p>
+
+        <p>Lo que me resulta revelador, vinculando esto a mi trabajo en el área PAMAR del DIF Guerrero, es que la RSU no es conceptualmente tan distinta a lo que hacemos cuando impartimos el Taller de Reconocimiento del Maltrato a niños de la Montaña: ambas son formas de devolver el poder de nombrar la realidad a quienes la padecen. Considero yo que la RSU, en su versión más honesta, es justamente esto: no caridad, es justicia.</p>
+      </div>
+
+      <div class="chips">
+        <span class="chip">Gestión de impactos</span>
+        <span class="chip">Tikun Olam académico</span>
+        <span class="chip">Conocimiento libre</span>
+        <span class="chip">Autoconsciencia institucional</span>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-num">02 /</span>
+        <div class="section-title">
+          Ventajas y dificultades para integrar un comité RSU
+          <span>Segunda aportación · Análisis operativo</span>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>Ventaja nuclear:</strong> Cuando los actores externos participan activamente en el rediseño curricular y la investigación (Vallaeys, 2014), logramos un <em>shiluv</em> real entre la teoría y la supervivencia. La universidad gana legitimadad territorial y pertinencia absoluta en su agenda.</p>
+      </div>
+
+      <p>La mayor fortaleza radica en alcanzar un estado de flujo colectivo, comparable al de un danzante que ya no piensa en su siguiente movimiento: la memoria institucional y el instinto comunitario lo dirigen. Cuando los actores externos participan activamente en el rediseño curricular, la investigación pertinente y la extensión universitaria (Vallaeys, 2014), se produce un equilibrio de saberes que rompe el cerco de la inaccesibilidad social del conocimiento. Es una gobernanza horizontal donde las soluciones se iteran como en un repositorio abierto, con transparencia radical.</p>
+
+      <p>Pero bueno, los obstáculos no son menores. La principal fricción yace en el ego sistémico y la rigidez de las estructuras académicas que se restiten a ceder el monopolio del saber. He visto este patrón en mis cinco años como desarrollador web y ahora como enlace en PAMAR: las instituciones a veces caen en un <em>pilote automatique</em> que prefiere el cumplimiento burocrático antes que la fricción productiva del diálogo vivo. Integrar saberes exige traducir lenguajes, mediar asimetrías de poder y, sobretodo, aprender a escuchar voces que no llegan con credenciales académicas pero que conocen el barro del territorio mejor que cualquier artículo revisado por pares.</p>
+
+      <p>La segunda dificultad es de orden técnico-político: sostener en el tiempo una estructura de gobernanza participativa sin que las dinámicas de poder la reconfiguren a favor de los actores más institucionalizados. No es casual que Swartz preguntara si realmente creemos en lo que escribimos: la diferencia entre RSU declarada y RSU practicada es exactamente esa distancia.</p>
+
+      <div class="chips">
+        <span class="chip">Gobernanza horizontal</span>
+        <span class="chip">Fricción productiva</span>
+        <span class="chip">Flujo colectivo</span>
+        <span class="chip">Traducción de saberes</span>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-num">03 /</span>
+        <div class="section-title">
+          Inclusión equitativa frente al incidente crítico
+          <span>Tercera aportación · Crisis polinizadores</span>
+        </div>
+      </div>
+
+      <p>Está suave imaginar que las cumbres internacionales resolverán solas la crisis de los polinizadores, pero la realidad nos estalla en lo local. Mi opinión es que intentar solucionar la extinción progresvia de las abejas y la amenaza a la soberanía alimentaria sin incluir equitativamente a los guardianes del territorio es reproducir una lógica neocolonial disfrazada de buenas intenciones. La universidad como promotora del desarrollo sostenible (Vallaeys, 2014) fracasa rotundamente si se asume como salvadora de las comunidades en lugar de actuar como cómplice ética de sus procesos.</p>
+
+      <div class="clearfix">
+        <div class="pull-quote">
+          <p>"Nadie salva a nadie, nos liberamos en comunión."</p>
+          <cite>Paulo Freire · adaptación de la voz de Isaac v14</cite>
+        </div>
+
+        <p>Recordando a Freire: nadie salva a nadie, nos liberamos en comunión. Del mismo modo en que en mis visitas a la Montaña Baja y Alta de Guerrero aprendí que los niños entienden mejor sus derechos cuando los explica alguien que comparte su contexto, la RSU frente al incidente crítico de los polinizadores requiere que el apicultor local sea también sujeto del método, no solo objeto de estudio. Frente a este apocalipsis silencioso, la inclusión equitativa de actores no es un gesto de cortesía académica, sino rigor metodológico indispensable.</p>
+
+        <p>No podemos abordar la complejidad sistémica de esta crisis sin la memoria del apicultor de la comunidad tlapaneca, sin el código abierto del desarrollador comprometido, sin la infraestructura tecnológica de la academia, y sin el soporte jurídico que garantice que el conocimiento generado no sea apropiado por corporaciones agroquímicas. Solo así aseguraremos lo que yo llamo un sueldo generacional: no el económico, sino el legado habitable que le dejaremos a nuestras hijas e hijos. Como decía Biko: la liberación más poderosa es la que ocurre primero en la mente.</p>
+      </div>
+
+      <div class="chips">
+        <span class="chip">Inclusión rigurosa</span>
+        <span class="chip">No paternalismo</span>
+        <span class="chip">Sueldo generacional</span>
+        <span class="chip">Soberanía alimentaria</span>
+      </div>
+    </div>
+
+  </div><div class="glossary-zone">
+    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
+    
+    <span class="glossary-term">Tequio Académico:</span>
+    <div class="glossary-def">Inspirado en el sistema mesoamericano de trabajo colectivo ("tequio"), se refiere a una labor intelectual colaborativa, horizontal y de beneficio común, alejada de lógicas extractivistas. Reemplaza metáforas espirituales por una acción terrenal comunitaria.</div>
+    
+    <span class="glossary-term">Shiluv (שילוב):</span>
+    <div class="glossary-def">Término del ecosistema tecnológico y de <em>startups</em> en Tel Aviv que significa "integración" o "fusión". Se utiliza aquí para sustituir el anglicismo <em>merge</em>, aportando un matiz de innovación al ensamblaje de la teoría con la supervivencia comunitaria.</div>
+    
+    <span class="glossary-term">Pilote automatique / Peut-être:</span>
+    <div class="glossary-def">Préstamos del francés moderno para "piloto automático" y "tal vez". Usados para ilustrar las barreras de inercia burocrática y las aperturas dubitativas en el pensamiento crítico, evitando el uso excesivo de anglicismos técnicos.</div>
+    
+    <span class="glossary-term">Tikun Olam:</span>
+    <div class="glossary-def">Concepto ético central en el judaísmo que significa "reparar el mundo". En la RSU, se asume como la responsabilidad activa, documentada y metodológica de incidir en los problemas de la sociedad para restaurar la justicia y la equidad.</div>
+  </div>
+
+  <div class="manifesto-zone">
+    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
+    <p class="manifesto-text">
+      Este documento fue estructurado y maquetado con la asistencia de Inteligencia Artificial (modelos de lenguaje amplio) para la optimización de código HTML/CSS, corrección ortotipográfica y soporte en el contraste dialéctico de ideas. No obstante, las experiencias narradas (trabajo en el DIF Guerrero, despliegues en la Montaña, análisis de la universidad pública mexicana), así como el posicionamiento crítico y ético, son estrictamente producto de la reflexión y autoría humana de Isaac Moctezuma Calderón. La IA opera aquí como un andamiaje técnico, no como un sustituto del pensamiento crítico ni de la vivencia comunitaria.
+    </p>
+  </div>
+
+  <div class="ritual-closer">
+    <p>La RSU debe operar como un inmenso <strong>tequio</strong>: una faena minuciosa donde todos los actores lleguen dignos, fuera máscaras, reconociendo que ante la totalidad del territorio somos un precioso despliegue de vida con la responsabilidad ética de reparar lo que quebramos. Que este foro sea el código fuente de nuestra esperanza compartida.</p>
+  </div>
+
+  <div class="refs-zone">
+    <div class="refs-label">Referencias · APA 7ª edición</div>
+    <p class="ref-item">Swartz, A. (2008). <em>Guerrilla Open Access Manifesto</em>. Internet Archive. https://archive.org/details/GuerillaOpenAccessManifesto</p>
+    <p class="ref-item">Universidad Rosario Castellanos. (2026). <em>Módulo 3: Responsabilidad Social Universitaria y Gestión del Conocimiento</em>. Plataforma SECIHTI. https://unrc.secihti.mx</p>
+    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización. <em>Revista Iberoamericana de Educación Superior, 5</em>(12), 105–117. https://www.redalyc.org/pdf/2991/299129977006.pdf</p>
+    <p class="ref-item">Vallaeys, F. (2021). <em>¿Qué es la Responsabilidad Social Universitaria?</em> AUSJAL. https://www.ausjal.org/wp-content/uploads/2021/04/Que-es-la-Responsabilidad-Social-Universitaria.pdf</p>
+  </div>
+
+  <div class="footer-bar">
+    <span class="f-name">Isaac Moctezuma Calderón</span>
+    <div class="f-dot"></div>
+    <span class="f-meta">LRIN · UNRC · Foro M3 · DES6</span>
+    <div class="f-dot"></div>
+    <span class="f-meta">Mayo 2026</span>
+  </div>
+
+</div></body>
+</html>
+
+```
