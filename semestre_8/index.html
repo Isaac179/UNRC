@@ -17,26 +17,9 @@
 <body>
     <h1>📚 semestre_8</h1>
     <p>Materias del semestre_8 de la Licenciatura en Relaciones Internacionales</p>
-    <ul id="materias"></ul>
-    <a href="https://isaac179.github.io/UNRC/" class="back">← Volver al inicio</a>
-    
-    <script>
-        // Enlaces a las materias de este semestre
-        const materias = document.getElementById('materias');
-        const enlaces = [];
-        
-        if (enlaces.length === 0) {
-            materias.innerHTML = '<li>✨ Próximamente se agregarán las actividades de este semestre</li>';
-        } else {
-            enlaces.forEach(m => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = m.url;
-                a.textContent = m.nombre;
-                li.appendChild(a);
-                materias.appendChild(li);
-            });
-        }
-    </script>
+    <ul>
+        <li>✨ Próximamente se agregarán las actividades de este semestre</li>
+    </ul>
+    <a href="../" class="back">← Volver al inicio</a>
 </body>
 </html>
