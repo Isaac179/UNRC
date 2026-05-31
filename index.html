@@ -2,14 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>UNRC · Navegación</title>
+    <title>UNRC · Navegación por Semestres y Materias</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #1a1410;
-            font-family: system-ui, sans-serif;
-            padding: 2rem;
-        }
+        body { background: #1a1410; font-family: system-ui, sans-serif; padding: 2rem; }
         .container { max-width: 1200px; margin: 0 auto; }
         .header {
             background: #f5f0e8;
@@ -20,7 +16,6 @@
         }
         .header h1 { font-size: 2rem; color: #0f0e0b; }
         .header h1 span { color: #c4440a; }
-        .header p { color: #6b6455; margin-top: 0.5rem; }
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -34,48 +29,60 @@
             border: 1px solid #d8cfc0;
         }
         .stat-number { font-size: 2rem; font-weight: bold; color: #c4440a; }
-        .stat-label { font-size: 0.7rem; text-transform: uppercase; color: #6b6455; }
-        .semesters-grid { display: flex; flex-direction: column; gap: 1rem; }
-        .semester-card { background: #f5f0e8; border: 1px solid #d8cfc0; }
+        .semester-card {
+            background: #f5f0e8;
+            border: 1px solid #d8cfc0;
+            margin-bottom: 1rem;
+        }
         .semester-header {
             background: #f0ead8;
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             font-weight: bold;
         }
-        .semester-content { padding: 1rem; display: block; }
-        .semester-card.collapsed .semester-content { display: none; }
-        .materias-list { display: flex; flex-direction: column; gap: 0.5rem; }
-        .materia-item { background: #f5f0e8; border: 1px solid #d8cfc0; }
+        .semester-content { padding: 1rem; display: none; }
+        .semester-card.open .semester-content { display: block; }
+        .materia-card {
+            background: #fff;
+            border: 1px solid #d8cfc0;
+            margin-bottom: 0.5rem;
+        }
         .materia-header {
-            padding: 0.7rem 1rem;
+            background: #faf7ee;
+            padding: 0.7rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            background: #faf7ee;
         }
-        .materia-content { padding: 0.8rem; border-top: 1px solid #d8cfc0; display: block; }
-        .materia-item.collapsed .materia-content { display: none; }
-        .actividades { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.5rem 0; }
+        .materia-content { padding: 0.8rem; display: none; border-top: 1px solid #d8cfc0; }
+        .materia-card.open .materia-content { display: block; }
+        .modulos { display: flex; flex-direction: column; gap: 1rem; }
+        .modulo {
+            border-left: 3px solid #c4440a;
+            padding-left: 1rem;
+        }
+        .modulo h4 { color: #c4440a; margin-bottom: 0.5rem; }
+        .actividades { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .actividad {
             display: inline-block;
-            padding: 0.2rem 0.6rem;
+            padding: 0.3rem 0.8rem;
             background: #f0ead8;
-            font-size: 0.7rem;
             text-decoration: none;
             color: #0f0e0b;
             border: 1px solid #d8cfc0;
+            font-size: 0.8rem;
         }
         .actividad:hover { background: #f0d4c4; }
-        .actividad.missing { background: #e0d8cc; color: #6b6455; cursor: default; }
-        .badge { background: #3d5a47; color: white; font-size: 0.55rem; padding: 0.1rem 0.3rem; margin-left: 0.3rem; }
-        .ver-mas { margin-top: 0.5rem; text-align: right; }
-        .ver-mas a { font-size: 0.7rem; color: #c4440a; }
-        .footer { margin-top: 2rem; background: #0f0e0b; padding: 1rem; text-align: center; color: #f5f0e8; font-size: 0.7rem; }
+        .footer {
+            margin-top: 2rem;
+            background: #0f0e0b;
+            padding: 1rem;
+            text-align: center;
+            color: #f5f0e8;
+        }
         .toggle-icon { font-size: 0.8rem; color: #6b6455; }
-        .collapsed .toggle-icon { transform: rotate(-90deg); display: inline-block; }
     </style>
 </head>
 <body>
@@ -84,77 +91,127 @@
         <h1>Relaciones <span>Internacionales</span></h1>
         <p>Universidad Rosario Castellanos · Isaac Moctezuma Calderón</p>
     </div>
-    <div class="semesters-grid" id="semestersGrid"></div>
-    <div class="footer">LRIN · UNRC · 2026</div>
+    <div class="stats" id="stats"></div>
+    <div id="semesters"></div>
+    <div class="footer">LRIN · UNRC · Navegación completa por actividades</div>
 </div>
-<script>
-const semestres = {
-    1: { nombre: "Semestre 1", materias: [] },
-    2: { nombre: "Semestre 2", materias: [] },
-    3: { nombre: "Semestre 3", materias: [] },
-    4: { nombre: "Semestre 4", materias: [] },
-    5: { nombre: "Semestre 5", materias: [] },
-    6: { nombre: "Semestre 6", materias: [] },
-    7: { nombre: "Semestre 7", materias: [] },
-    8: { nombre: "Semestre 8", materias: [] }
-};
 
-// Escanear materias desde el servidor (simplificado)
-async function cargarMaterias() {
+<script>
+const semestresData = {};
+
+async function cargarDatos() {
     for (let s = 1; s <= 8; s++) {
         try {
-            const response = await fetch(`semestre_${s}/`);
-            const text = await response.text();
+            const res = await fetch(`semestre_${s}/`);
+            const text = await res.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(text, 'text/html');
             const links = doc.querySelectorAll('a');
-            links.forEach(link => {
-                const href = link.getAttribute('href');
+            const materias = [];
+            
+            for (const link of links) {
+                let href = link.getAttribute('href');
                 if (href && href.match(/^\d+_/) && href.endsWith('/')) {
                     const nombre = href.replace(/_/g, ' ').replace(/^\d+ /, '');
-                    semestres[s].materias.push({ nombre: nombre, path: `semestre_${s}/${href}` });
+                    const path = `semestre_${s}/${href}`;
+                    
+                    // Verificar qué archivos existen
+                    const archivos = {
+                        m1_foro: null, m2_tarea: null, m2_foro: null,
+                        m3_tarea: null, m3_foro: null, m4_tarea: null,
+                        m4_foro: null, m5_integradora: null
+                    };
+                    
+                    // Intentar cargar cada archivo
+                    const checks = await Promise.all(Object.keys(archivos).map(async k => {
+                        const url = `${path}${k}.html`;
+                        const resp = await fetch(url, { method: 'HEAD' });
+                        return { key: k, exists: resp.ok };
+                    }));
+                    checks.forEach(c => { if(c.exists) archivos[c.key] = `${c.key}.html`; });
+                    
+                    materias.push({ nombre, path, archivos });
                 }
-            });
-        } catch(e) { console.log("Error cargando semestre", s); }
+            }
+            if(materias.length) semestresData[s] = { nombre: `Semestre ${s}`, materias };
+        } catch(e) { console.log('Error cargando semestre', s); }
     }
-    renderSemesters();
+    renderizar();
 }
 
-function renderSemesters() {
-    const grid = document.getElementById('semestersGrid');
-    grid.innerHTML = '';
-    for (const [num, sem] of Object.entries(semestres)) {
+function renderizar() {
+    let totalMaterias = 0, totalActividades = 0;
+    Object.values(semestresData).forEach(s => totalMaterias += s.materias.length);
+    
+    document.getElementById('stats').innerHTML = `
+        <div class="stat-card"><div class="stat-number">${Object.keys(semestresData).length}</div><div class="stat-label">Semestres</div></div>
+        <div class="stat-card"><div class="stat-number">${totalMaterias}</div><div class="stat-label">Materias</div></div>
+    `;
+    
+    const container = document.getElementById('semesters');
+    container.innerHTML = '';
+    
+    for(const [num, sem] of Object.entries(semestresData)) {
         const card = document.createElement('div');
-        card.className = 'semester-card collapsed';
+        card.className = 'semester-card';
         card.innerHTML = `
-            <div class="semester-header" onclick="this.parentElement.classList.toggle('collapsed')">
+            <div class="semester-header" onclick="this.parentElement.classList.toggle('open')">
                 <span>📚 ${sem.nombre}</span>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="semester-content">
-                <div class="materias-list">
-                    ${sem.materias.map(m => `
-                        <div class="materia-item collapsed">
-                            <div class="materia-header" onclick="event.stopPropagation(); this.parentElement.classList.toggle('collapsed')">
-                                <span>📖 ${m.nombre}</span>
-                                <span class="toggle-icon">▼</span>
-                            </div>
-                            <div class="materia-content">
-                                <div class="actividades">
-                                    <a href="${m.path}" class="actividad">🔗 Ver actividades</a>
+                ${sem.materias.map(m => `
+                    <div class="materia-card">
+                        <div class="materia-header" onclick="event.stopPropagation(); this.parentElement.classList.toggle('open')">
+                            <span>📖 ${m.nombre}</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="materia-content">
+                            <div class="modulos">
+                                <div class="modulo">
+                                    <h4>📘 Módulo 1 · Fundamentos</h4>
+                                    <div class="actividades">
+                                        ${m.archivos.m1_foro ? `<a href="${m.path}${m.archivos.m1_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
+                                    </div>
+                                </div>
+                                <div class="modulo">
+                                    <h4>📗 Módulo 2 · Análisis y aplicación</h4>
+                                    <div class="actividades">
+                                        ${m.archivos.m2_tarea ? `<a href="${m.path}${m.archivos.m2_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
+                                        ${m.archivos.m2_foro ? `<a href="${m.path}${m.archivos.m2_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
+                                    </div>
+                                </div>
+                                <div class="modulo">
+                                    <h4>📙 Módulo 3 · Profundización y debate</h4>
+                                    <div class="actividades">
+                                        ${m.archivos.m3_tarea ? `<a href="${m.path}${m.archivos.m3_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
+                                        ${m.archivos.m3_foro ? `<a href="${m.path}${m.archivos.m3_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
+                                    </div>
+                                </div>
+                                <div class="modulo">
+                                    <h4>📕 Módulo 4 · Integración y propuesta</h4>
+                                    <div class="actividades">
+                                        ${m.archivos.m4_tarea ? `<a href="${m.path}${m.archivos.m4_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
+                                        ${m.archivos.m4_foro ? `<a href="${m.path}${m.archivos.m4_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
+                                    </div>
+                                </div>
+                                <div class="modulo">
+                                    <h4>🎯 Módulo 5 · Actividad integradora</h4>
+                                    <div class="actividades">
+                                        ${m.archivos.m5_integradora ? `<a href="${m.path}${m.archivos.m5_integradora}" class="actividad">📝 Síntesis final</a>` : '<span class="actividad" style="opacity:0.5">🎯 Próximamente</span>'}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    `).join('')}
-                    ${sem.materias.length === 0 ? '<div class="materia-item"><div class="materia-header">✨ Próximamente</div></div>' : ''}
-                </div>
+                    </div>
+                `).join('')}
             </div>
         `;
-        grid.appendChild(card);
+        container.appendChild(card);
     }
 }
 
-cargarMaterias();
+cargarDatos();
 </script>
 </body>
 </html>
