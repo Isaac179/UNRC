@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-<head><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/nav.css">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Isaac Moctezuma · Portafolio Académico · UNRC</title>
@@ -38,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Fondo animado */
         body::before {
             content: '';
             position: fixed;
@@ -59,7 +58,6 @@
             50% { opacity: 0.8; }
         }
 
-        /* Partículas */
         .particles {
             position: fixed;
             top: 0;
@@ -95,15 +93,83 @@
             z-index: 1;
         }
 
+        /* MENU PRINCIPAL FUNCIONAL */
+        .menu-funcional {
+            background: linear-gradient(135deg, #002395, #009edb, #d4af37);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-logo a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .menu-logo span {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .menu-botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .menu-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .menu-btn.semestre {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .menu-user {
+            background: rgba(0,0,0,0.3);
+            padding: 5px 12px;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            color: white;
+        }
+
         /* Header Premium */
         .premium-header {
             background: linear-gradient(135deg, rgba(0,35,149,0.95) 0%, rgba(0,158,219,0.9) 50%, rgba(212,175,55,0.85) 100%);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 30px;
-            margin-bottom: 30px;
+            margin: 30px 0;
             border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
         }
@@ -115,7 +181,6 @@
             right: -30px;
             font-size: 150px;
             opacity: 0.05;
-            pointer-events: none;
         }
 
         .header-row {
@@ -128,7 +193,7 @@
 
         .logo-area h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             background: linear-gradient(135deg, #fff 0%, var(--gold-luxury) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -136,44 +201,33 @@
         }
 
         .logo-area p {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: monospace;
             font-size: 0.7rem;
             color: rgba(255,255,255,0.7);
-            letter-spacing: 1px;
         }
 
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            display: flex;
             gap: 15px;
         }
 
         .stat-card {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 15px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-luxury);
+            min-width: 80px;
         }
 
         .stat-value {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--gold-luxury);
         }
 
         .stat-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.65rem;
             color: rgba(255,255,255,0.7);
         }
 
@@ -191,17 +245,11 @@
             border-radius: 25px;
             padding: 25px;
             border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s;
-        }
-
-        .profile-card:hover {
-            border-color: var(--gold-luxury);
-            transform: translateY(-3px);
         }
 
         .card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--gold-luxury);
             margin-bottom: 15px;
             border-left: 3px solid var(--gold-luxury);
@@ -211,13 +259,12 @@
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .info-label {
-            font-weight: 600;
             color: rgba(255,255,255,0.6);
         }
 
@@ -229,17 +276,12 @@
         .badge-diplo {
             display: inline-block;
             background: linear-gradient(135deg, var(--gold-luxury), #8b7355);
-            color: var(--diplomatic-navy);
-            padding: 5px 12px;
+            color: #0a1929;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             margin: 5px 5px 0 0;
-        }
-
-        /* Horario */
-        .schedule-card {
-            grid-column: span 2;
         }
 
         .schedule-table {
@@ -248,18 +290,18 @@
         }
 
         .schedule-table th, .schedule-table td {
-            padding: 12px;
+            padding: 10px;
             text-align: left;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
         }
 
         .schedule-table th {
             color: var(--gold-luxury);
-            font-weight: 600;
         }
 
-        /* Navegación */
-        .nav-artistic {
+        /* Tabs */
+        .nav-tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
@@ -267,51 +309,39 @@
             justify-content: center;
         }
 
-        .nav-btn {
+        .tab-btn {
             background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
             border: 2px solid transparent;
             border-radius: 30px;
-            padding: 12px 25px;
-            font-family: 'Montserrat', sans-serif;
+            padding: 10px 25px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: rgba(255,255,255,0.9);
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .nav-btn:hover, .nav-btn.active {
+        .tab-btn:hover, .tab-btn.active {
             border-color: var(--gold-luxury);
             background: rgba(212,175,55,0.2);
-            transform: translateY(-2px);
         }
 
-        /* Secciones */
-        .section {
+        .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
 
-        .section.active-section {
+        .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Materias Grid */
         .materias-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .materia-card {
             background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 20px;
             border: 1px solid rgba(255,255,255,0.15);
@@ -322,345 +352,127 @@
         .materia-card:hover {
             transform: translateY(-5px);
             border-color: var(--gold-luxury);
-            box-shadow: 0 15px 40px rgba(212,175,55,0.2);
         }
 
-        .materia-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .materia-nombre {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .materia-codigo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--gold-luxury);
-            margin-bottom: 10px;
-        }
-
-        .materia-progress {
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .materia-progress-fill {
-            height: 100%;
-            background: var(--gold-luxury);
-            width: 0%;
-            border-radius: 2px;
-        }
-
-        /* Footer */
         .footer {
             margin-top: 40px;
             background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: rgba(255,255,255,0.6);
         }
 
         @media (max-width: 768px) {
             .main-container { padding: 10px; }
             .premium-header { padding: 20px; }
-            .logo-area h1 { font-size: 1.5rem; }
-            .schedule-card { grid-column: span 1; }
+            .logo-area h1 { font-size: 1.3rem; }
+            .menu-container { flex-direction: column; }
+            .menu-botones { justify-content: center; }
         }
     </style>
 </head>
 <body>
-<!-- COMPONENTE DE NAVEGACIÓN PERSISTENTE -->
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <a href="./index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-            <a href="./index.html#semestresSection" style="color: white; text-decoration: none;">📚 Semestres</a>
+<div class="particles" id="particles"></div>
+
+<!-- MENÚ FUNCIONAL (EL QUE SIRVE) -->
+<nav class="menu-funcional">
+    <div class="menu-container">
+        <div class="menu-logo">
+            <a href="index.html">🎓 Isaac Moctezuma</a><br>
+            <span>Relaciones Internacionales · UNRC</span>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="./semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 1</a>
-            <a href="./semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 2</a>
-            <a href="./semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 3</a>
-            <a href="./semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 4</a>
-            <a href="./semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 5</a>
-            <a href="./semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 6</a>
-            <a href="./semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 7</a>
-            <a href="./semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 8</a>
+        <div class="menu-botones" id="menuBotones">
+            <a href="semestre_1/" class="menu-btn semestre">📚 Semestre 1</a>
+            <a href="semestre_2/" class="menu-btn semestre">📚 Semestre 2</a>
+            <a href="semestre_3/" class="menu-btn semestre">📚 Semestre 3</a>
+            <a href="semestre_4/" class="menu-btn semestre">📚 Semestre 4</a>
+            <a href="semestre_5/" class="menu-btn semestre">📚 Semestre 5</a>
+            <a href="semestre_6/" class="menu-btn semestre">📚 Semestre 6</a>
+            <a href="semestre_7/" class="menu-btn semestre">📚 Semestre 7</a>
+            <a href="semestre_8/" class="menu-btn semestre">📚 Semestre 8</a>
+            <button class="menu-btn" onclick="document.getElementById('perfilSection').scrollIntoView({behavior:'smooth'})">👤 Mi Perfil</button>
+            <button class="menu-btn" onclick="window.open('https://github.com/Isaac179/UNRC','_blank')">🐙 GitHub</button>
         </div>
-        <div style="font-size: 12px; color: white;">
-            <span>👨‍🎓 Isaac Moctezuma</span>
+        <div class="menu-user">
+            👨‍🎓 25228942-2
         </div>
     </div>
 </nav>
 
-<div class="particles" id="particles"></div>
-
 <div class="main-container">
-    <!-- Header Premium -->
-    <header class="premium-header"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/nav.css">
+    <!-- Header -->
+    <header class="premium-header">
         <div class="header-row">
             <div class="logo-area">
                 <h1>ISAAC MOCTEZUMA CALDERÓN</h1>
                 <p>Licenciatura en Relaciones Internacionales · UNRC · Generación 2024-2028</p>
             </div>
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">2°</div>
-                    <div class="stat-label">Semestre</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">6</div>
-                    <div class="stat-label">Materias</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">🎓</div>
-                    <div class="stat-label">En curso</div>
-                </div>
+                <div class="stat-card"><div class="stat-value">2°</div><div class="stat-label">Semestre</div></div>
+                <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Materias</div></div>
+                <div class="stat-card"><div class="stat-value">🎓</div><div class="stat-label">En curso</div></div>
             </div>
         </div>
     </header>
 
-    <!-- Perfil -->
-    <div class="profile-section">
+    <!-- Perfil Académico -->
+    <div id="perfilSection" class="profile-section">
         <div class="profile-card">
             <div class="card-title">📋 Datos Personales</div>
-            <div class="info-row">
-                <span class="info-label">Nombre completo</span>
-                <span class="info-value">ISAAC MOCTEZUMA CALDERÓN</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Fecha de nacimiento</span>
-                <span class="info-value">27 de junio de 1992 · 33 años</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Lugar de nacimiento</span>
-                <span class="info-value">Guerrero, México</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Estado civil</span>
-                <span class="info-value">Casado(a)</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Correo electrónico</span>
-                <span class="info-value">1zoharmx@gmail.com</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Teléfono celular</span>
-                <span class="info-value">713 118 2246</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Domicilio</span>
-                <span class="info-value">Chilpancingo de los Bravo, Guerrero</span>
-            </div>
+            <div class="info-row"><span class="info-label">Nombre completo</span><span class="info-value">ISAAC MOCTEZUMA CALDERÓN</span></div>
+            <div class="info-row"><span class="info-label">Fecha de nacimiento</span><span class="info-value">27 de junio de 1992 · 33 años</span></div>
+            <div class="info-row"><span class="info-label">Lugar de nacimiento</span><span class="info-value">Guerrero, México</span></div>
+            <div class="info-row"><span class="info-label">Correo electrónico</span><span class="info-value">1zoharmx@gmail.com</span></div>
+            <div class="info-row"><span class="info-label">Teléfono</span><span class="info-value">713 118 2246</span></div>
         </div>
-
         <div class="profile-card">
             <div class="card-title">🎓 Datos Académicos</div>
-            <div class="info-row">
-                <span class="info-label">Matrícula</span>
-                <span class="info-value">25228942-2</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Licenciatura</span>
-                <span class="info-value">Relaciones Internacionales</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Modalidad</span>
-                <span class="info-value">A Distancia · Híbrida</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Semestre actual</span>
-                <span class="info-value">2° Semestre</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Promedio bachillerato</span>
-                <span class="info-value">8.0</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Procedencia</span>
-                <span class="info-value">CBTIS 134 · SEP</span>
-            </div>
+            <div class="info-row"><span class="info-label">Matrícula</span><span class="info-value">25228942-2</span></div>
+            <div class="info-row"><span class="info-label">Licenciatura</span><span class="info-value">Relaciones Internacionales</span></div>
+            <div class="info-row"><span class="info-label">Modalidad</span><span class="info-value">A Distancia · Híbrida</span></div>
+            <div class="info-row"><span class="info-label">Semestre actual</span><span class="info-value">2° Semestre</span></div>
             <div class="badge-diplo">🎓 Primera generación universitaria</div>
             <div class="badge-diplo">💻 Smartphone + Laptop</div>
-            <div class="badge-diplo">🌐 Internet en casa</div>
         </div>
-
         <div class="profile-card schedule-card">
             <div class="card-title">📅 Materias 2° Semestre · 2026-1</div>
             <table class="schedule-table">
-                <thead>
-                        <tr><th>Clave</th><th>Unidad Curricular</th><th>Grupo</th></tr>
-                </thead>
+                <thead><tr><th>Clave</th><th>Unidad Curricular</th><th>Grupo</th></tr></thead>
                 <tbody>
                     <tr><td>LRIN2TAL</td><td>Taller de Expresión Escrita</td><td>DHLRIN-202-LAD</td></tr>
-                    <tr><td>LRIN2HIR</td><td>Historia de las Relaciones Internacionales (1815-1945)</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2HIR</td><td>Historia de las RRII (1815-1945)</td><td>DHLRIN-202-LAD</td></tr>
                     <tr><td>LRIN2DER</td><td>Derecho Constitucional Mexicano</td><td>DHLRIN-202-LAD</td></tr>
                     <tr><td>LRIN2AME</td><td>América Latina y el Caribe</td><td>DHLRIN-202-LAD</td></tr>
-                    <tr><td>LRIN2HIF</td><td>Historia y Formación del Estado Moderno Mexicano y Política Exterior</td><td>DHLRIN-202-LAD</td></tr>
-                    <tr><td>TR2DES</td><td>Desarrollo Sostenible, Equidad y Responsabilidad Social</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2HIF</td><td>Historia del Estado Moderno Mexicano</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>TR2DES</td><td>Desarrollo Sostenible y RSU</td><td>DHLRIN-202-LAD</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Navegación -->
-    <div class="nav-artistic">
-        <button class="nav-btn active" data-section="semestres">📚 Semestres y Materias</button>
-        <button class="nav-btn" data-section="actividades">📝 Actividades Recientes</button>
-        <button class="nav-btn" data-section="perfil">👤 Mi Perfil Académico</button>
-        <button class="nav-btn" data-section="recursos">📖 Recursos de Estudio</button>
-    </div>
-
-    <!-- Sección Semestres -->
-    <div id="semestresSection" class="section active-section">
-        <div class="materias-grid" id="semestresContainer">
-            <div style="text-align: center; padding: 40px; grid-column: 1/-1;">
-                <div class="stat-value">📚</div>
-                <p>Cargando estructura académica...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sección Actividades Recientes -->
-    <div id="actividadesSection" class="section">
-        <div class="profile-card">
-            <div class="card-title">📝 Últimas Actividades</div>
-            <div id="recentActivities">
-                <div class="info-row"><span class="info-label">📖 Desarrollo Sustentable</span><span class="info-value">Foro M3 · Justicia epistémica</span></div>
-                <div class="info-row"><span class="info-label">📖 Historia Moderna</span><span class="info-value">Tarea · México contra el fascismo</span></div>
-                <div class="info-row"><span class="info-label">📖 Derecho Constitucional</span><span class="info-value">Foro M2 · Análisis del Artículo 89</span></div>
-                <div class="info-row"><span class="info-label">📖 América Latina</span><span class="info-value">Tarea · Integración regional</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sección Perfil Académico -->
-    <div id="perfilSection" class="section">
-        <div class="profile-card">
-            <div class="card-title">🎯 Sobre mí</div>
-            <div class="info-row"><span class="info-label">Perfil profesional</span><span class="info-value">Estudiante de Relaciones Internacionales con experiencia en desarrollo comunitario y tecnología</span></div>
-            <div class="info-row"><span class="info-label">Intereses académicos</span><span class="info-value">Derecho internacional, diplomacia multilateral, desarrollo sostenible, política exterior mexicana</span></div>
-            <div class="info-row"><span class="info-label">Experiencia</span><span class="info-value">Enlace PAMAR · DIF Guerrero · Desarrollo web</span></div>
-            <div class="info-row"><span class="info-label">Idiomas</span><span class="info-value">Español (nativo), Inglés (intermedio), Francés (básico)</span></div>
-        </div>
-    </div>
-
-    <!-- Sección Recursos -->
-    <div id="recursosSection" class="section">
-        <div class="materias-grid">
-            <div class="materia-card" onclick="window.location.href='https://github.com/Isaac179/UNRC'">
-                <div class="materia-icon">📂</div>
-                <div class="materia-nombre">Repositorio GitHub</div>
-                <div class="materia-codigo">Isaac179/UNRC</div>
-                <div class="materia-progress"><div class="materia-progress-fill" style="width:100%"></div></div>
-                <div class="info-row"><span class="info-label">Todos los archivos del curso</span><span class="info-value">→</span></div>
-            </div>
-            <div class="materia-card">
-                <div class="materia-icon">📄</div>
-                <div class="materia-nombre">Plan de estudios LRIN</div>
-                <div class="materia-codigo">Resumen ejecutivo</div>
-                <div class="info-row"><span class="info-label">Licenciatura en Relaciones Internacionales</span><span class="info-value">PDF</span></div>
-            </div>
-            <div class="materia-card">
-                <div class="materia-icon">🌐</div>
-                <div class="materia-nombre">Plataforma SECIHTI</div>
-                <div class="materia-codigo">Acceso a cursos</div>
-                <div class="info-row"><span class="info-label">unrc.secihti.mx</span><span class="info-value">→</span></div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <div class="footer">
-        <span>ISAAC MOCTEZUMA CALDERÓN · Matrícula: 25228942-2 · Licenciatura en Relaciones Internacionales · Universidad Nacional Rosario Castellanos</span><br>
-        <span style="font-size: 0.6rem;">Semestre 2 · 2026 · UNRC</span>
+        ISAAC MOCTEZUMA CALDERÓN · Matrícula: 25228942-2 · Licenciatura en Relaciones Internacionales · Universidad Nacional Rosario Castellanos<br>
+        Semestre 2 · 2026 · UNRC
     </div>
 </div>
 
 <script>
-    // Datos de semestres
-    const semestres = {
-        1: ["Introducción a la Investigación", "Escritura Argumentativa", "Introducción a las RRII", "Perspectiva de Género", "Historia del Estado Mexicano", "Geografía Política"],
-        2: ["Derecho Constitucional", "Taller de Expresión Escrita", "Historia del Estado Moderno", "Desarrollo Sostenible", "Historia de las RRII (1815-1945)", "América Latina"],
-        3: ["Derecho Internacional Público", "Historia Contemporánea de las RRII", "Pensamiento Político", "Pensamiento Complejo", "Teoría Económica", "América del Norte"],
-        4: ["Derecho Internacional Privado", "Organización Internacional", "Teorías de las RRII", "Laboratorio de Innovación Social", "Economía Política Internacional", "Europa"],
-        5: ["Negociaciones Internacionales", "Diseño de Políticas Públicas", "Estudios Globales", "Sistemas Políticos Comparados", "Métodos Cuantitativos", "Asia Pacífico"],
-        6: ["DDHH Internacional", "Patrimonio Cultural", "Introducción a la Práctica", "Desarrollo Sustentable", "Cooperación Internacional", "Comercio Internacional", "Medio Oriente"],
-        7: ["Seminario de Titulación I", "Práctica Profesional I", "Finanzas Internacionales", "Gobernanza Ambiental", "África"],
-        8: ["Seminario de Titulación II", "Práctica Profesional II", "Migración Internacional", "Ciencia e Innovación", "Ciudades Globales"]
-    };
-
-    function renderSemesters() {
-        const container = document.getElementById('semestresContainer');
-        let html = '';
-        
-        for (let i = 1; i <= 8; i++) {
-            if (semestres[i]) {
-                html += `
-                    <div class="materia-card">
-                        <div class="materia-icon">📚 Semestre ${i}</div>
-                        <div class="materia-nombre">${semestres[i].length} materias</div>
-                        <div class="materia-codigo">Plan 2023</div>
-                        <div style="margin-top: 15px;">
-                            ${semestres[i].slice(0, 3).map(m => `<div class="badge-diplo" style="margin: 3px;">📖 ${m}</div>`).join('')}
-                            ${semestres[i].length > 3 ? `<div class="badge-diplo" style="margin: 3px;">+${semestres[i].length - 3} más</div>` : ''}
-                        </div>
-                        <div class="materia-progress"><div class="materia-progress-fill" style="width: ${i <= 2 ? '25%' : '0%'}"></div></div>
-                        <div class="info-row" style="margin-top: 10px;"><span class="info-label">${i <= 2 ? 'En curso' : 'Próximo'}</span><span class="info-value">${i <= 2 ? '✓' : '🔒'}</span></div>
-                    </div>
-                `;
-            }
-        }
-        
-        container.innerHTML = html;
-    }
-
-    // Partículas
     function createParticles() {
         const container = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.top = Math.random() * 100 + 'vh';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-            container.appendChild(particle);
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            container.appendChild(p);
         }
     }
-
-    // Navegación
-    function setupNavigation() {
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const section = btn.dataset.section;
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
-                document.getElementById(section + 'Section').classList.add('active-section');
-            });
-        });
-    }
-
-    // Inicialización
-    document.addEventListener('DOMContentLoaded', () => {
-        renderSemesters();
-        createParticles();
-        setupNavigation();
-    });
+    document.addEventListener('DOMContentLoaded', createParticles);
 </script>
-<script src="assets/js/nav.js" defer></script>
 </body>
 </html>
-
-
-
