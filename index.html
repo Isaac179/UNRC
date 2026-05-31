@@ -115,18 +115,18 @@ async function cargarDatos() {
                     const nombre = href.replace(/_/g, ' ').replace(/^\d+ /, '');
                     const path = `semestre_${s}/${href}`;
                     
-                    // Verificar qué archivos existen
                     const archivos = {
                         m1_foro: null, m2_tarea: null, m2_foro: null,
                         m3_tarea: null, m3_foro: null, m4_tarea: null,
                         m4_foro: null, m5_integradora: null
                     };
                     
-                    // Intentar cargar cada archivo
                     const checks = await Promise.all(Object.keys(archivos).map(async k => {
                         const url = `${path}${k}.html`;
-                        const resp = await fetch(url, { method: 'HEAD' });
-                        return { key: k, exists: resp.ok };
+                        try {
+                            const resp = await fetch(url, { method: 'HEAD' });
+                            return { key: k, exists: resp.ok };
+                        } catch(e) { return { key: k, exists: false }; }
                     }));
                     checks.forEach(c => { if(c.exists) archivos[c.key] = `${c.key}.html`; });
                     
@@ -140,7 +140,7 @@ async function cargarDatos() {
 }
 
 function renderizar() {
-    let totalMaterias = 0, totalActividades = 0;
+    let totalMaterias = 0;
     Object.values(semestresData).forEach(s => totalMaterias += s.materias.length);
     
     document.getElementById('stats').innerHTML = `
