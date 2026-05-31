@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>semestre_4 - Licenciatura en Relaciones Internacionales</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+        h1 { color: #c4440a; border-bottom: 2px solid #c4440a; padding-bottom: 0.5rem; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 0.5rem 0; padding: 0.5rem; background: #f5f0e8; border-radius: 4px; }
+        a { text-decoration: none; color: #0f0e0b; font-weight: 500; }
+        a:hover { color: #c4440a; }
+        .back { margin-top: 2rem; display: inline-block; color: #6b6455; }
+    </style>
+</head>
+<body>
+    <h1>📚 semestre_4</h1>
+    <p>Materias del semestre_4 de la Licenciatura en Relaciones Internacionales</p>
+    <ul id="materias"></ul>
+    <a href="https://isaac179.github.io/UNRC/" class="back">← Volver al inicio</a>
+    
+    <script>
+        // Enlaces a las materias de este semestre
+        const materias = document.getElementById('materias');
+        const enlaces = [];
+        
+        if (enlaces.length === 0) {
+            materias.innerHTML = '<li>✨ Próximamente se agregarán las actividades de este semestre</li>';
+        } else {
+            enlaces.forEach(m => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = m.url;
+                a.textContent = m.nombre;
+                li.appendChild(a);
+                materias.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
