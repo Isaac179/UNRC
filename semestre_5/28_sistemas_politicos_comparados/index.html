@@ -1,25 +1,31 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistemas Politicos Comparados - Semestre 5</title>
-    <style>
-        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
-        h1 { color: #c4440a; border-bottom: 2px solid #c4440a; padding-bottom: 0.5rem; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 0.5rem 0; padding: 0.5rem; background: #f5f0e8; border-radius: 4px; }
-        a { text-decoration: none; color: #0f0e0b; font-weight: 500; }
-        a:hover { color: #c4440a; }
-        .back { margin-top: 2rem; display: inline-block; color: #6b6455; }
-    </style>
+<html>
+<head><meta charset="UTF-8"><title>sistemas politicos comparados</title>
+<style>
+body{background:#1a1410;font-family:system-ui;padding:2rem}
+.container{max-width:900px;margin:0 auto}
+.header{background:#f5f0e8;padding:2rem;border-top:4px solid #c4440a}
+h1{color:#0f0e0b}
+.stats{background:#f0ead8;padding:0.8rem 1.5rem;margin:1rem 0;display:flex;gap:2rem}
+.module{background:#f5f0e8;border:1px solid #d8cfc0;margin-bottom:1rem}
+.module-title{background:#f0ead8;padding:1rem;cursor:pointer;display:flex;justify-content:space-between}
+.module-content{padding:1.5rem;border-top:1px solid #d8cfc0}
+.collapsed .module-content{display:none}
+.activity{margin-bottom:1.5rem}
+.activity h4{color:#c4440a}
+.links{display:flex;flex-wrap:wrap;gap:0.5rem}
+.links a{background:#f0ead8;padding:0.4rem 1rem;text-decoration:none;color:#0f0e0b;border:1px solid #d8cfc0}
+.missing{color:#6b6455;font-style:italic}
+.footer{margin-top:2rem;background:#0f0e0b;color:#f5f0e8;padding:1rem;text-align:center}
+.back{display:inline-block;margin-top:1rem;color:#6b6455}
+</style>
 </head>
 <body>
-    <h1>📚 Sistemas Politicos Comparados</h1>
-    <p>Actividades y recursos de la materia</p>
-    <ul>
-        <li>✨ Próximamente se agregarán las actividades</li>
-    </ul>
-    <a href="../../" class="back">← Volver al inicio</a>
+<div class=container>
+<div class=header><h1>sistemas politicos comparados</h1><p>semestre_5</p></div>
+<div class=stats><div>📚 5 Módulos</div><div>📄 Actividades</div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 1</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 2</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 3</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 4</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 5</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><a href='../../' class=back>← Volver</a>
+<div class=footer>Isaac Moctezuma · UNRC · semestre_5</div>
+</div>
+<script>document.querySelectorAll('.module').forEach(m=>{if(localStorage.getItem(m.dataset.module)==='true')m.classList.add('collapsed');m.querySelector('.module-title').onclick=()=>{m.classList.toggle('collapsed');localStorage.setItem(m.dataset.module,m.classList.contains('collapsed'))}})</script>
 </body>
 </html>
