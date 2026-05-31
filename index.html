@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNRC · Navegación por Semestres y Materias</title>
+    <title>UNRC · Navegación</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -22,7 +21,6 @@
         .header h1 { font-size: 2rem; color: #0f0e0b; }
         .header h1 span { color: #c4440a; }
         .header p { color: #6b6455; margin-top: 0.5rem; }
-        
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -37,7 +35,6 @@
         }
         .stat-number { font-size: 2rem; font-weight: bold; color: #c4440a; }
         .stat-label { font-size: 0.7rem; text-transform: uppercase; color: #6b6455; }
-        
         .semesters-grid { display: flex; flex-direction: column; gap: 1rem; }
         .semester-card { background: #f5f0e8; border: 1px solid #d8cfc0; }
         .semester-header {
@@ -50,7 +47,6 @@
         }
         .semester-content { padding: 1rem; display: block; }
         .semester-card.collapsed .semester-content { display: none; }
-        
         .materias-list { display: flex; flex-direction: column; gap: 0.5rem; }
         .materia-item { background: #f5f0e8; border: 1px solid #d8cfc0; }
         .materia-header {
@@ -60,13 +56,9 @@
             justify-content: space-between;
             background: #faf7ee;
         }
-        .materia-content { padding: 0.8rem; border-top: 1px solid #d8cfc0; }
+        .materia-content { padding: 0.8rem; border-top: 1px solid #d8cfc0; display: block; }
         .materia-item.collapsed .materia-content { display: none; }
-        
-        .modulos { display: flex; flex-direction: column; gap: 0.8rem; }
-        .modulo { border-left: 3px solid #c4440a; padding-left: 0.8rem; margin-bottom: 0.5rem; }
-        .modulo-title { font-size: 0.7rem; font-weight: bold; color: #c4440a; margin-bottom: 0.3rem; }
-        .actividades { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .actividades { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.5rem 0; }
         .actividad {
             display: inline-block;
             padding: 0.2rem 0.6rem;
@@ -76,13 +68,12 @@
             color: #0f0e0b;
             border: 1px solid #d8cfc0;
         }
-        .actividad:hover { background: #f0d4c4; border-color: #c4440a; }
+        .actividad:hover { background: #f0d4c4; }
         .actividad.missing { background: #e0d8cc; color: #6b6455; cursor: default; }
         .badge { background: #3d5a47; color: white; font-size: 0.55rem; padding: 0.1rem 0.3rem; margin-left: 0.3rem; }
         .ver-mas { margin-top: 0.5rem; text-align: right; }
         .ver-mas a { font-size: 0.7rem; color: #c4440a; }
         .footer { margin-top: 2rem; background: #0f0e0b; padding: 1rem; text-align: center; color: #f5f0e8; font-size: 0.7rem; }
-        
         .toggle-icon { font-size: 0.8rem; color: #6b6455; }
         .collapsed .toggle-icon { transform: rotate(-90deg); display: inline-block; }
     </style>
@@ -93,47 +84,45 @@
         <h1>Relaciones <span>Internacionales</span></h1>
         <p>Universidad Rosario Castellanos · Isaac Moctezuma Calderón</p>
     </div>
-    
-    <div class="stats" id="stats"></div>
-    <div class="semesters-grid" id="semesters"></div>
-    
-    <div class="footer">LRIN · UNRC · Navegación por semestres · 2026</div>
+    <div class="semesters-grid" id="semestersGrid"></div>
+    <div class="footer">LRIN · UNRC · 2026</div>
 </div>
-
 <script>
-const semestres = {};
-semestres[1] = { nombre: 'Semestre 1', materias: [{ nombre: 'introduccion a la investigacion en ciencias sociales', path: 'semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales', foros: , tareas: , integradoras:  },{ nombre: 'escritura argumentativa', path: 'semestre_1/02_escritura_argumentativa', foros: , tareas: , integradoras:  },{ nombre: 'introduccion al estudio de las relaciones internacionales', path: 'semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'perspectiva de genero para el diseno social', path: 'semestre_1/04_perspectiva_de_genero_para_el_diseno_social', foros: , tareas: , integradoras:  },{ nombre: 'historia y formacion del estado mexicano y politica exterior', path: 'semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior', foros: , tareas: , integradoras:  },{ nombre: 'geografia politica y economica', path: 'semestre_1/06_geografia_politica_y_economica', foros: , tareas: , integradoras:  }]}
-semestres[2] = { nombre: 'Semestre 2', materias: [{ nombre: 'derecho constitucional mexicano', path: 'semestre_2/07_derecho_constitucional_mexicano', foros: , tareas: , integradoras:  },{ nombre: 'taller de expresion escrita', path: 'semestre_2/08_taller_de_expresion_escrita', foros: , tareas: , integradoras:  },{ nombre: 'historia y formacion del estado moderno mexicano y politica exterior', path: 'semestre_2/09_historia_y_formacion_del_estado_moderno_mexicano_y_politica_exterior', foros: , tareas: , integradoras:  },{ nombre: 'desarrollo sostenible equidad y responsabilidad social', path: 'semestre_2/10_desarrollo_sostenible_equidad_y_responsabilidad_social', foros: desarrollo_foro3.html,desarrollo_foro3_moodle.html, tareas: desarrollo_tarea1.html,desarrollo_tarea2.html, integradoras:  },{ nombre: 'historia de las relaciones internacionales 1815-1945', path: 'semestre_2/11_historia_de_las_relaciones_internacionales_1815-1945', foros: , tareas: , integradoras:  },{ nombre: 'america latina y el caribe', path: 'semestre_2/12_america_latina_y_el_caribe', foros: , tareas: , integradoras:  }]}
-semestres[3] = { nombre: 'Semestre 3', materias: [{ nombre: 'derecho internacional publico', path: 'semestre_3/13_derecho_internacional_publico', foros: , tareas: , integradoras:  },{ nombre: 'historia contemporanea de las relaciones internacionales', path: 'semestre_3/14_historia_contemporanea_de_las_relaciones_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'pensamiento politico y social', path: 'semestre_3/15_pensamiento_politico_y_social', foros: , tareas: , integradoras:  },{ nombre: 'pensamiento complejo para la argumentacion', path: 'semestre_3/16_pensamiento_complejo_para_la_argumentacion', foros: , tareas: , integradoras:  },{ nombre: 'teoria economica', path: 'semestre_3/17_teoria_economica', foros: , tareas: , integradoras:  },{ nombre: 'america del norte', path: 'semestre_3/18_america_del_norte', foros: , tareas: , integradoras:  }]}
-semestres[4] = { nombre: 'Semestre 4', materias: [{ nombre: 'derecho internacional privado', path: 'semestre_4/19_derecho_internacional_privado', foros: , tareas: , integradoras:  },{ nombre: 'organizacion internacional', path: 'semestre_4/20_organizacion_internacional', foros: , tareas: , integradoras:  },{ nombre: 'teorias de las relaciones internacionales', path: 'semestre_4/21_teorias_de_las_relaciones_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'laboratorio de innovacion social', path: 'semestre_4/22_laboratorio_de_innovacion_social', foros: , tareas: , integradoras:  },{ nombre: 'economia politica internacional', path: 'semestre_4/23_economia_politica_internacional', foros: , tareas: , integradoras:  },{ nombre: 'europa', path: 'semestre_4/24_europa', foros: , tareas: , integradoras:  }]}
-semestres[5] = { nombre: 'Semestre 5', materias: [{ nombre: 'negociaciones internacionales', path: 'semestre_5/25_negociaciones_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'diseno y evaluacion de politicas publicas', path: 'semestre_5/26_diseno_y_evaluacion_de_politicas_publicas', foros: , tareas: , integradoras:  },{ nombre: 'estudios globales', path: 'semestre_5/27_estudios_globales', foros: , tareas: , integradoras:  },{ nombre: 'sistemas politicos comparados', path: 'semestre_5/28_sistemas_politicos_comparados', foros: , tareas: , integradoras:  },{ nombre: 'metodos cuantitativos', path: 'semestre_5/29_metodos_cuantitativos', foros: , tareas: , integradoras:  },{ nombre: 'asia y el pacifico', path: 'semestre_5/30_asia_y_el_pacifico', foros: , tareas: , integradoras:  }]}
-semestres[6] = { nombre: 'Semestre 6', materias: [{ nombre: 'derecho internacional de los derechos humanos', path: 'semestre_6/31_derecho_internacional_de_los_derechos_humanos', foros: , tareas: , integradoras:  },{ nombre: 'patrimonio cultural', path: 'semestre_6/32_patrimonio_cultural', foros: , tareas: , integradoras:  },{ nombre: 'introduccion a la practica profesional', path: 'semestre_6/33_introduccion_a_la_practica_profesional', foros: , tareas: , integradoras:  },{ nombre: 'desarrollo sustentable y medio ambiente', path: 'semestre_6/34_desarrollo_sustentable_y_medio_ambiente', foros: , tareas: , integradoras:  },{ nombre: 'cooperacion internacional', path: 'semestre_6/35_cooperacion_internacional', foros: , tareas: , integradoras:  },{ nombre: 'comercio internacional', path: 'semestre_6/36_comercio_internacional', foros: , tareas: , integradoras:  },{ nombre: 'medio oriente', path: 'semestre_6/37_medio_oriente', foros: , tareas: , integradoras:  }]}
-semestres[7] = { nombre: 'Semestre 7', materias: [{ nombre: 'seminario de titulacion i', path: 'semestre_7/38_seminario_de_titulacion_i', foros: , tareas: , integradoras:  },{ nombre: 'practica profesional i', path: 'semestre_7/39_practica_profesional_i', foros: , tareas: , integradoras:  },{ nombre: 'finanzas internacionales', path: 'semestre_7/40_finanzas_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'gobernanza global ambiental', path: 'semestre_7/41_gobernanza_global_ambiental', foros: , tareas: , integradoras:  },{ nombre: 'africa', path: 'semestre_7/42_africa', foros: , tareas: , integradoras:  },{ nombre: 'procesos de conflicto y paz en el siglo xxi', path: 'semestre_7/48_procesos_de_conflicto_y_paz_en_el_siglo_xxi', foros: , tareas: , integradoras:  },{ nombre: 'gobernanza digital en las ciencias sociales', path: 'semestre_7/49_gobernanza_digital_en_las_ciencias_sociales', foros: , tareas: , integradoras:  }]}
-semestres[8] = { nombre: 'Semestre 8', materias: [{ nombre: 'seminario de titulacion ii', path: 'semestre_8/43_seminario_de_titulacion_ii', foros: , tareas: , integradoras:  },{ nombre: 'practica profesional ii', path: 'semestre_8/44_practica_profesional_ii', foros: , tareas: , integradoras:  },{ nombre: 'migracion internacional', path: 'semestre_8/45_migracion_internacional', foros: , tareas: , integradoras:  },{ nombre: 'ciencia tecnologia e innovacion en las relaciones internacionales', path: 'semestre_8/46_ciencia_tecnologia_e_innovacion_en_las_relaciones_internacionales', foros: , tareas: , integradoras:  },{ nombre: 'retos de las ciudades globales', path: 'semestre_8/47_retos_de_las_ciudades_globales', foros: , tareas: , integradoras:  },{ nombre: 'dinamica actual de la politica exterior mexicana', path: 'semestre_8/50_dinamica_actual_de_la_politica_exterior_mexicana', foros: , tareas: , integradoras:  },{ nombre: 'diplomacia ambiental', path: 'semestre_8/51_diplomacia_ambiental', foros: , tareas: , integradoras:  }]}
-const statsDiv = document.getElementById('stats');
-const semestersDiv = document.getElementById('semesters');
+const semestres = {
+    1: { nombre: "Semestre 1", materias: [] },
+    2: { nombre: "Semestre 2", materias: [] },
+    3: { nombre: "Semestre 3", materias: [] },
+    4: { nombre: "Semestre 4", materias: [] },
+    5: { nombre: "Semestre 5", materias: [] },
+    6: { nombre: "Semestre 6", materias: [] },
+    7: { nombre: "Semestre 7", materias: [] },
+    8: { nombre: "Semestre 8", materias: [] }
+};
 
-let totalMaterias = 0;
-let totalActividades = 0;
-
-Object.values(semestres).forEach(s => {
-    totalMaterias += s.materias.length;
-    s.materias.forEach(m => {
-        totalActividades += (m.foros || []).length;
-        totalActividades += (m.tareas || []).length;
-        totalActividades += (m.integradoras || []).length;
-    });
-});
-
-statsDiv.innerHTML = `
-    <div class="stat-card"><div class="stat-number">${Object.keys(semestres).length}</div><div class="stat-label">Semestres</div></div>
-    <div class="stat-card"><div class="stat-number">${totalMaterias}</div><div class="stat-label">Materias</div></div>
-    <div class="stat-card"><div class="stat-number">${totalActividades}</div><div class="stat-label">Actividades</div></div>
-    <div class="stat-card"><div class="stat-number">📱</div><div class="stat-label">Versiones</div></div>
-`;
+// Escanear materias desde el servidor (simplificado)
+async function cargarMaterias() {
+    for (let s = 1; s <= 8; s++) {
+        try {
+            const response = await fetch(`semestre_${s}/`);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const links = doc.querySelectorAll('a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.match(/^\d+_/) && href.endsWith('/')) {
+                    const nombre = href.replace(/_/g, ' ').replace(/^\d+ /, '');
+                    semestres[s].materias.push({ nombre: nombre, path: `semestre_${s}/${href}` });
+                }
+            });
+        } catch(e) { console.log("Error cargando semestre", s); }
+    }
+    renderSemesters();
+}
 
 function renderSemesters() {
-    semestersDiv.innerHTML = '';
+    const grid = document.getElementById('semestersGrid');
+    grid.innerHTML = '';
     for (const [num, sem] of Object.entries(semestres)) {
         const card = document.createElement('div');
         card.className = 'semester-card collapsed';
@@ -144,60 +133,28 @@ function renderSemesters() {
             </div>
             <div class="semester-content">
                 <div class="materias-list">
-                    ${sem.materias.map((m, idx) => `
-                        <div class="materia-item collapsed" data-m="${idx}">
+                    ${sem.materias.map(m => `
+                        <div class="materia-item collapsed">
                             <div class="materia-header" onclick="event.stopPropagation(); this.parentElement.classList.toggle('collapsed')">
                                 <span>📖 ${m.nombre}</span>
                                 <span class="toggle-icon">▼</span>
                             </div>
                             <div class="materia-content">
-                                <div class="modulos">
-                                    <div class="modulo">
-                                        <div class="modulo-title">📝 Módulo 1 · Fundamentos</div>
-                                        <div class="actividades">
-                                            ${m.foros && m.foros.length ? m.foros.map(f => `<a href="${m.path}/${f}" class="actividad">💬 ${f}${f.includes('moodle') ? '<span class="badge">Moodle</span>' : ''}</a>`).join('') : '<span class="actividad missing">💬 Foro próximo</span>'}
-                                        </div>
-                                    </div>
-                                    <div class="modulo">
-                                        <div class="modulo-title">📝 Módulo 2 · Análisis</div>
-                                        <div class="actividades">
-                                            ${m.tareas && m.tareas.length ? m.tareas.map(t => `<a href="${m.path}/${t}" class="actividad">✍️ ${t}</a>`).join('') : '<span class="actividad missing">✍️ Tarea próxima</span>'}
-                                            <span class="actividad missing">💬 Foro próximo</span>
-                                        </div>
-                                    </div>
-                                    <div class="modulo">
-                                        <div class="modulo-title">📝 Módulo 3 · Debate</div>
-                                        <div class="actividades">
-                                            <span class="actividad missing">✍️ Tarea próxima</span>
-                                            <span class="actividad missing">💬 Foro próximo</span>
-                                        </div>
-                                    </div>
-                                    <div class="modulo">
-                                        <div class="modulo-title">📝 Módulo 4 · Propuesta</div>
-                                        <div class="actividades">
-                                            <span class="actividad missing">✍️ Tarea próxima</span>
-                                            <span class="actividad missing">💬 Foro próximo</span>
-                                        </div>
-                                    </div>
-                                    <div class="modulo">
-                                        <div class="modulo-title">🎯 Módulo 5 · Integradora</div>
-                                        <div class="actividades">
-                                            ${m.integradoras && m.integradoras.length ? m.integradoras.map(i => `<a href="${m.path}/${i}" class="actividad">📝 ${i}</a>`).join('') : '<span class="actividad missing">🎯 Actividad integradora próxima</span>'}
-                                        </div>
-                                    </div>
+                                <div class="actividades">
+                                    <a href="${m.path}" class="actividad">🔗 Ver actividades</a>
                                 </div>
-                                <div class="ver-mas"><a href="${m.path}/">🔗 Ver todas las actividades →</a></div>
                             </div>
                         </div>
                     `).join('')}
+                    ${sem.materias.length === 0 ? '<div class="materia-item"><div class="materia-header">✨ Próximamente</div></div>' : ''}
                 </div>
             </div>
         `;
-        semestersDiv.appendChild(card);
+        grid.appendChild(card);
     }
 }
 
-renderSemesters();
+cargarMaterias();
 </script>
 </body>
 </html>
