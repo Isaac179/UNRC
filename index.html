@@ -1,217 +1,570 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>UNRC · Navegación por Semestres y Materias</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #1a1410; font-family: system-ui, sans-serif; padding: 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header {
-            background: #f5f0e8;
-            border-top: 5px solid #c4440a;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .header h1 { font-size: 2rem; color: #0f0e0b; }
-        .header h1 span { color: #c4440a; }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: #f0ead8;
-            padding: 1rem;
-            text-align: center;
-            border: 1px solid #d8cfc0;
-        }
-        .stat-number { font-size: 2rem; font-weight: bold; color: #c4440a; }
-        .semester-card {
-            background: #f5f0e8;
-            border: 1px solid #d8cfc0;
-            margin-bottom: 1rem;
-        }
-        .semester-header {
-            background: #f0ead8;
-            padding: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-        }
-        .semester-content { padding: 1rem; display: none; }
-        .semester-card.open .semester-content { display: block; }
-        .materia-card {
-            background: #fff;
-            border: 1px solid #d8cfc0;
-            margin-bottom: 0.5rem;
-        }
-        .materia-header {
-            background: #faf7ee;
-            padding: 0.7rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-        }
-        .materia-content { padding: 0.8rem; display: none; border-top: 1px solid #d8cfc0; }
-        .materia-card.open .materia-content { display: block; }
-        .modulos { display: flex; flex-direction: column; gap: 1rem; }
-        .modulo {
-            border-left: 3px solid #c4440a;
-            padding-left: 1rem;
-        }
-        .modulo h4 { color: #c4440a; margin-bottom: 0.5rem; }
-        .actividades { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .actividad {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: #f0ead8;
-            text-decoration: none;
-            color: #0f0e0b;
-            border: 1px solid #d8cfc0;
-            font-size: 0.8rem;
-        }
-        .actividad:hover { background: #f0d4c4; }
-        .footer {
-            margin-top: 2rem;
-            background: #0f0e0b;
-            padding: 1rem;
-            text-align: center;
-            color: #f5f0e8;
-        }
-        .toggle-icon { font-size: 0.8rem; color: #6b6455; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>UNRC · Navegación por Semestres y Materias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0b;
+    --paper: #f5f0e8;
+    --warm: #f0ead8;
+    --rust: #c4440a;
+    --rust-light: #f0d4c4;
+    --gold: #c89b2a;
+    --gold-pale: #f7eecc;
+    --sage: #3d5a47;
+    --sage-light: #d4e4d8;
+    --cream-border: #d8cfc0;
+    --muted: #6b6455;
+    --accent-line: 3px solid var(--rust);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1410;
+    font-family: 'Syne', system-ui, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .hero {
+    background: var(--paper);
+    border-top: 5px solid var(--rust);
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '✦';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    font-size: 180px;
+    color: var(--rust);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    color: var(--rust);
+    font-style: italic;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--warm);
+    border: 1px solid var(--cream-border);
+    padding: 1.2rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--rust);
+    transform: translateY(-2px);
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--rust);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* Búsqueda */
+  .search-container {
+    margin-bottom: 2rem;
+  }
+
+  .search-box {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--cream-border);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+
+  .search-box:focus {
+    outline: none;
+    border-color: var(--rust);
+    background: white;
+  }
+
+  .search-box::placeholder {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  /* Semestres */
+  .semesters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .semester-card {
+    background: var(--paper);
+    border: 1px solid var(--cream-border);
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .semester-card:hover {
+    border-color: var(--rust);
+  }
+
+  .semester-header {
+    background: var(--warm);
+    padding: 1.2rem 1.8rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+
+  .semester-header:hover {
+    background: var(--rust-light);
+  }
+
+  .semester-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .semester-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--rust);
+    background: var(--rust-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .semester-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .semester-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    background: var(--sage-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .toggle-icon {
+    font-size: 1rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .semester-card.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+  }
+
+  .semester-content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--cream-border);
+    display: block;
+  }
+
+  .semester-card.collapsed .semester-content {
+    display: none;
+  }
+
+  /* Materias Grid */
+  .materias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .materia-card {
+    background: white;
+    border: 1px solid var(--cream-border);
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .materia-card:hover {
+    border-color: var(--rust);
+    transform: translateY(-2px);
+  }
+
+  .materia-header {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fefcf7;
+  }
+
+  .materia-header:hover {
+    background: var(--rust-light);
+  }
+
+  .materia-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .materia-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+
+  .materia-content {
+    padding: 0.8rem;
+    border-top: 1px solid var(--cream-border);
+    background: var(--paper);
+    display: none;
+  }
+
+  .materia-card.open .materia-content {
+    display: block;
+  }
+
+  /* Módulos dentro de materia */
+  .modulos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .modulo-item {
+    border-left: 3px solid var(--rust);
+    padding-left: 0.8rem;
+  }
+
+  .modulo-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--rust);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .actividades-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .actividad-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--warm);
+    font-size: 0.7rem;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--cream-border);
+    border-radius: 2px;
+    transition: all 0.1s;
+  }
+
+  .actividad-link:hover {
+    background: var(--rust-light);
+    border-color: var(--rust);
+    transform: translateY(-1px);
+  }
+
+  .actividad-link.missing {
+    background: #e0d8cc;
+    color: var(--muted);
+    cursor: default;
+  }
+
+  .actividad-link.missing:hover {
+    transform: none;
+    background: #e0d8cc;
+  }
+
+  .badge-moodle {
+    background: var(--sage);
+    color: white;
+    font-size: 0.55rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 2px;
+    margin-left: 0.2rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 2rem;
+    background: var(--ink);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--paper);
+    letter-spacing: 0.1em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero { padding: 1.5rem; }
+    .materias-grid { grid-template-columns: 1fr; }
+    .semester-header { padding: 1rem; }
+    .semester-content { padding: 1rem; }
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>Relaciones <span>Internacionales</span></h1>
-        <p>Universidad Rosario Castellanos · Isaac Moctezuma Calderón</p>
-    </div>
-    <div class="stats" id="stats"></div>
-    <div id="semesters"></div>
-    <div class="footer">LRIN · UNRC · Navegación completa por actividades</div>
+<div class="page-wrapper">
+  <div class="hero">
+    <h1>Licenciatura en <em>Relaciones Internacionales</em></h1>
+    <p>Universidad Rosario Castellanos · Isaac Moctezuma Calderón</p>
+  </div>
+
+  <div class="stats-grid" id="statsContainer">
+    <div class="stat-card"><div class="stat-number">...</div><div class="stat-label">Semestres</div></div>
+    <div class="stat-card"><div class="stat-number">...</div><div class="stat-label">Materias</div></div>
+    <div class="stat-card"><div class="stat-number">...</div><div class="stat-label">Actividades</div></div>
+    <div class="stat-card"><div class="stat-number">📱</div><div class="stat-label">Versiones Moodle</div></div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Buscar materia o actividad...">
+  </div>
+
+  <div class="semesters-grid" id="semestersContainer">
+    <div class="loading">Cargando estructura académica...</div>
+  </div>
+
+  <div class="footer">
+    <span>LRIN · UNRC · Navegación por semestres y actividades · 2026</span>
+  </div>
 </div>
 
 <script>
-const semestresData = {};
+// Datos pre-cargados desde el servidorconst semestresData = ;
 
-async function cargarDatos() {
-    for (let s = 1; s <= 8; s++) {
-        try {
-            const res = await fetch(`semestre_${s}/`);
-            const text = await res.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const links = doc.querySelectorAll('a');
-            const materias = [];
-            
-            for (const link of links) {
-                let href = link.getAttribute('href');
-                if (href && href.match(/^\d+_/) && href.endsWith('/')) {
-                    const nombre = href.replace(/_/g, ' ').replace(/^\d+ /, '');
-                    const path = `semestre_${s}/${href}`;
-                    
-                    const archivos = {
-                        m1_foro: null, m2_tarea: null, m2_foro: null,
-                        m3_tarea: null, m3_foro: null, m4_tarea: null,
-                        m4_foro: null, m5_integradora: null
-                    };
-                    
-                    const checks = await Promise.all(Object.keys(archivos).map(async k => {
-                        const url = `${path}${k}.html`;
-                        try {
-                            const resp = await fetch(url, { method: 'HEAD' });
-                            return { key: k, exists: resp.ok };
-                        } catch(e) { return { key: k, exists: false }; }
-                    }));
-                    checks.forEach(c => { if(c.exists) archivos[c.key] = `${c.key}.html`; });
-                    
-                    materias.push({ nombre, path, archivos });
-                }
-            }
-            if(materias.length) semestresData[s] = { nombre: `Semestre ${s}`, materias };
-        } catch(e) { console.log('Error cargando semestre', s); }
-    }
-    renderizar();
+// Función para contar actividades
+function contarActividades(materia) {
+    let count = 0;
+    const acts = materia.actividades;
+    if (acts.m1_foro) count++;
+    if (acts.m2_tarea) count++;
+    if (acts.m2_foro) count++;
+    if (acts.m3_tarea) count++;
+    if (acts.m3_foro) count++;
+    if (acts.m4_tarea) count++;
+    if (acts.m4_foro) count++;
+    if (acts.m5_integradora) count++;
+    return count;
 }
 
-function renderizar() {
+// Renderizar estadísticas
+function renderStats() {
+    const totalSemestres = Object.keys(semestresData).length;
     let totalMaterias = 0;
-    Object.values(semestresData).forEach(s => totalMaterias += s.materias.length);
+    let totalActividades = 0;
     
-    document.getElementById('stats').innerHTML = `
-        <div class="stat-card"><div class="stat-number">${Object.keys(semestresData).length}</div><div class="stat-label">Semestres</div></div>
+    Object.values(semestresData).forEach(sem => {
+        totalMaterias += sem.materias.length;
+        sem.materias.forEach(m => {
+            totalActividades += contarActividades(m);
+        });
+    });
+    
+    document.getElementById('statsContainer').innerHTML = `
+        <div class="stat-card"><div class="stat-number">${totalSemestres}</div><div class="stat-label">Semestres</div></div>
         <div class="stat-card"><div class="stat-number">${totalMaterias}</div><div class="stat-label">Materias</div></div>
+        <div class="stat-card"><div class="stat-number">${totalActividades}</div><div class="stat-label">Actividades</div></div>
+        <div class="stat-card"><div class="stat-number">📱</div><div class="stat-label">Moodle</div></div>
     `;
-    
-    const container = document.getElementById('semesters');
+}
+
+// Renderizar semestres
+function renderSemesters(filter = '') {
+    const container = document.getElementById('semestersContainer');
     container.innerHTML = '';
+    const filterLower = filter.toLowerCase();
     
-    for(const [num, sem] of Object.entries(semestresData)) {
+    for (const [num, sem] of Object.entries(semestresData)) {
+        // Filtrar materias
+        const materiasFiltradas = sem.materias.filter(m => 
+            filter === '' || 
+            m.nombre.toLowerCase().includes(filterLower) ||
+            m.codigo.includes(filter)
+        );
+        
+        if (materiasFiltradas.length === 0 && filter !== '') continue;
+        
         const card = document.createElement('div');
-        card.className = 'semester-card';
+        card.className = 'semester-card collapsed';
         card.innerHTML = `
-            <div class="semester-header" onclick="this.parentElement.classList.toggle('open')">
-                <span>📚 ${sem.nombre}</span>
+            <div class="semester-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <div class="semester-title">
+                    <span class="semester-number">${num}</span>
+                    <span class="semester-name">${sem.nombre}</span>
+                    <span class="semester-badge">${materiasFiltradas.length} materias</span>
+                </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="semester-content">
-                ${sem.materias.map(m => `
-                    <div class="materia-card">
-                        <div class="materia-header" onclick="event.stopPropagation(); this.parentElement.classList.toggle('open')">
-                            <span>📖 ${m.nombre}</span>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                        <div class="materia-content">
-                            <div class="modulos">
-                                <div class="modulo">
-                                    <h4>📘 Módulo 1 · Fundamentos</h4>
-                                    <div class="actividades">
-                                        ${m.archivos.m1_foro ? `<a href="${m.path}${m.archivos.m1_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
+                <div class="materias-grid">
+                    ${materiasFiltradas.map((m, idx) => `
+                        <div class="materia-card" data-materia="${idx}">
+                            <div class="materia-header" onclick="event.stopPropagation(); this.closest('.materia-card').classList.toggle('open')">
+                                <div>
+                                    <div class="materia-name">${m.nombre}</div>
+                                    <div class="materia-code">Código: ${m.codigo}</div>
+                                </div>
+                                <span class="toggle-icon" style="font-size: 0.7rem;">▼</span>
+                            </div>
+                            <div class="materia-content">
+                                <div class="modulos-list">
+                                    <div class="modulo-item">
+                                        <div class="modulo-title">📘 Módulo 1 · Fundamentos</div>
+                                        <div class="actividades-list">
+                                            ${m.actividades.m1_foro ? `<a href="${m.path}${m.actividades.m1_foro}" class="actividad-link">💬 Foro integrador</a>` : '<span class="actividad-link missing">💬 Próximamente</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="modulo-item">
+                                        <div class="modulo-title">📗 Módulo 2 · Análisis y aplicación</div>
+                                        <div class="actividades-list">
+                                            ${m.actividades.m2_tarea ? `<a href="${m.path}${m.actividades.m2_tarea}" class="actividad-link">📝 Tarea auténtica</a>` : '<span class="actividad-link missing">📝 Próximamente</span>'}
+                                            ${m.actividades.m2_foro ? `<a href="${m.path}${m.actividades.m2_foro}" class="actividad-link">💬 Foro integrador</a>` : '<span class="actividad-link missing">💬 Próximamente</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="modulo-item">
+                                        <div class="modulo-title">📙 Módulo 3 · Profundización y debate</div>
+                                        <div class="actividades-list">
+                                            ${m.actividades.m3_tarea ? `<a href="${m.path}${m.actividades.m3_tarea}" class="actividad-link">📝 Tarea auténtica</a>` : '<span class="actividad-link missing">📝 Próximamente</span>'}
+                                            ${m.actividades.m3_foro ? `<a href="${m.path}${m.actividades.m3_foro}" class="actividad-link">💬 Foro integrador</a>` : '<span class="actividad-link missing">💬 Próximamente</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="modulo-item">
+                                        <div class="modulo-title">📕 Módulo 4 · Integración y propuesta</div>
+                                        <div class="actividades-list">
+                                            ${m.actividades.m4_tarea ? `<a href="${m.path}${m.actividades.m4_tarea}" class="actividad-link">📝 Tarea auténtica</a>` : '<span class="actividad-link missing">📝 Próximamente</span>'}
+                                            ${m.actividades.m4_foro ? `<a href="${m.path}${m.actividades.m4_foro}" class="actividad-link">💬 Foro integrador</a>` : '<span class="actividad-link missing">💬 Próximamente</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="modulo-item">
+                                        <div class="modulo-title">🎯 Módulo 5 · Actividad integradora</div>
+                                        <div class="actividades-list">
+                                            ${m.actividades.m5_integradora ? `<a href="${m.path}${m.actividades.m5_integradora}" class="actividad-link">📝 Síntesis final</a>` : '<span class="actividad-link missing">🎯 Próximamente</span>'}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="modulo">
-                                    <h4>📗 Módulo 2 · Análisis y aplicación</h4>
-                                    <div class="actividades">
-                                        ${m.archivos.m2_tarea ? `<a href="${m.path}${m.archivos.m2_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
-                                        ${m.archivos.m2_foro ? `<a href="${m.path}${m.archivos.m2_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
-                                    </div>
-                                </div>
-                                <div class="modulo">
-                                    <h4>📙 Módulo 3 · Profundización y debate</h4>
-                                    <div class="actividades">
-                                        ${m.archivos.m3_tarea ? `<a href="${m.path}${m.archivos.m3_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
-                                        ${m.archivos.m3_foro ? `<a href="${m.path}${m.archivos.m3_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
-                                    </div>
-                                </div>
-                                <div class="modulo">
-                                    <h4>📕 Módulo 4 · Integración y propuesta</h4>
-                                    <div class="actividades">
-                                        ${m.archivos.m4_tarea ? `<a href="${m.path}${m.archivos.m4_tarea}" class="actividad">📝 Tarea auténtica</a>` : '<span class="actividad" style="opacity:0.5">📝 Próximamente</span>'}
-                                        ${m.archivos.m4_foro ? `<a href="${m.path}${m.archivos.m4_foro}" class="actividad">💬 Foro integrador</a>` : '<span class="actividad" style="opacity:0.5">💬 Próximamente</span>'}
-                                    </div>
-                                </div>
-                                <div class="modulo">
-                                    <h4>🎯 Módulo 5 · Actividad integradora</h4>
-                                    <div class="actividades">
-                                        ${m.archivos.m5_integradora ? `<a href="${m.path}${m.archivos.m5_integradora}" class="actividad">📝 Síntesis final</a>` : '<span class="actividad" style="opacity:0.5">🎯 Próximamente</span>'}
-                                    </div>
+                                <div style="margin-top: 0.8rem; text-align: right;">
+                                    <a href="${m.path}index.html" style="font-size: 0.65rem; color: var(--rust); font-family: monospace;">🔗 Ver todas →</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `).join('')}
+                    `).join('')}
+                </div>
             </div>
         `;
         container.appendChild(card);
     }
+    
+    if (container.children.length === 0) {
+        container.innerHTML = '<div class="loading" style="background: var(--paper); padding: 2rem;">🔍 No se encontraron materias coincidentes</div>';
+    }
 }
 
-cargarDatos();
+// Búsqueda en tiempo real
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    renderSemesters(e.target.value);
+});
+
+// Inicializar
+renderStats();
+renderSemesters();
+
+// Guardar estado de semestres en localStorage
+document.getElementById('semestersContainer').addEventListener('click', (e) => {
+    const semesterCard = e.target.closest('.semester-card');
+    if (semesterCard && e.target.classList.contains('semester-header')) {
+        const isCollapsed = semesterCard.classList.contains('collapsed');
+        localStorage.setItem(`semester_${semesterCard.querySelector('.semester-number').innerText}`, isCollapsed ? 'collapsed' : 'open');
+    }
+});
+
+// Restaurar estado guardado
+function restoreStates() {
+    document.querySelectorAll('.semester-card').forEach(card => {
+        const num = card.querySelector('.semester-number')?.innerText;
+        const saved = localStorage.getItem(`semester_${num}`);
+        if (saved === 'open') card.classList.remove('collapsed');
+        if (saved === 'collapsed') card.classList.add('collapsed');
+    });
+}
+
+setTimeout(restoreStates, 100);
 </script>
 </body>
 </html>
