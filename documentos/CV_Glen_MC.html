@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glen Moctezuma Calderón - Agricultural Supervisor | USDA-APHIS Candidate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745, #20c997, #17a2b8);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+        
+        .header .target-position {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.1em;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        /* Main Content */
+        .content {
+            padding: 40px 50px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            color: #1e3c72;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #28a745;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 30px;
+            background: linear-gradient(180deg, #28a745, #20c997);
+            border-radius: 3px;
+        }
+        
+        /* Professional Summary */
+        .summary {
+            background: #f8f9fa;
+            padding: 25px;
+            border-left: 5px solid #28a745;
+            border-radius: 5px;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #495057;
+        }
+        
+        .summary strong {
+            color: #1e3c72;
+            font-weight: 600;
+        }
+        
+        /* Experience Section */
+        .job {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #2a5298;
+            background: #f8f9fa;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .job:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .job-title {
+            font-size: 1.3em;
+            color: #1e3c72;
+            font-weight: 700;
+            flex: 1;
+        }
+        
+        .job-duration {
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .job-company {
+            color: #6c757d;
+            font-size: 1.05em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .job-company::before {
+            content: '📍 ';
+            margin-right: 5px;
+        }
+        
+        .achievements {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .achievements li {
+            padding-left: 30px;
+            margin-bottom: 10px;
+            position: relative;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .achievements .highlight {
+            background: linear-gradient(120deg, #fff5e6 0%, #fff 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        /* Education Section */
+        .education-item {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .degree {
+            font-size: 1.2em;
+            color: #1e3c72;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .institution {
+            color: #6c757d;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+        
+        .year {
+            display: inline-block;
+            background: #17a2b8;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border-top: 4px solid #28a745;
+        }
+        
+        .skill-category h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #495057;
+            font-size: 0.95em;
+        }
+        
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        /* Certifications */
+        .cert-item {
+            background: linear-gradient(90deg, #fff5e6 0%, #fff 100%);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .cert-icon {
+            font-size: 2em;
+        }
+        
+        .cert-details {
+            flex: 1;
+        }
+        
+        .cert-name {
+            font-weight: 700;
+            color: #1e3c72;
+            font-size: 1.05em;
+            margin-bottom: 3px;
+        }
+        
+        .cert-org {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        /* Languages */
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .language-name {
+            font-weight: 700;
+            color: #1e3c72;
+            font-size: 1.1em;
+            min-width: 100px;
+        }
+        
+        .language-level {
+            flex: 1;
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .language-level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        .language-label {
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        /* Action Button */
+        .action-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9em;
+        }
+        
+        .footer-note {
+            opacity: 0.85;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+            
+            .job:hover {
+                transform: none;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>M.C.A. Glen Moctezuma Calderón</h1>
+            <div class="subtitle">Agricultural Supervisor | Pest Management Specialist | Team Leader</div>
+            <div class="target-position">🎯 USDA-APHIS Supervisory Agricultural Inspector Candidate</div>
+            <div class="contact-info">
+                <span>📞 +52 566 149 3368</span>
+                <span>📧 gmc3124@hotmail.com</span>
+                <span>📍 Tijuana, Baja California, México</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Professional Summary -->
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <div class="summary">
+                    <strong>Agricultural coordinator and pest management specialist</strong> with <strong>6+ years of progressive experience</strong> supervising field operations, implementing integrated pest management protocols, and coordinating with government agencies in Mexico. Proven track record of leading teams of <strong>30+ field workers</strong> across <strong>192+ hectares</strong> of production systems while ensuring regulatory compliance and biosecurity standards. <strong>Master's degree in Agroplasticulture</strong> with specialized training in pest identification, monitoring, and mitigation. Experienced in technology transfer, stakeholder engagement, and collaborative work with agricultural authorities. <strong>Certified in Integrated Pest Management (DC-3, 2026)</strong> and responsible use of agrochemicals (PURA-UMFFAAC, 2022). Seeking to leverage supervisory experience and technical expertise in the <strong>USDA-APHIS Fruit Fly Sterile Release and Trapping Program</strong> in Tijuana.
+                </div>
+            </section>
+
+            <!-- Work Experience -->
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Community Supervisor (Supervisor Comunitario)</div>
+                            <div class="job-company">Mezcal de Amor S.A.P.I. de C.V. | Miahuatlán de Porfirio Díaz, Oaxaca</div>
+                        </div>
+                        <div class="job-duration">2024 – 2026</div>
+                    </div>
+                    <ul class="achievements">
+                        <li><span class="highlight">Supervised plant health operations</span> for 50+ producers through field prospecting, needs assessment, and continuous technical assistance</li>
+                        <li>Facilitated <span class="highlight">technology transfer and adoption of good agricultural practices</span> including pest monitoring protocols and biosecurity measures</li>
+                        <li>Conducted practical field training workshops adapting technical language to rural contexts, enhancing <span class="highlight">stakeholder compliance</span> with sustainable production standards</li>
+                        <li>Coordinated with local agricultural committees to align production activities with regional phytosanitary guidelines</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Plantation Leader - Agave Mezcalero (Líder de Plantación)</div>
+                            <div class="job-company">JOSE CUERVO - YUSTIPA SA de CV | San Juan Ixcaquixtla, Puebla</div>
+                        </div>
+                        <div class="job-duration">2023 – 2024</div>
+                    </div>
+                    <ul class="achievements">
+                        <li><span class="highlight">Supervised a field team of 30+ workers</span> managing daily operations, work schedules, and operational goal achievement</li>
+                        <li><span class="highlight">Managed 192 hectares of cultivation</span> ensuring productivity under sustainability criteria and integrated pest management protocols</li>
+                        <li>Implemented <span class="highlight">technology transfer programs</span> training personnel on good agricultural practices, new work methodologies, and biosecurity standards</li>
+                        <li>Conducted <span class="highlight">safety and compliance training</span> on Personal Protective Equipment (PPE) usage and adherence to the 12 Golden Rules for agricultural workplace safety</li>
+                        <li>Reduced pest pressure through early detection monitoring and preventive control strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Horticultural Projects Coordinator</div>
+                            <div class="job-company">Tzitiu A Mesha A Choosto I.A.P. | Atlacomulco, Estado de México</div>
+                        </div>
+                        <div class="job-duration">2015 – 2018</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Implemented <span class="highlight">demonstration projects for 150+ producers</span>, facilitating practical learning on sustainable agricultural techniques</li>
+                        <li>Conducted operational planning, developed work schedules, and monitored <span class="highlight">environmental impact indicators</span> (10 hectares of degraded land restored)</li>
+                        <li>Coordinated capacity-building activities and environmental awareness programs with rural communities</li>
+                        <li>Collaborated with local government agencies to ensure project alignment with public policy frameworks</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Environmental Services Supervisor</div>
+                            <div class="job-company">SYMA Jardinería y Servicios | Saltillo, Coahuila</div>
+                        </div>
+                        <div class="job-duration">2019 – 2021</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Implemented a green space management plan achieving <span class="highlight">40% reduction in agrochemical use</span> through biological control and sustainable landscaping practices</li>
+                        <li>Supervised pest management operations ensuring compliance with environmental safety standards</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Conservation and Sustainable Development Advisor</div>
+                            <div class="job-company">COMPROBIDES | Atlacomulco, Estado de México</div>
+                        </div>
+                        <div class="job-duration">2013 – 2015</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Conducted <span class="highlight">participatory environmental assessments</span> in collaboration with rural communities</li>
+                        <li><span class="highlight">Collaborated with local government authorities</span> to align natural resource management projects with <span class="highlight">public policy regulations and compliance frameworks</span></li>
+                        <li>Facilitated stakeholder engagement processes ensuring regulatory adherence in conservation initiatives</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="education-item">
+                    <div class="degree">🎓 Master's Degree in Agroplasticulture (Maestría en Agroplasticultura)</div>
+                    <div class="institution">Centro de Investigación en Química Aplicada (CIQA-CONACYT)</div>
+                    <span class="year">2022</span>
+                </div>
+                <div class="education-item">
+                    <div class="degree">🎓 Bachelor's Degree in Sustainable Development (Licenciatura en Desarrollo Sustentable)</div>
+                    <div class="institution">Universidad Intercultural del Estado de México (UIEM)</div>
+                    <span class="year">2014</span>
+                </div>
+            </section>
+
+            <!-- Certifications -->
+            <section class="section">
+                <h2 class="section-title">Professional Certifications</h2>
+                <div class="cert-item">
+                    <div class="cert-icon">🏆</div>
+                    <div class="cert-details">
+                        <div class="cert-name">DC-3 Integrated Pest Management (Manejo Integrado de Plagas)</div>
+                        <div class="cert-org">SECOPLA-Academia | 2026</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">✅</div>
+                    <div class="cert-details">
+                        <div class="cert-name">Certified Instructor - Responsible Use of Agrochemicals (PURA)</div>
+                        <div class="cert-org">PURA-UMFFAAC | 2022</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">🌱</div>
+                    <div class="cert-details">
+                        <div class="cert-name">National Berry Crop Course</div>
+                        <div class="cert-org">Universidad Autónoma de Sinaloa | 2020</div>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">♻️</div>
+                    <div class="cert-details">
+                        <div class="cert-name">Campo Limpio Recognition (Safe Management of Agrochemical Containers)</div>
+                        <div class="cert-org">AMOCALI | 2020</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>🔬 Technical Skills</h3>
+                        <ul>
+                            <li>Integrated Pest Management (IPM)</li>
+                            <li>Plant Health Monitoring & Inspection</li>
+                            <li>Biosecurity Protocols</li>
+                            <li>Pest Identification & Mitigation</li>
+                            <li>Soil Restoration & Agroforestry</li>
+                            <li>Protected Agriculture (Agroplasticulture)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>👥 Leadership & Management</h3>
+                        <ul>
+                            <li>Team Supervision (30+ field workers)</li>
+                            <li>Project Coordination & Planning</li>
+                            <li>Stakeholder Engagement</li>
+                            <li>Community-Based Extension Work</li>
+                            <li>Technology Transfer & Training</li>
+                            <li>Performance Monitoring & Reporting</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>💻 Digital Tools</h3>
+                        <ul>
+                            <li>SurveyCTO (Field Data Collection)</li>
+                            <li>GPS Navigation & Mapping</li>
+                            <li>Microsoft Office Suite</li>
+                            <li>InfoStat (Statistical Analysis)</li>
+                            <li>4x4 Vehicle Operation & Basic Mechanics</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>🤝 Soft Skills</h3>
+                        <ul>
+                            <li>Intercultural Communication</li>
+                            <li>Adaptability & Problem-Solving</li>
+                            <li>Critical Thinking</li>
+                            <li>Teamwork & Collaboration</li>
+                            <li>Innovation & Creativity</li>
+                            <li>Gender-Sensitive Community Work</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Languages -->
+            <section class="section">
+                <h2 class="section-title">Languages</h2>
+                <div class="language-item">
+                    <div class="language-name">Spanish</div>
+                    <div class="language-level">
+                        <div class="language-level-fill" style="width: 100%;"></div>
+                    </div>
+                    <div class="language-label">Native/Fluent</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">English</div>
+                    <div class="language-level">
+                        <div class="language-level-fill" style="width: 40%; background: linear-gradient(90deg, #17a2b8, #20c997);"></div>
+                    </div>
+                    <div class="language-label" style="background: #17a2b8;">Limited Knowledge</div>
+                </div>
+            </section>
+
+            <!-- Notable Achievements -->
+            <section class="section">
+                <h2 class="section-title">Notable Achievements</h2>
+                <ul class="achievements">
+                    <li>Speaker at XXI National Botany Congress (UAA, 2019) - Research on reintroduction of native species</li>
+                    <li>Campo Limpio Recognition (AMOCALI, 2020) - Best practices in safe management of empty agrochemical containers</li>
+                    <li>Supervised operations across 192 hectares ensuring productivity and biosecurity compliance</li>
+                    <li>Trained 150+ producers in sustainable agricultural practices and pest management protocols</li>
+                </ul>
+            </section>
+
+            <!-- Action Section -->
+            <div class="action-section">
+                <button class="download-btn" onclick="window.print()">🖨️ Download CV as PDF</button>
+                <p style="margin-top: 15px; color: #6c757d; font-size: 0.95em;">
+                    <strong>Target Position:</strong> Supervisory Agricultural Inspector (Tijuana-2026-007)<br>
+                    <strong>Closing Date:</strong> May 24, 2026 | 22:00 hrs GMT-8
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>M.C.A. Glen Moctezuma Calderón</strong> | Agricultural Supervisor & Pest Management Specialist</p>
+            <p class="footer-note">Curriculum Vitae prepared for USDA-APHIS Supervisory Agricultural Inspector position at U.S. Consulate Tijuana</p>
+            <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.7;">Document generated: May 2026 | References available upon request</p>
+        </div>
+    </div>
+
+    <script>
+        // Animate language bars on page load
+        window.addEventListener('load', function() {
+            const fills = document.querySelectorAll('.language-level-fill');
+            fills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
