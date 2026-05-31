@@ -21,6 +21,22 @@ h1{color:#0f0e0b}
 </style>
 </head>
 <body>
+<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
+        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
+            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
+            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
+            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
+            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
+            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
+            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
+            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
+        </div>
+        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
+    </div>
+</nav>
 <div class=container>
 <div class=header><h1>finanzas internacionales</h1><p>semestre_7</p></div>
 <div class=stats><div>📚 5 Módulos</div><div>📄 Actividades</div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 1</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 2</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 3</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 4</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><div class=module><div class=module-title onclick="this.parentElement.classList.toggle('collapsed')"><span>Módulo 5</span><span>▼</span></div><div class=module-content><div class=activity><h4>📝 Actividades</h4><div class=links><div class=missing>✨ Próximamente</div></div></div></div></div><a href='../../' class=back>← Volver</a>
@@ -29,4 +45,5 @@ h1{color:#0f0e0b}
 <script>document.querySelectorAll('.module').forEach(m=>{if(localStorage.getItem(m.dataset.module)==='true')m.classList.add('collapsed');m.querySelector('.module-title').onclick=()=>{m.classList.toggle('collapsed');localStorage.setItem(m.dataset.module,m.classList.contains('collapsed'))}})</script>
 </body>
 </html>
+
 

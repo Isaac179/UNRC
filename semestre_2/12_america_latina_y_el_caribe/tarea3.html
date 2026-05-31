@@ -1,159 +1,278 @@
-﻿<!DOCTYPE html>
+﻿```html
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 3 · america latina y el caribe · UNRC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DADPI · Informe de Implementación | Isaac Moctezuma v14</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
+    --night: #0c0e0f;
+    --deep: #131820;
+    --navy: #1a2535;
+    --cobalt: #1e3a5f;
+    --azure: #2a5298;
+    --sky: #5b8dd9;
+    --frost: #c4d8f5;
+    --ice: #e8f0fb;
+    --gold: #c9a227;
+    --gold-warm: #e6b84a;
+    --gold-pale: #fdf3cc;
+    --amber-deep: #8a6a10;
+    --parchment: #faf7ef;
+    --cream: #f5f0e4;
+    --sand: #ddd0b0;
+    --rust: #8b3a2a;
+    --text-ink: #0f1318;
+    --text-mid: #2c3a4a;
+    --text-muted: #68788a;
+    --border: #d5c9ad;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
+    background: var(--night);
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--text-ink);
   }
 
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
+  /* ========== PORTADA ========== */
+  .cover {
+    background: var(--deep);
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(201,162,39,0.15);
   }
 
-  .masthead::before {
+  .cover::before {
     content: '';
     position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(42,82,152,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,162,39,0.08) 0%, transparent 50%);
+    pointer-events: none;
   }
 
-  .issue-line {
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 380px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-left {
+    padding: 3.5rem 3rem 3rem;
+    border-right: 1px solid rgba(201,162,39,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover-kicker {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
+  .kicker-line {
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .kicker-text {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .cover-left h1 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: #e8e0cc;
+    margin-bottom: 1.4rem;
+  }
+
+  .cover-left h1 em {
+    font-style: italic;
+    color: var(--gold-warm);
+  }
+
+  .cover-byline {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.2rem;
+    margin-top: auto;
+  }
+
+  .cover-right {
+    padding: 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .parabola-box {
+    background: rgba(201,162,39,0.05);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 4px;
+    padding: 1.8rem;
+    flex: 1;
+  }
+
+  .parabola-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.58rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 1rem;
   }
 
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
+  .parabola-text {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 0.97rem;
+    line-height: 1.72;
+    color: #c0b898;
   }
 
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
+  .parabola-attr {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.55rem;
     letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
+    text-transform: uppercase;
+    color: var(--azure);
     margin-top: 1rem;
   }
 
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
+  .meta-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .meta-cell {
+    background: var(--deep);
+    padding: 0.8rem 1rem;
+  }
+
+  .meta-cell-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 0.25rem;
   }
 
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
+  .meta-cell-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--frost);
   }
 
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
+  /* ========== CONTENT AREA ========== */
+  .content-area {
+    background: var(--parchment);
   }
+
+  .intro-band {
+    background: var(--cobalt);
+    padding: 2rem 3rem;
+  }
+
+  .intro-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 0.8rem;
+  }
+
+  .intro-summary {
+    font-family: 'Newsreader', serif;
+    font-size: 1.08rem;
+    line-height: 1.68;
+    color: #b8cce0;
+    max-width: 760px;
+    font-style: italic;
+  }
+
+  /* ========== REPORT BODY ========== */
+  .report-body {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 850px) {
+    .cover-grid { grid-template-columns: 1fr; }
+    .report-body { grid-template-columns: 1fr; }
+    .cover-left, .cover-right, .intro-band { padding-left: 1.8rem; padding-right: 1.8rem; }
+    .report-body { padding: 2rem 1.8rem; gap: 2.5rem; }
+  }
+
+  /* ========== MAIN ARTICLE ========== */
+  .article h2 {
+    font-family: 'Newsreader', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-ink);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gold);
+    line-height: 1.2;
+  }
+
+  .article h3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+    margin: 2rem 0 1rem;
+  }
+
+  p {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 1.4rem;
+    text-align: justify;
+    color: #2a333d;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 700; color: var(--text-ink); }
+  em { font-style: italic; font-family: 'Newsreader', serif; color: var(--rust); }
 
   .section-block {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
+    border-bottom: 1px solid var(--border);
   }
 
   .section-block:last-child {
@@ -162,371 +281,405 @@
     margin-bottom: 0;
   }
 
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
   .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
+    border-left: 4px solid var(--gold);
+    background: rgba(201,162,39,0.08);
+    padding: 1.2rem 1.6rem;
+    margin: 1.8rem 0;
+    border-radius: 0 4px 4px 0;
   }
 
   .pull-quote p {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Newsreader', serif;
     font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--amber-deep);
     text-align: left;
     margin: 0;
   }
 
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
+  /* ========== IMAGE BLOCKS ========== */
+  .photo-commission {
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+
+  .photo-placeholder {
+    background: #e2d9c8;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    border: 2px dashed #caced1;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .photo-caption {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+  }
+
+  /* ========== GLOSARIO & MANIFIESTO ========== */
+  .extra-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--cobalt);
+    padding: 2rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+  }
+
+  .extra-box.manifesto {
+    border-left-color: var(--gold);
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .extra-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cobalt);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .term-item { margin-bottom: 1rem; }
+  .term-name { font-weight: 700; color: var(--rust); font-family: 'Fira Code', monospace; font-size: 0.85rem; }
+  .term-def { font-size: 0.95rem; color: var(--text-mid); display: inline; }
+
+  /* ========== SIDEBAR ========== */
+  .sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar-section {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+
+  .sidebar-label {
+    font-family: 'Fira Code', monospace;
     font-size: 0.6rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .obstacle-item {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 0.85rem;
+    align-items: flex-start;
+  }
+
+  .obs-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  .obs-text {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-mid);
+  }
+
+  .spirit-whisper {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 1.4rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  .spirit-whisper .sw-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-top: 0.7rem;
+    margin-bottom: 0.8rem;
   }
 
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
+  .spirit-whisper .sw-text {
+    font-family: 'Newsreader', serif;
     font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
+    font-size: 0.95rem;
     line-height: 1.6;
+    color: #e8f0fb;
+    text-align: left;
+    margin: 0;
   }
 
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
+  /* ========== REFERENCES + FOOTER ========== */
   .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 3rem;
   }
 
   .refs-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--rust);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
   }
 
   .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    text-indent: -1.5rem;
   }
 
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
+  .ref-item em { font-style: italic; color: var(--text-mid); }
 
   .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
+    background: var(--night);
+    padding: 1.5rem 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+    border-top: 1px solid rgba(201,162,39,0.15);
   }
 
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
+  .fb-name {
+    font-family: 'Manrope', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--paper);
+    color: var(--frost);
   }
 
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
+  .fb-meta {
+    font-family: 'Fira Code', monospace;
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #5a5040;
+    color: #5b8dd9;
   }
 
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
 </style>
 </head>
 <body>
-<div class="page-wrapper">
-  <div class="corner-meta">12 · TAREA · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 3</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">12 · Mayo 2026</span>
-    </div>
-    <h1>Profundización <em>crítica</em> e investigación</h1>
-    <div class="lead-quote">
-      "La crítica es la base de todo progreso social."
-      <cite>— Karl Popper</cite>
-    </div>
-  </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 3 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Marco teórico avanzado
-          <span>Investigación documental</span>
+<!-- ====== PORTADA ====== -->
+<div class="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div>
+        <div class="cover-kicker">
+          <div class="kicker-line"></div>
+          <span class="kicker-text">Tarea Auténtica · AME_Moctezuma_Isaac</span>
         </div>
+        <h1>El Cilindro y la<br>Declaración:<br>Derechos Indígenas<br>en <em>América Latina</em></h1>
       </div>
-      <p>Se desarrolla una investigación que profundiza en los temas del módulo con fuentes académicas especializadas.</p>
-      <div class="chips">
-        <span class="chip">america</span>
-        <span class="chip">Módulo 3</span>
-        <span class="chip">TAREA</span>
+      <div class="cover-byline">
+        Informe · DADPI · Análisis de la Implementación<br>
+        Isaac Moctezuma Calderón · LRIN · UNRC · Mayo 2026<br>
+        Módulo 3 · Bloque 2 · América Latina y el Caribe
       </div>
     </div>
-  </div>
-
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La profundización crítica nos permite ir más allá de lo evidente.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 3: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">12 · UNRC · Tarea Auténtica · M3</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
+    <div class="cover-right">
+      <div class="parabola-box">
+        <div class="parabola-tag">⟡ Parábola de apertura</div>
+        <p class="parabola-text">En el año 539 a.C., cuando Ciro el Grande entró a Babilonia sin derramar sangre, no llegó como conquistador, sino como jardinero. Devolvió a los pueblos deportados sus tierras y su dignidad, grabando en un cilindro de arcilla el primer documento histórico que reconoce la autodeterminación. Dos milenios después, los 42 millones de indígenas latinoamericanos siguen esperando que el jardinero llegue de verdad a la mesa, y no el funcionario que impone firmas desde el escritorio.</p>
+        <div class="parabola-attr">Ciro el Grande · Cilindro de Ciro · c. 539 a.C.</div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- ====== INTRO BAND ====== -->
+<div class="content-area">
+  <div class="intro-band">
+    <div class="intro-label">Resumen ejecutivo</div>
+    <p class="intro-summary">La Declaración Americana sobre los Derechos de los Pueblos Indígenas (DADPI) es un documento hermoso, pero el papel no detiene las balas ni quita el hambre. Ocho años después de su aprobación, la distancia entre el texto y la tierra sigue doliendo profundamente. Este informe traza el arco de esa distancia: desde la utopía jurídica interamericana hasta los caminos agrestes de la Montaña de Guerrero.</p>
+  </div>
+
+  <!-- ====== REPORT BODY ====== -->
+  <div class="report-body">
+    <div class="article">
+
+      <!-- INTRODUCCIÓN -->
+      <div class="section-block">
+        <h2>Introducción: La promesa escrita frente a la tierra rota</h2>
+        <p>Hay algo profundamente desgarrador en leer un documento legal perfecto frente a una realidad que está sangrando. La Organización de los Estados Americanos aprobó en 2016 la DADPI, un instrumento majestuoso que reconoce derechos colectivos, territoriales y de autodeterminación. Sin embargo, a ras de tierra, el problema nunca ha sido la falta de tinta en los tribunales, sino la abundancia de despojo en los campos.</p>
+
+        <!-- IMAGEN 1: JORNALERO -->
+        <div class="photo-commission">
+          <div class="photo-placeholder">
+            <span>[INSERTAR IMAGEN AQUÍ]</span><br>
+            <span style="font-size: 0.7rem; font-weight: normal; margin-top: 5px;">Fotografía original: Pie de un jornalero con huaraches gastados, Montaña de Guerrero.</span>
+          </div>
+          <div class="photo-caption">
+            El peso de la historia: las madres y jornaleros que caminan la Montaña no conocen la DADPI, pero llevan siglos defendiendo con sus cuerpos los principios que el documento proclama. (Archivo personal de comisión).
+          </div>
+        </div>
+
+        <p>Según el Banco Mundial, los pueblos indígenas en América Latina tienen una probabilidad tres veces mayor de vivir en pobreza extrema que el resto de la población (Banco Mundial, 2016). Esta brecha no es un accidente geográfico; es el resultado sostenido de un modelo colonial y extractivista. La DADPI nació con el espíritu de sanar esta herida, planteando un plan de acción que buscaba proteger y reparar. Pero el error de siempre es que los Estados siguen confundiendo la firma de un convenio con la labor comunitaria de enmendar verdaderamente el mundo, ese <em>Tikun Olam</em> que requiere mancharse las manos.</p>
+      </div>
+
+      <!-- AVANCES -->
+      <div class="section-block">
+        <h2>Avances: Entre el papel y la resistencia comunitaria</h2>
+        <p>No podemos negar que el documento ha movido la aguja jurídica y nos dio un lenguaje legal. Países como Colombia han generado una jurisprudencia constitucional robusta basada en estos principios. En el plano interamericano, Nicaragua es el único Estado que ha cumplido plenamente con las órdenes de la Corte Interamericana respecto a la propiedad colectiva de tierras indígenas (Vivas-Barrera & Quintero-Sánchez, 2023). Sin embargo, la brecha en la impelementación de estas normas sigue siendo el gran talón de Aquiles regional.</p>
+
+        <p>El diseño del Plan de Acción (2017-2021) tenía intenciones loables, pero carecía de firmeza. Los informes de avance no son vinculantes y el monitoreo global demuestra que la ejecución choca constantemente con la inercia burocrática del Estado (Côté et al., 2024). El avance más honesto que podemos celebrar es la visibilización: las comunidades indígenas han hecho suyo este lenguaje para su propia defensa, tejiendo redes desde abajo que exigen una auténtica justicia y descolonización del saber.</p>
+
+        <div class="pull-quote">
+          <p>"El derecho no es accesible para todas las personas. Nuestra denuncia no es solo moral: es jurídica. Y la hacemos desde la pregunta por quien tiene menos poder, no desde la comodidad del escritorio."</p>
+        </div>
+      </div>
+
+      <!-- OBSTÁCULOS Y PESO DE LA HISTORIA -->
+      <div class="section-block">
+        <h2>El peso de la historia: Violencia, despojo y la defensa del territorio</h2>
+        <p>A lo largo de la historia reciente, los obstáculos más feroces no provienen de discursos externos, sino de las propias dinámicas económicas internas. Las comunidaes enfrentan un modelo voraz que prioriza la minería y los megaproyectos por encima de la vida. El derecho al consentimiento libre, previo e informado (CPLI) se ha topado de frente contra fuertes inversiones corporativas, revelando la urgencia de enfoques genuinos para que la consulta no sea un mero trámite administrativo (Mitchell & Arseneau, 2021).</p>
+
+<!-- IMAGEN 2: POLICÍAS COMUNITARIOS -->
+        <div class="photo-commission">
+          <div class="photo-placeholder" style="background: #2a333d; color: #a0b8d0; border-color: #5b8dd9;">
+            <img src="../assets/images/elote_alcozacan.png" alt="Fotografía de jornalero en Alcozacán" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
+            <span style="font-size: 0.7rem; font-weight: normal; margin-top: 5px;">Fotografía original: Policías comunitarios armados defendiendo su territorio.</span>
+          </div>
+          <div class="photo-caption">
+            Defender la tierra con lo que alcanza: guardias comunitarias resistiendo el asedio del crimen organizado. No se puede ejercer el derecho a la consulta cuando hay una amenaza directa sobre la vida comunitaria. (Archivo personal).
+          </div>
+        </div>
+
+        <p>En Guerrero, el escenario es asfixiante: la violencia ha forzado el desplazamiento de cientos de familias. Las estrcuturas del crimen organizado operan donde el Estado ha preferido no mirar. A pesar de esto, la resistencia de la gente es asombrosa. Las victorias jurídicas del pueblo maya contra trenes turísticos o las guardias forestales amazónicas nos demuestran que las imposiciones pueden ser desafiadas mediante el trabajo colectivo, esa <em>faena</em> o <em>tequio</em> que sostiene a los pueblos. Como nos enseñó Paulo Freire: nadie salva a nadie, nos liberamos en comunión.</p>
+      </div>
+
+      <!-- CONCLUSIONES -->
+      <div class="section-block">
+        <h2>Conclusión: El cilindro regresa a sus dueños</h2>
+        <p>La DADPI corre el grave riesgo de convertirse en un hermoso artefacto histórico, admirado en los pasillos internacionales pero ignorado donde realmente importa. La gran diferencia de nuestra época es que hoy los pueblos originarios cuentan con redes de comunicación y un nivel de organización capaz de internacionalizar sus demandas, retirando la obediencia al silencio de siempre.</p>
+
+        <p>Considero yo que la recomendación más vital para el Relator Ari Bulkan es exigir que los mecanismos de la Declaración se vuelvan vinculantes. No más consultas decorativas sin derecho a veto. Aaron Swartz nos enseñó que la información y el conocimiento deben ser públicos para empoderar a los vulnerables; de igual forma, los instrumentos de derechos humanos deben salir de las oficinas diplomáticas y ser entregados como herramientas tácticas a las comunidades. Eso es asegurar un verdadero sueldo generacional: un mundo habitable y justo para las hijas y los hijos del mañana.</p>
+      </div>
+
+      <!-- GLOSARIO Y DECLARATORIA -->
+      <div class="extra-box">
+        <div class="extra-title">Glosario de Términos Regionales y Simbólicos</div>
+        <div class="term-item">
+          <span class="term-name">Tequio / Faena:</span>
+          <span class="term-def">Trabajo colectivo y obligatorio no remunerado en beneficio de la comunidad, propio de los pueblos de Mesoamérica. Representa la organización horizontal.</span>
+        </div>
+        <div class="term-item">
+          <span class="term-name">A ras de tierra:</span>
+          <span class="term-def">Expresión que remite al trabajo de campo, a la realidad palpable y operativa que viven las personas, lejos de la teoría y los escritorios burocráticos.</span>
+        </div>
+        <div class="term-item">
+          <span class="term-name">Inercia de escritorio:</span>
+          <span class="term-def">La costumbre institucional de gestionar problemas sociales únicamente a través de trámites o documentos, sin involucrarse emocional ni físicamente con las comunidades afectadas.</span>
+        </div>
+        <div class="term-item">
+          <span class="term-name">Tikun Olam:</span>
+          <span class="term-def">Concepto ético que significa "reparar el mundo". Se asume como la responsabilidad activa de incidir en los problemas de la sociedad para restaurar la justicia y la dignidad, complementario a la cosmovisión comunitaria indígena.</span>
+        </div>
+      </div>
+
+      <div class="extra-box manifesto">
+        <div class="extra-title">Manifiesto de Uso Responsable de Herramientas Digitales</div>
+        <p style="font-size: 0.9rem; color: #555; text-align: justify; margin: 0;">
+          Este documento fue estructurado con la asistencia de Inteligencia Artificial (modelos de lenguaje) para la optimización del código HTML/CSS, corrección ortotipográfica y soporte en el contraste de ideas. No obstante, el anclaje emocional, las experiencias narradas en territorio (comisiones en la Montaña, contacto con las policías comunitarias y jornaleros), así como el posicionamiento crítico sobre la DADPI, son estrictamente producto de la reflexión y autoría humana de Isaac Moctezuma Calderón. La IA opera como un andamiaje técnico para alinear la forma, no como un sustituto del pensamiento crítico ni del arraigo cultural que le da sentido a este informe.
+        </p>
+      </div>
+
+    </div><!-- /article -->
+
+    <!-- ====== SIDEBAR ====== -->
+    <div class="sidebar">
+
+      <div class="spirit-whisper">
+        <div class="sw-label">⟡ Ciro el Grande · Susurro</div>
+        <p class="sw-text">"El conquistador verdadero es quien gana el corazón de los pueblos, no solo sus tierras. La Declaración Americana no se impone desde lejos: se siembra a ras de tierra en las comunidades."</p>
+      </div>
+
+      <div class="spirit-whisper" style="background: #e6b84a;">
+        <div class="sw-label" style="color: #131820;">⟡ Aaron Swartz · Susurro</div>
+        <p class="sw-text" style="color: #131820; font-weight: 500;">"No hay justicia en seguir leyes injustas. La ley es poder, ¿para qué vas a utilizar ese poder si no es para liberar a quienes sostienen el peso de la desigualdad?"</p>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Obstáculos Críticos</div>
+        <div class="obstacle-item">
+          <div class="obs-dot"></div>
+          <span class="obs-text">Consulta (CPLI) implementada de manera decorativa sin otorgar derecho a veto real.</span>
+        </div>
+        <div class="obstacle-item">
+          <div class="obs-dot"></div>
+          <span class="obs-text">Modelo extractivista agresivo que prioriza el saqueo de recursos sobre el territorio.</span>
+        </div>
+        <div class="obstacle-item">
+          <div class="obs-dot"></div>
+          <span class="obs-text">Violencia sistemática y desplazamiento forzado provocado por economías criminales.</span>
+        </div>
+        <div class="obstacle-item">
+          <div class="obs-dot"></div>
+          <span class="obs-text">Instrumentos interamericanos sin presupuesto directo ni mecanismos de sanción duros.</span>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+  </div><!-- /report-body -->
+
+  <!-- ====== REFERENCES ====== -->
+  <div class="refs-zone">
+    <div class="refs-label">Referencias · APA 7ª edición</div>
+    <p class="ref-item">Banco Mundial. (2016). <em>Latinoamérica indígena en el siglo XXI</em>. Banco Internacional de Reconstrucción y Fomento.</p>
+    <p class="ref-item">Côté, I., Grant, J. A., & Krogman, N. T. (2024). The global implementation of UNDRIP: a thematic review. <em>The International Journal of Human Rights</em>. https://doi.org/10.1080/13642987.2023.2299839</p>
+    <p class="ref-item">Mitchell, T., & Arseneau, J. (2021). The right to free, prior, and informed consent (FPIC). En <em>Decolonizing Law</em>. Routledge.</p>
+    <p class="ref-item">Organización de los Estados Americanos. (2016). <em>Declaración Americana sobre los Derechos de los Pueblos Indígenas</em>. AG/RES. 2888 (XLVI-O/16).</p>
+    <p class="ref-item">Organización de los Estados Americanos. (2017). <em>Plan de Acción sobre la Declaración Americana sobre los derechos de los pueblos indígenas (2017-2021)</em>. AG/RES. 2913 (XLVII-O/17).</p>
+    <p class="ref-item">Vivas-Barrera, T. G., & Quintero-Sánchez, F. (2023). From terra nullius to Indigenous collective land rights: cases before the Inter-American Court of Human Rights. <em>AlterNative: An International Journal of Indigenous Peoples</em>.</p>
+  </div>
+
+</div><!-- /content-area -->
+
+<!-- ====== FOOTER ====== -->
+<div class="footer-bar">
+  <span class="fb-name">Isaac Moctezuma Calderón</span>
+  <div class="fb-dot"></div>
+  <span class="fb-meta">LRIN · UNRC · Mayo 2026</span>
+</div>
+
 </body>
 </html>
-
