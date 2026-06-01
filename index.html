@@ -300,57 +300,6 @@
             color: var(--gold-luxury);
         }
 
-        /* Estilos para imágenes */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 15px 0;
-        }
-
-        .image-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-luxury);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .image-card img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: cover;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .image-card img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .image-caption {
-            margin-top: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .image-legend {
-            font-size: 0.7rem;
-            color: var(--gold-luxury);
-            margin-top: 5px;
-            font-family: monospace;
-        }
-
         /* Tabs */
         .nav-tabs {
             display: flex;
@@ -421,14 +370,13 @@
             .logo-area h1 { font-size: 1.3rem; }
             .menu-container { flex-direction: column; }
             .menu-botones { justify-content: center; }
-            .image-gallery { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 <div class="particles" id="particles"></div>
 
-<!-- MENÚ FUNCIONAL -->
+<!-- MENÚ FUNCIONAL (EL QUE SIRVE) -->
 <nav class="menu-funcional">
     <div class="menu-container">
         <div class="menu-logo">
@@ -479,7 +427,6 @@
             <div class="info-row"><span class="info-label">Correo electrónico</span><span class="info-value">1zoharmx@gmail.com</span></div>
             <div class="info-row"><span class="info-label">Teléfono</span><span class="info-value">713 118 2246</span></div>
         </div>
-
         <div class="profile-card">
             <div class="card-title">🎓 Datos Académicos</div>
             <div class="info-row"><span class="info-label">Matrícula</span><span class="info-value">25228942-2</span></div>
@@ -489,7 +436,6 @@
             <div class="badge-diplo">🎓 Primera generación universitaria</div>
             <div class="badge-diplo">💻 Smartphone + Laptop</div>
         </div>
-
         <div class="profile-card schedule-card">
             <div class="card-title">📅 Materias 2° Semestre · 2026-1</div>
             <table class="schedule-table">
@@ -503,28 +449,6 @@
                     <tr><td>TR2DES</td><td>Desarrollo Sostenible y RSU</td><td>DHLRIN-202-LAD</td></tr>
                 </tbody>
             </table>
-        </div>
-
-        <!-- SECCIÓN DE IMÁGENES - AGREGADA AQUÍ -->
-        <div class="profile-card">
-            <div class="card-title">🖼️ Material Gráfico</div>
-            <div class="image-gallery">
-                <div class="image-card">
-                    <img src="assets/images/elote_alcozacan.png" alt="Elote Alcozacán" 
-                         onerror="this.src='https://placehold.co/400x250/002395/white?text=Elote+Alcozac%C3%A1n'">
-                    <div class="image-caption">🌽 Elote Alcozacán</div>
-                    <div class="image-legend">Patrimonio cultural gastronómico de Guerrero</div>
-                </div>
-                <div class="image-card">
-                    <img src="assets/images/zombrero_alcozacan.png" alt="Zombrero Alcozacán" 
-                         onerror="this.src='https://placehold.co/400x250/002395/white?text=Zombrero+Alcozac%C3%A1n'">
-                    <div class="image-caption">🎭 Zombrero Alcozacán</div>
-                    <div class="image-legend">Artesanía tradicional · Identidad cultural</div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 15px;">
-                <p class="image-legend" style="font-size: 0.7rem;">📸 Fuente: Archivo personal · Alcozacán, Guerrero</p>
-            </div>
         </div>
     </div>
 
