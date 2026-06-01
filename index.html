@@ -20,7 +20,6 @@
             --cream-border: #d8cfc0;
             --muted: #6b6455;
             --gold-luxury: #d4af37;
-            --diplomatic-navy: #0a1929;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* MENÚ PRINCIPAL (el que funciona) */
+        /* MENÚ PRINCIPAL */
         .menu-principal {
             background: linear-gradient(135deg, #002395, #009edb, #d4af37);
             padding: 12px 20px;
@@ -41,7 +40,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            font-family: 'Montserrat', system-ui, sans-serif;
         }
 
         .menu-container {
@@ -54,136 +52,27 @@
             gap: 15px;
         }
 
-        .menu-logo a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-        }
+        .menu-logo a { color: white; text-decoration: none; font-weight: bold; font-size: 1rem; }
+        .menu-logo span { font-size: 0.65rem; color: rgba(255,255,255,0.8); }
 
-        .menu-logo span {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.8);
-        }
+        .menu-botones { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
 
-        .menu-botones {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            align-items: center;
-        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; }
+        .dropbtn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: linear-gradient(135deg, #0a1929, #1a1a2e); min-width: 260px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1001; border: 1px solid rgba(212,175,55,0.3); padding: 8px 0; }
+        .dropdown:hover .dropdown-content { display: block; }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+        .submenu { position: relative; }
+        .submenu > a { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; color: white; text-decoration: none; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.2s; }
+        .submenu > a:hover { background: rgba(212,175,55,0.3); padding-left: 25px; }
+        .submenu-content { display: none; position: absolute; left: 100%; top: 0; background: linear-gradient(135deg, #0a1929, #1a1a2e); min-width: 280px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.3); padding: 8px 0; }
+        .submenu:hover .submenu-content { display: block; }
+        .submenu-content a { display: flex; align-items: center; gap: 8px; padding: 8px 20px; color: white; text-decoration: none; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+        .submenu-content a:hover { background: rgba(212,175,55,0.3); padding-left: 25px; }
+        .modulo-badge { background: #d4af37; color: #0a1929; padding: 2px 6px; border-radius: 12px; font-size: 0.6rem; font-weight: bold; }
 
-        .dropbtn {
-            background: rgba(0,0,0,0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .dropbtn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: linear-gradient(135deg, #0a1929, #1a1a2e);
-            min-width: 260px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            z-index: 1001;
-            border: 1px solid rgba(212,175,55,0.3);
-            padding: 8px 0;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .submenu {
-            position: relative;
-        }
-
-        .submenu > a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.8rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.2s;
-        }
-
-        .submenu > a:hover {
-            background: rgba(212,175,55,0.3);
-            padding-left: 25px;
-        }
-
-        .submenu-content {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: 0;
-            background: linear-gradient(135deg, #0a1929, #1a1a2e);
-            min-width: 280px;
-            border-radius: 12px;
-            border: 1px solid rgba(212,175,55,0.3);
-            padding: 8px 0;
-        }
-
-        .submenu:hover .submenu-content {
-            display: block;
-        }
-
-        .submenu-content a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.75rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.2s;
-        }
-
-        .submenu-content a:hover {
-            background: rgba(212,175,55,0.3);
-            padding-left: 25px;
-        }
-
-        .modulo-badge {
-            background: #d4af37;
-            color: #0a1929;
-            padding: 2px 6px;
-            border-radius: 12px;
-            font-size: 0.6rem;
-            font-weight: bold;
-        }
-
-        .menu-user {
-            background: rgba(0,0,0,0.3);
-            padding: 5px 12px;
-            border-radius: 25px;
-            font-size: 0.7rem;
-            color: white;
-        }
+        .menu-user { background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white; }
 
         @media (max-width: 768px) {
             .menu-container { flex-direction: column; align-items: stretch; }
@@ -193,12 +82,7 @@
         }
 
         /* CONTENIDO PRINCIPAL */
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
+        .main-container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         .premium-header {
             background: linear-gradient(135deg, rgba(0,35,149,0.95), rgba(0,158,219,0.9), rgba(212,175,55,0.85));
             backdrop-filter: blur(20px);
@@ -207,124 +91,27 @@
             margin: 30px 0;
             border: 1px solid rgba(255,255,255,0.2);
         }
+        .header-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo-area h1 { font-family: 'Playfair Display', serif; font-size: 2rem; background: linear-gradient(135deg, #fff 0%, var(--gold-luxury) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-area p { font-family: monospace; font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+        .stats-grid { display: flex; gap: 15px; }
+        .stat-card { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 15px; text-align: center; min-width: 80px; }
+        .stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-luxury); }
+        .stat-label { font-size: 0.65rem; color: rgba(255,255,255,0.7); }
 
-        .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .logo-area h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            background: linear-gradient(135deg, #fff 0%, var(--gold-luxury) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logo-area p {
-            font-family: monospace;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .stats-grid {
-            display: flex;
-            gap: 15px;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .stat-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold-luxury);
-        }
-
-        .stat-label {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .profile-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .profile-card {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 25px;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--gold-luxury);
-            margin-bottom: 15px;
-            border-left: 3px solid var(--gold-luxury);
-            padding-left: 12px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.8rem;
-        }
-
+        .profile-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .profile-card { background: rgba(255,255,255,0.08); backdrop-filter: blur(15px); border-radius: 25px; padding: 25px; border: 1px solid rgba(255,255,255,0.15); }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold-luxury); margin-bottom: 15px; border-left: 3px solid var(--gold-luxury); padding-left: 12px; }
+        .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; }
         .info-label { color: rgba(255,255,255,0.6); }
         .info-value { color: rgba(255,255,255,0.9); text-align: right; }
+        .badge-diplo { display: inline-block; background: linear-gradient(135deg, var(--gold-luxury), #8b7355); color: #0a1929; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; margin: 5px 5px 0 0; }
 
-        .badge-diplo {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold-luxury), #8b7355);
-            color: #0a1929;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            margin: 5px 5px 0 0;
-        }
-
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .schedule-table th, .schedule-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.75rem;
-        }
-
+        .schedule-table { width: 100%; border-collapse: collapse; }
+        .schedule-table th, .schedule-table td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; }
         .schedule-table th { color: var(--gold-luxury); }
 
-        .footer {
-            margin-top: 40px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.6);
-        }
+        .footer { margin-top: 40px; background: rgba(0,0,0,0.5); border-radius: 20px; padding: 20px; text-align: center; font-size: 0.65rem; color: rgba(255,255,255,0.6); }
 
         @media (max-width: 768px) {
             .header-row { flex-direction: column; text-align: center; }
@@ -335,7 +122,6 @@
 </head>
 <body>
 
-<!-- MENÚ QUE FUNCIONA -->
 <div class="menu-principal">
     <div class="menu-container">
         <div class="menu-logo">
@@ -347,7 +133,6 @@
     </div>
 </div>
 
-<!-- CONTENIDO COMPLETO (PERFIL + MATERIAS) -->
 <div class="main-container">
     <header class="premium-header">
         <div class="header-row">
@@ -406,75 +191,75 @@
 </div>
 
 <script>
-// Datos de materias y actividades
+// Datos completos de todas las materias
 const materiasData = {
     1: [
-        { codigo: "01", nombre: "Introducción a la Investigación en Ciencias Sociales", path: "01_introduccion_a_la_investigacion_en_ciencias_sociales", actividades: false },
-        { codigo: "02", nombre: "Escritura Argumentativa", path: "02_escritura_argumentativa", actividades: false },
-        { codigo: "03", nombre: "Introducción al Estudio de las Relaciones Internacionales", path: "03_introduccion_al_estudio_de_las_relaciones_internacionales", actividades: false },
-        { codigo: "04", nombre: "Perspectiva de Género para el Diseño Social", path: "04_perspectiva_de_genero_para_el_diseno_social", actividades: false },
-        { codigo: "05", nombre: "Historia y Formación del Estado Mexicano", path: "05_historia_y_formacion_del_estado_mexicano_y_politica_exterior", actividades: false },
-        { codigo: "06", nombre: "Geografía Política y Económica", path: "06_geografia_politica_y_economica", actividades: false }
+        { codigo: "01", nombre: "Introducción a la Investigación en Ciencias Sociales", path: "semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales" },
+        { codigo: "02", nombre: "Escritura Argumentativa", path: "semestre_1/02_escritura_argumentativa" },
+        { codigo: "03", nombre: "Introducción al Estudio de las Relaciones Internacionales", path: "semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales" },
+        { codigo: "04", nombre: "Perspectiva de Género para el Diseño Social", path: "semestre_1/04_perspectiva_de_genero_para_el_diseno_social" },
+        { codigo: "05", nombre: "Historia y Formación del Estado Mexicano", path: "semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior" },
+        { codigo: "06", nombre: "Geografía Política y Económica", path: "semestre_1/06_geografia_politica_y_economica" }
     ],
     2: [
-        { codigo: "07", nombre: "Derecho Constitucional Mexicano", path: "07_derecho_constitucional_mexicano", actividades: false },
-        { codigo: "08", nombre: "Taller de Expresión Escrita", path: "08_taller_de_expresion_escrita", actividades: false },
-        { codigo: "09", nombre: "Historia y Formación del Estado Moderno", path: "09_historia_y_formacion_del_estado_moderno_mexicano_y_politica_exterior", actividades: false },
-        { codigo: "10", nombre: "Desarrollo Sostenible, Equidad y RSU", path: "10_desarrollo_sostenible_equidad_y_responsabilidad_social", actividades: true, hasSubmenu: true },
-        { codigo: "11", nombre: "Historia de las RRII (1815-1945)", path: "11_historia_de_las_relaciones_internacionales_1815-1945", actividades: false },
-        { codigo: "12", nombre: "América Latina y el Caribe", path: "12_america_latina_y_el_caribe", actividades: false }
+        { codigo: "07", nombre: "Derecho Constitucional Mexicano", path: "semestre_2/07_derecho_constitucional_mexicano" },
+        { codigo: "08", nombre: "Taller de Expresión Escrita", path: "semestre_2/08_taller_de_expresion_escrita" },
+        { codigo: "09", nombre: "Historia y Formación del Estado Moderno", path: "semestre_2/09_historia_y_formacion_del_estado_moderno_mexicano_y_politica_exterior" },
+        { codigo: "10", nombre: "Desarrollo Sostenible, Equidad y RSU", path: "semestre_2/10_desarrollo_sostenible_equidad_y_responsabilidad_social" },
+        { codigo: "11", nombre: "Historia de las RRII (1815-1945)", path: "semestre_2/11_historia_de_las_relaciones_internacionales_1815-1945" },
+        { codigo: "12", nombre: "América Latina y el Caribe", path: "semestre_2/12_america_latina_y_el_caribe" }
     ],
     3: [
-        { codigo: "13", nombre: "Derecho Internacional Público", path: "13_derecho_internacional_publico", actividades: false },
-        { codigo: "14", nombre: "Historia Contemporánea de las RRII", path: "14_historia_contemporanea_de_las_relaciones_internacionales", actividades: false },
-        { codigo: "15", nombre: "Pensamiento Político y Social", path: "15_pensamiento_politico_y_social", actividades: false },
-        { codigo: "16", nombre: "Pensamiento Complejo para la Argumentación", path: "16_pensamiento_complejo_para_la_argumentacion", actividades: false },
-        { codigo: "17", nombre: "Teoría Económica", path: "17_teoria_economica", actividades: false },
-        { codigo: "18", nombre: "América del Norte", path: "18_america_del_norte", actividades: false }
+        { codigo: "13", nombre: "Derecho Internacional Público", path: "semestre_3/13_derecho_internacional_publico" },
+        { codigo: "14", nombre: "Historia Contemporánea de las RRII", path: "semestre_3/14_historia_contemporanea_de_las_relaciones_internacionales" },
+        { codigo: "15", nombre: "Pensamiento Político y Social", path: "semestre_3/15_pensamiento_politico_y_social" },
+        { codigo: "16", nombre: "Pensamiento Complejo para la Argumentación", path: "semestre_3/16_pensamiento_complejo_para_la_argumentacion" },
+        { codigo: "17", nombre: "Teoría Económica", path: "semestre_3/17_teoria_economica" },
+        { codigo: "18", nombre: "América del Norte", path: "semestre_3/18_america_del_norte" }
     ],
     4: [
-        { codigo: "19", nombre: "Derecho Internacional Privado", path: "19_derecho_internacional_privado", actividades: false },
-        { codigo: "20", nombre: "Organización Internacional", path: "20_organizacion_internacional", actividades: false },
-        { codigo: "21", nombre: "Teorías de las RRII", path: "21_teorias_de_las_relaciones_internacionales", actividades: false },
-        { codigo: "22", nombre: "Laboratorio de Innovación Social", path: "22_laboratorio_de_innovacion_social", actividades: false },
-        { codigo: "23", nombre: "Economía Política Internacional", path: "23_economia_politica_internacional", actividades: false },
-        { codigo: "24", nombre: "Europa", path: "24_europa", actividades: false }
+        { codigo: "19", nombre: "Derecho Internacional Privado", path: "semestre_4/19_derecho_internacional_privado" },
+        { codigo: "20", nombre: "Organización Internacional", path: "semestre_4/20_organizacion_internacional" },
+        { codigo: "21", nombre: "Teorías de las RRII", path: "semestre_4/21_teorias_de_las_relaciones_internacionales" },
+        { codigo: "22", nombre: "Laboratorio de Innovación Social", path: "semestre_4/22_laboratorio_de_innovacion_social" },
+        { codigo: "23", nombre: "Economía Política Internacional", path: "semestre_4/23_economia_politica_internacional" },
+        { codigo: "24", nombre: "Europa", path: "semestre_4/24_europa" }
     ],
     5: [
-        { codigo: "25", nombre: "Negociaciones Internacionales", path: "25_negociaciones_internacionales", actividades: false },
-        { codigo: "26", nombre: "Diseño y Evaluación de Políticas Públicas", path: "26_diseno_y_evaluacion_de_politicas_publicas", actividades: false },
-        { codigo: "27", nombre: "Estudios Globales", path: "27_estudios_globales", actividades: false },
-        { codigo: "28", nombre: "Sistemas Políticos Comparados", path: "28_sistemas_politicos_comparados", actividades: false },
-        { codigo: "29", nombre: "Métodos Cuantitativos", path: "29_metodos_cuantitativos", actividades: false },
-        { codigo: "30", nombre: "Asia y el Pacífico", path: "30_asia_y_el_pacifico", actividades: false }
+        { codigo: "25", nombre: "Negociaciones Internacionales", path: "semestre_5/25_negociaciones_internacionales" },
+        { codigo: "26", nombre: "Diseño y Evaluación de Políticas Públicas", path: "semestre_5/26_diseno_y_evaluacion_de_politicas_publicas" },
+        { codigo: "27", nombre: "Estudios Globales", path: "semestre_5/27_estudios_globales" },
+        { codigo: "28", nombre: "Sistemas Políticos Comparados", path: "semestre_5/28_sistemas_politicos_comparados" },
+        { codigo: "29", nombre: "Métodos Cuantitativos", path: "semestre_5/29_metodos_cuantitativos" },
+        { codigo: "30", nombre: "Asia y el Pacífico", path: "semestre_5/30_asia_y_el_pacifico" }
     ],
     6: [
-        { codigo: "31", nombre: "Derecho Internacional de los DDHH", path: "31_derecho_internacional_de_los_derechos_humanos", actividades: false },
-        { codigo: "32", nombre: "Patrimonio Cultural", path: "32_patrimonio_cultural", actividades: false },
-        { codigo: "33", nombre: "Introducción a la Práctica Profesional", path: "33_introduccion_a_la_practica_profesional", actividades: false },
-        { codigo: "34", nombre: "Desarrollo Sustentable y Medio Ambiente", path: "34_desarrollo_sustentable_y_medio_ambiente", actividades: false },
-        { codigo: "35", nombre: "Cooperación Internacional", path: "35_cooperacion_internacional", actividades: false },
-        { codigo: "36", nombre: "Comercio Internacional", path: "36_comercio_internacional", actividades: false },
-        { codigo: "37", nombre: "Medio Oriente", path: "37_medio_oriente", actividades: false }
+        { codigo: "31", nombre: "Derecho Internacional de los DDHH", path: "semestre_6/31_derecho_internacional_de_los_derechos_humanos" },
+        { codigo: "32", nombre: "Patrimonio Cultural", path: "semestre_6/32_patrimonio_cultural" },
+        { codigo: "33", nombre: "Introducción a la Práctica Profesional", path: "semestre_6/33_introduccion_a_la_practica_profesional" },
+        { codigo: "34", nombre: "Desarrollo Sustentable y Medio Ambiente", path: "semestre_6/34_desarrollo_sustentable_y_medio_ambiente" },
+        { codigo: "35", nombre: "Cooperación Internacional", path: "semestre_6/35_cooperacion_internacional" },
+        { codigo: "36", nombre: "Comercio Internacional", path: "semestre_6/36_comercio_internacional" },
+        { codigo: "37", nombre: "Medio Oriente", path: "semestre_6/37_medio_oriente" }
     ],
     7: [
-        { codigo: "38", nombre: "Seminario de Titulación I", path: "38_seminario_de_titulacion_i", actividades: false },
-        { codigo: "39", nombre: "Práctica Profesional I", path: "39_practica_profesional_i", actividades: false },
-        { codigo: "40", nombre: "Finanzas Internacionales", path: "40_finanzas_internacionales", actividades: false },
-        { codigo: "41", nombre: "Gobernanza Global Ambiental", path: "41_gobernanza_global_ambiental", actividades: false },
-        { codigo: "42", nombre: "África", path: "42_africa", actividades: false }
+        { codigo: "38", nombre: "Seminario de Titulación I", path: "semestre_7/38_seminario_de_titulacion_i" },
+        { codigo: "39", nombre: "Práctica Profesional I", path: "semestre_7/39_practica_profesional_i" },
+        { codigo: "40", nombre: "Finanzas Internacionales", path: "semestre_7/40_finanzas_internacionales" },
+        { codigo: "41", nombre: "Gobernanza Global Ambiental", path: "semestre_7/41_gobernanza_global_ambiental" },
+        { codigo: "42", nombre: "África", path: "semestre_7/42_africa" }
     ],
     8: [
-        { codigo: "43", nombre: "Seminario de Titulación II", path: "43_seminario_de_titulacion_ii", actividades: false },
-        { codigo: "44", nombre: "Práctica Profesional II", path: "44_practica_profesional_ii", actividades: false },
-        { codigo: "45", nombre: "Migración Internacional", path: "45_migracion_internacional", actividades: false },
-        { codigo: "46", nombre: "Ciencia, Tecnología e Innovación", path: "46_ciencia_tecnologia_e_innovacion_en_las_relaciones_internacionales", actividades: false },
-        { codigo: "47", nombre: "Retos de las Ciudades Globales", path: "47_retos_de_las_ciudades_globales", actividades: false }
+        { codigo: "43", nombre: "Seminario de Titulación II", path: "semestre_8/43_seminario_de_titulacion_ii" },
+        { codigo: "44", nombre: "Práctica Profesional II", path: "semestre_8/44_practica_profesional_ii" },
+        { codigo: "45", nombre: "Migración Internacional", path: "semestre_8/45_migracion_internacional" },
+        { codigo: "46", nombre: "Ciencia, Tecnología e Innovación", path: "semestre_8/46_ciencia_tecnologia_e_innovacion_en_las_relaciones_internacionales" },
+        { codigo: "47", nombre: "Retos de las Ciudades Globales", path: "semestre_8/47_retos_de_las_ciudades_globales" }
     ]
 };
 
-// Actividades para la materia 10 (Desarrollo Sustentable)
-const actividadesMateria10 = [
+// Actividades estándar para TODAS las materias
+const actividadesEstandar = [
     { modulo: 1, tipo: "foro", archivo: "foro1.html", nombre: "Foro Integrador M1" },
     { modulo: 2, tipo: "tarea", archivo: "tarea2.html", nombre: "Tarea Auténtica M2" },
     { modulo: 2, tipo: "foro", archivo: "foro2.html", nombre: "Foro Integrador M2" },
@@ -498,30 +283,20 @@ function generarMenu() {
             <div class="dropdown-content">`;
         
         for (const materia of materias) {
-            const materiaPath = `semestre_${s}/${materia.path}`;
+            const materiaPath = materia.path;
             
-            if (materia.hasSubmenu) {
-                // Materia con submenú de actividades (Desarrollo Sustentable)
-                html += `<div class="submenu">
-                    <a href="${materiaPath}/index.html">📖 ${materia.nombre} <span style="font-size:0.7rem;">▶</span></a>
-                    <div class="submenu-content">`;
-                
-                for (const act of actividadesMateria10) {
-                    let emoji = '';
-                    if (act.tipo === 'foro') emoji = '💬';
-                    else if (act.tipo === 'tarea') emoji = '📝';
-                    else emoji = '🎯';
-                    
-                    html += `<a href="${materiaPath}/${act.archivo}">
-                        ${emoji} <span class="modulo-badge">${act.modulo}</span> ${act.nombre}
-                    </a>`;
-                }
-                
-                html += `</div></div>`;
-            } else {
-                // Materia sin actividades
-                html += `<a href="${materiaPath}/index.html" style="display:block; padding:10px 20px; color:white; text-decoration:none;">📖 ${materia.nombre}</a>`;
+            html += `<div class="submenu">
+                <a href="${materiaPath}/index.html">📖 ${materia.nombre} <span style="font-size:0.7rem;">▶</span></a>
+                <div class="submenu-content">`;
+            
+            for (const act of actividadesEstandar) {
+                let emoji = act.tipo === 'foro' ? '💬' : (act.tipo === 'tarea' ? '📝' : '🎯');
+                html += `<a href="${materiaPath}/${act.archivo}">
+                    ${emoji} <span class="modulo-badge">${act.modulo}</span> ${act.nombre}
+                </a>`;
             }
+            
+            html += `</div></div>`;
         }
         
         html += `</div></div>`;
