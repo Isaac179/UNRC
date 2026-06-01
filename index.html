@@ -1,300 +1,526 @@
-﻿<style>
-/* Menu principal */
-.menu-principal {
-    background: linear-gradient(135deg, #002395, #009edb, #d4af37);
-    padding: 12px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    font-family: system-ui, sans-serif;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Isaac Moctezuma · Portafolio Académico · UNRC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0e0b;
+            --paper: #f5f0e8;
+            --warm: #f0ead8;
+            --rust: #c4440a;
+            --rust-light: #f0d4c4;
+            --gold: #c89b2a;
+            --gold-pale: #f7eecc;
+            --sage: #3d5a47;
+            --sage-light: #d4e4d8;
+            --cream-border: #d8cfc0;
+            --muted: #6b6455;
+            --gold-luxury: #d4af37;
+            --diplomatic-navy: #0a1929;
+        }
 
-.menu-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.menu-logo a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
+        body {
+            font-family: 'Montserrat', 'Syne', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #1a1a2e 100%);
+            color: var(--paper);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-.menu-logo span {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.8);
-}
+        /* MENÚ PRINCIPAL (el que funciona) */
+        .menu-principal {
+            background: linear-gradient(135deg, #002395, #009edb, #d4af37);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-family: 'Montserrat', system-ui, sans-serif;
+        }
 
-/* Dropdowns */
-.menu-dropdown {
-    position: relative;
-    display: inline-block;
-}
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
 
-.menu-dropbtn {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-}
+        .menu-logo a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+        }
 
-.menu-dropbtn:hover {
-    background: rgba(255,255,255,0.4);
-    transform: translateY(-2px);
-}
+        .menu-logo span {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.8);
+        }
 
-.menu-dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: linear-gradient(135deg, #0a1929, #1a1a2e);
-    min-width: 250px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    z-index: 1001;
-    border: 1px solid rgba(212,175,55,0.3);
-    padding: 8px 0;
-}
+        .menu-botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
 
-.menu-dropdown:hover .menu-dropdown-content {
-    display: block;
-}
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-/* Submenú de actividades */
-.submenu {
-    position: relative;
-}
+        .dropbtn {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-.submenu > a {
-    display: block;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 0.8rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.2s;
-}
+        .dropbtn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
 
-.submenu > a:hover {
-    background: rgba(212,175,55,0.3);
-    padding-left: 25px;
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #0a1929, #1a1a2e);
+            min-width: 260px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 1001;
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 8px 0;
+        }
 
-.submenu-content {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background: linear-gradient(135deg, #0a1929, #1a1a2e);
-    min-width: 280px;
-    border-radius: 12px;
-    border: 1px solid rgba(212,175,55,0.3);
-    padding: 8px 0;
-}
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-.submenu:hover .submenu-content {
-    display: block;
-}
+        .submenu {
+            position: relative;
+        }
 
-.submenu-content a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 0.75rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.2s;
-}
+        .submenu > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
 
-.submenu-content a:hover {
-    background: rgba(212,175,55,0.3);
-    padding-left: 25px;
-}
+        .submenu > a:hover {
+            background: rgba(212,175,55,0.3);
+            padding-left: 25px;
+        }
 
-.submenu-content .modulo-badge {
-    background: #d4af37;
-    color: #0a1929;
-    padding: 2px 6px;
-    border-radius: 12px;
-    font-size: 0.6rem;
-    font-weight: bold;
-}
+        .submenu-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: linear-gradient(135deg, #0a1929, #1a1a2e);
+            min-width: 280px;
+            border-radius: 12px;
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 8px 0;
+        }
 
-/* Grupo de semestres */
-.menu-semestres {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    align-items: center;
-}
+        .submenu:hover .submenu-content {
+            display: block;
+        }
 
-.menu-user {
-    background: rgba(0,0,0,0.3);
-    padding: 5px 12px;
-    border-radius: 25px;
-    font-size: 0.75rem;
-    color: white;
-}
+        .submenu-content a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.2s;
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-container { flex-direction: column; align-items: stretch; }
-    .menu-semestres { justify-content: center; }
-    .menu-dropdown-content { position: static; }
-    .submenu-content { position: static; left: 0; margin-left: 20px; }
-}
-</style>
+        .submenu-content a:hover {
+            background: rgba(212,175,55,0.3);
+            padding-left: 25px;
+        }
 
-<nav class="menu-principal">
+        .modulo-badge {
+            background: #d4af37;
+            color: #0a1929;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+
+        .menu-user {
+            background: rgba(0,0,0,0.3);
+            padding: 5px 12px;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container { flex-direction: column; align-items: stretch; }
+            .menu-botones { justify-content: center; }
+            .dropdown-content { position: static; }
+            .submenu-content { position: static; left: 0; margin-left: 20px; }
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .premium-header {
+            background: linear-gradient(135deg, rgba(0,35,149,0.95), rgba(0,158,219,0.9), rgba(212,175,55,0.85));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-area h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #fff 0%, var(--gold-luxury) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-area p {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-luxury);
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-luxury);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--gold-luxury);
+            padding-left: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+        }
+
+        .info-label { color: rgba(255,255,255,0.6); }
+        .info-value { color: rgba(255,255,255,0.9); text-align: right; }
+
+        .badge-diplo {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-luxury), #8b7355);
+            color: #0a1929;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin: 5px 5px 0 0;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+        }
+
+        .schedule-table th { color: var(--gold-luxury); }
+
+        .footer {
+            margin-top: 40px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .header-row { flex-direction: column; text-align: center; }
+            .stats-grid { justify-content: center; }
+            .profile-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MENÚ QUE FUNCIONA -->
+<div class="menu-principal">
     <div class="menu-container">
         <div class="menu-logo">
             <a href="index.html">🎓 Isaac Moctezuma</a><br>
             <span>Relaciones Internacionales · UNRC</span>
         </div>
-        <div class="menu-semestres" id="menuSemestres">
-            <!-- Los semestres se generarán con JavaScript -->
-            <div style="color:white; padding:5px;">Cargando...</div>
+        <div class="menu-botones" id="menuBotones"></div>
+        <div class="menu-user">👨‍🎓 25228942-2</div>
+    </div>
+</div>
+
+<!-- CONTENIDO COMPLETO (PERFIL + MATERIAS) -->
+<div class="main-container">
+    <header class="premium-header">
+        <div class="header-row">
+            <div class="logo-area">
+                <h1>ISAAC MOCTEZUMA CALDERÓN</h1>
+                <p>Licenciatura en Relaciones Internacionales · UNRC · Generación 2024-2028</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value">2°</div><div class="stat-label">Semestre</div></div>
+                <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Materias</div></div>
+                <div class="stat-card"><div class="stat-value">🎓</div><div class="stat-label">En curso</div></div>
+            </div>
         </div>
-        <div class="menu-user">
-            👨‍🎓 25228942-2
+    </header>
+
+    <div class="profile-section">
+        <div class="profile-card">
+            <div class="card-title">📋 Datos Personales</div>
+            <div class="info-row"><span class="info-label">Nombre completo</span><span class="info-value">ISAAC MOCTEZUMA CALDERÓN</span></div>
+            <div class="info-row"><span class="info-label">Fecha de nacimiento</span><span class="info-value">27 de junio de 1992 · 33 años</span></div>
+            <div class="info-row"><span class="info-label">Lugar de nacimiento</span><span class="info-value">Guerrero, México</span></div>
+            <div class="info-row"><span class="info-label">Correo electrónico</span><span class="info-value">1zoharmx@gmail.com</span></div>
+            <div class="info-row"><span class="info-label">Teléfono</span><span class="info-value">713 118 2246</span></div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-title">🎓 Datos Académicos</div>
+            <div class="info-row"><span class="info-label">Matrícula</span><span class="info-value">25228942-2</span></div>
+            <div class="info-row"><span class="info-label">Licenciatura</span><span class="info-value">Relaciones Internacionales</span></div>
+            <div class="info-row"><span class="info-label">Modalidad</span><span class="info-value">A Distancia · Híbrida</span></div>
+            <div class="info-row"><span class="info-label">Semestre actual</span><span class="info-value">2° Semestre</span></div>
+            <div class="badge-diplo">🎓 Primera generación universitaria</div>
+            <div class="badge-diplo">💻 Smartphone + Laptop</div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-title">📅 Materias 2° Semestre · 2026-1</div>
+            <table class="schedule-table">
+                <thead><tr><th>Clave</th><th>Unidad Curricular</th><th>Grupo</th></tr></thead>
+                <tbody>
+                    <tr><td>LRIN2TAL</td><td>Taller de Expresión Escrita</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2HIR</td><td>Historia de las RRII (1815-1945)</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2DER</td><td>Derecho Constitucional Mexicano</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2AME</td><td>América Latina y el Caribe</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>LRIN2HIF</td><td>Historia del Estado Moderno</td><td>DHLRIN-202-LAD</td></tr>
+                    <tr><td>TR2DES</td><td>Desarrollo Sostenible y RSU</td><td>DHLRIN-202-LAD</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</nav>
+
+    <div class="footer">
+        ISAAC MOCTEZUMA CALDERÓN · Matrícula: 25228942-2 · Licenciatura en Relaciones Internacionales<br>
+        Universidad Nacional Rosario Castellanos · Semestre 2 · 2026
+    </div>
+</div>
 
 <script>
 // Datos de materias y actividades
-const materiasPorSemestre = {
+const materiasData = {
     1: [
-        { codigo: "01", nombre: "Introducción a la Investigación en Ciencias Sociales", path: "01_introduccion_a_la_investigacion_en_ciencias_sociales" },
-        { codigo: "02", nombre: "Escritura Argumentativa", path: "02_escritura_argumentativa" },
-        { codigo: "03", nombre: "Introducción al Estudio de las Relaciones Internacionales", path: "03_introduccion_al_estudio_de_las_relaciones_internacionales" },
-        { codigo: "04", nombre: "Perspectiva de Género para el Diseño Social", path: "04_perspectiva_de_genero_para_el_diseno_social" },
-        { codigo: "05", nombre: "Historia y Formación del Estado Mexicano", path: "05_historia_y_formacion_del_estado_mexicano_y_politica_exterior" },
-        { codigo: "06", nombre: "Geografía Política y Económica", path: "06_geografia_politica_y_economica" }
+        { codigo: "01", nombre: "Introducción a la Investigación en Ciencias Sociales", path: "01_introduccion_a_la_investigacion_en_ciencias_sociales", actividades: false },
+        { codigo: "02", nombre: "Escritura Argumentativa", path: "02_escritura_argumentativa", actividades: false },
+        { codigo: "03", nombre: "Introducción al Estudio de las Relaciones Internacionales", path: "03_introduccion_al_estudio_de_las_relaciones_internacionales", actividades: false },
+        { codigo: "04", nombre: "Perspectiva de Género para el Diseño Social", path: "04_perspectiva_de_genero_para_el_diseno_social", actividades: false },
+        { codigo: "05", nombre: "Historia y Formación del Estado Mexicano", path: "05_historia_y_formacion_del_estado_mexicano_y_politica_exterior", actividades: false },
+        { codigo: "06", nombre: "Geografía Política y Económica", path: "06_geografia_politica_y_economica", actividades: false }
     ],
     2: [
-        { codigo: "07", nombre: "Derecho Constitucional Mexicano", path: "07_derecho_constitucional_mexicano" },
-        { codigo: "08", nombre: "Taller de Expresión Escrita", path: "08_taller_de_expresion_escrita" },
-        { codigo: "09", nombre: "Historia y Formación del Estado Moderno", path: "09_historia_y_formacion_del_estado_moderno_mexicano_y_politica_exterior" },
-        { codigo: "10", nombre: "Desarrollo Sostenible, Equidad y RSU", path: "10_desarrollo_sostenible_equidad_y_responsabilidad_social" },
-        { codigo: "11", nombre: "Historia de las RRII (1815-1945)", path: "11_historia_de_las_relaciones_internacionales_1815-1945" },
-        { codigo: "12", nombre: "América Latina y el Caribe", path: "12_america_latina_y_el_caribe" }
+        { codigo: "07", nombre: "Derecho Constitucional Mexicano", path: "07_derecho_constitucional_mexicano", actividades: false },
+        { codigo: "08", nombre: "Taller de Expresión Escrita", path: "08_taller_de_expresion_escrita", actividades: false },
+        { codigo: "09", nombre: "Historia y Formación del Estado Moderno", path: "09_historia_y_formacion_del_estado_moderno_mexicano_y_politica_exterior", actividades: false },
+        { codigo: "10", nombre: "Desarrollo Sostenible, Equidad y RSU", path: "10_desarrollo_sostenible_equidad_y_responsabilidad_social", actividades: true, hasSubmenu: true },
+        { codigo: "11", nombre: "Historia de las RRII (1815-1945)", path: "11_historia_de_las_relaciones_internacionales_1815-1945", actividades: false },
+        { codigo: "12", nombre: "América Latina y el Caribe", path: "12_america_latina_y_el_caribe", actividades: false }
     ],
     3: [
-        { codigo: "13", nombre: "Derecho Internacional Público", path: "13_derecho_internacional_publico" },
-        { codigo: "14", nombre: "Historia Contemporánea de las RRII", path: "14_historia_contemporanea_de_las_relaciones_internacionales" },
-        { codigo: "15", nombre: "Pensamiento Político y Social", path: "15_pensamiento_politico_y_social" },
-        { codigo: "16", nombre: "Pensamiento Complejo para la Argumentación", path: "16_pensamiento_complejo_para_la_argumentacion" },
-        { codigo: "17", nombre: "Teoría Económica", path: "17_teoria_economica" },
-        { codigo: "18", nombre: "América del Norte", path: "18_america_del_norte" }
+        { codigo: "13", nombre: "Derecho Internacional Público", path: "13_derecho_internacional_publico", actividades: false },
+        { codigo: "14", nombre: "Historia Contemporánea de las RRII", path: "14_historia_contemporanea_de_las_relaciones_internacionales", actividades: false },
+        { codigo: "15", nombre: "Pensamiento Político y Social", path: "15_pensamiento_politico_y_social", actividades: false },
+        { codigo: "16", nombre: "Pensamiento Complejo para la Argumentación", path: "16_pensamiento_complejo_para_la_argumentacion", actividades: false },
+        { codigo: "17", nombre: "Teoría Económica", path: "17_teoria_economica", actividades: false },
+        { codigo: "18", nombre: "América del Norte", path: "18_america_del_norte", actividades: false }
     ],
     4: [
-        { codigo: "19", nombre: "Derecho Internacional Privado", path: "19_derecho_internacional_privado" },
-        { codigo: "20", nombre: "Organización Internacional", path: "20_organizacion_internacional" },
-        { codigo: "21", nombre: "Teorías de las RRII", path: "21_teorias_de_las_relaciones_internacionales" },
-        { codigo: "22", nombre: "Laboratorio de Innovación Social", path: "22_laboratorio_de_innovacion_social" },
-        { codigo: "23", nombre: "Economía Política Internacional", path: "23_economia_politica_internacional" },
-        { codigo: "24", nombre: "Europa", path: "24_europa" }
+        { codigo: "19", nombre: "Derecho Internacional Privado", path: "19_derecho_internacional_privado", actividades: false },
+        { codigo: "20", nombre: "Organización Internacional", path: "20_organizacion_internacional", actividades: false },
+        { codigo: "21", nombre: "Teorías de las RRII", path: "21_teorias_de_las_relaciones_internacionales", actividades: false },
+        { codigo: "22", nombre: "Laboratorio de Innovación Social", path: "22_laboratorio_de_innovacion_social", actividades: false },
+        { codigo: "23", nombre: "Economía Política Internacional", path: "23_economia_politica_internacional", actividades: false },
+        { codigo: "24", nombre: "Europa", path: "24_europa", actividades: false }
     ],
     5: [
-        { codigo: "25", nombre: "Negociaciones Internacionales", path: "25_negociaciones_internacionales" },
-        { codigo: "26", nombre: "Diseño y Evaluación de Políticas Públicas", path: "26_diseno_y_evaluacion_de_politicas_publicas" },
-        { codigo: "27", nombre: "Estudios Globales", path: "27_estudios_globales" },
-        { codigo: "28", nombre: "Sistemas Políticos Comparados", path: "28_sistemas_politicos_comparados" },
-        { codigo: "29", nombre: "Métodos Cuantitativos", path: "29_metodos_cuantitativos" },
-        { codigo: "30", nombre: "Asia y el Pacífico", path: "30_asia_y_el_pacifico" }
+        { codigo: "25", nombre: "Negociaciones Internacionales", path: "25_negociaciones_internacionales", actividades: false },
+        { codigo: "26", nombre: "Diseño y Evaluación de Políticas Públicas", path: "26_diseno_y_evaluacion_de_politicas_publicas", actividades: false },
+        { codigo: "27", nombre: "Estudios Globales", path: "27_estudios_globales", actividades: false },
+        { codigo: "28", nombre: "Sistemas Políticos Comparados", path: "28_sistemas_politicos_comparados", actividades: false },
+        { codigo: "29", nombre: "Métodos Cuantitativos", path: "29_metodos_cuantitativos", actividades: false },
+        { codigo: "30", nombre: "Asia y el Pacífico", path: "30_asia_y_el_pacifico", actividades: false }
     ],
     6: [
-        { codigo: "31", nombre: "Derecho Internacional de los DDHH", path: "31_derecho_internacional_de_los_derechos_humanos" },
-        { codigo: "32", nombre: "Patrimonio Cultural", path: "32_patrimonio_cultural" },
-        { codigo: "33", nombre: "Introducción a la Práctica Profesional", path: "33_introduccion_a_la_practica_profesional" },
-        { codigo: "34", nombre: "Desarrollo Sustentable y Medio Ambiente", path: "34_desarrollo_sustentable_y_medio_ambiente" },
-        { codigo: "35", nombre: "Cooperación Internacional", path: "35_cooperacion_internacional" },
-        { codigo: "36", nombre: "Comercio Internacional", path: "36_comercio_internacional" },
-        { codigo: "37", nombre: "Medio Oriente", path: "37_medio_oriente" }
+        { codigo: "31", nombre: "Derecho Internacional de los DDHH", path: "31_derecho_internacional_de_los_derechos_humanos", actividades: false },
+        { codigo: "32", nombre: "Patrimonio Cultural", path: "32_patrimonio_cultural", actividades: false },
+        { codigo: "33", nombre: "Introducción a la Práctica Profesional", path: "33_introduccion_a_la_practica_profesional", actividades: false },
+        { codigo: "34", nombre: "Desarrollo Sustentable y Medio Ambiente", path: "34_desarrollo_sustentable_y_medio_ambiente", actividades: false },
+        { codigo: "35", nombre: "Cooperación Internacional", path: "35_cooperacion_internacional", actividades: false },
+        { codigo: "36", nombre: "Comercio Internacional", path: "36_comercio_internacional", actividades: false },
+        { codigo: "37", nombre: "Medio Oriente", path: "37_medio_oriente", actividades: false }
     ],
     7: [
-        { codigo: "38", nombre: "Seminario de Titulación I", path: "38_seminario_de_titulacion_i" },
-        { codigo: "39", nombre: "Práctica Profesional I", path: "39_practica_profesional_i" },
-        { codigo: "40", nombre: "Finanzas Internacionales", path: "40_finanzas_internacionales" },
-        { codigo: "41", nombre: "Gobernanza Global Ambiental", path: "41_gobernanza_global_ambiental" },
-        { codigo: "42", nombre: "África", path: "42_africa" }
+        { codigo: "38", nombre: "Seminario de Titulación I", path: "38_seminario_de_titulacion_i", actividades: false },
+        { codigo: "39", nombre: "Práctica Profesional I", path: "39_practica_profesional_i", actividades: false },
+        { codigo: "40", nombre: "Finanzas Internacionales", path: "40_finanzas_internacionales", actividades: false },
+        { codigo: "41", nombre: "Gobernanza Global Ambiental", path: "41_gobernanza_global_ambiental", actividades: false },
+        { codigo: "42", nombre: "África", path: "42_africa", actividades: false }
     ],
     8: [
-        { codigo: "43", nombre: "Seminario de Titulación II", path: "43_seminario_de_titulacion_ii" },
-        { codigo: "44", nombre: "Práctica Profesional II", path: "44_practica_profesional_ii" },
-        { codigo: "45", nombre: "Migración Internacional", path: "45_migracion_internacional" },
-        { codigo: "46", nombre: "Ciencia, Tecnología e Innovación", path: "46_ciencia_tecnologia_e_innovacion_en_las_relaciones_internacionales" },
-        { codigo: "47", nombre: "Retos de las Ciudades Globales", path: "47_retos_de_las_ciudades_globales" }
+        { codigo: "43", nombre: "Seminario de Titulación II", path: "43_seminario_de_titulacion_ii", actividades: false },
+        { codigo: "44", nombre: "Práctica Profesional II", path: "44_practica_profesional_ii", actividades: false },
+        { codigo: "45", nombre: "Migración Internacional", path: "45_migracion_internacional", actividades: false },
+        { codigo: "46", nombre: "Ciencia, Tecnología e Innovación", path: "46_ciencia_tecnologia_e_innovacion_en_las_relaciones_internacionales", actividades: false },
+        { codigo: "47", nombre: "Retos de las Ciudades Globales", path: "47_retos_de_las_ciudades_globales", actividades: false }
     ]
 };
 
-// Actividades por materia
-const actividadesPorMateria = {
-    // Para la materia 10 (Desarrollo Sustentable) como ejemplo
-    "10_desarrollo_sostenible_equidad_y_responsabilidad_social": {
-        actividades: [
-            { modulo: 1, tipo: "foro", archivo: "foro1.html", nombre: "Foro Integrador M1" },
-            { modulo: 2, tipo: "tarea", archivo: "tarea2.html", nombre: "Tarea Auténtica M2" },
-            { modulo: 2, tipo: "foro", archivo: "foro2.html", nombre: "Foro Integrador M2" },
-            { modulo: 3, tipo: "tarea", archivo: "tarea3.html", nombre: "Tarea Auténtica M3" },
-            { modulo: 3, tipo: "foro", archivo: "foro3.html", nombre: "Foro Integrador M3" },
-            { modulo: 4, tipo: "tarea", archivo: "tarea4.html", nombre: "Tarea Auténtica M4" },
-            { modulo: 4, tipo: "foro", archivo: "foro4.html", nombre: "Foro Integrador M4" },
-            { modulo: 5, tipo: "integradora", archivo: "integradora5.html", nombre: "Actividad Integradora" }
-        ]
-    }
-};
+// Actividades para la materia 10 (Desarrollo Sustentable)
+const actividadesMateria10 = [
+    { modulo: 1, tipo: "foro", archivo: "foro1.html", nombre: "Foro Integrador M1" },
+    { modulo: 2, tipo: "tarea", archivo: "tarea2.html", nombre: "Tarea Auténtica M2" },
+    { modulo: 2, tipo: "foro", archivo: "foro2.html", nombre: "Foro Integrador M2" },
+    { modulo: 3, tipo: "tarea", archivo: "tarea3.html", nombre: "Tarea Auténtica M3" },
+    { modulo: 3, tipo: "foro", archivo: "foro3.html", nombre: "Foro Integrador M3" },
+    { modulo: 4, tipo: "tarea", archivo: "tarea4.html", nombre: "Tarea Auténtica M4" },
+    { modulo: 4, tipo: "foro", archivo: "foro4.html", nombre: "Foro Integrador M4" },
+    { modulo: 5, tipo: "integradora", archivo: "integradora5.html", nombre: "Actividad Integradora M5" }
+];
 
 function generarMenu() {
-    const container = document.getElementById('menuSemestres');
+    const container = document.getElementById('menuBotones');
     let html = '';
     
     for (let s = 1; s <= 8; s++) {
-        const materias = materiasPorSemestre[s];
+        const materias = materiasData[s];
         if (!materias) continue;
         
-        html += `<div class="menu-dropdown">
-            <button class="menu-dropbtn">📚 Semestre ${s}</button>
-            <div class="menu-dropdown-content">`;
+        html += `<div class="dropdown">
+            <button class="dropbtn">📚 Semestre ${s}</button>
+            <div class="dropdown-content">`;
         
         for (const materia of materias) {
-            const pathMateria = `semestre_${s}/${materia.path}`;
-            const actividades = actividadesPorMateria[materia.path] || null;
+            const materiaPath = `semestre_${s}/${materia.path}`;
             
-            if (actividades && actividades.actividades) {
-                // Materia con submenú de actividades
+            if (materia.hasSubmenu) {
+                // Materia con submenú de actividades (Desarrollo Sustentable)
                 html += `<div class="submenu">
-                    <a href="${pathMateria}/index.html">📖 ${materia.nombre}</a>
+                    <a href="${materiaPath}/index.html">📖 ${materia.nombre} <span style="font-size:0.7rem;">▶</span></a>
                     <div class="submenu-content">`;
                 
-                for (const act of actividades.actividades) {
-                    let emoji = act.tipo === 'foro' ? '💬' : (act.tipo === 'tarea' ? '📝' : '🎯');
-                    html += `<a href="${pathMateria}/${act.archivo}">
-                        ${emoji} <span class="modulo-badge">M${act.modulo}</span> ${act.nombre}
+                for (const act of actividadesMateria10) {
+                    let emoji = '';
+                    if (act.tipo === 'foro') emoji = '💬';
+                    else if (act.tipo === 'tarea') emoji = '📝';
+                    else emoji = '🎯';
+                    
+                    html += `<a href="${materiaPath}/${act.archivo}">
+                        ${emoji} <span class="modulo-badge">${act.modulo}</span> ${act.nombre}
                     </a>`;
                 }
                 
                 html += `</div></div>`;
             } else {
-                // Materia sin actividades específicas
-                html += `<a href="${pathMateria}/index.html" style="display:block; padding:10px 20px; color:white; text-decoration:none;">📖 ${materia.nombre}</a>`;
+                // Materia sin actividades
+                html += `<a href="${materiaPath}/index.html" style="display:block; padding:10px 20px; color:white; text-decoration:none;">📖 ${materia.nombre}</a>`;
             }
         }
         
@@ -306,3 +532,6 @@ function generarMenu() {
 
 document.addEventListener('DOMContentLoaded', generarMenu);
 </script>
+
+</body>
+</html>
