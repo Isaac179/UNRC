@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿```html
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -325,6 +326,37 @@
     border-radius: 1px;
   }
 
+  /* ========== GLOSARIO & MANIFIESTO ========== */
+  .extra-box {
+    background: var(--smoke);
+    border: 1px solid var(--ash);
+    border-left: 4px solid var(--copper);
+    padding: 2rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+
+  .extra-box.manifesto {
+    border-left-color: var(--flint);
+    background: rgba(42, 36, 32, 0.4);
+  }
+
+  .extra-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--copper-pale);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .term-item { margin-bottom: 1rem; }
+  .term-name { font-weight: 700; color: var(--copper-bright); font-family: 'Space Mono', monospace; font-size: 0.85rem; }
+  .term-def { font-size: 0.95rem; color: var(--text-light); display: inline; }
+  .manifesto-text { font-size: 0.9rem; color: var(--text-light); text-align: justify; line-height: 1.6; }
+
   /* ====== RITUAL CLOSER ====== */
   .ritual {
     background: var(--charcoal);
@@ -454,13 +486,13 @@
 <!-- PRELUDIO PERSA -->
 <div class="preludio">
   <div class="preludio-marker">⟡ Preludio · Folklore persa · Siglo xiii d.C.</div>
-  <p class="preludio-text">Cuenta el poeta Saadi de Shiraz en el Golestán que un rey encontró un árbol magnífico en su jardín y ordenó a su jardinero plantarlo en el centro del palacio. Pero el árbol, al ser trasplantado sin respetar sus raíces, sin consultar la estación adecuada, sin darle el espacio que necesitaba para abrirse hacia el sol, se marchitó lentamente en el patio de piedra. El rey preguntó al jardinero: ¿por qué murió? Y el jardinero respondió: Majestad, el árbol no murió por falta de agua. Murió porque lo trasplantamos para servir al palacio, y no trasplantamos el palacio para servirle al árbol. Los derechos de los pueblos indígenas en América Latina son ese árbol. La DADPI, el decreto real. La pregunta que nos atañe hoy es la misma del jardinero.</p>
+  <p class="preludio-text">En el poema de Saadi de Shiraz, un rey mandó traer el árbol más frondoso de su reino para plantarlo en el mármol de su palacio. Al poco tiempo, el árbol murió. El rey, indignado, cuestionó a su jardinero. La respuesta fue sencilla: “Majestad, el árbol no murió de sed. Murió porque lo arrancamos de su tierra para que sirviera a la corte, en lugar de adaptar la corte para servirle al árbol.” La historia de los derechos indígenas en América Latina, y en particular la DADPI, se parece mucho a ese decreto real: un documento magnífico que se marchita al intentar plantarlo en el concreto de nuestras instituciones.</p>
   <div class="preludio-attr">Saadi de Shiraz · Golestán · ca. 1258 d.C. · adaptación libre</div>
 </div>
 
 <!-- SALUDO -->
 <div class="saludo-strip">
-  <p class="saludo-text"><strong>Estimado profesor, compañeras y compañeros:</strong> "Donde los justos se sientan a deliberar, la misericordia precede a la ley." Es bajo ese espíritu que me sumo a este foro, no para proclamar verdades sino para tejer, junto a ustedes, una comprensión más honesta de los obstáculos que siguen impidiendo que la Declaración Americana sobre los Derechos de los Pueblos Indígenas pase del papel al territorio.</p>
+  <p class="saludo-text"><strong>Estimado profesor, compañeras y compañeros:</strong> Con el deseo de que este espacio nos permita reparar y no solo debatir, me sumo a ustedes. No vengo a imponer verdades escritas en piedra, sino a reflexionar sobre por qué la Declaración Americana sobre los Derechos de los Pueblos Indígenas sigue siendo un árbol hermoso que aún no logra enraizar en nuestra tierra.</p>
 </div>
 
 <!-- BODY -->
@@ -478,30 +510,30 @@
 
     <div class="clearfix">
       <div class="pq">
-        <p>"Los derechos humanos no son conquista occidental; son reconocimiento de la dignidad que ya existía. El problema es que quienes deben implementarlos aún se ven a sí mismos como conquistadores."</p>
-        <cite>Isaac v14 · eco de Ciro el Grande</cite>
+        <p>"Los derechos humanos no son una invención occidental, son la dignidad que siempre estuvo ahí. El dolor es que quienes deben hacerlos valer, todavía operan como conquistadores."</p>
+        <cite>Reflexión inspirada en Ciro el Grande</cite>
       </div>
 
-      <p>En mi informe de tarea auténtica identifiqué que el problema central de la implementación de la DADPI no es de diseño normativo, sino de voluntad política articulada con arquitecturas institucionales heredadas del colonialismo. Hay al menos cuatro problemas que se intersectan y se refuerzan mutuamente.</p>
+      <p>Tras revisar mi análisis previo, descubro que el fallo central de la DADPI no está en la redacción del texto, sino en la terquedad institucional. Hay cuatro fracturas principales que impiden que este documento cobre vida.</p>
 
-      <p>El primero es lo que Vieira y Viaene (2024) denominan <strong>conflictos ontológicos</strong> entre la visión estatal y la cosmovisión de los pueblos indígenas. Los estados operan con categorías jurídicas que fragmentan la realidad  territorio, recursos, persona jurídica  de maneras que son ajenas a las formas de vida comunitaria. Cuando un Estado "consulta" a una comunidad sobre un proyecto minero usando sus propias categorías jurídicas, la consulta ya está viciada en origen porque traduce mal lo que la comunidad quiere decir. Esta injusticia epistémica, documentada por Townsend (2020) en el contexto del Sistema Interamericano, es quizá el obstáculo más invisible y el más profundo.</p>
+      <p>La primera es un <strong>choque de visiones</strong> profundo. Vieira y Viaene (2024) señalan que el Estado y las comunidades indígenas habitan mundos distintos. El gobierno fractura la realidad en conceptos legales —el agua por un lado, la tierra por otro—, mientras que para los pueblos la vida es un tejido indivisible. Cuando un funcionario organiza una "consulta" basándose en sus manuales de escritorio, la comunicación nace muerta porque no traduce el sentir real de la comunidad. A esto se le conoce como injusticia epistémica (Townsend, 2020), y es la barrera más silenciosa, pero la más destructiva.</p>
     </div>
 
     <div class="highlight">
-      <p><strong>El problema del CPLI:</strong> La Consulta Previa, Libre e Informada ha sido convertida en muchos países en un procedimiento burocrático que legitima decisiones ya tomadas. Mitchell y Arseneau (2021) documentan cómo las comunidades indígenas enfrentan barreras estructurales para ejercer el derecho de consentimiento  no solo consulta  frente a proyectos extractivos de escala global. En México, el caso del Tren Maya ilustró cómo la consulta puede ser simultáneamente legal y epistémicamente fraudulenta.</p>
+      <p><strong>La Consulta como Trámite:</strong> El derecho al Consentimiento Previo, Libre e Informado (CPLI) ha terminado siendo, en muchos casos, un requisito burocrático para legitimar decisiones previas. Mitchell y Arseneau (2021) detallan cómo las comunidades carecen del poder real para decir "no" frente a la maquinaria de los megaproyectos. En México, casos recientes nos han mostrado cómo una consulta puede cumplir con el expediente y, a la vez, ser un engaño en la práctica.</p>
     </div>
 
-    <p>El segundo problema es la <strong>ausencia de mecanismos de sanción efectivos</strong>. El Plan de Acción 2017-2021 fue aprobado sin presupuesto propio asignado, sin mecanismos de monitoreo con poder coercitivo y sin consecuencias claras para los Estados incumplidores. Côté et al. (2024) señalan que el proceso de revisión de UNDRIP  el instrumento ONU equivalente a la DADPI  enfrenta los mismos desafíos: la influencia occidental en la arquitectura institucional tiende a priorizar la autonomía estatal sobre la accountability efectiva. Los reportes son voluntarios. Los compromisos son declarativos. Y la Declaración, en consecuencia, funciona como un espejo que los Estados levantan frente a sí mismos para elogiarse, no como una vara con la que alguien más pueda medirlos.</p>
+    <p>El segundo problema es la <strong>ausencia de consecuencias reales</strong>. El Plan de Acción de la OEA (2017-2021) no contempló un presupuesto propio, ni dotó a los organismos de mecanismos para sancionar a los países que no cumplen. Côté et al. (2024) nos advierten que esta indulgencia prioriza la comodidad del Estado sobre la urgencia de los pueblos. Al final, los informes son voluntarios y la Declaración se convierte en un espejo donde los gobiernos posan para la foto internacional, sin que nadie los obligue a rendir cuentas.</p>
 
-    <p>El tercer problema es la <strong>criminalización de la defensa del territorio</strong>. Mientras la DADPI proclama el derecho a la tierra, cientos de defensores indígenas son asesinados cada año en América Latina, con una impunidad que bordea lo estructural. Guatemala, Honduras, México y Brasil encabezan sistemáticamente los registros de Global Witness. Que los Estados que firmaron la Declaración sean también los que toleran o cometen estas violaciones es la contradicción más visible y la más insoportable. Biko lo dejó claro: el arma más poderosa del opresor es la mente colonizada. En este caso, la mente institucional que normaliza el asesinato como costo tolerable del desarrollo.</p>
+    <p>El tercer conflicto es la <strong>persecución en el territorio</strong>. Es una dolorosa ironía: mientras la DADPI defiende el derecho a la tierra, América Latina sigue siendo la región más letal para quienes la protegen. Países como Brasil, Colombia, Honduras y México lideran las cifras de asesinatos de activistas ambientales. La mente institucional que tolera esta violencia como un "daño colateral" del desarrollo, es el rostro moderno de esa colonización mental que advertía Steve Biko.</p>
 
-    <p>El cuarto problema, que atraviesa transversalmente a los tres anteriores, es la <strong>desarticulación entre los mecanismos internacionales y las realidades locales</strong>. La Relatoría CIDH, la DADPI, los informes de relatorías especiales de la ONU son herramientas poderosas que las comunidades más vulnerables  aquellas que más necesitan su protección  raramente conocen ni pueden acceder. En mis despliegues con PAMAR por la Montaña de Guerrero he conocido familias desplazadas por el crimen organizado de comunidades que ni saben que existe un sistema interamericano de derechos humanos al que podrían acudir.</p>
+    <p>La cuarta fractura, que atraviesa a las demás, es el <strong>aislamiento de los mecanismos de defensa</strong>. Instrumentos poderosos como la Relatoría de la CIDH son casi mitológicos para las comunidades más apartadas. Durante mi labor con PAMAR en las regiones altas de Guerrero, he acompañado a faamilias desplazadas por el narco que ni siquiera saben que existe un sistema interamericano de derechos humanos diseñado, en teoría, para protegerlas.</p>
 
     <div class="tag-row">
       <span class="tag">Injusticia epistémica</span>
-      <span class="tag">CPLI sin consentimiento real</span>
-      <span class="tag">Criminalización territorial</span>
-      <span class="tag">Desarticulación institucional</span>
+      <span class="tag">Consentimiento simulado</span>
+      <span class="tag">Violencia territorial</span>
+      <span class="tag">Lejanía institucional</span>
     </div>
   </div>
 
@@ -515,28 +547,28 @@
       </div>
     </div>
 
-    <p>Desde mi punto de vista, hay una diferencia importante entre los problemas (lo que ya está pasando mal) y los obstáculos (lo que impide que mejore). Pasar de un diagnóstico a una agenda requiere ese salto epistémico. Para la implementación efectiva de la DADPI en América Latina, identifico tres obstáculos estructurales que concentran y producen todos los demás.</p>
+    <p>Me gustaría imaginar que, si distinguimos entre el síntoma y la enfermedad, podemos trazar una cura. Pasar de lamentar los problemas a superar los obstáculos requiere un cambio de enfoque. Para que la DADPI deje de ser una utopía diplomática, veo tres grandes muros que debemos derribar.</p>
 
     <div class="clearfix">
       <div class="pq">
-        <p>"El árbol no murió por falta de agua. Murió porque lo trasplantamos para servir al palacio. ¿Cuándo aprenderemos a trasplantar el palacio?"</p>
-        <cite>Saadi de Shiraz · reinterpretado desde Isaac v14</cite>
+        <p>"¿Cuándo aprenderemos a adaptar el palacio para que el árbol viva, en lugar de matar al árbol para que adorne el palacio?"</p>
+        <cite>Reinterpretación de la parábola persa</cite>
       </div>
 
-      <p><strong>Primer obstáculo: el modelo de desarrollo extractivista como paradigma no cuestionado.</strong> Mientras los gobiernos latinoamericanos  de derecha y de izquierda  sigan concibiendo el desarrollo como sinónimo de extracción de recursos naturales, la DADPI seguirá siendo letra muerta para las comunidades que habitan esos territorios. El extractivismo no es un problema de exceso de un modelo; es el modelo mismo, y ese modelo está incrustado en los acuerdos de inversión, en las deudas externas, en los tratados bilaterales que tienen mayor jerarquía práctica que cualquier declaración de derechos. Como señalaría Said: la representación que el Estado latinoamericano tiene de su territorio es una representación orientalista de lo indígena  salvaje, subdesarrollado, necesitado de civilización  que legitima la extracción. Desmantelar ese imaginario es el primer paso real.</p>
+      <p><strong>El primero: el saqueo como única vía de progreso.</strong> Mientras nuestros gobiernos sigan convencidos de que el desarrollo es sinónimo de extraer los recursos de la tierra a cualquier costo, la DADPI no tiene futuro. El extractivismo está blindado por acuerdos comerciales que pesan mucho más que las declaraciones de derechos humanos. Este modelo se sostiene sobre la misma visión colonial que criticaba Edward Said: ver los territorios indígenas como espacios "salvajes" o atrasados que requieren ser explotados para alcanzar la modernidad.</p>
     </div>
 
-    <p><strong>Segundo obstáculo: la ausencia de autonomía financiera de los mecanismos de protección.</strong> La Comisión Interamericana de Derechos Humanos opera con un presupuesto que un país latinoamericano de tamaño mediano destinaría a una semana de gastos militares. La Relatoría sobre Pueblos Indígenas depende de fondos voluntarios complementarios que no están garantizados. No hay neutralidad en la financiación: quien paga, prioriza. Convertir los mecanismos de la DADPI en estructuras con financiamiento autónomo y vinculante de los Estados  y no solo de los que quieren pagar  es una reforma institucional que los propios Estados necesitan impulsar si quieren ser tomados en serio. Considero yo que este obstáculo es el más reformable en el corto plazo si hay voluntad política suficiente.</p>
+    <p><strong>El segundo: la orfandad financiera de los protectores.</strong> Los órganos encargados de velar por estos derechos operan con recursos mínimos. La Relatoría sobre Pueblos Indígenas sobrevive de aportaciones voluntarias. Es simple: quien controla el dinero, dicta las prioridades. Si los Estados estuvieran genuinamente comprometidos, dotarían a estos mecanismos de presupuestos robustos y obligatorios. Hasta entonces, la defensa será siempre precaria y sujeta a la caridad internacional.</p>
 
-    <p><strong>Tercer obstáculo: la brecha de implementación interna entre los compromisos internacionales y los marcos jurídicos nacionales.</strong> Ramírez-Salazar et al. (2024) demuestran en su análisis comparativo de Chile, Colombia y México que el nivel de cumplimiento de los estándares de autodeterminación de la CIDH varía enormemente entre países, y que esa varianza no se explica por la calidad de los documentos internacionales firmados, sino por la fortaleza de los marcos jurídicos internos y de los mecanismos nacionales de implementación. Está suave imaginar que la DADPI se implementa sola; en realidad necesita una arquitectura interna en cada país: leyes de consulta previa con reglamentos operativos, tribunales con competencia específica en derechos indígenas, presupuestos etiquetados para la implementación y  esto es lo más difícil  funcionarios públicos capacitados en derechos indígenas que no reproduzcan en sus prácticas cotidianas la lógica del despojo que se supone que deben corregir.</p>
+    <p><strong>El tercero: el abismo entre la firma en el extranjero y la ley en casa.</strong> El estudio de Ramírez-Salazar et al. (2024) sobre México, Chile y Colombia demuestra que no basta con ratificar convenios; la clave está en el entramado jurídico nacional. Está suave firmar la DADPI, pero si internamente no existen tribunales especializados, presupuestos etiquetados y leyes secundarias claras, el convenio es inoperante. Y lo más delicado: necesitamos funcionarios que entiendan la cosmovisión comunitaria y dejen de replicar en sus escritorios el mismo despojo histórico que juraron enmendar.</p>
 
-    <p>Ciro el Grande entró a Babilonia sin destruir el palacio. Pero también devolvió a cada pueblo sus dioses, sus lenguas, sus territorios. La lección no es la magnanimidad del conquistador; es que los derechos reales requieren actos reales. La DADPI ya tiene casi una década. Es tiempo de que América Latina deje de celebrar el árbol plantado y empiece a preguntar, honestamente, si está creciendo.</p>
+    <p>Ciro el Grande liberó Babilonia respetando a su gente, no llenándolos de promesas vacías. La DADPI ya va para diez años; es momento de dejar de aplaudir el decreto real y comenzar la faena comunitaria para que la justicia germine en el territorio.</p>
 
     <div class="tag-row">
-      <span class="tag">Extractivismo estructural</span>
-      <span class="tag">Autonomía financiera CIDH</span>
-      <span class="tag">Implementación interna</span>
-      <span class="tag">Capacitación institucional</span>
+      <span class="tag">Modelo extractivo</span>
+      <span class="tag">Desfinanciamiento CIDH</span>
+      <span class="tag">Brecha legislativa</span>
+      <span class="tag">Empatía funcional</span>
     </div>
   </div>
 
@@ -544,7 +576,37 @@
 
 <!-- RITUAL CLOSER -->
 <div class="ritual">
-  <p>Como el árbol de Saadi que murió en el patio de piedra, la DADPI corre el riesgo de marchitarse en los archivos institucionales. Pero a diferencia del árbol, los pueblos indígenas no esperan pasivos: están construyendo sus propios jardines, con sus propias raíces, en sus propios territorios. Nuestra responsabilidad, desde la academia y el servicio público, es no seguir <strong>trasplantando el árbol para servir al palacio</strong>.</p>
+  <p>Al final, como aquel árbol de la historia de Saadi, los derechos indígenas no sobrevivirán si seguimos forzándolos a encajar en el frío mármol del Estado. Afortunadamente, los pueblos originarios no están esperando pasivos; con su propio <strong>tequio</strong> diario, siguen sembrando y resistiendo en su tierra. Nuestra responsabilidad, desde la universidad y el servicio público, es dejar de ser los jardineros del rey y convertirnos en cómplices de quienes realmente cuidan el bosque.</p>
+</div>
+
+<!-- GLOSARIO & MANIFIESTO (NUEVOS ENFOQUES) -->
+<div class="body-zone" style="padding-top: 0; padding-bottom: 2rem;">
+  <div class="extra-box">
+    <div class="extra-title">Glosario de Términos Regionales y Simbólicos</div>
+    <div class="term-item">
+      <span class="term-name">Tequio / Faena:</span>
+      <span class="term-def">El trabajo colectivo y solidario de Mesoamérica, realizado sin pago para el beneficio común. En el foro, simboliza la organización horizontal frente al individualismo burocrático.</span>
+    </div>
+    <div class="term-item">
+      <span class="term-name">A ras de tierra:</span>
+      <span class="term-def">Expresión que remite al trabajo directo en la comunidad, a la realidad tangible que viven las personas, en oposición a la lejanía de los escritorios institucionales.</span>
+    </div>
+    <div class="term-item">
+      <span class="term-name">Justicia Epistémica:</span>
+      <span class="term-def">El reconocimiento absoluto de que la memoria y la sabiduría de una comunidad indígena poseen el mismo valor, rigor y legitimidad que cualquier código legal redactado en la capital.</span>
+    </div>
+    <div class="term-item">
+      <span class="term-name">Tikun Olam:</span>
+      <span class="term-def">Concepto ético que significa "reparar el mundo". En este contexto, es la responsabilidad activa de incidir en las heridas de la sociedad para restaurar la dignidad que ha sido arrebatada.</span>
+    </div>
+  </div>
+
+  <div class="extra-box manifesto">
+    <div class="extra-title">Manifiesto de Uso Responsable de Herramientas Digitales</div>
+    <p class="manifesto-text">
+      La estructura técnica (HTML/CSS), la corrección ortotipográfica y el andamiaje del contraste de ideas de este texto fueron apoyados por Inteligencia Artificial (modelos de lenguaje amplio). Sin embargo, el arraigo emocional, las vivencias documentadas en la Montaña de Guerrero, la empatía hacia las comunidades y el posicionamiento ético frente al despojo son el fruto genuino y exclusivo de la reflexión humana de Isaac Moctezuma Calderón. La IA opera aquí únicamente como un facilitador de formato, no como un sustituto del corazón, del pensamiento crítico, ni de la memoria viva que sostiene este diagnóstico.
+    </p>
+  </div>
 </div>
 
 <!-- REFERENCES -->
@@ -571,3 +633,5 @@
 
 </body>
 </html>
+
+```
