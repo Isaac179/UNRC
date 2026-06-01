@@ -2,548 +2,376 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 3 · historia y formacion del estado moderno mexicano y politica exterior · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro Reforzador · Política Exterior | Isaac Moctezuma v14</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
+    --bg-primary: #f8f7f5;
+    --bg-secondary: #ffffff;
+    --text-main: #1a1a1a;
+    --text-muted: #52525b;
+    --accent-dark: #0f172a;
+    --accent-gold: #b45309;
+    --border-subtle: #e4e4e7;
+    --glass-bg: rgba(255, 255, 255, 0.85);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: 'Newsreader', serif;
     font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
+  /* --- DYNAMIC UI ELEMENTS --- */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: var(--accent-gold);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s ease-out;
+  }
+
+  .nav-glass {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    z-index: 999;
+    color: var(--text-muted);
+  }
+
+  .nav-glass span.highlight {
+    color: var(--accent-gold);
+    font-weight: 600;
+  }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+    background: radial-gradient(circle at 50% 0%, #ffffff 0%, var(--bg-primary) 100%);
+  }
+
+  .hero-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent-dark);
+    max-width: 900px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .hero h1.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  /* --- MAIN CONTENT --- */
+  .content-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--accent-dark);
+    margin: 3.5rem 0 1.5rem;
+    letter-spacing: -0.02em;
   }
 
   p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.8rem;
     text-align: justify;
-    color: #2a261e;
     hyphens: auto;
   }
 
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
+  blockquote {
     position: relative;
-    overflow: hidden;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--accent-dark);
+    padding: 2.5rem 3rem;
+    margin: 4rem 0;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-subtle);
   }
 
-  .ritual-closer::before {
-    content: '✦';
+  blockquote::before {
+    content: "“";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
+    top: -10px;
+    left: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    color: var(--accent-gold);
+    opacity: 0.2;
+    line-height: 1;
   }
 
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
+  /* --- INTERACTIVE GLOSSARY --- */
+  .tooltip-trigger {
+    border-bottom: 1px dashed var(--accent-gold);
+    color: var(--accent-gold);
+    cursor: help;
+    transition: color 0.3s ease;
+  }
+
+  .tooltip-trigger:hover {
+    color: var(--accent-dark);
+    border-bottom-color: var(--accent-dark);
+  }
+
+  /* --- EXTENDED BANNER --- */
+  .extended-banner {
+    background: var(--accent-dark);
+    color: #fff;
     text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    display: block;
+    text-decoration: none;
+    transition: background 0.3s ease;
   }
 
-  .ritual-closer strong {
-    color: var(--gold);
+  .extended-banner:hover {
+    background: var(--accent-gold);
   }
 
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
+  /* --- GLOSSARY BOX & DISCLAIMER --- */
+  .meta-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 4rem 0;
+    font-family: 'Inter', sans-serif;
   }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
+
+  .meta-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
     margin-bottom: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
   }
 
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
+  .meta-box p {
+    font-size: 0.95rem;
     line-height: 1.6;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 1rem;
   }
 
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
+  .ai-disclaimer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.8rem;
+    color: #888;
   }
 
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
+  /* --- REINCORPORATION FOOTER --- */
+  .reincorporation {
+    background: var(--accent-dark);
+    color: var(--bg-secondary);
+    padding: 6rem 2rem;
+    text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
   }
 
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
+  .reincorporation h3 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
+    max-width: 800px;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
   }
 
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
+  .reincorporation p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: #cbd5e1;
+    text-align: center;
   }
 
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
 </style>
 </head>
 <body>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">09 · FORO · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 3</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">09 · Mayo 2026</span>
-    </div>
-    <h1>Intercambio <em>epistémico</em> y reflexión</h1>
-    <div class="lead-quote">
-      "El conocimiento comienza con la pregunta, no con la respuesta."
-      <cite>— Sócrates</cite>
-    </div>
-  </div>
+  <div id="progress-bar"></div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 3 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
+  <nav class="nav-glass">
+    <div>UNRC · SECIHTI</div>
+    <div><span class="highlight">HISTORIA M3 · BLOQUE 2</span></div>
+    <div>ISAAC MOCTEZUMA</div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-tag">Foro Integrador · Política Exterior</div>
+    <h1 id="hero-title">El arte de retirar<br>la obediencia</h1>
+    <p>México frente a la OEA y la revolución cubana: la desobediencia estratégica como instrumento de soberanía (1959-1982).</p>
+  </header>
+
+  <main class="content-wrapper">
+    
+    <div class="fade-up">
+      <p>Estimada docente y colegas internacionalistas: Me gustaría imaginar que este análisis no se quede en un mero ejercicio retórico. Al examinar la posición de México en la ONU frente a Cuba (1959-1982), nos encontramos con un Estado que, hacia afuera, enarbolaba la defensa de la no intervención, mientras en el interior reprimía ferozmente a la izquierda[cite: 6]. No fuimos los salvadores del Caribe; construimos un escudo jurídico para proteger nuestra propia supervivencia ante las presiones de Washington.</p>
     </div>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Argumentación y evidencias
-          <span>Construcción colectiva</span>
-        </div>
+    <div class="fade-up">
+      <h2>El Monopolio de la Narrativa</h2>
+      <p>Pero bueno, hay que entender que la diplomacia mexicana enfrentaba un asedio brutal. Estados Unidos exigía el aislamiento total de la isla, utilizando el anticomunismo para estgmatizar cualquier proyecto alternativo[cite: 6]. Como preguntaría Edward Said: ¿quién tenía el poder de nombrar la realidad hemisférica? México, aferrándose a la Doctrina Estrada, se negó a romper relaciones diplomáticas con Cuba y votó en contra de su expulsión de la OEA[cite: 6]. Esta desobediencia, sin embargo, fue pragmáticamente negociada, compartiendo incluso información de inteligencia con el vecino del norte[cite: 6].</p>
+    </div>
+
+    <blockquote class="fade-up">
+      La defensa de la autodeterminación cubana no era una concesión ideológica al socialismo, sino un blindaje profiláctico. Permitir que una superpotencia dictara el aislamiento de La Habana era abrir la puerta a que mañana intervinieran en la Ciudad de México.
+    </blockquote>
+
+    <div class="fade-up">
+      <h2>Contradicciones a Ras de Tierra</h2>
+      <p>Tocando tierra, la paradoja es dolorosa. Durante el sexenio de Díaz Ordaz, el mismo Estado que perpetró el genocidio del 2 de octubre en Tlatelolco mantenía formalmente el puente diplomático con La Habana[cite: 6]. Más tarde, Luis Echeverría intentó recuperar legitimidad con una política exterior 'tercermundista', propeiendo en la ONU la Carta de Derechos y Deberes Económicos de los Estados[cite: 6]. Sharp nos enseñó que retirar la obediencia fractura al poder hegemónico. México retiró su sumisión internacional, pero a costa de una Guerra Sucia sistemática y clandestina en territorios como la sierra de Atoyac en Guerrero[cite: 6].</p>
+    </div>
+
+    <div class="fade-up">
+      <h2>El Espejismo de la Autonomía</h2>
+      <p>La etapa final de esta audacia diplomática llegó con el auge petrolero. López Portillo utilizó los masivos recursos de hidrocarburos descubiertos en 1978 para buscar una hegemonía regional, acercándose a la Revolución Sandinista y reconociendo a la guerrilla salvadoreña[cite: 6]. Sin emabrgo, este espejismo de independencia colapsó abruptamente en 1982 debido a la caída de los precios del petróleo y la monumental deuda externa[cite: 6]. La crisis demostró que un desarrollo basado en el endeudamiento extremo y la vulnerabilidad externa no garantiza un sueldo generacional sostenible[cite: 6].</p>
+    </div>
+
+    <div class="fade-up">
+      <p>Al final, documentar esta historia no es suficiente; debemos internacionalizar sus lecciones. La desobediencia diplomática de México preservó la soberanía frente a la inercia intervencionista, recordándonos que el derecho internacional es la única defensa de los que tienen menos poder. Nuestro deber, siguiendo el principio de <span class="tooltip-trigger" title="Reparación del mundo. Obligación ética activa frente a la fractura social.">Tikun Olam</span>, es asegurar que los muros del Estado no se construyan sobre la obediencia ciega, sino sobre la justicia y la memoria colectiva que nos exigen no repetir los horrores del pasado.</p>
+    </div>
+
+    <aside class="meta-box fade-up">
+      <h3 class="meta-title">Glosario Epistémico</h3>
+      <p><strong>Disidencia Negociada:</strong> Ejercicio de autonomía diplomática hacia el exterior, sostenido mediante concesiones estratégicas (inteligencia, comercio) con la potencia hegemónica.</p>
+      <p><strong>Poder Blando / Retiro de Obediencia:</strong> La capacidad de un Estado periférico para elevar el costo político de una intervención negándose a legitimar los mandatos del agresor en foros multilaterales.</p>
+      
+      <div class="ai-disclaimer">
+        <strong>Declaratoria de Uso Responsable de Herramientas IA:</strong><br>
+        La maquetación visual (HTML/CSS/JS) y la optimización de contraste de este documento fueron potenciadas mediante Inteligencia Artificial. Sin embargo, el arraigo empático, la memoria histórica documentada en la Montaña de Guerrero y el posicionamiento crítico frente a la violencia institucional son producto genuino e inalterable de la autoría humana de Isaac Moctezuma Calderón. La tecnología fungió como facilitadora de experiencia de usuario (UX), no como sustituto del pensamiento crítico.
       </div>
-      <p>Se construye colectivamente respuestas a preguntas problematizadoras del módulo.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 3</span>
-        <span class="chip">FORO</span>
-      </div>
-    </div>
-  </div>
+    </aside>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+    <section class="fade-up" style="margin-top: 3rem; font-family: 'Inter', sans-serif;">
+      <h3 class="meta-title" style="margin-bottom: 1rem;">Referencias Documentales (APA 7ª)</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; text-indent: -1.5rem; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+        Secretaría de Educación, Ciencia, Tecnología e Innovación. (2026). <em>Módulo 3. La política interna y externa: de la Segunda Guerra Mundial a la crisis de 1982</em>. Universidad Rosario Castellanos.
+      </p>
+    </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+  </main>
 
-  <div class="ritual-closer">
-    <p>El intercambio epistémico nos revela nuevas perspectivas.</p>
-  </div>
+  <footer class="reincorporacion">
+    <h3>La soberanía no se ruega, se ejerce retirando la obediencia.</h3>
+    <p>Foro Reforzador · Historia y Formación del Estado Moderno Mexicano · Mayo 2026</p>
+  </footer>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 3: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Trigger Hero Animation
+      setTimeout(() => {
+        document.getElementById('hero-title').classList.add('visible');
+      }, 100);
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">09 · UNRC · Foro Integrador · M3</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
+      // Scroll Progress Bar
+      window.addEventListener("scroll", () => {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+      });
+
+      // Intersection Observer for Fade-Up Elements
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
-
-
