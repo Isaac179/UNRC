@@ -2,570 +2,1112 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 3 · historia y formacion del estado moderno mexicano y politica exterior · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos de Política Exterior Mexicana · Cuba 1959-1982 | Isaac Moctezuma v14</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
+/* ═══════════════════════════════════════════
+   SISTEMA DE TOKENS   EXPEDIENTE DESCLASIFICADO
+   Paleta: papel manila envejecido + tinta
+   carbon + bermellón clasificado + verde olivo
+   ═══════════════════════════════════════════ */
+:root {
+  --manila:       #e8dfc8;
+  --manila-mid:   #d6cbb0;
+  --manila-deep:  #c4b896;
+  --manila-dark:  #b0a280;
+  --ink:          #1a1610;
+  --ink-mid:      #2d2820;
+  --ink-soft:     #4a4236;
+  --ink-ghost:    #756a58;
+  --rojo:         #9b2415;
+  --rojo-dim:     #7a1c10;
+  --rojo-pale:    #f0d6d2;
+  --verde:        #2d4a32;
+  --verde-mid:    #3d6044;
+  --verde-pale:   #d4e0d6;
+  --dorado:       #8a6d28;
+  --dorado-pale:  #f0e4c0;
+  --azul:         #1c3a5e;
+  --azul-pale:    #d0dce8;
+  --carbon:       #0d0c0a;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
+/* ── TEXTURA DE PAPEL ── */
+body {
+  background-color: var(--manila-mid);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(160,140,100,.015) 4px),
+    repeating-linear-gradient(180deg, transparent, transparent 3px, rgba(160,140,100,.015) 4px);
+  font-family: 'Jost', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
 
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
+/* ── PORTADA / CABECERA ── */
+.portada {
+  background: var(--carbon);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 6px solid var(--rojo);
+}
 
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
+.portada-texture {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,255,255,.008) 31px),
+    repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(255,255,255,.008) 31px);
+}
 
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
+.portada-inner {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto;
+  padding: 4rem 3rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
+.sello-clasificado {
+  border: 3px solid var(--rojo);
+  padding: .4rem 1rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--rojo);
+  text-transform: uppercase;
+  display: inline-block;
+  transform: rotate(-1.5deg);
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+.sello-clasificado::before {
+  content: '';
+  position: absolute; inset: 3px;
+  border: 1px solid rgba(155,36,21,.35);
+}
 
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
+.portada-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-weight: 900;
+  color: #f0ebe0;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin-bottom: 1.2rem;
+}
+.portada-titulo em {
+  font-style: italic;
+  color: var(--rojo);
+  display: block;
+}
 
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
+.portada-subtitulo {
+  font-family: 'Jost', sans-serif;
+  font-size: .9rem;
+  font-weight: 300;
+  color: rgba(240,235,224,.6);
+  letter-spacing: .06em;
+  line-height: 1.6;
+}
 
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
+.portada-meta {
+  text-align: right;
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  color: rgba(240,235,224,.45);
+  line-height: 2;
+  letter-spacing: .04em;
+}
+.portada-meta strong { color: rgba(240,235,224,.75); font-weight: 700; }
 
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
+/* ── CONTENEDOR PRINCIPAL ── */
+.expediente {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
 
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
+/* ── SECCIÓN GENÉRICA ── */
+.seccion {
+  margin-bottom: 3.5rem;
+}
 
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
+.seccion-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .8rem;
+  border-bottom: 1.5px solid var(--ink-mid);
+}
 
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
+.seccion-numero {
+  font-family: 'Courier Prime', monospace;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  color: var(--rojo);
+  background: var(--rojo-pale);
+  border: 1px solid var(--rojo);
+  padding: .2rem .6rem;
+  white-space: nowrap;
+}
 
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
+.seccion-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
 
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
+/* ── LÍNEA DE TIEMPO ── */
+.timeline-wrap {
+  position: relative;
+  padding-left: 2.4rem;
+}
+.timeline-wrap::before {
+  content: '';
+  position: absolute;
+  left: .85rem;
+  top: .5rem;
+  bottom: .5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--rojo) 0%, var(--dorado) 40%, var(--verde) 75%, var(--ink-ghost) 100%);
+}
 
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
+.tl-item {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -1.9rem;
+  top: .35rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--manila);
+  z-index: 2;
+}
+.tl-item.rojo::before  { border-color: var(--rojo);  background: var(--rojo); }
+.tl-item.verde::before { border-color: var(--verde);  background: var(--verde); }
+.tl-item.dorado::before{ border-color: var(--dorado); background: var(--dorado); }
+.tl-item.azul::before  { border-color: var(--azul);   background: var(--azul); }
 
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
+.tl-fecha {
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--ink-ghost);
+  margin-bottom: .25rem;
+}
 
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
+.tl-evento {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .3rem;
+  line-height: 1.4;
+}
 
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
+.tl-desc {
+  font-size: .85rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
 
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
+/* ── MAPA DE RECURSOS (bloque central) ── */
+.mapa-recursos {
+  position: relative;
+  background: var(--manila);
+  border: 1.5px solid var(--manila-dark);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  /* líneas de cuaderno vintage */
+  background-image:
+    repeating-linear-gradient(180deg, transparent, transparent 31px, rgba(160,130,80,.12) 32px);
+  background-position: 0 16px;
+}
+.mapa-recursos::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 3.5rem;
+  width: 1.5px;
+  background: rgba(155,36,21,.2);
+}
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
+.recursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
 
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
+/* ── TARJETA DE RECURSO ── */
+.recurso-card {
+  background: var(--manila);
+  border: 1px solid var(--manila-dark);
+  padding: 1.4rem 1.4rem 1.2rem;
+  position: relative;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.recurso-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--manila-dark);
+}
 
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
+/* Franja lateral de color por tipo */
+.recurso-card::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 4px;
+}
+.recurso-card.juridico::before  { background: var(--rojo); }
+.recurso-card.multilateral::before { background: var(--azul); }
+.recurso-card.bilateral::before { background: var(--verde); }
+.recurso-card.economico::before { background: var(--dorado); }
 
-  p:last-child { margin-bottom: 0; }
+.recurso-tipo {
+  font-family: 'Courier Prime', monospace;
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: .6rem;
+}
+.juridico    .recurso-tipo { color: var(--rojo); }
+.multilateral .recurso-tipo { color: var(--azul); }
+.bilateral   .recurso-tipo { color: var(--verde); }
+.economico   .recurso-tipo { color: var(--dorado); }
 
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
+.recurso-nombre {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: .5rem;
+}
 
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
+.recurso-desc {
+  font-size: .83rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
+.recurso-refs {
+  margin-top: .8rem;
+  padding-top: .6rem;
+  border-top: 1px dashed var(--manila-dark);
+  font-family: 'Courier Prime', monospace;
+  font-size: .67rem;
+  color: var(--ink-ghost);
+  letter-spacing: .03em;
+  line-height: 1.5;
+}
 
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
+/* ── LEYENDA DE TIPOS ── */
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 1rem 1.5rem;
+  background: var(--manila-deep);
+  border: 1px solid var(--manila-dark);
+  margin-bottom: 1.5rem;
+}
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+.leyenda-dot {
+  width: 10px; height: 10px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+.dot-rojo       { background: var(--rojo); }
+.dot-azul       { background: var(--azul); }
+.dot-verde      { background: var(--verde); }
+.dot-dorado     { background: var(--dorado); }
 
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
+/* ── DIAGRAMA DE ARQUITECTURA DIPLOMÁTICA (SVG inline) ── */
+.diagrama-wrap {
+  background: var(--manila);
+  border: 1.5px solid var(--manila-dark);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+}
 
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
+/* ── BLOQUE DE PARADOJA ── */
+.paradoja-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  background: var(--ink-mid);
+  border: 1.5px solid var(--ink-mid);
+  margin: 2rem 0;
+}
+.paradoja-lado {
+  padding: 1.8rem 2rem;
+  font-size: .88rem;
+  line-height: 1.7;
+}
+.paradoja-izq {
+  background: var(--rojo);
+  color: #f5ede8;
+}
+.paradoja-der {
+  background: var(--verde);
+  color: #e6f0e8;
+}
+.paradoja-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: .68rem;
+  letter-spacing: .16em;
+  font-weight: 700;
+  opacity: .8;
+  margin-bottom: .8rem;
+  text-transform: uppercase;
+}
+.paradoja-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.55;
+  margin-bottom: .6rem;
+}
+.paradoja-sub {
+  font-size: .8rem;
+  font-weight: 300;
+  opacity: .85;
+  line-height: 1.6;
+}
 
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
+/* ── CITA ACADÉMICA ── */
+.cita-academica {
+  border-left: 3px solid var(--dorado);
+  padding: 1.2rem 1.5rem;
+  margin: 1.8rem 0;
+  background: var(--dorado-pale);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: .98rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+.cita-academica cite {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: var(--ink-ghost);
+  margin-top: .6rem;
+}
 
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
+/* ── REFLEXIÓN PERSONAL ── */
+.reflexion-wrap {
+  background: var(--verde);
+  color: #e6f0e8;
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+  position: relative;
+  border-left: none;
+}
+.reflexion-wrap::before {
+  content: '▸ REFLEXIÓN TERRITORIAL';
+  font-family: 'Courier Prime', monospace;
+  font-size: .65rem;
+  letter-spacing: .18em;
+  color: rgba(230,240,232,.6);
+  display: block;
+  margin-bottom: 1rem;
+}
+.reflexion-texto {
+  font-size: .93rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #d8ead8;
+}
 
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
+/* ── ANÁLISIS   RECURSOS EN TABLA ── */
+.tabla-recursos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .84rem;
+  margin: 1.5rem 0;
+}
+.tabla-recursos thead tr {
+  background: var(--ink-mid);
+}
+.tabla-recursos thead th {
+  font-family: 'Courier Prime', monospace;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--manila);
+  padding: .7rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  border: none;
+}
+.tabla-recursos tbody tr {
+  border-bottom: 1px solid var(--manila-dark);
+  transition: background .12s;
+}
+.tabla-recursos tbody tr:hover {
+  background: var(--manila-deep);
+}
+.tabla-recursos tbody td {
+  padding: .7rem 1rem;
+  color: var(--ink-soft);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.tabla-recursos tbody td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  width: 22%;
+}
+.tabla-recursos tbody td:nth-child(2) {
+  width: 25%;
+}
+.tag-tipo {
+  font-family: 'Courier Prime', monospace;
+  font-size: .62rem;
+  letter-spacing: .1em;
+  font-weight: 700;
+  padding: .1rem .4rem;
+  text-transform: uppercase;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.tag-juridico    { color: var(--rojo);  border-color: var(--rojo);  background: var(--rojo-pale); }
+.tag-multilateral{ color: var(--azul);  border-color: var(--azul);  background: var(--azul-pale); }
+.tag-bilateral   { color: var(--verde); border-color: var(--verde); background: var(--verde-pale); }
+.tag-economico   { color: var(--dorado);border-color: var(--dorado);background: var(--dorado-pale); }
 
-  .highlight-box strong {
-    color: var(--sage);
-  }
+/* ── CONCLUSIÓN / SELLO FINAL ── */
+.conclusion-block {
+  background: var(--ink);
+  color: var(--manila);
+  padding: 2.5rem 3rem;
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.conclusion-block::before {
+  content: 'CONCLUSIÓN';
+  position: absolute;
+  right: -1.5rem; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Courier Prime', monospace;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.04);
+  letter-spacing: .3em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.conclusion-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--manila);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+.conclusion-texto {
+  font-size: .9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(232,223,200,.8);
+  max-width: 80ch;
+}
 
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* ── REFERENCIAS APA ── */
+.referencias-wrap {
+  border-top: 2px solid var(--ink);
+  margin-top: 4rem;
+  padding-top: 2rem;
+}
+.referencias-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+.ref {
+  font-size: .83rem;
+  padding-left: 2rem;
+  text-indent: -2rem;
+  margin-bottom: .75rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
 
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
+/* ── GLOSARIO LATERAL ── */
+.glosario-inline {
+  background: var(--manila-deep);
+  border: 1px solid var(--manila-dark);
+  border-left: 4px solid var(--dorado);
+  padding: 1.5rem 1.8rem;
+  margin: 2rem 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+@media (max-width: 700px) { .glosario-inline { columns: 1; } }
+.glosario-titulo {
+  font-family: 'Courier Prime', monospace;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  color: var(--dorado);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  column-span: all;
+}
+.gl-term {
+  margin-bottom: .75rem;
+  font-size: .82rem;
+  line-height: 1.55;
+  break-inside: avoid;
+}
+.gl-term strong {
+  font-family: 'Courier Prime', monospace;
+  font-size: .77rem;
+  letter-spacing: .04em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: .15rem;
+}
 
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
+/* ── DECLARATORIA IA ── */
+.declaratoria-ia {
+  font-family: 'Courier Prime', monospace;
+  font-size: .7rem;
+  letter-spacing: .03em;
+  color: var(--ink-ghost);
+  border-top: 1px dashed var(--manila-dark);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  line-height: 1.6;
+}
 
-  .ritual-closer strong {
-    color: var(--gold);
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+  .portada-inner {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
   }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
+  .portada-meta { text-align: left; }
+  .paradoja-block { grid-template-columns: 1fr; }
+  .expediente { padding: 2rem 1rem; }
+  .mapa-recursos { padding: 1.5rem 1rem; }
+  .conclusion-block { padding: 1.5rem; }
+  .recursos-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">09 · TAREA · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 3</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">09 · Mayo 2026</span>
+<!-- ══════════════════════════════════════
+     PORTADA / CARÁTULA DEL EXPEDIENTE
+     ══════════════════════════════════════ -->
+<header class="portada">
+  <div class="portada-texture"></div>
+  <div class="portada-inner">
+    <div>
+      <div class="sello-clasificado">Tarea Auténtica · Módulo 3 / Bloque 2</div>
+      <h1 class="portada-titulo">
+        Recursos de Política Exterior Mexicana
+        <em>ante las violaciones al Derecho Internacional: el caso Cuba, 1959–1982</em>
+      </h1>
+      <p class="portada-subtitulo">
+        Cartografía diplomática de los instrumentos jurídicos, multilaterales,<br>
+        bilaterales y económicos movilizados por el Estado mexicano<br>
+        ante la injerencia estadounidense en la Revolución cubana.
+      </p>
     </div>
-    <h1>Profundización <em>crítica</em> e investigación</h1>
-    <div class="lead-quote">
-      "La crítica es la base de todo progreso social."
-      <cite>— Karl Popper</cite>
+    <div class="portada-meta">
+      <strong>AUTOR</strong><br>
+      Isaac Moctezuma Calderón<br><br>
+      <strong>INSTITUCIÓN</strong><br>
+      UNRC · SECIHTI<br><br>
+      <strong>MATERIA</strong><br>
+      Historia y Formación del<br>Estado Moderno Mexicano<br><br>
+      <strong>FECHA</strong><br>
+      Junio 2026
     </div>
   </div>
+</header>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 3 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
+<!-- ══════════════════════════════════════
+     CUERPO DEL EXPEDIENTE
+     ══════════════════════════════════════ -->
+<main class="expediente">
+
+  <!-- ──────────────────────
+       01 · CONTEXTO HISTÓRICO
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">EXP-01</span>
+      <h2 class="seccion-titulo">Contexto histórico: el tablero de la Guerra Fría</h2>
     </div>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Marco teórico avanzado
-          <span>Investigación documental</span>
-        </div>
+    <p style="font-size:.92rem; line-height:1.75; color:var(--ink-soft); margin-bottom:1.2rem; text-align:justify; max-width:80ch;">
+      La Revolución cubana de 1959 fracturó el consenso hemisférico que Washington había construido bajo la Doctrina Monroe. México, el único país latinoamericano con frontera terrestre con Estados Unidos y dependencia económica directa del 71% de su inversión extranjera (Ceceña, 1970), optó por una postura de disidencia jurídica calculada: resistir las presiones de aislamiento a Cuba sin confrontar militarmente al hegemón. Lo que sigue es la cartografía de ese equilibrio.
+    </p>
+
+    <div class="cita-academica">
+      "La política exterior de México hacia Cuba se caracterizó por una tensión constante entre los principios revolucionarios y las presiones geopolíticas del contexto bipolar."
+      <cite>  Tirado González (2011, p. 62)</cite>
+    </div>
+
+    <!-- LÍNEA DE TIEMPO -->
+    <div class="timeline-wrap">
+      <div class="tl-item rojo">
+        <div class="tl-fecha">1959</div>
+        <div class="tl-evento">Triunfo de la Revolución cubana</div>
+        <div class="tl-desc">Washington presiona a América Latina para aislar al gobierno de Castro. México, bajo López Mateos, se niega a romper relaciones diplomáticas   el único país de la OEA en hacerlo.</div>
       </div>
-      <p>Se desarrolla una investigación que profundiza en los temas del módulo con fuentes académicas especializadas.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 3</span>
-        <span class="chip">TAREA</span>
+      <div class="tl-item rojo">
+        <div class="tl-fecha">1961</div>
+        <div class="tl-evento">Invasión de Bahía de Cochinos</div>
+        <div class="tl-desc">Operación paramilitar de la CIA. México condena implícitamente la injerencia al reafirmar el principio de no intervención ante la OEA.</div>
       </div>
+      <div class="tl-item dorado">
+        <div class="tl-fecha">1962</div>
+        <div class="tl-evento">Crisis de los Misiles · Voto dual</div>
+        <div class="tl-desc">México vota a favor de la resolución estadounidense para retirar armamento soviético, pero simultáneamente vota contra la expulsión de Cuba de la OEA   gestionando la asimetría con precisión quirúrgica.</div>
+      </div>
+      <div class="tl-item rojo">
+        <div class="tl-fecha">1964</div>
+        <div class="tl-evento">Voto disidente en la OEA</div>
+        <div class="tl-desc">México vota contra las sanciones colectivas a Cuba y se niega a romper relaciones. Es el único Estado del hemisferio occidental que mantiene vuelo directo y representación diplomática con La Habana.</div>
+      </div>
+      <div class="tl-item azul">
+        <div class="tl-fecha">1970–1976</div>
+        <div class="tl-evento">Activismo tercermundista de Echeverría</div>
+        <div class="tl-desc">México propone en la ONU la Carta de Derechos y Deberes Económicos de los Estados (1974). El multilateralismo como instrumento de redistribución de poder epistémico a escala global.</div>
+      </div>
+      <div class="tl-item verde">
+        <div class="tl-fecha">1980</div>
+        <div class="tl-evento">Acuerdo de San José</div>
+        <div class="tl-desc">México y Venezuela firman acuerdo de cooperación energética para Centroamérica y el Caribe. La renta petrolera convierte a México en actor regional independiente.</div>
+      </div>
+      <div class="tl-item verde">
+        <div class="tl-fecha">1981</div>
+        <div class="tl-evento">Declaración Franco-Mexicana</div>
+        <div class="tl-desc">México y Francia reconocen al FMLN-FDR salvadoreño como fuerza política representativa. La desobediencia al guion de Reagan alcanza su máximo de audacia antes del colapso de 1982.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-fecha">1982</div>
+        <div class="tl-evento">Crisis de la deuda · Fin del activismo</div>
+        <div class="tl-desc">El desplome del petróleo y la deuda externa obligan a México a renegociar bajo condiciones del FMI. El activismo internacional se contrae; la dependencia bilateral con EE.UU. se profundiza.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       02 · MAPA DE RECURSOS
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">EXP-02</span>
+      <h2 class="seccion-titulo">Mapa de recursos diplomáticos movilizados</h2>
+    </div>
+
+    <!-- LEYENDA -->
+    <div class="leyenda">
+      <div class="leyenda-item"><span class="leyenda-dot dot-rojo"></span>Recurso jurídico-doctrinal</div>
+      <div class="leyenda-item"><span class="leyenda-dot dot-azul"></span>Recurso multilateral (ONU/OEA)</div>
+      <div class="leyenda-item"><span class="leyenda-dot dot-verde"></span>Recurso bilateral (diplomacia directa)</div>
+      <div class="leyenda-item"><span class="leyenda-dot dot-dorado"></span>Recurso económico-energético</div>
+    </div>
+
+    <!-- DIAGRAMA SVG DE ARQUITECTURA DIPLOMÁTICA -->
+    <div class="diagrama-wrap">
+      <svg width="100%" viewBox="0 0 1100 580" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>Arquitectura diplomática: recursos de política exterior de México ante Cuba 1959-1982</title>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- === NODO CENTRAL: ESTADO MEXICANO === -->
+        <rect x="420" y="238" width="260" height="72" rx="4" fill="#1a1610" stroke="#1a1610" stroke-width="1"/>
+        <text font-family="'Playfair Display', serif" font-size="13" font-weight="700" fill="#e8dfc8" text-anchor="middle" x="550" y="270" dominant-baseline="central">ESTADO MEXICANO</text>
+        <text font-family="'Courier Prime', monospace" font-size="10" fill="#b0a280" text-anchor="middle" x="550" y="290" dominant-baseline="central">1959 – 1982 · Eje de resistencia jurídica</text>
+
+        <!-- ─── COLUMNA IZQ: RECURSOS JURÍDICOS ─── -->
+        <!-- Doctrina Estrada -->
+        <rect x="30" y="40" width="240" height="68" rx="3" fill="#f0d6d2" stroke="#9b2415" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#9b2415" text-anchor="middle" x="150" y="55" letter-spacing="1">RECURSO JURÍDICO</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="150" y="73" dominant-baseline="central">Doctrina Estrada (1930)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="150" y="95" dominant-baseline="central">Reconocimiento automático de gobiernos</text>
+
+        <!-- Art. 89 Constitucional -->
+        <rect x="30" y="140" width="240" height="68" rx="3" fill="#f0d6d2" stroke="#9b2415" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#9b2415" text-anchor="middle" x="150" y="155" letter-spacing="1">RECURSO JURÍDICO</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="150" y="173" dominant-baseline="central">Art. 89-X Constitucional</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="150" y="193" dominant-baseline="central">No intervención · autodeterminación</text>
+
+        <!-- Carta de San Francisco -->
+        <rect x="30" y="240" width="240" height="68" rx="3" fill="#f0d6d2" stroke="#9b2415" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#9b2415" text-anchor="middle" x="150" y="255" letter-spacing="1">RECURSO JURÍDICO</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="150" y="273" dominant-baseline="central">Carta de San Francisco (ONU)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="150" y="293" dominant-baseline="central">Igualdad jurídica · prohibición bloqueos</text>
+
+        <!-- ─── COLUMNA DER SUPERIOR: RECURSOS MULTILATERALES ─── -->
+        <!-- Voto OEA 1962/1964 -->
+        <rect x="830" y="40" width="240" height="68" rx="3" fill="#d0dce8" stroke="#1c3a5e" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#1c3a5e" text-anchor="middle" x="950" y="55" letter-spacing="1">RECURSO MULTILATERAL</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="950" y="73" dominant-baseline="central">Voto disidente OEA 1962/64</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="950" y="93" dominant-baseline="central">Único voto contra expulsión de Cuba</text>
+
+        <!-- Carta de DDEE (1974) -->
+        <rect x="830" y="140" width="240" height="68" rx="3" fill="#d0dce8" stroke="#1c3a5e" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#1c3a5e" text-anchor="middle" x="950" y="155" letter-spacing="1">RECURSO MULTILATERAL</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="950" y="173" dominant-baseline="central">Carta DDEE · ONU (1974)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="950" y="193" dominant-baseline="central">Orden económico internacional justo</text>
+
+        <!-- Tratado de Tlatelolco -->
+        <rect x="830" y="240" width="240" height="68" rx="3" fill="#d0dce8" stroke="#1c3a5e" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#1c3a5e" text-anchor="middle" x="950" y="255" letter-spacing="1">RECURSO MULTILATERAL</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="950" y="273" dominant-baseline="central">Tratado de Tlatelolco (1967)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="950" y="293" dominant-baseline="central">Desnuclearización de América Latina</text>
+
+        <!-- ─── FILA INFERIOR IZQ: BILATERALES ─── -->
+        <rect x="120" y="390" width="240" height="68" rx="3" fill="#d4e0d6" stroke="#2d4a32" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#2d4a32" text-anchor="middle" x="240" y="405" letter-spacing="1">RECURSO BILATERAL</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="240" y="423" dominant-baseline="central">Puente diplomático La Habana</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="240" y="443" dominant-baseline="central">Vuelo directo · embajada operativa</text>
+
+        <!-- Decl. Franco-Mexicana -->
+        <rect x="390" y="458" width="240" height="68" rx="3" fill="#d4e0d6" stroke="#2d4a32" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#2d4a32" text-anchor="middle" x="510" y="473" letter-spacing="1">RECURSO BILATERAL</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="510" y="491" dominant-baseline="central">Declaración Franco-Mexicana (1981)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="510" y="511" dominant-baseline="central">Reconocimiento FMLN como actor político</text>
+
+        <!-- ─── FILA INFERIOR DER: ECONÓMICO ─── -->
+        <rect x="700" y="390" width="240" height="68" rx="3" fill="#f0e4c0" stroke="#8a6d28" stroke-width="1"/>
+        <text font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#8a6d28" text-anchor="middle" x="820" y="405" letter-spacing="1">RECURSO ECONÓMICO</text>
+        <text font-family="'Playfair Display', serif" font-size="12" font-weight="700" fill="#1a1610" text-anchor="middle" x="820" y="423" dominant-baseline="central">Acuerdo de San José (1980)</text>
+        <text font-family="'Jost', sans-serif" font-size="10" font-weight="300" fill="#4a4236" text-anchor="middle" x="820" y="443" dominant-baseline="central">Cooperación energética regional</text>
+
+        <!-- ═══════════════════════════════
+             CONECTORES NODO CENTRAL → RECURSOS
+             ═══════════════════════════════ -->
+        <!-- → Doctrina Estrada -->
+        <path d="M420 258 L272 74" fill="none" stroke="#9b2415" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Art 89 -->
+        <path d="M420 264 L272 174" fill="none" stroke="#9b2415" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Carta SF -->
+        <path d="M420 274" fill="none" stroke="#9b2415" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" d="M420 274 L272 274" opacity=".7"/>
+
+        <!-- → Voto OEA -->
+        <path d="M680 258 L828 74" fill="none" stroke="#1c3a5e" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Carta DDEE -->
+        <path d="M680 264 L828 174" fill="none" stroke="#1c3a5e" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Tratado Tlatelolco -->
+        <path d="M680 274 L828 274" fill="none" stroke="#1c3a5e" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+
+        <!-- → Puente diplomático -->
+        <path d="M480 310 L300 390" fill="none" stroke="#2d4a32" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Decl. Franco-Mex -->
+        <path d="M550 310 L510 458" fill="none" stroke="#2d4a32" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+        <!-- → Acuerdo San José -->
+        <path d="M622 310 L760 390" fill="none" stroke="#8a6d28" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" opacity=".7"/>
+
+        <!-- ETIQUETA DEL DIAGRAMA -->
+        <text font-family="'Courier Prime', monospace" font-size="9" fill="#756a58" x="550" y="570" text-anchor="middle" letter-spacing="1">
+          ARQUITECTURA DIPLOMÁTICA MEXICANA · CASO CUBA 1959–1982 · Basado en Tirado González (2011) y contenido nuclear M3
+        </text>
+      </svg>
+    </div>
+
+    <!-- TARJETAS DE RECURSOS -->
+    <div class="recursos-grid">
+
+      <div class="recurso-card juridico">
+        <div class="recurso-tipo">Recurso jurídico-doctrinal</div>
+        <div class="recurso-nombre">Doctrina Estrada (1930)</div>
+        <div class="recurso-desc">El reconocimiento automático de gobiernos sin emitir juicio sobre su legitimidad política interna fue el escudo más sólido frente a las presiones para sancionar a Cuba. México nunca necesitó "aprobar" al gobierno de Castro para mantener relaciones con él.</div>
+        <div class="recurso-refs">Ref: Gaytán (2019, pp. 210-212) · Tirado González (2011, pp. 55-58)</div>
+      </div>
+
+      <div class="recurso-card juridico">
+        <div class="recurso-tipo">Recurso jurídico-doctrinal</div>
+        <div class="recurso-nombre">Art. 89, fracción X Constitucional</div>
+        <div class="recurso-desc">Los principios de no intervención, autodeterminación de los pueblos e igualdad jurídica de los estados son mandatos constitucionales. Esto les dio a los diplomáticos mexicanos un argumento de derecho interno que no podía ignorarse políticamente sin costo doméstico.</div>
+        <div class="recurso-refs">Ref: Mendoza Sánchez (2014) · Torres (2010)</div>
+      </div>
+
+      <div class="recurso-card multilateral">
+        <div class="recurso-tipo">Recurso multilateral · OEA/ONU</div>
+        <div class="recurso-nombre">Votaciones disidentes en la OEA (1962-1964)</div>
+        <div class="recurso-desc">México fue el único Estado latinoamericano que votó en contra de la expulsión de Cuba de la OEA y se negó a romper relaciones. Esta postura fue simultáneamente negociada con Washington  al compartir inteligencia sobre la isla , lo que la hace un caso de "disidencia administrada" más que de ruptura total.</div>
+        <div class="recurso-refs">Ref: Tirado González (2011, pp. 60-67) · Gaytán (2019)</div>
+      </div>
+
+      <div class="recurso-card multilateral">
+        <div class="recurso-tipo">Recurso multilateral · ONU</div>
+        <div class="recurso-nombre">Carta de Derechos y Deberes Económicos de los Estados (1974)</div>
+        <div class="recurso-desc">Propuesta en la AGONU por el gobierno de Echeverría como parte del "activismo tercermundista". Intentó construir un nuevo orden económico internacional que limitara la capacidad de las potencias para usar mecanismos económicos como instrumento de intervención  directamente relevante para el bloqueo a Cuba.</div>
+        <div class="recurso-refs">Ref: Torres (2010) · Gaytán (2019, p. 220) · Rico (2010)</div>
+      </div>
+
+      <div class="recurso-card bilateral">
+        <div class="recurso-tipo">Recurso bilateral</div>
+        <div class="recurso-nombre">Puente diplomático y aéreo ininterrumpido</div>
+        <div class="recurso-desc">México mantuvo activa su embajada en La Habana y el único vuelo comercial directo entre América Latina y Cuba durante décadas. Esta continuidad operativa significó que Cuba nunca quedó completamente aislada a nivel continental  un acto que tenía consecuencias materiales reales sobre la eficacia del bloqueo.</div>
+        <div class="recurso-refs">Ref: Tirado González (2011, pp. 68-72) · Pellicer de Brody (1972)</div>
+      </div>
+
+      <div class="recurso-card bilateral">
+        <div class="recurso-tipo">Recurso bilateral · coalición</div>
+        <div class="recurso-nombre">Declaración Franco-Mexicana (1981)</div>
+        <div class="recurso-desc">El reconocimiento conjunto con Francia del FMLN-FDR salvadoreño como fuerza representativa fue el momento de mayor audacia: México construyó una coalición transatlántica para desafiar la narrativa contrainsurgente de Reagan en Centroamérica, vinculando indirectamente su postura caribeña con la crisis regional.</div>
+        <div class="recurso-refs">Ref: Gaytán (2019, p. 226) · Torres (2010)</div>
+      </div>
+
+      <div class="recurso-card economico">
+        <div class="recurso-tipo">Recurso económico-energético</div>
+        <div class="recurso-nombre">Acuerdo de San José (1980)</div>
+        <div class="recurso-desc">México y Venezuela acuerdan proveer petróleo en condiciones preferenciales a Centroamérica y el Caribe. Este instrumento convirtió la renta petrolera en poder blando regional, generando redes de dependencia positiva que daban a México margen de autonomía frente a Washington. Su colapso en 1982 arrastró también al activismo diplomático.</div>
+        <div class="recurso-refs">Ref: Torres (2010) · Rico (2010) · Gaytán (2019, pp. 223-227)</div>
+      </div>
+
+      <div class="recurso-card multilateral">
+        <div class="recurso-tipo">Recurso multilateral · ONU</div>
+        <div class="recurso-nombre">Tratado de Tlatelolco (1967)</div>
+        <div class="recurso-desc">México lideró la construcción de la primera zona libre de armas nucleares en América Latina. Este tratado le dio al país autoridad moral en foros multilaterales para hablar de soberanía sin ser descartado como simple aliado de la URSS  una credencial que respaldaba su postura sobre Cuba.</div>
+        <div class="recurso-refs">Ref: Gaytán (2019, pp. 214-216) · Canal INEHRM (2018)</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       03 · TABLA ANALÍTICA
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">EXP-03</span>
+      <h2 class="seccion-titulo">Análisis comparativo: eficacia y límites de cada recurso</h2>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="tabla-recursos">
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th>Tipo</th>
+            <th>Mecanismo de acción</th>
+            <th>Eficacia observada</th>
+            <th>Límite estructural</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Doctrina Estrada</td>
+            <td><span class="tag-tipo tag-juridico">Jurídico</span></td>
+            <td>Escudo de soberanía: impide que terceros cuestionen el reconocimiento</td>
+            <td>Alta sostenibilidad (23 años). No requirió justificación sexenal.</td>
+            <td>No protege de presiones económicas ni de bloqueo informal de inversiones</td>
+          </tr>
+          <tr>
+            <td>Art. 89-X Constitucional</td>
+            <td><span class="tag-tipo tag-juridico">Jurídico</span></td>
+            <td>Mandato interno que convierte la no intervención en obligación, no en opción</td>
+            <td>Alta. Da legitimidad doméstica a la postura internacional.</td>
+            <td>Fue violado en la práctica por la Guerra Sucia interna (paradoja central)</td>
+          </tr>
+          <tr>
+            <td>Votaciones OEA (62/64)</td>
+            <td><span class="tag-tipo tag-multilateral">Multilateral</span></td>
+            <td>Tribunal de opinión hemisférica; el voto disidente expone la ilegitimidad del aislamiento</td>
+            <td>Media. Cuba no fue expulsada, pero sí marginada. México pagó costos diplomáticos.</td>
+            <td>No vinculante para EE.UU. La OEA no tuvo mecanismo coercitivo real</td>
+          </tr>
+          <tr>
+            <td>Carta DDEE/ONU (1974)</td>
+            <td><span class="tag-tipo tag-multilateral">Multilateral</span></td>
+            <td>Construcción de norma global que limite el uso de sanciones económicas unilaterales</td>
+            <td>Baja en el corto plazo. Alta como jurisprudencia a largo plazo (precedente NIEO).</td>
+            <td>EE.UU. y potencias occidentales rechazaron el texto. Sin fuerza vinculante.</td>
+          </tr>
+          <tr>
+            <td>Puente diplomático/aéreo</td>
+            <td><span class="tag-tipo tag-bilateral">Bilateral</span></td>
+            <td>Continuidad operativa que rompe el aislamiento físico y de información</td>
+            <td>Alta en términos materiales: Cuba conservó acceso a América a través de México</td>
+            <td>Condicionado a que México compartiera inteligencia sobre la isla con EE.UU.</td>
+          </tr>
+          <tr>
+            <td>Declaración Franco-Mexicana</td>
+            <td><span class="tag-tipo tag-bilateral">Bilateral</span></td>
+            <td>Coalición transatlántica que legitima a actores armados latinoamericanos</td>
+            <td>Alta simbólicamente; limitada operativamente. Generó fricción grave con Reagan.</td>
+            <td>La crisis de 1982 anuló su seguimiento. No tuvo continuidad política.</td>
+          </tr>
+          <tr>
+            <td>Acuerdo de San José</td>
+            <td><span class="tag-tipo tag-economico">Económico</span></td>
+            <td>Cooperación energética como poder blando; reduce dependencia de actores del Sur</td>
+            <td>Alta mientras duró el auge petrolero. Construyó redes de lealtad regional.</td>
+            <td>Colapsó con el petróleo en 1982. La renta fue la base   sin ella, no hubo autonomía.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       04 · LA PARADOJA CENTRAL
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">EXP-04</span>
+      <h2 class="seccion-titulo">La paradoja que el expediente no puede omitir</h2>
+    </div>
+
+    <p style="font-size:.92rem; line-height:1.75; color:var(--ink-soft); margin-bottom:1.5rem; text-align:justify; max-width:80ch;">
+      Ningún análisis honesto de este periodo puede ignorar que el Estado que defendía la no intervención hacia afuera ejecutaba una Guerra Sucia hacia adentro. La misma lógica doctrinal que protegió a Cuba fue negada sistemáticamente a los ciudadanos mexicanos que disentían  con consecuencias documentadas en Guerrero, estado que conozco no desde los libros, sino desde el territorio.
+    </p>
+
+    <div class="paradoja-block">
+      <div class="paradoja-lado paradoja-izq">
+        <div class="paradoja-label">Política exterior: lo que México sostuvo ante el mundo</div>
+        <div class="paradoja-texto">"Ningún Estado tiene derecho a intervenir en los asuntos internos de otro, independientemente de su sistema político."</div>
+        <div class="paradoja-sub">Votaciones OEA · Doctrina Estrada · Art. 89-X · Resistencia a los bloqueos de Washington. Aplicado consistentemente durante 23 años frente a presiones hemisféricas brutales.</div>
+      </div>
+      <div class="paradoja-lado paradoja-der">
+        <div class="paradoja-label">Política interna: lo que México ejecutaba en sus propias sierras</div>
+        <div class="paradoja-texto">"La Guerra Sucia: detenciones arbitrarias, tortura sistematizada, vuelos de la muerte desde Pie de la Cuesta, Guerrero."</div>
+        <div class="paradoja-sub">Allier Montaño (2024) documenta el terror de Estado entre 1965-1990. El mismo gobierno que protegía la soberanía cubana exterminaba la disidencia doméstica. El precio de la coherencia internacional fue pagado con sangre interna.</div>
+      </div>
+    </div>
+
+    <div class="reflexion-wrap">
+      <p class="reflexion-texto">
+        En mi estado natal en Guerrero los vuelos de la muerte salían desde Acapulco. Como trabajador del estado esta contradicción no es solo historica para mí: es el suelo sobre el que se levantan las instituciones en las que trabajo hoy. Eso no invalida el argumento diplomático mexicano   la defensa del principio de no intervención sigue siendo jurídicamente correcta y estratégicamente necesaria. Pero Dussel nos enseñó que el análisis que omite la víctima interna cuando celebra la postura externa es cómplice de una narrativa incompleta. Esse análisis está aquí para no ser ese tipo de análisis.
+      </p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       05 · CONCLUSIÓN
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">EXP-05</span>
+      <h2 class="seccion-titulo">Conclusión: lecciones para el presente</h2>
+    </div>
+
+    <div class="conclusion-block">
+      <div class="conclusion-titulo">Lo que el caso Cuba le enseña al México de 2026</div>
+      <p class="conclusion-texto">
+        La arquitectura diplomática mexicana de 1959 a 1982 demostró que un Estado periférico puede resistir la presión hegemónica durante más de dos décadas si combina recursos jurídicos sólidos (doctrina + norma constitucional), plataformas multilaterales como tribunales de opinión (OEA, ONU), continuidad operativa bilateral que tenga consecuencias materiales reales, y una base de autonomía económica que le dé margen de maniobra. La crisis de 1982 no refutó la estrategia   confirmó su condición de posibilidad: la autonomía diplomática sólo es sostenible si la autonomía económica la sostiene. Sin renta petrolera, sin activismo internacional. Esa ecuación sigue vigente. Quien la olvide, pagará el mismo costo que pagó López Portillo en agosto de 1982: ceder la soberanía al FMI para rescatar la cuenta corriente.
+      </p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       GLOSARIO
+       ────────────────────── -->
+  <section class="seccion">
+    <div class="seccion-cabecera">
+      <span class="seccion-numero">GLOS</span>
+      <h2 class="seccion-titulo">Glosario de términos clave</h2>
+    </div>
+    <div class="glosario-inline">
+      <div class="glosario-titulo">▸ Términos · Conceptos · Referencias cruzadas</div>
+      <div class="gl-term">
+        <strong>Disidencia negociada</strong>
+        Postura de resistencia formal frente a una potencia hegemónica que se mantiene viable gracias a concesiones paralelas en canales de inteligencia o comercio.
+      </div>
+      <div class="gl-term">
+        <strong>Doctrina Estrada (1930)</strong>
+        Principio de política exterior mexicana que establece el reconocimiento automático de gobiernos extranjeros sin emitir juicio sobre su legitimidad política interna.
+      </div>
+      <div class="gl-term">
+        <strong>Activismo tercermundista</strong>
+        Política exterior de Luis Echeverría (1970-1976) orientada a construir coaliciones Sur-Sur en la ONU como contrapeso al eje bipolar EE.UU.-URSS.
+      </div>
+      <div class="gl-term">
+        <strong>Poder blando energético</strong>
+        Uso de recursos energéticos (petróleo, en el caso mexicano) para construir redes de dependencia positiva con países vecinos, generando autonomía diplomática sin confrontación militar.
+      </div>
+      <div class="gl-term">
+        <strong>Guerra Sucia (1965-1990)</strong>
+        Periodo de represión sistemática del Estado mexicano contra disidentes. Documentado en el informe <em>Verdades innegables</em> (Allier Montaño, 2024). La paradoja interna del activismo exterior mexicano.
+      </div>
+      <div class="gl-term">
+        <strong>NIEO (Nuevo Orden Económico Internacional)</strong>
+        Proyecto multilateral promovido por países del Sur Global en los años 70 para reformar las reglas del comercio y la inversión internacionales. México fue uno de sus impulsores clave.
+      </div>
+      <div class="gl-term">
+        <strong>Hors-jeu diplomatique</strong>
+        Del francés: "fuera de juego diplomático". Estado en que un actor periférico queda excluido de los marcos de negociación por haberse negado a las reglas del bloque hegemónico. México resistió este estado durante 23 años.
+      </div>
+      <div class="gl-term">
+        <strong>Soberanía generacional</strong>
+        Defensa de principios jurídicos cuyo rendimiento no se mide en el sexenio presente sino en la capacidad futura de un Estado para no ser intervenido. La postura ante Cuba operó bajo esta lógica.
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────
+       REFERENCIAS APA
+       ────────────────────── -->
+  <div class="referencias-wrap">
+    <div class="referencias-label">Referencias   APA 7ª edición</div>
+
+    <div class="ref">Aboites Aguilar, L. (2008). El último tramo 1929-2000. En <em>Nueva historia mínima de México</em>. El Colegio de México.</div>
+    <div class="ref">Aguilar Camín, H. y Meyer, L. (1989). <em>A la sombra de la Revolución Mexicana</em>. Cal y Arena.</div>
+    <div class="ref">Allier Montaño, E. (2024). <em>Verdades innegables. Por un México sin impunidad</em>. Secretaría de Gobernación.</div>
+    <div class="ref">Canal INEHRM. (19 de octubre de 2018). <em>El Tratado de Tlatelolco. Sesión 2 Módulo 6</em> [Video]. Youtube. https://youtu.be/cSKAcCc74mg</div>
+    <div class="ref">Ceceña, J. L. (1970). <em>México en la órbita imperial</em>. El Caballito.</div>
+    <div class="ref">Gaytán Guzmán, R. I. (2019). La política exterior de México durante el siglo XX: hechos y análisis. <em>Revista de Relaciones Internacionales de la UNAM</em>, (133), 207-238.</div>
+    <div class="ref">Mendoza Sánchez, J. C. (2014). <em>Cien años de política exterior mexicana</em>. INEHRM.</div>
+    <div class="ref">Ojeda, M. (1976). <em>Alcances y límites de la política exterior de México</em>. El Colegio de México.</div>
+    <div class="ref">Pellicer de Brody, O. (1972). <em>México y la Revolución Cubana</em>. El Colegio de México.</div>
+    <div class="ref">Rico, C. (2010). <em>Hacia la globalización</em>. El Colegio de México.</div>
+    <div class="ref">Tirado González, A. (2011). La política exterior de México hacia Cuba durante la Guerra Fría: del sexenio de Adolfo López Mateos al de Miguel de la Madrid. En <em>Continuidad y cambio en la política exterior de México en la región caribeña</em> [Tesis de Maestría en Estudios Latinoamericanos]. UNAM. https://ru.dgb.unam.mx/server/api/core/bitstreams/3817bf49-c038-48d0-83be-007815270fa5/content</div>
+    <div class="ref">Torres, B. (2010). <em>De la guerra al mundo bipolar</em>. El Colegio de México.</div>
+
+    <div class="declaratoria-ia">
+      DECLARATORIA DE INTEGRIDAD TECNOLÓGICA: La maquetación HTML/CSS de esta infografía fue generada con asistencia de Inteligencia Artificial (VibeCode/Claude). El análisis histórico, la vinculación con la experiencia territorial en Guerrero, los argumentos críticos sobre la paradoja interna y la perspectiva de política exterior son autoría 100% humana de Isaac Moctezuma Calderón. Las fuentes citadas corresponden a la bibliografía oficial del Módulo 3 de Historia y Formación del Estado Moderno Mexicano, UNRC-RRII, 2026.
     </div>
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La profundización crítica nos permite ir más allá de lo evidente.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 3: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">09 · UNRC · Tarea Auténtica · M3</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
+</main>
 </body>
 </html>
-
-
-
