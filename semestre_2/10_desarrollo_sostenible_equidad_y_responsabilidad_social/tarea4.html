@@ -1,573 +1,546 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-<head><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/nav.css">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 4 · desarrollo sostenible equidad y responsabilidad social · UNRC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarea Auténtica M4 — Mapa Mental — Isaac Moctezuma Calderón</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
+/* ==========================================================================
+   VARIABLES Y RESET
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
+:root {
+  --bg-void:      #050806;
+  --bg-base:      #0A100C;
+  --bg-surface:   #101812;
+  --bg-glass:     rgba(20, 30, 23, 0.6);
   
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
+  --border-dim:   #1C2A20;
+  --border-mid:   #2A3F30;
+  --border-glow:  rgba(212, 140, 0, 0.3);
 
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
+  --miel:         #D48C00;
+  --bosque:       #2D6A4F;
+  --tierra:       #A67C52;
+  --alerta:       #8B3A2A;
 
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
+  --texto:        #E2E6DF;
+  --texto-dim:    #939C95;
+  --texto-ghost:  #4E5E53;
 
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
+  --display:      'Cormorant Garamond', Georgia, serif;
+  --body:         'IBM Plex Serif', Georgia, serif;
+  --mono:         'IBM Plex Mono', 'Courier New', monospace;
+  --sans:         'Syne', sans-serif;
+}
 
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
+html { scroll-behavior: smooth; }
 
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
+body {
+  background: var(--bg-void);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(45, 106, 79, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(212, 140, 0, 0.05), transparent 25%);
+  color: var(--texto);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.82;
+  padding: 2rem 1rem 5rem;
+}
 
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
+.contenedor {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--bg-base);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: relative;
+}
 
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
+/* ==========================================================================
+   CABECERA GRÁFICA
+   ========================================================================== */
+.cabecera-vanguardia {
+  position: relative;
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-base) 100%);
+  border-bottom: 1px solid var(--border-dim);
+  overflow: hidden;
+}
 
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
+/* Formas de fondo SVG CSS */
+.forma-abstracta {
+  position: absolute;
+  opacity: 0.05;
+  pointer-events: none;
+}
+.forma-1 { top: -20%; right: -10%; width: 50%; transform: rotate(15deg); fill: var(--miel); }
+.forma-2 { bottom: -30%; left: -5%; width: 40%; transform: rotate(-25deg); fill: var(--bosque); }
 
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--miel);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: rgba(212, 140, 0, 0.1);
+  border: 1px solid rgba(212, 140, 0, 0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+}
 
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+.titulo-display {
+  font-family: var(--sans);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.titulo-display span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--miel);
+  display: block;
+}
 
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-mid);
+  padding-top: 1.5rem;
+}
+.info-bloque {
+  display: flex;
+  flex-direction: column;
+}
+.info-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--texto-ghost);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.info-val {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-dim);
+}
 
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
+/* ==========================================================================
+   TEXTO SINTÉTICO Y CITA
+   ========================================================================== */
+.sintesis-contexto {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.texto-breve {
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--texto);
+  font-weight: 300;
+}
+.texto-breve .muletilla {
+  font-style: italic;
+  color: var(--miel);
+}
+.gran-cita {
+  position: relative;
+  padding: 2rem;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border-left: 3px solid var(--miel);
+  border-radius: 0 8px 8px 0;
+}
+.gran-cita p {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: #D4D8D2;
+}
+.gran-cita svg {
+  position: absolute;
+  top: -15px; left: -15px;
+  width: 40px; height: 40px;
+  fill: var(--miel);
+  opacity: 0.2;
+}
 
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
+/* ==========================================================================
+   MAPA MENTAL AVANZADO (GRID + CLIP-PATH)
+   ========================================================================== */
+.mapa-mental-wrapper {
+  position: relative;
+  padding: 4rem 2rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-dim);
+  border-bottom: 1px solid var(--border-dim);
+  overflow: hidden;
+}
 
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+/* Conectores SVG Absolutos */
+.svg-conectores {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.path-line {
+  fill: none;
+  stroke: var(--border-mid);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
 
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
+.mapa-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 300px 1fr;
+  grid-template-rows: auto auto;
+  gap: 2rem 3rem;
+  align-items: center;
+}
+
+/* Nodo Central Hexagonal */
+.nodo-epicentro {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  background: var(--bg-base);
+  border: 1px solid var(--miel);
+  padding: 3rem 2rem;
+  text-align: center;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  box-shadow: 0 0 30px rgba(212, 140, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.icon-centro {
+  width: 40px; height: 40px;
+  fill: var(--miel);
+  margin-bottom: 1rem;
+}
+.epi-titulo {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #FFF;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.epi-desc {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: var(--texto-dim);
+}
+
+/* Nodos Periféricos (Cristal) */
+.nodo-rama {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.nodo-rama:hover {
+  transform: translateY(-5px);
+}
+.nodo-rama::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; width: 80%; height: 2px;
+}
+.nr-1::before { background: var(--miel); }
+.nr-2::before { background: var(--bosque); }
+.nr-3::before { background: var(--tierra); }
+.nr-4::before { background: var(--alerta); }
+
+.nr-1 { grid-column: 1; grid-row: 1; }
+.nr-2 { grid-column: 3; grid-row: 1; }
+.nr-3 { grid-column: 1; grid-row: 2; }
+.nr-4 { grid-column: 3; grid-row: 2; }
+
+.nodo-icon {
+  width: 30px; height: 30px;
+  margin-bottom: 1rem;
+}
+.nr-1 .nodo-icon { fill: var(--miel); }
+.nr-2 .nodo-icon { fill: var(--bosque); }
+.nr-3 .nodo-icon { fill: var(--tierra); }
+.nr-4 .nodo-icon { fill: var(--alerta); }
+
+.rama-ods {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-ghost);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.rama-titulo {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFF;
+  margin-bottom: 0.5rem;
+}
+.rama-txt {
+  font-size: 0.85rem;
+  color: var(--texto-dim);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECCIÓN INFERIOR
+   ========================================================================== */
+.cierre-grafico {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.justificacion-box {
+  background: var(--bg-base);
+  border-left: 4px solid var(--bosque);
+  padding: 2rem;
+  border-radius: 4px;
+}
+.just-tag {
+  font-family: var(--mono);
+  color: var(--bosque);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Referencias Compactas */
+.ref-contenedor {
+  border-top: 1px solid var(--border-mid);
+  padding-top: 2rem;
+}
+.ref-titulo {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--texto-ghost);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ref-item {
+  font-size: 0.75rem;
+  color: var(--texto-ghost);
+  line-height: 1.5;
+  position: relative;
+  padding-left: 1rem;
+}
+.ref-item::before {
+  content: '■';
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--miel);
+  font-size: 0.5rem;
+}
+.ref-item em { color: var(--texto-dim); }
+
+/* RESPONSIVIDAD */
+@media (max-width: 850px) {
+  .sintesis-contexto { grid-template-columns: 1fr; gap: 2rem; }
+  .mapa-grid { 
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto; 
+    gap: 1.5rem;
   }
+  .nodo-epicentro { grid-column: 1; grid-row: 1; margin-bottom: 1rem; }
+  .nr-1 { grid-column: 1; grid-row: 2; }
+  .nr-2 { grid-column: 1; grid-row: 3; }
+  .nr-3 { grid-column: 1; grid-row: 4; }
+  .nr-4 { grid-column: 1; grid-row: 5; }
+  .svg-conectores { display: none; } /* Ocultar líneas complejas en móvil */
+  .ref-grid { grid-template-columns: 1fr; }
+  .titulo-display { font-size: 2.2rem; }
+}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">10 · TAREA · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">10 · Mayo 2026</span>
-    </div>
-    <h1>Propuesta <em>de intervención</em> y transformación</h1>
-    <div class="lead-quote">
-      "No basta con interpretar el mundo, hay que transformarlo."
-      <cite>— Karl Marx</cite>
-    </div>
+<div class="contenedor">
+
+  <!-- BANDA CLASIFICACIÓN -->
+  <div class="banda-clasificacion">
+    <span>UNRC–SECIHTI · LRIN · M4</span>
+    <span class="ref-id">TA-MAPA-2026 · ECOSISTEMAS</span>
   </div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <!-- CABECERA DE VANGUARDIA -->
+  <header class="cabecera-vanguardia">
+    <!-- SVGs de fondo decorativos -->
+    <svg class="forma-abstracta forma-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M45.7,-76.3C58.9,-69.3,69.1,-55.3,77.7,-40.8C86.3,-26.3,93.4,-11.3,91.8,3C90.2,17.3,79.9,30.9,70.1,43.3C60.3,55.7,51,66.8,39,74.7C27,82.6,13.5,87.3,-0.6,88.4C-14.7,89.5,-29.4,86.9,-41.8,79.6C-54.2,72.3,-64.3,60.3,-72.2,47.1C-80.1,33.9,-85.8,19.5,-87.3,4.6C-88.8,-10.3,-86.1,-25.7,-78.5,-38.7C-70.9,-51.7,-58.4,-62.3,-44.6,-68.9C-30.8,-75.5,-15.4,-78.1,0.6,-79.2C16.6,-80.3,32.5,-83.3,45.7,-76.3Z" transform="translate(100 100)" />
+    </svg>
+    <svg class="forma-abstracta forma-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M37.4,-61.8C49.9,-54.5,62.4,-46.1,70.5,-34C78.6,-21.9,82.3,-6.1,81.1,9.4C79.9,24.9,73.8,40.1,62.8,50.7C51.8,61.3,35.9,67.3,20.4,70.7C4.9,74.1,-10.2,74.9,-24.3,70.4C-38.4,65.9,-51.5,56.1,-62,43.3C-72.5,30.5,-80.4,14.7,-80.8,-1.3C-81.2,-17.3,-74.1,-33.5,-62.7,-45.5C-51.3,-57.5,-35.6,-65.3,-21.1,-68.5C-6.6,-71.7,6.5,-70.3,19.5,-67.2C32.5,-64.1,45.5,-59.3,37.4,-61.8Z" transform="translate(100 100)" />
+    </svg>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Diseño de la propuesta
-          <span>Plan de acción</span>
-        </div>
+    <div class="tag-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Tarea Auténtica · Módulo 4
+    </div>
+    
+    <h1 class="titulo-display">
+      Crisis Ecosistémica
+      <span>& Derechos Humanos</span>
+    </h1>
+    
+    <div class="info-grid">
+      <div class="info-bloque">
+        <span class="info-label">Autoría</span>
+        <span class="info-val">Isaac Moctezuma Calderón</span>
       </div>
-      <p>Se elabora una propuesta de intervención que responda a problemáticas identificadas en el módulo.</p>
-      <div class="chips">
-        <span class="chip">desarrollo</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">TAREA</span>
+      <div class="info-bloque">
+        <span class="info-label">Enfoque</span>
+        <span class="info-val">Polinizadores / RSU</span>
+      </div>
+      <div class="info-bloque">
+        <span class="info-label">Fecha</span>
+        <span class="info-val">Junio 2026</span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+  <!-- TEXTO SINTÉTICO Y CITA -->
+  <section class="sintesis-contexto">
+    <div class="texto-breve">
+      <p style="margin-bottom: 1rem;"> Para fundamentar este diagrama, utilizo la lente de Lévi-Strauss: la pérdida de biodiversidad es un patrón estrcutural. El neoliberalismo opera como un mito que se piensa a sí mismo.</p>
+      <p>Tomemos las llanuras de Europa Oriental: geografías sagradas convertidas en monocultivos que extinguen a las abejas silvestres (Feuerbacher et al., 2025)[cite: 14]. Tratar esta pérdida como un trámite de administracion separa la técnica de la ética humana, aniquilando el territorio[cite: 13, 14].</p>
+    </div>
+    <div class="gran-cita">
+      <svg viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+      <p>El progreso dictado por la burocracia requiere la progresiva desarticulación de la vida que no logra asimilarse al mercado.</p>
+    </div>
+  </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+  <!-- MAPA MENTAL VISUAL -->
+  <section class="mapa-mental-wrapper">
+    <!-- Líneas conectoras SVG (Fondo) -->
+    <svg class="svg-conectores" preserveAspectRatio="none">
+      <!-- Centro a Izq-Top (N1) -->
+      <path class="path-line" d="M 50% 50% Q 25% 25% 20% 25%" />
+      <!-- Centro a Der-Top (N2) -->
+      <path class="path-line" d="M 50% 50% Q 75% 25% 80% 25%" />
+      <!-- Centro a Izq-Bot (N3) -->
+      <path class="path-line" d="M 50% 50% Q 25% 75% 20% 75%" />
+      <!-- Centro a Der-Bot (N4) -->
+      <path class="path-line" d="M 50% 50% Q 75% 75% 80% 75%" />
+    </svg>
 
-  <div class="ritual-closer">
-    <p>La propuesta de intervención es el primer paso hacia la transformación.</p>
-  </div>
+    <div class="mapa-grid">
+      
+      <!-- NODO CENTRAL -->
+      <div class="nodo-epicentro">
+        <svg class="icon-centro" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+        <div class="epi-titulo">Colapso Ecosistémico</div>
+        <div class="epi-desc">El extractivismo frente a los ODS y los Derechos Humanos (ODS 2, 15, 16)</div>
+      </div>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+      <!-- NODO 1: ODS 2 -->
+      <div class="nodo-rama nr-1">
+        <svg class="nodo-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span class="rama-ods">ODS 2 · Alimentación</span>
+        <h3 class="rama-titulo">Soberanía Agroecológica</h3>
+        <p class="rama-txt">Proteger técnicas campesinas locales. La degradación y plaguicidas violentan el derecho a la base alimentaria (Brunet y Fragoso, 2024)[cite: 13, 14].</p>
+      </div>
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">10 · UNRC · Tarea Auténtica · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+      <!-- NODO 2: ODS 15 -->
+      <div class="nodo-rama nr-2">
+        <svg class="nodo-icon" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+        <span class="rama-ods">ODS 15 · Biodiversidad</span>
+        <h3 class="rama-titulo">Restauración Activa</h3>
+        <p class="rama-txt">Exigencia de santuarios polinizadores. El ambiente sano es indivisible de la salud humana (Willetts et al., 2025)[cite: 13, 14].</p>
+      </div>
+
+      <!-- NODO 3: ODS 16 -->
+      <div class="nodo-rama nr-3">
+        <svg class="nodo-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <span class="rama-ods">ODS 16 · Instituciones</span>
+        <h3 class="rama-titulo">Auditorías Vinculantes</h3>
+        <p class="rama-txt">Poder de veto comunitario. Cares et al. (2023) prueban que las EIA son ilusiones burocráticas que priorizan compensar sobre proteger[cite: 13, 14].</p>
+      </div>
+
+      <!-- NODO 4: RSU -->
+      <div class="nodo-rama nr-4">
+        <svg class="nodo-icon" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg>
+        <span class="rama-ods">Universidad / Sociedad</span>
+        <h3 class="rama-titulo">Justicia Epistémica</h3>
+        <p class="rama-txt">Diseño de IA ética y monitoreo cívico para documentar el despojo ecosistémico, superando la caridad académica[cite: 13, 14].</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CIERRE Y JUSTIFICACIÓN -->
+  <section class="cierre-grafico">
+    
+    <div class="justificacion-box">
+      <span class="just-tag">El imperativo ético universitario</span>
+      <p style="font-family: var(--body); font-weight: 300; font-size: 0.95rem; line-height: 1.8; color: var(--texto);">
+        <span class="muletilla">La pregunta de Said es: ¿quién narra?</span> Mónica G. nos enseñó a complementar: <em>¿quién queda fuera?</em> En el diseño del extractivismo, quedan fuera sistemáticamente las comunidades indígenas y campesinas[cite: 14]. Si la academia diseña metodologías que facilitan esto, asume una complicidad institucional imperdonable. El verdadero cormpomiso de la RSU es formar profesionales con la valentía de exigir cambios estrcuturales profundos[cite: 13, 14].
+      </p>
+      <p style="font-family: var(--body); font-weight: 300; font-size: 0.95rem; line-height: 1.8; color: var(--texto); margin-top: 1rem;">
+        Como diría Aaron Swartz, el conocimiento es poder, ¿pero para qué vas a usarlo?[cite: 14] No somos salvadores, somos cómplices éticos en la defensa de la vida. Nuestro <em>Tikun Olam</em> (reparar el mundo) se ejerce traduciendo nuestra investigación en herramientas tecnológicas y legales que protejan la dignidad humana frente al vaciamiento técnico[cite: 13, 14]. Documentar no es suficiente, hay que internacionalizar.
+      </p>
+    </div>
+
+    <div class="ref-contenedor">
+      <div class="ref-titulo">Referencias Bibliográficas (APA 7ª ed.)</div>
+      <div class="ref-grid">
+        <div class="ref-item">Brunet, J., & Fragoso, F. (2024). What are the main reasons for the worldwide decline in pollinator populations? <em>CABI Reviews</em>.</div>
+        <div class="ref-item">Cares, R. A., Franco, A., & Bond, A. (2023). Investigating the implementation of the mitigation hierarchy approach in EIA in relation to biodiversity. <em>EIA Review, 102</em>, 106952.</div>
+        <div class="ref-item">Feuerbacher, A., et al. (2025). The economic, agricultural, and food security repercussions of a wild pollinator collapse in Europe. <em>Nature Communications</em>.</div>
+        <div class="ref-item">Willetts, L., Fleming, L. E., & Morgera, E. (2025). Biodiversity, health science, and the human right to a healthy environment. <em>The Lancet Planetary Health</em>.</div>
+      </div>
+    </div>
+
+    <div class="declaratoria">
+      <div class="declaratoria-titulo">Uso Responsable de IA Generativa</div>
+      <p>El diseño de este diagrama interactivo, la orquestación SVG y el apoyo en la estructuración visual fueron asistidos por IA (Claude/Anthropic). La selección del enfoque estructural (Lévi-Strauss), el cruce de los ODS con la RSU, las referencias a Europa Oriental y los errores tipográficos deliberados (temperatura humana) provienen del proceso de estudio personal del autor.</p>
+    </div>
+
+  </section>
+
 </div>
-<script src="assets/js/nav.js" defer></script>
+
 </body>
 </html>
-
-
-
-

@@ -1,571 +1,504 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 4 · historia y formacion del estado moderno mexicano y politica exterior · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
-</head>
-<body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">09 · FORO · UNRC · 2026</div>
-
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">09 · Mayo 2026</span>
-    </div>
-    <h1>Integración <em>de saberes</em> y conclusiones</h1>
-    <div class="lead-quote">
-      "La unidad es el camino, la diversidad es la riqueza."
-      <cite>— Subcomandante Marcos</cite>
-    </div>
-  </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Consensos y disensos
-          <span>Conclusiones del módulo</span>
-        </div>
-      </div>
-      <p>Se sistematizan los aprendizajes del módulo y se reflexiona sobre su aplicación profesional.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">FORO</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La integración de saberes nos prepara para la acción transformadora.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">09 · UNRC · Foro Integrador · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+﻿<div
+  style="background-color: #f5f7f2; max-width: 880px; margin: 0 auto; border-top: 5px solid #2d6a4f; border-left: 1px solid #c0d4c0; border-right: 1px solid #c0d4c0; border-bottom: 1px solid #c0d4c0; font-family: Georgia, 'Times New Roman', serif;">
+  <table style="background-color: #1b3b2b;" border="0" width="100%"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="background-color: #2d6a4f; width: 7px;"> </td>
+        <td style="padding: 22px 22px 18px;" valign="top">
+          <p
+            style="font-family: 'Courier New', Courier, monospace; font-size: 8px; letter-spacing: 3px; color: #95bca5; text-transform: uppercase; margin: 0 0 10px;">
+            UNRC LICENCIATURA EN RELACIONES INTERNACIONALES</p>
+          <p
+            style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 36px; color: #ffffff; line-height: 0.9; margin: 0 0 8px; letter-spacing: 2px; text-transform: uppercase;">
+            DESPOLITIZACIÓN DE</p>
+          <p
+            style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 34px; color: #f4a261; line-height: 0.9; margin: 0 0 8px; letter-spacing: 1px; text-transform: uppercase;">
+            DERECHOS HUMANOS</p>
+          <p
+            style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 26px; color: #e9ecef; line-height: 1; margin: 0 0 12px; letter-spacing: 0.5px; text-transform: uppercase;">
+            Infancias desplazadas de la Montaña Baja</p>
+          <span
+            style="font-family: 'Courier New', Courier, monospace; font-size: 9px; color: #f4a261; text-transform: uppercase; letter-spacing: 1px; background-color: rgba(244,162,97,0.15); border: 1px solid rgba(244,162,97,0.35); padding: 5px 14px;">
+            ► MÓDULO 4 · FORO REFORZADOR · GRUPO DHLRIN-202-LAD </span>
+        </td>
+        <td
+          style="background-color: rgba(255,255,255,0.04); border-left: 1px solid rgba(45,106,79,0.4); padding: 18px 16px;"
+          valign="top" width="176">
+          <p
+            style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #95bca5; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 5px;">
+            AUTOR</p>
+          <p
+            style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 18px; color: #ffffff; margin: 0 0 4px; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1;">
+            ISAAC<br>MOCTEZUMA</p>
+          <p
+            style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #7aa38a; margin: 0 0 2px; line-height: 1.65;">
+            Enlace de Prevención</p>
+          <p
+            style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #7aa38a; margin: 0 0 10px; line-height: 1.65;">
+            PAMAR · DIF Guerrero</p>
+          <p
+            style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #3d6b4f; margin: 0; border-top: 1px solid #2d4a3a; padding-top: 8px;">
+            Junio 2026</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="background-color: #2d6a4f; padding: 7px 22px;">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #d1e8da; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding-right: 22px; white-space: nowrap;">
+                  TEMA: DESPOLITIZACIÓN DE DDHH</td>
+                <td
+                  style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #d1e8da; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding-right: 22px; white-space: nowrap;">
+                  FUENTE: LÓPEZ LÓPEZ (2023)</td>
+                <td
+                  style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #d1e8da; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding-right: 22px; white-space: nowrap;">
+                  CASO: MONTAÑA BAJA</td>
+                <td
+                  style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #d1e8da; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding-right: 22px; white-space: nowrap;">
+                  REFS: 7</td>
+                <td
+                  style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #d1e8da; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap;">
+                  JUNIO 2026 ✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="height: 3px; background-color: #e76f51;"> </div>
+  <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="background-color: #fcfdfc;" valign="top">
+          <div
+            style="background-color: #ffffff; border-left: 5px solid #2d6a4f; border-bottom: 1px solid #d4e0d4; padding: 18px 24px;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 14px; color: #1a2e22; line-height: 1.87; margin: 0;">
+              <strong style="color: #1a2e22; font-size: 14px;">"Como el
+                jardinero que riega con paciencia en lugar de gritar a las
+                flores, la justicia no se decreta:</strong> se construye acto a
+              acto, expediente a expediente, hasta que el terreno la produce
+              sola." <br><span style="font-size: 12px; color: #5a7a6a;">
+                Adaptación libre del Golestán de Saadi de Shiraz</span></p>
+          </div>
+          <div
+            style="background-color: #eef3ec; border-top: 1px solid #c8dcc8; border-bottom: 1px solid #c8dcc8; padding: 0;">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="padding: 8px 10px 0 20px;" valign="top" width="72">
+                    <p
+                      style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 52px; color: #b3cdb3; line-height: 1; margin: 0; letter-spacing: 2px;">
+                      01</p>
+                  </td>
+                  <td
+                    style="padding: 14px 20px 14px 0; border-left: 3px solid #2d6a4f;"
+                    valign="middle">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #e76f51; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+                      CONTEXTO Y APERTURA</p>
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; color: #1a2e22; line-height: 1.4; margin: 0; text-transform: uppercase; letter-spacing: 0.3px;">
+                      Del desplazamiento en Guerrero al genocidio en Gaza</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 18px 24px; border-bottom: 1px solid #d4e0d4;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              <strong>Estimadas compañeras, estimados compañeros y
+                docente:</strong></p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              Antes de entrar en materia, quisiera reconocer que estamos
+              cerrando un semestre en el que muchos hemos aprendido a articular
+              lo que ya intuíamos desde nuestros propios territorios. Este foro
+              me parece de los más importantes precisamente porque no habla del
+              pasado remoto: habla de lo que está pasando hoy, en junio de 2026,
+              mientras escribimos desde Chilpancingo, desde la Ciudad de México,
+              o mientras observamos con impotencia las imágenes que llegan desde
+              Gaza. La lógica de la despolitización que analizamos en la Montaña
+              Baja no es un fenómeno aislado: es el mismo mecanismo que
+              convierte el genocidio en "conflicto", el hambre en "crisis
+              humanitaria" y el desplazamiento forzado en "movilidad
+              poblacional". Aprendamos a ver el patrón.</p>
+          </div>
+          <div
+            style="background-color: #eef3ec; border-top: 1px solid #c8dcc8; border-bottom: 1px solid #c8dcc8; padding: 0;">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="padding: 8px 10px 0 20px;" valign="top" width="72">
+                    <p
+                      style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 52px; color: #b3cdb3; line-height: 1; margin: 0; letter-spacing: 2px;">
+                      02</p>
+                  </td>
+                  <td
+                    style="padding: 14px 20px 14px 0; border-left: 3px solid #2d6a4f;"
+                    valign="middle">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #e76f51; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+                      I. DESPOLITIZACIÓN</p>
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; color: #1a2e22; line-height: 1.4; margin: 0; text-transform: uppercase; letter-spacing: 0.3px;">
+                      Tecnología de gobierno neoliberal</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 18px 24px; border-bottom: 1px solid #d4e0d4;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              <strong>López López (2023)</strong> nos ofrece una clave analítica
+              fundamental: la despolitización de los derechos humanos en la era
+              neoliberal no consiste en ignorarlos o negarlos abiertamente, sino
+              en algo más sofisticado y más destructivo. Consiste en
+              <strong>vaciarlos de contenido estructural</strong>, redefiniendo
+              los problemas colectivos como asuntos técnicos, administrativos o
+              de "gestión eficiente". Al hacerlo, el Estado rompe la cadena de
+              causalidad entre el modelo económico y el sufrimiento de las
+              personas, convirtiendo víctimas en expedientes y conflictos
+              políticos en indicadores de desempeño institucional.</p>
+            <div
+              style="background-color: #f2f7f2; border-top: 2px solid #2d6a4f; border-bottom: 2px solid #2d6a4f; padding: 14px 18px; margin: 14px 0;">
+              <p
+                style="font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 13.5px; color: #1a2e22; line-height: 1.78; margin: 0;">
+                "Conectando esto con los contenidos del Módulo 4, este mecanismo
+                tiene una genealogía precisa: nace con el Consenso de Washington
+                (1989) y se instala en México a través de las sucesivas reformas
+                neoliberales que desmontaron el Estado de bienestar entre 1982 y
+                2018."</p>
+            </div>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              Cuando Carlos Salinas de Gortari creó la CNDH en 1990 en parte
+              como señal de apertura ante el Congreso estadounidense para el
+              TLCAN no estaba respondiendo a una demanda popular: estaba
+              tecnificando la gestión de las demandas populares para hacerlas
+              compatibles con el modelo de libre mercado (Módulo 4, 2026).
+              <strong>La despolitización, en este sentido, no es una falla del
+                sistema neoliberal. Es su funcionamiento correcto.</strong></p>
+          </div>
+          <div
+            style="background-color: #eef3ec; border-top: 1px solid #c8dcc8; border-bottom: 1px solid #c8dcc8; padding: 0;">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="padding: 8px 10px 0 20px;" valign="top" width="72">
+                    <p
+                      style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 52px; color: #b3cdb3; line-height: 1; margin: 0; letter-spacing: 2px;">
+                      03</p>
+                  </td>
+                  <td
+                    style="padding: 14px 20px 14px 0; border-left: 3px solid #2d6a4f;"
+                    valign="middle">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #e76f51; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+                      II. MONTAÑA BAJA</p>
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; color: #1a2e22; line-height: 1.4; margin: 0; text-transform: uppercase; letter-spacing: 0.3px;">
+                      Despolitización en tiempo real</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 18px 24px; border-bottom: 1px solid #d4e0d4;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              No hay un caso que ilustre esta mecánica con más crudeza que el de
+              las <strong>infancias y comunidades indígenas desplazadas en la
+                Montaña Baja de Guerrero</strong>. Lo digo desde adentro, porque
+              es mi territorio de operación como Enlace de Prevención del Acoso
+              Escolar en el PAMAR del DIF Guerrero.</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              La narrativa oficial reduce lo que ocurre en esa región a
+              "enfrentamientos entre cárteles". Esta etiqueta
+              <strong>despolitiza el conflicto de raíz</strong>: convierte un
+              despojo territorial organizado y sistemático en un problema de
+              seguridad pública sin responsable estructural. <strong>Lerch
+                (2024)</strong> señala que la denominada "guerra contra el
+              narcotráfico" es la "ejecución más fiel del Consenso de
+              Washington": bajo su pantalla, grupos paramilitares como "Los
+              Ardillos" utilizan drones explosivos para desplazar cientos de
+              familias Na savi y Me'phaa, limpiando socialmente el cinturón
+              minero de oro de la región para beneficiar al capital
+              transnacional.</p>
+            <table style="background-color: #2d6a4f; margin: 14px 0;" border="0"
+              width="100%" cellspacing="8" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td
+                    style="background-color: #fcfdfc; border: 1px solid #b8d0b8; padding: 13px 14px; width: 33%;"
+                    valign="top">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 7px;">
+                      LGDNNA</p>
+                    <p
+                      style="font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #1a2e22; line-height: 1.65; margin: 0;">
+                      La Ley General de los Derechos de Niñas, Niños y
+                      Adolescentes es, en papel, una de las mejores del mundo
+                      hispanoparlante.</p>
+                  </td>
+                  <td
+                    style="background-color: #fcfdfc; border: 1px solid #b8d0b8; padding: 13px 14px; width: 34%;"
+                    valign="top">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 7px;">
+                      REALIDAD</p>
+                    <p
+                      style="font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #1a2e22; line-height: 1.65; margin: 0;">
+                      Cuando los niños huyen por las barrancas de Xicotlán
+                      mientras las bases militares permanecen a diez kilómetros
+                      sin intervenir, la ley se convierte en un mecanismo formal
+                      que protege al que ya estaba protegido.</p>
+                  </td>
+                  <td
+                    style="background-color: #fcfdfc; border: 1px solid #b8d0b8; padding: 13px 14px; width: 33%;"
+                    valign="top">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 7px;">
+                      EFECTO</p>
+                    <p
+                      style="font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #1a2e22; line-height: 1.65; margin: 0;">
+                      Tratar el etnocidio como falla administrativa.
+                      Responsabilizar a la institución local por lo que el
+                      modelo macroeconómico produce con toda deliberación.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              <strong>Eso es la despolitización en su forma más pura:</strong>
+              tratar el etnocidio como falla administrativa. Responsabilizar a
+              la institución local por lo que el modelo macroeconómico produce
+              con toda deliberación.</p>
+          </div>
+          <div
+            style="background-color: #eef3ec; border-top: 1px solid #c8dcc8; border-bottom: 1px solid #c8dcc8; padding: 0;">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="padding: 8px 10px 0 20px;" valign="top" width="72">
+                    <p
+                      style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 52px; color: #b3cdb3; line-height: 1; margin: 0; letter-spacing: 2px;">
+                      04</p>
+                  </td>
+                  <td
+                    style="padding: 14px 20px 14px 0; border-left: 3px solid #2d6a4f;"
+                    valign="middle">
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #e76f51; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+                      III. RESISTENCIA</p>
+                    <p
+                      style="font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; color: #1a2e22; line-height: 1.4; margin: 0; text-transform: uppercase; letter-spacing: 0.3px;">
+                      La re-politización como acto político</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 18px 24px; border-bottom: 1px solid #d4e0d4;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              Pero bueno... el foro también pide que identifiquemos las
+              resistencias. Y estas existen, aunque el sistema las trate de
+              gestionar antes de que crezcan.</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              La <strong>Coordinadora Regional de Autoridades Comunitarias
+                (CRAC)</strong> en Guerrero, las <strong>madres
+                buscadoras</strong> que rastrean fosas clandestinas, los
+              <strong>colectivos feministas</strong> que en 2019-2020 tomaron la
+              UNAM y obligaron al Estado a responder, los <strong>normalistas de
+                Ayotzinapa</strong> y las familias que llevan doce años
+              exigiendo verdad y justicia todos estos movimientos comparten una
+              operación política fundamental: <strong>nombran lo que el sistema
+                administrativizó</strong>. Dicen "esto no es un asunto técnico.
+              Es un crimen. Tiene nombre. Tiene responsables" (Enríquez, 2020;
+              Mora, 2025).</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              <strong>Gene Sharp</strong> diría que la potencia de esta
+              re-politización reside en retirar la obediencia al silencio.
+              Cuando una madre de Ayotzinapa declara ante una corte
+              internacional, cuando un activista documenta el uso de drones en
+              Guerrero y lo publica en redes, cuando nosotros, en este foro
+              universitario, conectamos lo que vivimos en el DIF con el Consenso
+              de Washington y con la teoría de Bauman sobre la modernidad
+              líquida estamos haciendo exactamente eso: <strong>devolviendo al
+                conflicto su naturaleza política</strong>, que es la única
+              naturaleza que produce justicia.</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0 0 13px; text-align: justify; text-indent: 1.5em;">
+              Considero yo que ese es el aporte más concreto que podemos ofrecer
+              como futuros internacionalistas: la capacidad de nombrar con
+              precisión lo que el sistema preferiría gestionar en silencio.
+              <strong>No somos salvadores</strong> y lo digo con plena
+              conciencia de lo que implica vestir el uniforme institucional del
+              DIF <strong>somos cómplices éticos</strong>. Y eso empieza aquí,
+              en este foro, en este semestre.</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #1a2e22; line-height: 1.9; margin: 0; text-align: justify; text-indent: 1.5em;">
+              Quedo atento a sus reflexiones y comentarios.</p>
+          </div>
+          <div
+            style="background-color: #1b3b2b; border-top: 3px solid #2d6a4f; padding: 20px 24px;">
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 13.5px; color: #95bca5; font-style: italic; line-height: 1.87; margin: 0 0 16px;">
+              "La justicia no se decreta: se construye acto a acto, expediente a
+              expediente, hasta que el terreno la produce sola."</p>
+            <p
+              style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #f4a261; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px; font-weight: bold;">
+              ► Fuentes de información</p>
+            <div
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #c8dcc8; line-height: 1.85; margin: 0 0 16px; padding-left: 4px;">
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Enríquez, L.</strong> (2020). El movimiento feminista en
+                México en el siglo XXI: juventud, radicalidad y violencia.
+                <em>Revista Mexicana de Ciencias Políticas y Sociales</em>,
+                65(240), 47–78.</p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Gobierno de la Ciudad de México.</strong> (2026). Módulo
+                4. Gobiernos neoliberales, procesos democráticos del siglo XXI y
+                relaciones bilaterales México-Estados Unidos. Universidad
+                Nacional Rosario Castellanos (UNRC-SECIHTI).</p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Lerch, A.</strong> (2024). The great neoliberal war:
+                Conflict in contemporary Mexico. <em>Critical Sociology</em>,
+                51(3), 547–567. <span
+                  style="color: #7aa38a;">https://doi.org/10.1177/08969205241244517</span>
+              </p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>López López, F. O.</strong> (2023). Neoliberalismo y
+                despolitización de los derechos humanos. Comisión Nacional de
+                los Derechos Humanos. <span
+                  style="color: #7aa38a;">http://appweb.cndh.org.mx/biblioteca/archivos/pdfs/NeoliberalismoYDespolitizacionDeLosDH.pdf</span>
+              </p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Mora, M.</strong> (2025). Mothering in plural:
+                Reflections on the political at 10 years since the forced
+                disappearance of 43 students from Ayotzinapa in Guerrero,
+                Mexico. <em>Feminist Anthropology</em>. <span
+                  style="color: #7aa38a;">https://doi.org/10.1002/fea2.12188</span>
+              </p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Ortega Domínguez, A.</strong> (2022). The mestizo gaze:
+                Visualizing racism, citizenship, and rights in neoliberal
+                Mexico. <em>Ethnic and Racial Studies</em>, 45(5), 893–913.</p>
+              <p
+                style="margin: 0 0 6px 0; text-indent: -18px; padding-left: 18px;">
+                <strong>Zaremberg, G., &amp; Torres Wong, M.</strong> (2018).
+                Participation on the edge: Prior consultation and extractivism
+                in Latin America. <em>Journal of Politics in Latin America</em>,
+                10(3), 29–58.</p>
+            </div>
+            <div
+              style="border-top: 1px solid #2d4a3a; padding-top: 14px; margin-top: 6px;">
+              <p
+                style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #f4a261; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 4px; font-weight: bold;">
+                FORO REFORZADOR M4 · HISTORIA Y FORMACIÓN DEL ESTADO MODERNO
+                MEXICANO Y POLÍTICA EXTERIOR</p>
+              <p
+                style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #f4a261; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px; font-weight: bold;">
+                ISAAC MOCTEZUMA CALDERÓN · UNRC-LAD · JUNIO 2026</p>
+              <p
+                style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #3d6b4f; margin: 0; letter-spacing: 1px;">
+                Licenciatura en Relaciones Internacionales · Universidad
+                Nacional Rosario Castellanos</p>
+            </div>
+          </div>
+        </td>
+        <td style="background-color: #eef3ec; border-left: 1px solid #c0d4c0;"
+          valign="top" width="210">
+          <div
+            style="background-color: #fcfdfc; border: 1px solid #b8d0b8; margin: 14px 12px 10px; padding: 14px;">
+            <p
+              style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+              FUENTE CLAVE</p>
+            <p
+              style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 18px; color: #2d6a4f; line-height: 1.1; margin: 0 0 5px; letter-spacing: 1px;">
+              LÓPEZ 2023</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 11px; color: #1a2e22; line-height: 1.65; margin: 0;">
+              Neoliberalismo y despolitización de los derechos humanos · CNDH
+            </p>
+          </div>
+          <div
+            style="background-color: #fcfdfc; border: 1px solid #b8d0b8; margin: 0 12px 10px; padding: 14px;">
+            <p
+              style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+              FUENTE CLAVE</p>
+            <p
+              style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 18px; color: #2d6a4f; line-height: 1.1; margin: 0 0 5px; letter-spacing: 1px;">
+              LERCH 2024</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 11px; color: #1a2e22; line-height: 1.65; margin: 0;">
+              La guerra neoliberal: conflicto en el México contemporáneo ·
+              Sociology</p>
+          </div>
+          <div
+            style="background-color: #1b3b2b; margin: 0 12px 10px; padding: 15px; border: 1px solid #2d4a3a;">
+            <p
+              style="font-family: Impact, 'Arial Black', Arial, sans-serif; font-size: 44px; color: #e76f51; line-height: 1; margin: 0 0 6px;">
+              "</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 11px; color: #95bca5; font-style: italic; line-height: 1.7; margin: 0 0 7px;">
+              La despolitización no es una falla del sistema neoliberal. Es su
+              funcionamiento correcto.</p>
+            <p
+              style="font-family: 'Courier New', Courier, monospace; font-size: 8px; color: #3d6b4f; margin: 0; text-transform: uppercase; letter-spacing: 1px;">
+              Isaac Moctezuma · 2026</p>
+          </div>
+          <div
+            style="background-color: #fcfdfc; border: 1px solid #b8d0b8; margin: 0 12px 10px; padding: 14px;">
+            <p
+              style="font-family: 'Courier New', Courier, monospace; font-size: 7px; color: #2d6a4f; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 6px;">
+              CONCEPTO CLAVE</p>
+            <p
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 10.5px; color: #1a2e22; line-height: 1.7; margin: 0;">
+              <strong>Despolitización</strong>: vaciar los derechos humanos de
+              contenido estructural, redefiniendo problemas colectivos como
+              asuntos técnicos o de "gestión eficiente".</p>
+          </div>
+          <div
+            style="background-color: #eaf0d8; border-left: 4px solid #5AAA28; padding: 12px 14px; margin: 4px 12px 14px;">
+            <p
+              style="margin: 0 0 5px; font-size: 8px; color: #3a6b18; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif;">
+              Declaratoria · Uso responsable de IA</p>
+            <p
+              style="margin: 0; font-size: 10.5px; color: #2a4a1a; line-height: 1.65; font-family: Arial, sans-serif;">
+              Durante la preparación de este trabajo se utilizó inteligencia
+              artificial (Claude, Anthropic) como herramienta de apoyo para
+              organizar ideas y revisar estructura argumentativa. El contenido
+              fue revisado, editado y verificado de manera personal. Se asume
+              responsabilidad total por el resultado final y se asegura que el
+              uso de esta herramienta no sustituye el análisis propio, la
+              lectura del material del módulo ni la integridad académica de esta
+              participación.</p>
+          </div>
+          <div style="padding: 4px 12px 10px;"> </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-</body>
-</html>
-
-
-

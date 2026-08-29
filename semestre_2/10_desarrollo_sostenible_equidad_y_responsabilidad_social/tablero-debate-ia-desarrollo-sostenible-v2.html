@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>War Board · IA · Transhumanismo · Género</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121b;
+  --card: #1a1a2b;
+  --border: #2a2a3e;
+  --text: #e8e6ed;
+  --text-dim: #8a88a2;
+  --gold: #d4a547;
+  --gold-dim: #8a6a2a;
+  --gold-glow: rgba(212,165,71,0.12);
+  --green: #3d8b6e;
+  --red: #b33d3d;
+  --blue: #3d7bb3;
+  --radius: 6px;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Fraunces', 'Georgia', serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+/* ===== LAYOUT ===== */
+.app { max-width: 1280px; margin: 0 auto; }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.header h1 span { color: var(--gold); }
+.header-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  background: var(--card);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+.shortcuts {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.shortcuts kbd {
+  background: var(--card);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  color: var(--gold);
+}
+
+/* ===== SEARCH ===== */
+.search-bar {
+  margin-bottom: 20px;
+}
+.search-bar input {
+  width: 100%;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  transition: border-color .2s;
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+.search-bar input::placeholder { color: var(--text-dim); }
+
+/* ===== CORE THESIS ===== */
+.core {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--gold);
+}
+.core .tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.core p {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-top: 4px;
+  color: var(--text);
+}
+.core p em { color: var(--gold); font-style: italic; }
+.core-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.core-meta span { background: var(--card); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--border); }
+
+/* ===== FRENTES GRID ===== */
+.frentes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+@media (min-width: 860px) {
+  .frentes { grid-template-columns: 1fr 1fr; }
+}
+
+.frente {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.frente:hover { border-color: var(--gold-dim); }
+.frente-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s;
+}
+.frente-header:hover { background: var(--card); }
+.frente-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold);
+  background: var(--card);
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.frente-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 1;
+}
+.frente-header .badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  background: var(--card);
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+.frente-body {
+  padding: 0 18px 18px;
+  display: none;
+}
+.frente.open .frente-body { display: block; }
+.frente.open { border-color: var(--gold-dim); }
+
+/* ===== BLOCKS INSIDE FRENTE ===== */
+.block {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.block-arg { background: rgba(61,139,110,0.06); border-color: rgba(61,139,110,0.25); }
+.block-atk { background: rgba(179,61,61,0.06); border-color: rgba(179,61,61,0.25); }
+.block-shield { background: rgba(212,165,71,0.06); border-color: rgba(212,165,71,0.2); }
+.block .label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-dim);
+}
+.block-arg .label { color: var(--green); }
+.block-atk .label { color: var(--red); }
+.block-shield .label { color: var(--gold); }
+.block p { line-height: 1.5; }
+.block strong { color: var(--text); }
+
+/* ===== FRONTIER (sub-topic) ===== */
+.frontier {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px dashed var(--gold-dim);
+  background: rgba(212,165,71,0.03);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.frontier .label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 3px;
+}
+.frontier strong { color: var(--text); }
+
+/* ===== KIT RAPIDO ===== */
+.kit {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+@media (min-width: 720px) {
+  .kit { grid-template-columns: 1fr 1fr; }
+}
+.kit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.kit-card h4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.kit-card .item {
+  font-size: 0.85rem;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.kit-card .item:last-child { border-bottom: none; }
+.kit-card .item .name { color: var(--text); font-weight: 500; }
+.kit-card .item .desc { color: var(--text-dim); text-align: right; font-size: 0.8rem; }
+
+/* ===== TRAP QUESTIONS ===== */
+.trap-item {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  padding: 6px 0 6px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.trap-item:last-child { border-bottom: none; }
+.trap-item::before {
+  content: "?";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ===== CLOSING PHRASES ===== */
+.phrase {
+  font-style: italic;
+  color: var(--text);
+  padding: 8px 12px;
+  background: var(--card);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* ===== TOGGLE BUTTON ===== */
+.toggle-all {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  transition: all .2s;
+}
+.toggle-all:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  body { padding: 10px; }
+  .header h1 { font-size: 1rem; }
+  .core p { font-size: 1rem; }
+  .frente-header { padding: 10px 14px; }
+  .frente-body { padding: 0 14px 14px; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+<!-- HEADER -->
+<header class="header">
+  <h1>⚡ War Board · <span>IA · Transhumanismo · Género</span></h1>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span class="header-badge">6 frentes · 5 escudos</span>
+    <button class="toggle-all" onclick="toggleAll()">◈ Expandir todo</button>
+  </div>
+</header>
+
+<!-- SHORTCUTS -->
+<div class="shortcuts">
+  <span><kbd>1-6</kbd> Frentes</span>
+  <span><kbd>/</kbd> Buscar</span>
+  <span><kbd>E</kbd> Expandir</span>
+  <span><kbd>Esc</kbd> Cerrar</span>
+</div>
+
+<!-- SEARCH -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="🔍 Buscar en tablero (argumentos, autores, palabras clave...)" oninput="filterFrentes(this.value)" />
+</div>
+
+<!-- CORE THESIS -->
+<div class="core">
+  <span class="tag">◈ Núcleo estratégico</span>
+  <p>La IA, el transhumanismo y la identidad de género conforman un <em>sistema complejo</em> donde los Derechos Humanos deben ser el filtro regulatorio, no un obstáculo.</p>
+  <div class="core-meta">
+    <span>Morin · Sistemas complejos</span>
+    <span>Vallaeys · RSU</span>
+    <span>Sachs · Equidad ≠ Igualdad</span>
+    <span>CNDH · Derechos Humanos</span>
+  </div>
+</div>
+
+<!-- FRENTES -->
+<div class="frentes" id="frentesContainer">
+
+  <!-- FRENTE 1: IDENTIDAD DE GÉNERO -->
+  <div class="frente open" data-keywords="identidad genero infancia trans argentina mexico scjn ley 26743 decreto 62">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">1</span>
+      <h3>🏳️‍⚧️ Identidad de género</h3>
+      <span class="badge">Infancias · Argentina · México</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>El reconocimiento de identidad de género en infancias es la <strong>base de la autonomía corporal</strong> que el transhumanismo y la eutanasia extienden a lo largo de la vida.</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"Los menores no tienen capacidad para decidir" · "Es una moda" · "Argentina retrocedió con Decreto 62/2025"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p><strong>SCJN 2019 y 2022:</strong> derecho de NNA a su identidad de género, capacidad progresiva. <strong>Argentina:</strong> Decreto 62/2025 viola Ley 26.743 y será declarado inconstitucional. <strong>Dato:</strong> solo 7 estados mexicanos permiten cambio a NNA.</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · Transhumanismo</span>
+        El derecho al autodiseño (Sánchez Salazar, 2024) es la evolución natural: hormonas, cirugías y edición genética son escalones del mismo principio de <strong>autonomía corporal</strong>.
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENTE 2: TRANSHUMANISMO -->
+  <div class="frente" data-keywords="transhumanismo autodiseño modificacion corporal bioetica bostrom habermas">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">2</span>
+      <h3>🧬 Transhumanismo</h3>
+      <span class="badge">Autodiseño · Bioética</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>El <strong>derecho al autodiseño</strong> (self-design) es la siguiente frontera de la autonomía corporal: hormonas, cirugías de afirmación, prótesis neuronales y edición genética son escalones de un mismo derecho.</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"Es ciencia ficción" · "Violaría la naturaleza humana" · "El Estado debe proteger la integridad de los menores"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p>Ya existen tecnologías de modificación corporal. El <strong>derecho al autodiseño</strong> está siendo debatido en bioética desde 2022 (Sánchez Salazar). La protección estatal no puede ser paternalista; debe <strong>garantizar el desarrollo de la personalidad</strong> (Habermas, 2004).</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · IA</span>
+        La IA ya habilita interfaces cerebro-máquina y diseño asistido de prótesis. El filtro: <strong>¿quién decide qué es "mejoramiento" y con qué datos?</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENTE 3: IA Y SESGOS -->
+  <div class="frente" data-keywords="ia sesgos genero algoritmos llyc 2024 discriminacion chatbot adolescentes">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">3</span>
+      <h3>🤖 IA y sesgos de género</h3>
+      <span class="badge">LLYC 2024 · Algoritmos</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>La IA <strong>reproduce y amplifica</strong> los sesgos binarios de la sociedad. Estudio LLYC 2024: <strong>9,600 recomendaciones</strong>, 12 países. Resultados: 56% "frágil" para mujeres, 75% redirección a roles de cuidado.</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"La IA es neutral" · "Los sesgos se corrigen" · "Las empresas ya trabajan en IA inclusiva"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p>Corregir sesgos exige <strong>transformar la realidad social</strong>, no solo los datos (Morin). La IA no necesita intención para discriminar; los patrones discriminan igual. Las promesas corporativas no son vinculantes. <strong>Dato:</strong> 31% de adolescentes prefiere chatbots a amigos reales.</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · Eutanasia</span>
+        Si la IA ya influye en la identidad y decisiones de jóvenes, <strong>¿qué pasa cuando un chatbot recomienda opciones sobre el final de la vida</strong> sin supervisión humana?
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENTE 4: NORMATIVIDAD -->
+  <div class="frente" data-keywords="normatividad mexico ley general salud constitucion articulo 1 estados fragmentacion">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">4</span>
+      <h3>⚖️ Normatividad en México</h3>
+      <span class="badge">Leyes · Fragmentación</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>México tiene marco legal <strong>fragmentado</strong> para identidad de género y <strong>ausencia total</strong> de regulación de IA con perspectiva de género. Solo <strong>7 de 32</strong> estados permiten cambio de identidad a NNA.</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"El Art. 1 ya garantiza igualdad" · "Cada estado tiene autonomía" · "Regular IA mata la innovación"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p>El Art. 1 <strong>no es suficiente</strong>; necesita leyes secundarias con perspectiva de género. La fragmentación genera <strong>desigualdad territorial</strong>: un niño trans en Oaxaca tiene derechos que no tiene en Guerrero. Regular <strong>no es prohibir</strong>; la RSU es compatible con la innovación.</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · Ley Trasciende</span>
+        La Ley Trasciende (<strong>128,000 firmas</strong>) propone reformar la Ley General de Salud para eutanasia. Esto muestra que <strong>el debate legislativo puede avanzar</strong> con movilización ciudadana.
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENTE 5: EUTANASIA -->
+  <div class="frente" data-keywords="eutanasia muerte digna ley trasciende samara martinez autonomia corporal">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">5</span>
+      <h3>☠️ Eutanasia y muerte digna</h3>
+      <span class="badge">Ley Trasciende · Autonomía</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>La eutanasia es el <strong>límite lógico</strong> de la autonomía corporal: si decidimos cómo vivir, también debemos poder decidir cómo morir. Ley Trasciende: 2 dictámenes médicos, notario, 5 días de reiteración.</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"Atenta contra el derecho a la vida" · "Puede usarse para eliminar vulnerables" · "El Estado debe proteger la vida siempre"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p>El derecho a la vida <strong>no es obligación de vivir</strong> contra la voluntad. La eutanasia tiene salvaguardas. La protección estatal paternalista <strong>viola la dignidad</strong>. <strong>Samara Martínez:</strong> "Morir con paz también es un derecho".</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · IA</span>
+        ¿La IA podría determinar "calidad de vida" y recomendar eutanasia? <strong>¿Quién audita esos algoritmos?</strong> Esa es la próxima frontera ética.
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENTE 6: EDUCACIÓN Y RSU -->
+  <div class="frente" data-keywords="educacion rsu universidad vallaeys unesco pensamiento critico ia educativa">
+    <div class="frente-header" onclick="toggleFrente(this)">
+      <span class="frente-num">6</span>
+      <h3>📚 Educación y RSU</h3>
+      <span class="badge">Vallaeys · UNESCO</span>
+    </div>
+    <div class="frente-body">
+      <div class="block block-arg">
+        <span class="label">▶ Argumento</span>
+        <p>La IA es una <strong>herramienta para potenciar</strong> el pensamiento crítico, no un sustituto. La RSU exige formar <strong>ciudadanos críticos</strong> que diseñen y usen IA de forma ética (Vallaeys, 2021).</p>
+      </div>
+      <div class="block block-atk">
+        <span class="label">⚡ Ataques</span>
+        <p>"Los estudiantes copian y pegan" · "La IA erosiona la capacidad de pensar"</p>
+      </div>
+      <div class="block block-shield">
+        <span class="label">🛡️ Escudo</span>
+        <p>El problema <strong>no es la herramienta, es la pedagogía</strong> (UNESCO EDS 2030). La universidad sigue siendo garante de la <strong>legitimación del conocimiento</strong> (Vallaeys). Enseñar a usar IA con rigor, no prohibir por miedo.</p>
+      </div>
+      <div class="frontier">
+        <span class="label">🔗 Frontera · Identidad</span>
+        Si la IA ya influye en la autoestima y aspiraciones de jóvenes (<strong>31% prefiere chatbots a amigos</strong>), <strong>¿cómo garantizamos que la IA eduque sin adoctrinar</strong> con sesgos binarios?
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KIT RÁPIDO -->
+<div class="kit">
+  <div class="kit-card">
+    <h4>📖 Autores clave</h4>
+    <div class="item"><span class="name">Morin</span><span class="desc">Sistemas complejos · dialógica</span></div>
+    <div class="item"><span class="name">Vallaeys</span><span class="desc">RSU · 4 ejes</span></div>
+    <div class="item"><span class="name">Sachs</span><span class="desc">Equidad ≠ Igualdad</span></div>
+    <div class="item"><span class="name">Sánchez Salazar</span><span class="desc">Derecho al autodiseño</span></div>
+    <div class="item"><span class="name">Habermas</span><span class="desc">Bioética · naturaleza humana</span></div>
+    <div class="item"><span class="name">Luisa García (LLYC)</span><span class="desc">Sesgos de IA</span></div>
+  </div>
+  <div class="kit-card">
+    <h4>📊 Datos duros</h4>
+    <div class="item"><span class="name">7/32</span><span class="desc">estados permiten cambio a NNA</span></div>
+    <div class="item"><span class="name">56%</span><span class="desc">IA describe mujeres como "frágiles"</span></div>
+    <div class="item"><span class="name">75%</span><span class="desc">redirección vocacional a roles de cuidado</span></div>
+    <div class="item"><span class="name">31%</span><span class="desc">adolescentes prefieren chatbots</span></div>
+    <div class="item"><span class="name">128,000</span><span class="desc">firmas Ley Trasciende</span></div>
+    <div class="item"><span class="name">35 años</span><span class="desc">esperanza de vida personas trans en AL</span></div>
+  </div>
+</div>
+
+<!-- PREGUNTAS TRAMPA + FRASES -->
+<div class="kit" style="grid-template-columns:1fr 1fr;">
+  <div class="kit-card">
+    <h4>❓ Preguntas trampa</h4>
+    <div class="trap-item">¿Quién entrena la IA y con qué datos? ¿Hay participación trans en el diseño?</div>
+    <div class="trap-item">¿Qué garantiza que la IA no patologice lo trans como el DSM antes de 2013?</div>
+    <div class="trap-item">Si la IA ya sabe más de nosotros, ¿quién decide qué es "normal"?</div>
+    <div class="trap-item">¿Por qué regular cuerpos pero no algoritmos que discriminan?</div>
+    <div class="trap-item">¿La IA está optimizada para el bien común o para el lucro?</div>
+    <div class="trap-item">Si el cuerpo es territorio de disputa, ¿por qué evitar la pregunta del autodiseño?</div>
+  </div>
+  <div class="kit-card">
+    <h4>🎯 Frases de cierre</h4>
+    <div class="phrase">"La IA no se opone al desarrollo sostenible — se vuelve sostenible o se vuelve otro factor de inequidad."</div>
+    <div class="phrase">"No basta con dar la misma herramienta a todos: la equidad exige diseñar para quienes parten más atrás."</div>
+    <div class="phrase">"Si no blindamos hoy los principios éticos, los algoritmos decidirán quiénes somos antes de que nosotros podamos decidirlo."</div>
+    <div class="phrase">"Las infancias trans de hoy navegarán un mundo donde la IA redefinirá el cuerpo y la identidad. Blindemos derechos, no algoritmos."</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Tablero de Debate · Desarrollo Sostenible, Equidad y RSU</span>
+  <span>Universidad Rosario Castellanos · SECIHTI</span>
+</footer>
+
+</div>
+
+<script>
+// Toggle individual frente
+function toggleFrente(header) {
+  const frente = header.closest('.frente');
+  frente.classList.toggle('open');
+}
+
+// Toggle all
+function toggleAll() {
+  const frentes = document.querySelectorAll('.frente');
+  const allOpen = Array.from(frentes).every(f => f.classList.contains('open'));
+  frentes.forEach(f => {
+    if (allOpen) f.classList.remove('open');
+    else f.classList.add('open');
+  });
+}
+
+// Filter / Search
+function filterFrentes(query) {
+  const q = query.toLowerCase().trim();
+  const frentes = document.querySelectorAll('.frente');
+  frentes.forEach(f => {
+    const keywords = f.dataset.keywords || '';
+    const text = f.textContent.toLowerCase();
+    const match = q === '' || text.includes(q) || keywords.includes(q);
+    f.style.display = match ? '' : 'none';
+  });
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Search focus: /
+  if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+  // Escape: clear search
+  if (e.key === 'Escape') {
+    const input = document.getElementById('searchInput');
+    if (document.activeElement === input) {
+      input.value = '';
+      filterFrentes('');
+      input.blur();
+    }
+  }
+  // Numbers 1-6: toggle frente
+  if (e.key >= '1' && e.key <= '6' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+    const frentes = document.querySelectorAll('.frente');
+    const idx = parseInt(e.key) - 1;
+    if (frentes[idx]) {
+      frentes[idx].classList.toggle('open');
+      frentes[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+  // E: expand all
+  if (e.key === 'e' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+    toggleAll();
+  }
+});
+</script>
+
+</body>
+</html>

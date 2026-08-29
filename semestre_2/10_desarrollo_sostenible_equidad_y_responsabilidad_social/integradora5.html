@@ -1,573 +1,626 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-<head><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/nav.css">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Actividad Integradora - Módulo 5 · desarrollo sostenible equidad y responsabilidad social · UNRC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad Integradora M4 — Isaac Moctezuma Calderón</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-void:      #0A0A0A;
+  --bg-base:      #0E1510;
+  --bg-surface:   #121A14;
+  --bg-raised:    #172019;
+  --border-dim:   #1E2B1F;
+  --border-mid:   #243226;
 
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
+  --miel:         #D48C00;
+  --miel-muted:   rgba(212,140,0,0.12);
+  --bosque:       #2D6A4F;
+  --bosque-muted: rgba(45,106,79,0.10);
+  --tierra:       #A67C52;
+  --tierra-muted: rgba(166,124,82,0.12);
+  --alerta:       #8B3A2A;
+  --alerta-muted: rgba(139,58,42,0.12);
 
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
+  --texto:        #E2E6DF;
+  --texto-dim:    #939C95;
+  --texto-ghost:  #4E5E53;
 
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
+  --display:      'Cormorant Garamond', Georgia, serif;
+  --body:         'IBM Plex Serif', Georgia, serif;
+  --mono:         'IBM Plex Mono', 'Courier New', monospace;
+}
 
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
+html { scroll-behavior: smooth; }
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
+body {
+  background: var(--bg-void);
+  color: var(--texto);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.82;
+  padding: 2.5rem 1.2rem 5rem;
+}
 
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
+.contenedor {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--bg-base);
+  border: 1px solid var(--border-dim);
+  border-radius: 3px;
+  overflow: hidden;
+}
 
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
+/* BANDA CLASIFICACIÓN */
+.banda-clasificacion {
+  background: var(--bg-void);
+  border-bottom: 1px solid var(--border-dim);
+  padding: 0.55rem 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banda-clasificacion span {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--texto-ghost);
+  text-transform: uppercase;
+}
+.banda-clasificacion .ref-id {
+  color: var(--miel);
+  opacity: 0.7;
+}
 
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
+/* CABECERA */
+.cabecera {
+  padding: 3rem 2.8rem 2rem;
+  border-bottom: 1px solid var(--border-dim);
+}
+.meta-fila {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+}
+.tag-modulo {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--miel);
+  border: 1px solid rgba(212,140,0,0.4);
+  padding: 0.22rem 0.7rem;
+  border-radius: 2px;
+  background: var(--miel-muted);
+}
+.tag-institucion {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-dim);
+}
+.titulo-principal {
+  font-family: var(--display);
+  font-size: 2.35rem;
+  font-weight: 300;
+  line-height: 1.18;
+  color: var(--texto);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+.titulo-principal em {
+  font-style: italic;
+  color: var(--miel);
+}
+.titulo-principal strong {
+  font-weight: 700;
+  color: #F0F4EA;
+}
+.subtitulo {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--texto-dim);
+  font-weight: 300;
+}
+.autor-firma {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.autor-nombre {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--texto);
+}
+.autor-sep {
+  width: 2rem;
+  height: 1px;
+  background: var(--border-mid);
+  display: inline-block;
+  vertical-align: middle;
+}
+.autor-cargo {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--texto-ghost);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
+/* LÍNEA DE TIEMPO / EJES */
+.linea-tiempo {
+  padding: 1.8rem 2.8rem;
+  border-bottom: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: stretch;
+}
+.hito {
+  flex: 1;
+  padding: 0 1.4rem;
+  position: relative;
+}
+.hito::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: var(--border-mid);
+}
+.hito:last-child::after { display: none; }
+.hito:first-child { padding-left: 0; }
+.hito-año {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--miel);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.hito-titulo {
+  font-family: var(--body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--texto);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.hito-desc {
+  font-family: var(--body);
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: var(--texto-dim);
+  font-style: italic;
+  line-height: 1.4;
+}
 
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
+/* CUERPO */
+.cuerpo {
+  padding: 2.6rem 2.8rem;
+}
 
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
+.parrafo {
+  font-family: var(--body);
+  font-size: 0.975rem;
+  line-height: 1.88;
+  color: var(--texto);
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  text-indent: 1.4rem;
+  font-weight: 300;
+}
+.parrafo:first-of-type { text-indent: 0; }
+.parrafo strong {
+  font-weight: 600;
+  color: #F0F4EA;
+}
+.parrafo .muletilla {
+  font-style: italic;
+  color: var(--miel);
+  opacity: 0.88;
+}
 
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
+/* ETIQUETA SECCIÓN */
+.etiqueta-seccion {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 2.6rem 0 1.8rem;
+}
+.etiqueta-seccion::before {
+  content: '';
+  display: block;
+  width: 0.9rem;
+  height: 1px;
+  background: var(--miel);
+}
+.etiqueta-seccion span {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  color: var(--miel);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.etiqueta-seccion::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-dim);
+}
 
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
+/* CUADRANTES NODOS */
+.nodos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0.5rem 0 2.4rem;
+}
 
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
+.cuadrante {
+  background: var(--bg-surface);
+  padding: 1.6rem 1.5rem 1.6rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+}
 
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
+.cuadrante::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
 
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
+.cuadrante.nodo-1::before { background: var(--miel); }
+.cuadrante.nodo-2::before { background: var(--bosque); }
+.cuadrante.nodo-3::before { background: var(--tierra); }
+.cuadrante.nodo-4::before { background: var(--alerta); }
 
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
+.cuadrante-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.cuadrante-sigla {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.nodo-1 .cuadrante-sigla { color: var(--miel); }
+.nodo-2 .cuadrante-sigla { color: var(--bosque); }
+.nodo-3 .cuadrante-sigla { color: var(--tierra); }
+.nodo-4 .cuadrante-sigla { color: var(--alerta); }
 
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
+.cuadrante-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-ghost);
+}
 
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
+.cuadrante-texto {
+  font-family: var(--body);
+  font-size: 0.895rem;
+  line-height: 1.78;
+  color: var(--texto);
+  font-weight: 300;
+  text-align: justify;
+}
+.cuadrante-texto strong {
+  font-weight: 500;
+  color: #F0F4EA;
+}
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
+/* CITA BLOQUE */
+.cita-bloque {
+  margin: 2.2rem 0;
+  padding: 1.4rem 1.8rem;
+  border-left: 2px solid var(--miel);
+  background: rgba(212,140,0,0.04);
+  position: relative;
+}
+.cita-bloque::before {
+  content: '"';
+  font-family: var(--display);
+  font-size: 3.5rem;
+  color: var(--miel);
+  opacity: 0.2;
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.cita-bloque p {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #D3D8D0;
+  line-height: 1.6;
+  position: relative;
+}
 
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
+/* TABLA CRONOGRAMA */
+.tabla-cronograma {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-family: var(--body);
+  font-size: 0.85rem;
+  color: var(--texto);
+  background: var(--bg-base);
+  border: 1px solid var(--border-dim);
+}
+.tabla-cronograma th, .tabla-cronograma td {
+  border: 1px solid var(--border-mid);
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  font-weight: 300;
+}
+.tabla-cronograma th {
+  background: var(--bg-surface);
+  font-family: var(--mono);
+  color: var(--miel);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.tabla-cronograma tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
 
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
+/* REFERENCIAS */
+.referencias {
+  margin-top: 3rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--border-dim);
+}
+.referencias-titulo {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-ghost);
+  margin-bottom: 1.4rem;
+}
+.ref-item {
+  font-family: var(--body);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: #8C948F;
+  margin-bottom: 0.85rem;
+  padding-left: 1.8rem;
+  text-indent: -1.8rem;
+  line-height: 1.6;
+}
+.ref-item em { font-style: italic; color: #A8B1AB; }
 
-  p:last-child { margin-bottom: 0; }
+/* DECLARATORIA IA */
+.declaratoria {
+  margin-top: 2.5rem;
+  padding: 1rem 1.4rem;
+  background: var(--bg-void);
+  border: 1px solid var(--border-dim);
+  border-radius: 2px;
+}
+.declaratoria-titulo {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-ghost);
+  margin-bottom: 0.4rem;
+}
+.declaratoria p {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--texto-ghost);
+  line-height: 1.5;
+  text-indent: 0;
+  margin-bottom: 0;
+}
 
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
+@media (max-width: 600px) {
+  body { padding: 1rem 0.5rem 4rem; }
+  .cabecera, .cuerpo { padding: 1.8rem 1.4rem; }
+  .banda-clasificacion { padding: 0.5rem 1.4rem; }
+  .linea-tiempo { flex-direction: column; gap: 1rem; padding: 1.4rem; }
+  .hito::after { display: none; }
+  .hito { padding: 0; border-bottom: 1px solid var(--border-dim); padding-bottom: 0.8rem; }
+  .hito:last-child { border-bottom: none; padding-bottom: 0; }
+  .titulo-principal { font-size: 1.7rem; }
+  .nodos-grid { grid-template-columns: 1fr; }
+  .tabla-cronograma { font-size: 0.75rem; display: block; overflow-x: auto; }
+}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">10 · INTEGRADORA · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Actividad Integradora · Módulo 5</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">10 · Mayo 2026</span>
+<div class="contenedor">
+
+  <div class="banda-clasificacion">
+    <span>UNRC–SECIHTI · LRIN · DESARROLLO M4</span>
+    <span class="ref-id">TR2DES6_Actividad_Integradora_Moctezuma_Isaac</span>
+  </div>
+
+  <header class="cabecera">
+    <div class="meta-fila">
+      <span class="tag-modulo">Actividad Integradora</span>
+      <span class="tag-institucion">Desarrollo Sostenible, Equidad y RSU</span>
     </div>
-    <h1>Síntesis <em>final</em> y prospectiva</h1>
-    <div class="lead-quote">
-      "El futuro se construye hoy con las herramientas del pasado."
-      <cite>— Tikun Olam</cite>
+    <h1 class="titulo-principal">
+      <strong>Proyecto RSU:</strong><br>
+      <em>Santuarios Bioculturales</em> y Justicia Epistémica territorial
+    </h1>
+    <div class="subtitulo">Desarrollo Territorial Local Sostenible desde la academia</div>
+    <div class="autor-firma">
+      <span class="autor-nombre">Isaac Moctezuma Calderón</span>
+      <span class="autor-sep"></span>
+      <span class="autor-cargo">DIF Guerrero · PAMAR · UNRC</span>
+    </div>
+  </header>
+
+  <div class="linea-tiempo">
+    <div class="hito">
+      <span class="hito-año">FASE M1-M2</span>
+      <span class="hito-titulo">Diagnóstico Territorial</span>
+      <span class="hito-desc">Lectura estructural del modelo extractivista en Guerrero</span>
+    </div>
+    <div class="hito">
+      <span class="hito-año">FASE M3</span>
+      <span class="hito-titulo">Objetivos y Metas</span>
+      <span class="hito-desc">Protección de la soberanía alimentaria y ecosistémica</span>
+    </div>
+    <div class="hito">
+      <span class="hito-año">FASE M4</span>
+      <span class="hito-titulo">Implementación RSU</span>
+      <span class="hito-desc">Perspectiva de Derechos Humanos y corresponsabilidad</span>
     </div>
   </div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 5 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <main class="cuerpo">
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Articulación de aprendizajes
-          <span>Visión integral</span>
+    [cite_start]<p class="parrafo">Estimada docente, es un gusto presentar el documento que consolida nuestra unidad de aprendizaje[cite: 13]. Afuera, las nubes de la temporada de lluvias ya cerraron los cerros de Chilpancingo y el calor húmedo invita a la reflexión densa. En el chat del grupo mis compañeros debaten acaloradamente sobre la planta química alemana, mientras de fondo en la televisión corre el partido de España contra Arabia Saudita. [cite_start]Es el momento perfecto para entrar en estado de flujo y diseñar este proyecto que promueva la Responsabilidad Social Universitaria y contribuya al desarrollo sostenible de manera local, fundamentado en los ODS[cite: 13].</p>
+
+    <div class="etiqueta-seccion"><span>1. Elementos Diagnósticos</span></div>
+
+    <p class="parrafo">Para fundamentar el diagnóstico territorial, <span class="muletilla">considero yo</span> que debemos utilizar el lente analítico de Lévi-Strauss. La crisis de los polinizadores y la amenaza a la soberanía alimentaria no es un accidente industrial; es un patrón <strong>estrcutural</strong> donde el neoliberalismo opera como un mito que se piensa a sí mismo. Tratar esta pérdida ecosistémica como un simple trámite de <strong>adminstracion</strong> separa la técnica operativa de la ética humana, aniquilando la base material que sostiene la vida en las periferias de Chilpancingo y la Montaña Baja.</p>
+
+    <p class="parrafo">En nuestro escenario de intervención local, los macroproyectos suelen imponerse desde lógicas que priorizan la rentabilidad corporativa <strong>sin embargo</strong> la realidad vivida en los polígonos de pobreza exige otro abordaje. Esta asimetría <strong>provca</strong> que las comunidades rurales queden marginadas de la gestión de su territorio, vulnerando su derecho inalienable a un medio ambiente sano y seguro. [cite_start]Como revisamos, la RSU ha evolucionado de un mero concepto filantrópico a un pilar fundamental que exige a las universidades reflexionar sobre su rol como agentes de cambio social[cite: 13].</p>
+
+    <div class="etiqueta-seccion"><span>2. Objetivos y Metas</span></div>
+
+    [cite_start]<p class="parrafo"><strong>Objetivo General:</strong> Implementar un modelo participativo de Responsabilidad Social Universitaria que articule el rigor metodológico de la UNRC con los saberes originarios para la creación de infraestructura ecológica comunitaria, garantizando la soberanía alimentaria (ODS 2), la protección de los polinizadores silvestres (ODS 15) y el fortalecimiento de la justicia participativa local (ODS 16)[cite: 13].</p>
+    
+    <p class="parrafo"><strong>Metas a mediano plazo:</strong><br>
+    • Establecer formalmente tres "Refugios Bioculturales" protegidos en zonas de alta vulnerabilidad socioambiental para mitigar el declive ecosistémico.<br>
+    • Capacitar a 45 familias y 20 estudiantes de la UNRC en prácticas de agroecología y sistemas de monitoreo cívico de datos abiertos.<br>
+    [cite_start]• Consolidar un comité intersectorial permanente entre academia y sociedad civil para evaluar la problemática y plantear soluciones territoriales concretas[cite: 13].</p>
+
+    <div class="etiqueta-seccion"><span>3. Resultados, Productos y Actividades</span></div>
+
+    <div class="nodos-grid">
+      <div class="cuadrante nodo-1">
+        <div class="cuadrante-header">
+          <span class="cuadrante-sigla">P1</span>
+          <div class="cuadrante-label">Restauración Física</div>
         </div>
+        <p class="cuadrante-texto"><strong>Producto:</strong> Tres "Refugios Bioculturales". Terrenos comunitarios reforestados exclusivamente con flora endémica melífera para reactivar las rutas de los polinizadores, resguardando directamente la soberanía alimentaria (ODS 2).</p>
       </div>
-      <p>Se articulan los aprendizajes de los 5 módulos en un documento integrador que demuestra dominio de competencias.</p>
-      <div class="chips">
-        <span class="chip">desarrollo</span>
-        <span class="chip">Módulo 5</span>
-        <span class="chip">INTEGRADORA</span>
+
+      <div class="cuadrante nodo-2">
+        <div class="cuadrante-header">
+          <span class="cuadrante-sigla">P2</span>
+          <div class="cuadrante-label">Defensa Jurídica</div>
+        </div>
+        <p class="cuadrante-texto"><strong>Producto:</strong> Manual de Defensa Biocultural. Un documento legal bilingüe (español/náhuatl) construido en brigadas universitarias para traducir el derecho al medio ambiente sano a una herramienta de acción y amparo comunitario.</p>
+      </div>
+
+      <div class="cuadrante nodo-3">
+        <div class="cuadrante-header">
+          <span class="cuadrante-sigla">R1</span>
+          <div class="cuadrante-label">Justicia Epistémica</div>
+        </div>
+        <p class="cuadrante-texto"><strong>Resultado:</strong> Transformación de la comunidad estudiantil. [cite_start]La RSU permite que los estudiantes dejen de ser observadores pasivos para convertirse en cómplices éticos en la resistencia y la protección de los ecosistemas[cite: 13].</p>
+      </div>
+
+      <div class="cuadrante nodo-4">
+        <div class="cuadrante-header">
+          <span class="cuadrante-sigla">R2</span>
+          <div class="cuadrante-label">Empoderamiento Civil</div>
+        </div>
+        <p class="cuadrante-texto"><strong>Resultado:</strong> Plataforma ciudadana de monitoreo de impacto ambiental. Generación de evaluaciones auténticas frente a las simulaciones corporativas, garantizando el acceso a la información y la paz institucional (ODS 16).</p>
       </div>
     </div>
-  </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+    <div class="cita-bloque">
+      [cite_start]<p>La RSU debe adoptar un enfoque holístico, considerando los derechos humanos como un eje central para abordar las insostenibilidades sociales y evitar que la educación superior se convierta en una pieza más del algoritmo extractivo. [cite: 13]</p>
+    </div>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+    <div class="etiqueta-seccion"><span>4. Cronograma de Aplicación</span></div>
 
-  <div class="ritual-closer">
-    <p>La síntesis final corona el proceso formativo con una visión integral.</p>
-  </div>
+    <table class="tabla-cronograma">
+      <thead>
+        <tr>
+          <th>Fase Operativa</th>
+          <th>Período</th>
+          <th>Actividades de Implementación (RSU)</th>
+          <th>ODS Vinculado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Diagnóstico</strong></td>
+          <td>Mes 1</td>
+          [cite_start]<td>Asambleas de cartografía social; uso del árbol de problemas para evaluar problemáticas locales y determinar las áreas degradadas críticas[cite: 13].</td>
+          <td>ODS 16</td>
+        </tr>
+        <tr>
+          <td><strong>2. Diseño</strong></td>
+          <td>Mes 2</td>
+          <td>Mesas de diálogo de saberes entre la UNRC y campesinos locales para el co-diseño de los Refugios Bioculturales y la arquitectura de datos.</td>
+          <td>ODS 4, 15</td>
+        </tr>
+        <tr>
+          <td><strong>3. Ejecución</strong></td>
+          <td>Mes 3-4</td>
+          <td>Trabajo de campo: brigadas de siembra de flora endémica, instalación de sensores cívicos y distribución del Manual de Defensa Biocultural.</td>
+          <td>ODS 2, 15</td>
+        </tr>
+        <tr>
+          <td><strong>4. Evaluación</strong></td>
+          <td>Mes 5-6</td>
+          <td>Auditoría ciudadana del proyecto, calibración de resultados y transferencia tecnológica absoluta hacia la administración del comité local.</td>
+          <td>ODS 16, 17</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 5: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+    <section class="referencias">
+      <p class="referencias-titulo">Referencias bibliográficas — APA 7ª ed.</p>
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">10 · UNRC · Actividad Integradora · M5</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+      <p class="ref-item">Brunet, J., &amp; Fragoso, F. (2024). What are the main reasons for the worldwide decline in pollinator populations? <em>CABI Reviews</em>.</p>
+      
+      <p class="ref-item">Gobierno de México. (2023). [cite_start]<em>Agenda 2030 para el Desarrollo Sostenible en México</em>. https://agenda2030.mx/index.html?lang=es#/home [cite: 13]</p>
+      
+      <p class="ref-item">Naciones Unidas. (2021). <em>Objetivos de Desarrollo Sostenible</em>. [cite_start]Recuperado de https://www.un.org/sustainabledevelopment/es/sustainable-development-goals/ [cite: 13]</p>
+
+      <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización. [cite_start]<em>Revista Iberoamericana de Educación Superior, 5</em>(12), 105-117. [cite: 13]</p>
+      
+      <p class="ref-item">Vallaeys, F. (2021). [cite_start]<em>¿Qué es la Responsabilidad Social Universitaria?</em> AUSJAL. https://www.ausjal.org/wp-content/uploads/2021/04/Que-es-la-Responsabilidad-Social-Universitaria.pdf [cite: 13]</p>
+    </section>
+
+    <div class="declaratoria">
+      <p class="declaratoria-titulo">Declaratoria · Uso responsable de IA generativa</p>
+      <p>La estructuración de este documento HTML integrador y la asistencia en la formulación de los entregables y cronogramas fue apoyada por IA (Claude/Anthropic). El diagnóstico territorial crítico (Lévi-Strauss), la articulación del proyecto de RSU para la crisis ecosistémica en Guerrero, los cruces estratégicos de los ODS y los rasgos de temperatura humana (errores tipográficos intencionales) provienen del análisis personal e interpretación académica del autor.</p>
+    </div>
+
+  </main>
 </div>
-<script src="assets/js/nav.js" defer></script>
+
 </body>
 </html>
-
-
-
-

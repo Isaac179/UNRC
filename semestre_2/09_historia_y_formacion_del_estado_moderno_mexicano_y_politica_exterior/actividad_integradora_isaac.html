@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad Integradora — Isaac Moctezuma Calderón</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #080f18;
+    color: #e2ddd6;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16.5px;
+    line-height: 1.92;
+    padding: 2.8rem 1.3rem;
+  }
+
+  .contenedor {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ─── CABECERA ─── */
+  .cabecera {
+    border-bottom: 2px solid #1c2e45;
+    padding-bottom: 1.6rem;
+    margin-bottom: 2.4rem;
+  }
+  .sello-institucional {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.1rem;
+  }
+  .metadato {
+    font-family: 'Courier New', monospace;
+    font-size: 0.71rem;
+    color: #3d5a7a;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #b8d4ee;
+    line-height: 1.38;
+    margin-top: 0.9rem;
+    margin-bottom: 0.45rem;
+  }
+  .autor-linea {
+    font-family: 'Courier New', monospace;
+    font-size: 0.73rem;
+    color: #3d5a7a;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.6rem;
+  }
+
+  /* ─── EPÍGRAFE ─── */
+  .epigrafe {
+    border-left: 3px solid #1e3d5c;
+    padding: 0.85rem 1.3rem;
+    margin: 2rem 0 2.2rem 0;
+    font-style: italic;
+    color: #8ab8d8;
+    font-size: 0.96rem;
+    text-align: justify;
+  }
+  .epigrafe-fuente {
+    display: block;
+    text-align: right;
+    font-style: normal;
+    font-size: 0.78rem;
+    color: #3d5a7a;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── SECCIONES ─── */
+  h2 {
+    font-size: 1.02rem;
+    font-weight: bold;
+    color: #7ab0d0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 2.3rem 0 0.95rem 0;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid #1c2e45;
+  }
+  h3 {
+    font-size: 0.97rem;
+    font-weight: bold;
+    color: #5a90b0;
+    margin: 1.6rem 0 0.7rem 0;
+    font-style: italic;
+  }
+
+  /* ─── PÁRRAFOS ─── */
+  p {
+    text-align: justify;
+    margin-bottom: 1.25rem;
+    text-indent: 1.9em;
+    hyphens: auto;
+  }
+  p.sin-sangria { text-indent: 0; }
+  p.intro-bloque {
+    text-indent: 0;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ─── NEGRITAS ─── */
+  strong { color: #b8d4ee; font-weight: bold; }
+
+  /* ─── CUADRO DE PROPUESTA ─── */
+  .cuadro-propuesta {
+    border: 1px solid #1c3a58;
+    border-left: 4px solid #2a6090;
+    background: rgba(28, 48, 72, 0.35);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    border-radius: 2px;
+  }
+  .cuadro-propuesta .eje-titulo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #4a7a9a;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .cuadro-propuesta p {
+    text-indent: 0;
+    margin-bottom: 0.7rem;
+    font-size: 0.97rem;
+  }
+  .cuadro-propuesta p:last-child { margin-bottom: 0; }
+
+  /* ─── DECLARATORIA IA ─── */
+  .declaratoria-ia {
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.8rem;
+    background: rgba(28, 48, 72, 0.25);
+    border-left: 4px solid #1e3d5c;
+    border-radius: 0 4px 4px 0;
+  }
+  .declaratoria-ia h2 {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #5a90b0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .declaratoria-ia p {
+    font-size: 0.83rem;
+    color: #8ab8d8;
+    text-indent: 0;
+    margin-bottom: 0.6rem;
+    line-height: 1.7;
+    text-align: justify;
+  }
+  .declaratoria-metadatos {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #3d5a7a;
+    letter-spacing: 0.04em;
+    margin-top: 0.4rem;
+    border-top: 1px solid rgba(28, 48, 72, 0.4);
+    padding-top: 0.6rem;
+  }
+  @media (max-width: 600px) {
+    .declaratoria-metadatos {
+      flex-direction: column;
+      gap: 0.3rem;
+      align-items: flex-start;
+    }
+  }
+
+  /* ─── REFERENCIAS ─── */
+  .referencias-seccion {
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 2px solid #1c2e45;
+  }
+  .referencias-seccion h2 {
+    border-bottom: none;
+    margin-bottom: 1.1rem;
+  }
+  .ref-item {
+    text-indent: -2.3em;
+    padding-left: 2.3em;
+    margin-bottom: 0.9rem;
+    font-size: 0.91rem;
+    color: #8ab8d8;
+    text-align: justify;
+  }
+
+  /* ─── PIE ─── */
+  .pie-pagina {
+    margin-top: 2.8rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid #1c2e45;
+    font-family: 'Courier New', monospace;
+    font-size: 0.67rem;
+    color: #243548;
+    text-align: center;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="contenedor">
+
+  <!-- CABECERA -->
+  <div class="cabecera">
+    <div class="sello-institucional">
+      <span class="metadato">UNRC — Licenciatura en Relaciones Internacionales · LAD 2026-1</span>
+      <span class="metadato">Historia y Formación del Estado Moderno Mexicano y Política Exterior</span>
+      <span class="metadato">Actividad Integradora · Grupo DHLRIN-111-LAD</span>
+    </div>
+    <h1>Una oportunidad para la justicia: la sentencia Ascencio Rosario vs. México y una propuesta de política exterior para los pueblos indígenas</h1>
+    <div class="autor-linea">Isaac Moctezuma Calderón · Junio 2026</div>
+  </div>
+
+  <!-- EPÍGRAFE -->
+  <div class="epigrafe">
+    "El conquistador verdadero no es quien acumula territorios, sino quien gana el corazón de los pueblos devolviendo su dignidad."
+    <span class="epigrafe-fuente">— Adaptación del Cilindro de Ciro, c. 539 a. C.</span>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <h2>I. Presentación: cuando el Estado llega como agresor</h2>
+
+  <p class="sin-sangria">El 25 de febrero de 2007, en la comunidad de Tetlalzinga, enclavada en la Sierra de Zongolica del estado de Veracruz, un campamento militar instalado la noche anterior se convirtió en el escenario de uno de los crímenes más emblemáticos del período neoliberal en México. Ernestina Ascencio Rosario, mujer indígena náhuatl monolingüe de 73 años, fue violada sexualmente por entre cuatro y once miembros del sexagésimo tercer Batallón de Infantería del Ejército mexicano. Alcanzó a decirle a su hija, en su lengua: <em>"Los soldados se me echaron encima"</em>. Murió pocas horas después, en un hospital que no tenía intérpretes de náhuatl, luego de diez horas de traslado y sin haber recibido intervención quirúrgica (Corte IDH, 2025).</p>
+
+  <p>Dieciocho años después, el 16 de diciembre de 2025, la Corte Interamericana de Derechos Humanos emitió su sentencia y declaró al Estado mexicano responsable internacionalmente por la violación sexual, la tortura y la muerte de la señora Ernestina, así como por la falta de acceso a la justicia en condiciones de igualdad para sus cuatro hijos e hijas. El gobierno de Felipe Calderón había atribuido su muerte a "gastritis crónica"; la Comisión Nacional de los Derechos Humanos respaldó esa versión. El tribunal interamericano determinó que ambas conclusiones estuvieron permeadas por estereotipos étnicos, etarios y de género que crearon un ambiente de descreimiento sistémico hacia las declaraciones de la víctima y su familia (Corte IDH, 2025).</p>
+
+  <p>El caso Ascencio Rosario no es una anomalía histórica. Es, en términos lévi-straussianos, el mito que la maquinaria neoliberal se pensó a sí misma sin querer confesarlo: la oposición binaria entre el Estado que promulga derechos humanos en su política exterior y el Estado que los viola con sus propios militares en la Sierra de Zongolica. El propósito de este ensayo es reconstruir las áreas de oportunidad que la sentencia revela y formular una propuesta concreta de política exterior que, integrando los elementos históricos recorridos en los cuatro módulos de la UCA, responda a la pregunta central del problema prototípico: <em>¿cómo puede el sistema interamericano avanzar en papel sin que el respeto efectivo de los derechos humanos se concrete en los territorios indígenas de México?</em></p>
+
+  <!-- SECCIÓN II -->
+  <h2>II. Genealogía de la vulnerabilidad: cuatro módulos, un patrón</h2>
+
+  <p>Para entender por qué el caso Ernestina Ascencio no es excepcional, hace falta leer la historia mexicana al revés, desde los últimos. Los cuatro módulos de la UCA construyeron una trayectoria coherente cuya lógica interna apunta siempre al mismo lugar: la vulnerabilidad estructural e histórica de los pueblos originarios como condición no resuelta del Estado moderno mexicano.</p>
+
+  <p>El primer módulo estableció que el Estado mexicano nace de un proceso constitutivo violento —colonial primero, liberal después— que relegó a los pueblos indígenas a la condición de objeto de integración, nunca de sujeto político pleno. El segundo módulo evidenció que la Revolución de 1910, a pesar de su retórica agrarista, reprodujo esa lógica: el reparto de tierras favoreció a los campesinos mestizos y dejó en un limbo jurídico a las comunidades con sistemas de tenencia colectiva. El tercer módulo analizó cómo la política exterior del México posrevolucionario construyó el principio de no intervención como escudo ante el escrutinio internacional, lo que protegió al Estado de rendir cuentas por sus prácticas autoritarias internas.</p>
+
+  <p>El cuarto módulo, finalmente, completó el cuadro: la imposición del modelo neoliberal entre 1982 y 2018 no solo precarizó a los sectores más vulnerables, sino que militarizó el territorio nacional bajo el pretexto de la guerra contra las drogas, generando una crisis de derechos humanos sin precedentes. El Grupo Internacional de Trabajo sobre Asuntos Indígenas (IWGIA, 2025) documenta que México continúa siendo uno de los países con mayores índices de violencia contra defensores indígenas del territorio, con más de cuarenta casos registrados solo en 2024. En Guerrero, donde trabajo diariamente como servidor público del PAMAR en el DIF, esa estadística no es abstracta: es la realidad que atraviesa cada visita a la Montaña Baja y cada expediente que llega a la Procuraduría de Protección a la Infancia.</p>
+
+  <p>El caso de Ernestina Ascencio es, en este sentido, la intersección más dolorosa de todas estas trayectorias: una mujer, indígena, adulta mayor, monolingüe, en un contexto de militarización. Cuatro factores de vulnerabilidad que se multiplican, no se suman, y que la investigación ministerial ignoró por completo al no aplicar un enfoque de interseccionalidad (Corte IDH, 2025; Ortega Domínguez, 2022).</p>
+
+  <!-- SECCIÓN III -->
+  <h2>III. Lo que revela la sentencia: cinco áreas de oportunidad</h2>
+
+  <p>La sentencia Ascencio Rosario vs. México es un diagnóstico institucional de cinco fallas estructurales que el Estado mexicano no puede resolver con voluntad política aislada. Requieren una respuesta sistémica articulada desde la política exterior, porque es el sistema interamericano el que ha demostrado ser el único mecanismo capaz de obligar al Estado a rendir cuentas cuando los mecanismos internos han sido deliberadamente capturados.</p>
+
+  <h3>1. La impunidad militar como norma</h3>
+
+  <p>La Corte determinó que México violó el derecho a la vida, la integridad personal y el acceso a la justicia porque la investigación ministerial fue cerrada prematuramente, influenciada por las declaraciones públicas del Presidente de la República y sin haber agotado las líneas de investigación pertinentes (Corte IDH, 2025). Esto expone una falla estructural que Lerch (2024) identifica como característica del "capitalismo antidrogas": la militarización del territorio bajo la lógica de la seguridad produce violaciones de derechos humanos que el propio sistema de justicia tiene incentivos para encubrir.</p>
+
+  <h3>2. La barrera lingüística como denegación de derechos</h3>
+
+  <p>Que el Hospital Regional de Río Blanco no contara con intérpretes de náhuatl en 2007 —y que posiblemente no los cuente hoy— no es una omisión administrativa: es la expresión física de un Estado que diseñó sus instituciones para ciudadanos monolingües en español. La sentencia ordenó la creación de un Registro Nacional de Intérpretes y Traductores en Lenguas Indígenas tanto para el sistema de salud como para el de justicia (Corte IDH, 2025). El IWGIA (2025) reporta que menos del 30% de los municipios con mayoría indígena en México cuentan con servicios de salud que dispongan de personal bilingüe.</p>
+
+  <h3>3. Los estereotipos étnicos, etarios y de género en la operación estatal</h3>
+
+  <p>La sentencia constata que la investigación "no fue conducida con un enfoque de interseccionalidad, particularmente relevante por tratarse de una mujer indígena mayor" (Corte IDH, 2025). Ortega Domínguez (2022) analiza este fenómeno como el "régimen escópico del mestizaje": el sistema judicial y el Estado mexicano construyen a las mujeres indígenas como no-sujetas de derecho, cuyo testimonio puede ser desvirtuado sin consecuencias por las más altas autoridades.</p>
+
+  <h3>4. La desconexión entre política exterior y realidad interior</h3>
+
+  <p>En 2007, México era un actor activo del sistema interamericano, firmante de la Convención de Belém do Pará desde 1998 y promotor internacional de los derechos de las mujeres. Al mismo tiempo, el entonces presidente Calderón declaraba públicamente que Ernestina Ascencio había muerto de "gastritis crónica". Velázquez Flores (2017) documenta esta paradoja como una constante del período neoliberal: la política exterior de derechos humanos opera a una velocidad y en una dirección opuesta a la política interior. El resultado es lo que podríamos llamar una diplomacia de vitrina: los compromisos internacionales existen para generar legitimidad hacia afuera, no para transformar las estructuras hacia adentro.</p>
+
+  <h3>5. La ausencia de mecanismos de monitoreo con pertinencia cultural</h3>
+
+  <p>Dieciocho años transcurrieron entre la muerte de Ernestina Ascencio y la sentencia de la Corte IDH. Dieciocho años en los que el sistema de protección interamericano funcionó —lentamente, costosamente— gracias al trabajo de organizaciones de la sociedad civil como la Coordinadora Nacional de Mujeres Indígenas y las organizaciones Kalli Luz Marina y Heriberto Jara (La Jornada, 2025). El Estado mexicano no tuvo ningún mecanismo propio capaz de detectar, documentar y escalar este caso en tiempo razonable.</p>
+
+  <!-- SECCIÓN IV -->
+  <h2>IV. Propuesta de política exterior: cinco ejes de acción con pertinencia estructural</h2>
+
+  <p class="sin-sangria">A partir de las áreas de oportunidad identificadas, formulo a continuación una propuesta de cinco ejes de acción en materia de política exterior para la atención de los derechos humanos de los pueblos indígenas en México. Esta propuesta reconoce que la política exterior no puede sustituir las transformaciones internas, pero puede —y debe— crearles condiciones de irreversibilidad a través de los compromisos internacionales.</p>
+
+  <div class="cuadro-propuesta">
+    <span class="eje-titulo">Eje 1 — Reforma del fuero militar con anclaje interamericano</span>
+    <p>México debe asumir ante la Corte IDH y la Comisión Interamericana de Derechos Humanos (CIDH) el compromiso vinculante de reformar el Código de Justicia Militar para excluir definitivamente de su jurisdicción los delitos cometidos contra civiles, en especial los de violencia sexual. Esta reforma, exigida reiteradamente por el sistema interamericano, requiere ser incorporada como compromiso de política exterior en el marco del diálogo bilateral México-Estados Unidos sobre seguridad —actualmente relanzado tras el acuerdo de cooperación en materia de tráfico de armas— y en el seno de la Alianza del Pacífico y el T-MEC, donde México puede utilizar su membresía para establecer estándares mínimos en materia de control civil sobre las fuerzas armadas.</p>
+  </div>
+
+  <div class="cuadro-propuesta">
+    <span class="eje-titulo">Eje 2 — Protocolo de acción consular con pertinencia cultural para pueblos indígenas transfronterizos</span>
+    <p>La política exterior de protección consular —fortalecida durante el neoliberalismo con la creación del Instituto de Los Mexicanos en el Exterior (IME) y victorias como el Caso Avena ante la CIJ— debe extenderse para incluir un Protocolo de Atención Consular con Pertinencia Cultural. Este protocolo, coordinado entre la SRE y el Instituto Nacional de los Pueblos Indígenas (INPI), establecería la disponibilidad de intérpretes certificados en lenguas indígenas en las oficinas consulares de las ciudades con mayor presencia de migrantes indígenas (Los Ángeles, Nueva York, Chicago), y replicaría esta exigencia al interior del país como condición de congruencia institucional. La sentencia Ascencio Rosario ordena expresamente la creación del Registro Nacional de Intérpretes y Traductores: convertir este mandato judicial en política pública con alcance exterior es la primera oportunidad concreta de alineación entre fallo interamericano y política exterior.</p>
+  </div>
+
+  <div class="cuadro-propuesta">
+    <span class="eje-titulo">Eje 3 — Adhesión a instrumentos específicos de protección de mujeres indígenas</span>
+    <p>México debe promover activamente en el seno de la OEA la adopción de un instrumento vinculante específico para la protección de mujeres indígenas víctimas de violencia sexual en contextos de militarización o conflicto armado interno. La sentencia Ascencio Rosario establece un precedente técnico de alto valor: reconoce la violación sexual como acto de tortura bajo la Convención Interamericana para Prevenir y Sancionar la Tortura y ordena que la investigación incorpore un enfoque de interseccionalidad de género, etnia y edad (Corte IDH, 2025). Convertir estos estándares jurisprudenciales en tratado multilateral es la contribución que México puede hacer desde su política exterior para que el caso de Ernestina Ascencio no sea un punto final, sino un punto de partida doctrinal.</p>
+  </div>
+
+  <div class="cuadro-propuesta">
+    <span class="eje-titulo">Eje 4 — Mecanismo bilateral de monitoreo con sociedad civil indígena</span>
+    <p>Una de las lecciones más importantes del caso Ascencio es que fueron las organizaciones de la sociedad civil —no el Estado— quienes llevaron el caso a la Corte IDH. La política exterior mexicana debe institucionalizar este papel de la sociedad civil mediante la creación de un Mecanismo de Consulta Permanente con Organizaciones Indígenas en la formulación de los informes nacionales ante los órganos del sistema interamericano. Este mecanismo, insertado en los procesos de presentación de informes ante la CIDH y el Comité CEDAW, convertiría la participación indígena de un acto de resistencia en un procedimiento regular, reduciendo el tiempo de respuesta del sistema de dieciocho años a algo que parezca, al menos, justicia en vida. Como diría Gene Sharp: cuando la sociedad civil ocupa institucionalmente el espacio que antes solo cubría con su cuerpo en la protesta, el costo de ignorarla se multiplica.</p>
+  </div>
+
+  <div class="cuadro-propuesta">
+    <span class="eje-titulo">Eje 5 — Política de no repetición como doctrina de política exterior</span>
+    <p>La sentencia ordena al Estado mexicano implementar programas de capacitación con enfoque de interseccionalidad para funcionarios públicos, militares, personal de salud y de justicia que trabajen en zonas con presencia indígena. Esta medida de reparación debe convertirse en doctrina de política exterior: México puede ofrecer cooperación técnica a otros países de la región que enfrentan desafíos similares —Guatemala, Colombia, Perú— compartiendo los protocolos de capacitación desarrollados en cumplimiento del fallo. Transformar una obligación de reparación en un activo de cooperación sur-sur es la manera más eficiente de capitalizar diplomáticamente el costo político que el caso Ascencio ha impuesto al Estado. Es, además, la única forma de que la política exterior de derechos humanos deje de ser —como señala Velázquez Flores (2017)— un instrumento de gestión de imagen para convertirse en un vector de transformación estructural.</p>
+  </div>
+
+  <!-- SECCIÓN V -->
+  <h2>V. Reflexión integradora: el palacio no puede vivir sin el árbol</h2>
+
+  <p>Considero yo que la pregunta que articula esta actividad integradora —¿cómo puede el sistema interamericano avanzar mientras el respeto efectivo no se concreta en los territorios?— tiene una respuesta que los cuatro módulos de la UCA construyeron de manera paciente: el sistema interamericano avanza precisamente porque los Estados no cumplen voluntariamente. Su función estructural no es complementar la acción estatal, sino compensarla cuando falla. El caso Ascencio lo confirma: sin la Corte IDH, sin las organizaciones de la sociedad civil, sin los dieciocho años de litigio internacional, la versión de la "gastritis crónica" habría triunfado definitivamente.</p>
+
+  <p>Desde mi perspectiva como estudiante de Relaciones Internacionales y como servidor público en el DIF Guerrero, los cinco ejes de esta propuesta no son ejercicios académicos: son la distancia que existe entre lo que el Estado firma en San José, Costa Rica, y lo que ocurre en la Sierra de Zongolica o en la Montaña Baja de Guerrero. Esa distancia no se cierra con voluntad política —aunque ayuda— ni con más tratados —aunque son necesarios—. Se cierra cuando el Estado interioriza que los pueblos indígenas no son el problema que hay que gestionar, sino la conciencia crítica que hay que escuchar.</p>
+
+  <p>Ciro el Grande comprendió, hace veinticinco siglos, que el poder no se mide por cuánto territorio controlas sino por cuánta libertad devuelves. La sentencia Ascencio Rosario le ofrece al Estado mexicano una oportunidad parecida: no solo reparar el daño a una familia nahua de Veracruz, sino rediseñar la relación entre la política exterior y la realidad interior de los pueblos que siempre estuvieron aquí antes que el Estado. Esa es la única reforma estructural que ningún sexenio, ningún partido y ningún modelo económico podrá ignorar indefinidamente.</p>
+
+  <p class="sin-sangria">No es deuda histórica. Es justicia pendiente. Y esa distinción, en el lenguaje de las Relaciones Internacionales, es la que marca la diferencia entre un discurso y una política.</p>
+
+  <!-- DECLARATORIA IA -->
+  <div class="declaratoria-ia">
+    <h2>Declaratoria · Uso responsable de IA</h2>
+    <p>Durante la preparación de este trabajo se utilizó inteligencia artificial (Claude, Anthropic) como herramienta de apoyo para organizar ideas y revisar estructura argumentativa. El contenido fue revisado, editado y verificado de manera personal. Se asume responsabilidad total por el resultado final y se asegura que el uso de esta herramienta no sustituye el análisis propio, la lectura del material del módulo ni la integridad académica de esta participación.</p>
+    <div class="declaratoria-metadatos">
+      <span class="declaratoria-fecha">Fecha de declaración: 21 de junio de 2026</span>
+      <span class="declaratoria-firma">Isaac Moctezuma Calderón</span>
+    </div>
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="referencias-seccion">
+    <h2>Fuentes de información</h2>
+
+    <div class="ref-item">Corte Interamericana de Derechos Humanos. (2025). <em>Resumen oficial. Caso Ascencio Rosario y otros vs. México. Sentencia de 30 de septiembre de 2025.</em> Corte Interamericana de Derechos Humanos. https://jurisprudencia.corteidh.or.cr/es/vid/1098746473/expression/1098750455</div>
+
+    <div class="ref-item">Gobierno de la Ciudad de México. (2026). <em>Módulos 1-4. Historia y Formación del Estado Moderno Mexicano y Política Exterior.</em> Universidad Nacional Rosario Castellanos (UNRC-SECIHTI).</div>
+
+    <div class="ref-item">Grupo Internacional de Trabajo sobre Asuntos Indígenas (IWGIA). (2025). México. En <em>El mundo indígena 2025</em> (pp. 424-431). IWGIA. https://iwgia.org/doclink/iwgia-el-mundo-indigena-2025-esp/</div>
+
+    <div class="ref-item">Lerch, A. (2024). The great neoliberal war: Conflict in contemporary Mexico. <em>Critical Sociology, 51</em>(3), 547–567. https://doi.org/10.1177/08969205241244517</div>
+
+    <div class="ref-item">Ortega Domínguez, A. (2022). The mestizo gaze: Visualizing racism, citizenship, and rights in neoliberal Mexico. <em>Ethnic and Racial Studies, 45</em>(5), 893–913. https://doi.org/10.1080/01419870.2021.1945560</div>
+
+    <div class="ref-item">Velázquez Flores, R. (2017). Política exterior y derechos humanos en México: tendencias a finales del siglo XX y prioridades a inicios del siglo XXI. <em>IUS, 40</em>(11), 137–157. https://www.scielo.org.mx/pdf/rius/v11n40/1870-2147-rius-11-40-00137.pdf</div>
+  </div>
+
+  <div class="pie-pagina">
+    ACTIVIDAD INTEGRADORA · HISTORIA Y FORMACIÓN DEL ESTADO MODERNO MEXICANO Y POLÍTICA EXTERIOR<br>
+    UCA COMPLETA · MÓDULOS 1–4 · ISAAC MOCTEZUMA CALDERÓN · UNRC-LAD 2026-1
+  </div>
+
+</div>
+</body>
+</html>

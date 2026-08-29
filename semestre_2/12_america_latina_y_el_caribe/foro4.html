@@ -2,570 +2,267 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 4 · america latina y el caribe · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro Reforzador · Módulo 4 · Isaac Moctezuma</title>
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
+    background: #0d0d0d;
+    color: #e8e0d0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.85;
+    padding: 2.5rem 1.2rem;
   }
 
-  .page-wrapper {
-    max-width: 900px;
+  .contenedor {
+    max-width: 820px;
     margin: 0 auto;
-    position: relative;
   }
 
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
+  .cabecera {
+    border-bottom: 2px solid #4a3f2e;
+    padding-bottom: 1.4rem;
+    margin-bottom: 2.2rem;
   }
 
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
+  .metadato-linea {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #7a6a50;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
     margin-bottom: 0.3rem;
   }
 
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
+  h1 {
+    font-size: 1.45rem;
+    font-weight: bold;
+    color: #d4c4a0;
+    line-height: 1.4;
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
+  h2 {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #b8a880;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.9rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #3a3020;
   }
 
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
+  p {
+    text-align: justify;
+    margin-bottom: 1.2rem;
+    text-indent: 1.8em;
+    hyphens: auto;
   }
 
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
+  p.sin-sangria { text-indent: 0; }
+
+  .epigrafe {
+    border-left: 3px solid #6b5c3a;
+    padding: 0.8rem 1.2rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #c4b490;
+    font-size: 0.95rem;
+    text-indent: 0;
     text-align: justify;
   }
 
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
+  .epigrafe-fuente {
+    display: block;
+    text-align: right;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: #7a6a50;
+    margin-top: 0.5rem;
   }
 
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
+  strong { color: #d4c4a0; font-weight: bold; }
+
+  .ref-seccion {
+    margin-top: 2.8rem;
+    padding-top: 1.4rem;
+    border-top: 2px solid #4a3f2e;
+  }
+
+  .ref-seccion h2 {
+    border-bottom: none;
+    margin-bottom: 1rem;
   }
 
   .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
+    text-indent: -2.2em;
+    padding-left: 2.2em;
+    margin-bottom: 0.85rem;
+    font-size: 0.9rem;
+    color: #c4b490;
+    text-align: justify;
   }
 
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
+  .pie-pagina {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #3a3020;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #5a5040;
+    text-align: center;
+    letter-spacing: 0.05em;
   }
 
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .declaratoria-ia {
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.8rem;
+    background: rgba(74, 63, 46, 0.12);
+    border-left: 4px solid #6b5c3a;
+    border-radius: 0 4px 4px 0;
   }
 
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
+  .declaratoria-ia h2 {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #b8a880;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--paper);
+    margin-bottom: 0.6rem;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
+  .declaratoria-ia p {
+    font-size: 0.83rem;
+    color: #c4b490;
+    text-indent: 0;
+    margin-bottom: 0.6rem;
+    line-height: 1.7;
+    text-align: justify;
   }
 
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
+  .declaratoria-metadatos {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #7a6a50;
+    letter-spacing: 0.04em;
+    margin-top: 0.4rem;
+    border-top: 1px solid rgba(74, 63, 46, 0.3);
+    padding-top: 0.6rem;
   }
 
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
+  @media (max-width: 600px) {
+    .declaratoria-metadatos {
+      flex-direction: column;
+      gap: 0.3rem;
+      align-items: flex-start;
+    }
   }
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
+<div class="contenedor">
+
+  <!-- CABECERA -->
+  <div class="cabecera">
+    <div class="metadato-linea">UNRC · Licenciatura en Relaciones Internacionales · LAD 2026-1</div>
+    <div class="metadato-linea">Historia y Formación del Estado Moderno Mexicano y Política Exterior</div>
+    <div class="metadato-linea">Módulo 4 · Foro Reforzador · Grupo DHLRIN-111-LAD</div>
+    <h1>El vaciamiento técnico de derechos: la despolitización neoliberal y sus efectos en los pueblos indígenas de Guerrero</h1>
+    <div class="metadato-linea" style="margin-top:0.7rem;">Isaac Moctezuma Calderón · Junio 2026</div>
+  </div>
+
+  <!-- EPÍGRAFE -->
+  <div class="epigrafe">
+    "El jardín se riega con paciencia, no con gritos. Pero el árbol que no da fruto se corta y se quema."
+    <span class="epigrafe-fuente">— Paráfrasis del Bustán de Saadi de Shiraz</span>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <p class="sin-sangria">Estimadas compañeras, compañeros y docente:</p>
+
+  <p>La lectura de López López (2023) nos advierte algo escalofriante: la despolitización en la era neoliberal no significa que el Estado censure o prohíba hablar de los derechos humanos, sino que los somete a un <strong>vaciamiento técnico de derechos</strong>. En lugar de resolver el despojo territorial o la pobreza estructural, el Estado neoliberal transforma estos agravios históricos en meros expedientes burocráticos. Tratar la miseria extrema y la desigualdad como un simple asunto administrativo separa la acción social de la actividad política, rompiendo la responsabilidad directa del modelo económico sobre el sufrimiento humano (López López, 2023).</p>
+
+  <h2>I. La despolitización como estrategia de vaciamiento</h2>
+
+  <p>El neoliberalismo operó en México como un mito que se pensó a sí mismo, reproduciéndose casi algorítmicamente de sexenio en sexenio desde 1982. Como señala López López (2023), el Estado neoliberal transformó los agravios históricos en meros expedientes burocráticos. Esta lógica tiene raíces profundas en el diagnóstico nacional que el propio Estado mexicano elaboró en la década de 1990. El <em>Diagnóstico Nacional de Menores en Situación Extraordinaria</em> (DIF, 1993) documentó meticulosamente las condiciones de las "zonas expulsoras" —colonias periféricas de donde provenían los niños que terminaban en la calle. El informe reveló que el 87% de estas colonias estaban consolidadas, no eran asentamientos recientes; el 61% se habían formado mediante invasiones en suelos privados o federales; y solo el 36% contaban con pavimentación. Sin embargo, el diagnóstico trató estas condiciones como un problema de "marginación urbana" y no como el resultado de décadas de políticas económicas que concentraban la riqueza y expulsaban a la población rural hacia la periferia de las ciudades.</p>
+
+  <p>Como diría Dussel, si leemos la historia desde los últimos, vemos claramente cómo el Consenso de Washington y el TLCAN requerían ciudadanos-consumidores fragmentados, no comunidades organizadas que exigieran soberanía sobre sus territorios (Lerch, 2024). El diagnóstico de 1993, con su lenguaje técnico y sus tablas porcentuales, fue parte de esa maquinaria de despolitización: documentó el sufrimiento sin nombrar al responsable.</p>
+
+  <h2>II. La Montaña Baja como paradigma del vaciamiento</h2>
+
+  <p>Pero bueno... tocando tierra, considero yo que no hay un ejemplo contemporáneo más doloroso de esta despolitización que el que vivo a diario desde mi trinchera en el programa PAMAR del DIF Guerrero. La violencia atroz contra los pueblos indígenas en la Montaña Baja se relata en los discursos y medios oficiales como un simple "enfrentamiento entre cárteles". Esa etiqueta es el triunfo máximo de la narrativa hegemónica del despojo, porque despolitiza la raíz del conflicto.</p>
+
+  <p>Cuando grupos paramilitares como "Los Ardillos" utilizan armamento pesado y drones explosivos para quemar comunidades enteras en Tula o Alcozacán, no es un problema de pandillas callejeras; es limpieza social para consolidar la acumulación por desposesión en el cinturón minero de la región (Guerrero Resiste, 2026). El diagnóstico de 1993 ya documentaba que en las zonas expulsoras predominaban las "bandas o pandillas" (78%) y que el 78% de los grupos conflictivos pasaban "todo el tiempo en la calle". Treinta años después, esos jóvenes de las esquinas son ahora operadores de grupos paramilitares, reciclados por el narcotráfico y el extractivismo minero que el Estado no combate, sino que tolera y protege.</p>
+
+  <p>Sin embargo, la arquitectura jurídica formal nos exige a los servidores públicos locales levantar actas de asistencia o dar talleres de "crianza positiva", mientras el modelo macroeconómico les roba el territorio a punta de metralla. Esta transformación institucional expone la doble velocidad del Estado: abandono en salud y educación, pero celeridad para proteger el extractivismo transnacional. Es la misma lógica que el diagnóstico de 1993 documentó cuando señaló que el 64% de las zonas expulsoras carecían de pavimentación y que el déficit de servicios básicos era una constante —pero sin mencionar que esa ausencia de Estado era funcional al modelo económico que necesitaba mano de obra barata y desorganizada.</p>
+
+  <h2>III. ¿Quién queda fuera? La pregunta que el diagnóstico no hizo</h2>
+
+  <p>Mónica González Contro nos enseñó a preguntar siempre: ¿quién queda fuera? Quedan fuera las infancias Na savi y Me'phaa que huyen por las barrancas mientras las instituciones de seguridad, a escasos kilómetros, no intervienen. El diagnóstico de 1993 registró que el 55% de los menores salían a la calle "por ayudar a su familia" y que el 60% de los menores atendidos destinaban su ingreso a apoyar económicamente a su familia. Pero no preguntó por qué una familia necesita que sus hijos trabajen en la calle para sobrevivir, ni cuestionó el modelo económico que hacía de la pobreza una estrategia de sobrevivencia familiar.</p>
+
+  <p>Frente a esta complicidad institucional activa, Gene Sharp nos diría: retira la obediencia. Documentar el desplazamiento no es un trámite, es poder. Compartir la verdad es desobediencia civil. No somos salvadores, somos cómplices éticos que debemos usar el dato y la tecnología para internacionalizar la crisis y devolverle su verdadera naturaleza política.</p>
+
+  <p>El <em>Tikun Olam</em> nos exige reparar el mundo desde la raíz, no solo administrar su colapso burocrático. El diagnóstico de 1993 fue un documento técnico; el nuestro debe ser un acto de denuncia. Como decía Aaron Swartz: la información es poder — ¿para qué vas a usar ese poder?</p>
+
+  <h2>IV. Hacia una re-politización de los derechos humanos</h2>
+
+  <p>La despolitización no es inevitable. Los movimientos sociales —el EZLN en 1994, la APPO en 2006, las madres buscadoras, el feminismo— han demostrado que es posible devolverle el contenido político a los derechos humanos. Pero para que eso ocurra, necesitamos:</p>
+
+  <p>1. <strong>Nombrar al responsable:</strong> No son "cárteles" ni "conflictos sociales". Es acumulación por desposesión, es extractivismo armado, es complicidad estatal.</p>
+
+  <p>2. <strong>Documentar con dignidad:</strong> Los expedientes técnicos no bastan. Necesitamos narrativas que pongan en el centro a las víctimas como sujetos políticos, no como objetos de asistencia.</p>
+
+  <p>3. <strong>Internacionalizar la crisis:</strong> Como señala Velázquez Flores (2017), la política exterior mexicana se ha construido para proyectar legitimidad, no para rendir cuentas. Es hora de usar los mecanismos del sistema interamericano para exigir justicia.</p>
+
+  <p>4. <strong>Construir alianzas:</strong> Las comunidades organizadas, las organizaciones de la sociedad civil, los académicos y los servidores públicos podemos ser una red de resistencia si aprendemos a escuchar y a actuar juntos.</p>
+
+  <p class="sin-sangria">Quedo muy atento a sus valiosas reflexiones. ¡Mucho éxito a todos en este cierre de semestre!</p>
+
+  <!-- FIRMA -->
+  <div style="text-align: right; font-family: 'Courier New', monospace; font-weight: bold; margin-top: 2rem; font-style: italic; color: #b8a880;">
+    Isaac Moctezuma Calderón<br>
+    <span style="font-size: 0.85rem; font-weight: normal; color: #7a6a50;">LAD · UNRC · Relaciones Internacionales</span>
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="ref-seccion">
+    <h2>Fuentes de información</h2>
+
+    <div class="ref-item">DIF. (1993). <em>Diagnóstico Nacional de Menores en Situación Extraordinaria</em>. Dirección General de Protección a la Infancia, Sistema Nacional para el Desarrollo Integral de la Familia.</div>
+
+    <div class="ref-item">Guerrero Resiste. (2026). <em>Etnocidio en la Montaña Baja. La palabra de los pueblos</em>. Observatorio Comunitario.</div>
+
+    <div class="ref-item">Lerch, A. (2024). The Great Neoliberal War: Conflict in Contemporary Mexico. <em>Critical Sociology, 51</em>(3), 547–567. https://doi.org/10.1177/08969205241244517</div>
+
+    <div class="ref-item">López López, F. O. (2023). <em>Neoliberalismo y despolitización de los derechos humanos</em>. Comisión Nacional de los Derechos Humanos. http://appweb.cndh.org.mx/biblioteca/archivos/pdfs/NeoliberalismoYDespolitizacionDeLosDH.pdf</div>
+
+    <div class="ref-item">Velázquez Flores, R. (2017). Política exterior y derechos humanos en México: tendencias a finales del siglo XX y prioridades a inicios del siglo XXI. <em>IUS, 40</em>(11), 137–157. https://www.scielo.org.mx/pdf/rius/v11n40/1870-2147-rius-11-40-00137.pdf</div>
+  </div>
+
+  <!-- DECLARATORIA IA -->
+  <div class="declaratoria-ia">
+    <h2>Declaratoria · Uso responsable de IA</h2>
+    <p>Durante la preparación de este trabajo se utilizó inteligencia artificial (Claude, Anthropic) como herramienta de apoyo para organizar ideas y revisar estructura argumentativa. El contenido fue revisado, editado y verificado de manera personal. Se asume responsabilidad total por el resultado final y se asegura que el uso de esta herramienta no sustituye el análisis propio, la lectura del material del módulo ni la integridad académica de esta participación.</p>
+    <div class="declaratoria-metadatos">
+      <span>Fecha de declaración: Junio 2026</span>
+      <span>Isaac Moctezuma Calderón</span>
     </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">12 · FORO · UNRC · 2026</div>
-
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">12 · Mayo 2026</span>
-    </div>
-    <h1>Integración <em>de saberes</em> y conclusiones</h1>
-    <div class="lead-quote">
-      "La unidad es el camino, la diversidad es la riqueza."
-      <cite>— Subcomandante Marcos</cite>
-    </div>
   </div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Consensos y disensos
-          <span>Conclusiones del módulo</span>
-        </div>
-      </div>
-      <p>Se sistematizan los aprendizajes del módulo y se reflexiona sobre su aplicación profesional.</p>
-      <div class="chips">
-        <span class="chip">america</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">FORO</span>
-      </div>
-    </div>
+  <!-- PIE -->
+  <div class="pie-pagina">
+    FORO REFORZADOR · MÓDULO 4 · HISTORIA Y FORMACIÓN DEL ESTADO MODERNO MEXICANO Y POLÍTICA EXTERIOR<br>
+    ISAAC MOCTEZUMA CALDERÓN · UNRC-LAD · JUNIO 2026
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La integración de saberes nos prepara para la acción transformadora.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">12 · UNRC · Foro Integrador · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
 </div>
 </body>
 </html>
-
-
-
