@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tablero de Guerra · IA, Desarrollo Sostenible y RSU</title>
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --carbon-0:#08090A;
+  --carbon-1:#121316;
+  --carbon-2:#1B1D21;
+  --carbon-3:#26282E;
+  --ember:#D4A62A;
+  --ember-dim:#7D6420;
+  --ember-glow:rgba(212,166,42,0.16);
+  --systemic:#3FAE7E;
+  --systemic-dim:#1E5239;
+  --systemic-glow:rgba(63,174,126,0.14);
+  --rust:#C0463A;
+  --rust-dim:#5C231C;
+  --rust-glow:rgba(192,70,58,0.16);
+  --paper:#EDEAE2;
+  --paper-dim:#A3A096;
+  --paper-faint:#5E5C56;
+  --line:#2C2E33;
+  --line-bright:#3A3D44;
+
+  --display:"Fraunces","Iowan Old Style","Palatino Linotype",serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,"SF Mono",monospace;
+  --body:"Inter",-apple-system,"Segoe UI",sans-serif;
+
+  --radius:3px;
+  --hud-w:340px;
+  --topbar-h:58px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--carbon-0);
+  color:var(--paper);
+  font-family:var(--body);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 30% 0%, var(--ember-glow), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+  pointer-events:none;
+  z-index:0;
+}
+
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--ember);color:var(--carbon-0);}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;}
+
+button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit;}
+
+/* ============ TOPBAR (estado de frente activo) ============ */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:var(--topbar-h);
+  background:rgba(8,9,10,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+  gap:18px;
+}
+.topbar-brand{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--paper-faint);
+  white-space:nowrap;
+}
+.topbar-brand strong{color:var(--paper);}
+
+.status-track{
+  flex:1;
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.status-track::-webkit-scrollbar{display:none;}
+
+.status-pill{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:0.04em;
+  padding:7px 13px;
+  border-radius:30px;
+  border:1px solid var(--line-bright);
+  color:var(--paper-faint);
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:all .2s ease;
+}
+.status-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--paper-faint);transition:all .2s ease;}
+.status-pill:hover{border-color:var(--ember-dim);color:var(--paper);}
+.status-pill.active{
+  border-color:var(--ember);
+  color:var(--ember);
+  background:var(--ember-glow);
+}
+.status-pill.active .dot{background:var(--ember);box-shadow:0 0 8px var(--ember);}
+
+.hud-toggle{
+  display:none;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ember);
+  border:1px solid var(--ember-dim);
+  padding:8px 12px;
+  border-radius:var(--radius);
+  white-space:nowrap;
+}
+@media(max-width:980px){.hud-toggle{display:block;}}
+
+/* ============ LAYOUT BASE ============ */
+.app{
+  display:grid;
+  grid-template-columns:1fr var(--hud-w);
+  padding-top:var(--topbar-h);
+  min-height:100vh;
+}
+@media(max-width:980px){
+  .app{grid-template-columns:1fr;}
+}
+
+main.field{
+  position:relative;
+  z-index:1;
+  padding:0 36px 90px;
+  max-width:980px;
+}
+
+/* ============ HUD LATERAL (panel de control siempre visible) ============ */
+.hud{
+  position:fixed;
+  top:var(--topbar-h);
+  right:0;
+  width:var(--hud-w);
+  height:calc(100vh - var(--topbar-h));
+  background:var(--carbon-1);
+  border-left:1px solid var(--line);
+  overflow-y:auto;
+  z-index:150;
+  padding:22px 20px 40px;
+}
+.hud::-webkit-scrollbar{width:6px;}
+.hud::-webkit-scrollbar-thumb{background:var(--line-bright);border-radius:3px;}
+
+@media(max-width:980px){
+  .hud{
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    box-shadow:-20px 0 40px rgba(0,0,0,0.5);
+  }
+  .hud.open{transform:translateX(0);}
+}
+
+.hud-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+.hud-head .tag{font-size:10px;}
+.hud-close{
+  display:none;
+  font-family:var(--mono);
+  color:var(--paper-faint);
+  font-size:20px;
+}
+@media(max-width:980px){.hud-close{display:block;}}
+
+.hud-block{margin-bottom:26px;}
+.hud-block h4{
+  font-family:var(--mono);
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--ember);
+  margin-bottom:13px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.hud-block h4::before{content:"▸";font-size:9px;}
+
+.author-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12.5px;
+}
+.author-row:last-child{border-bottom:none;}
+.author-row .name{font-weight:700;color:var(--paper);white-space:nowrap;flex-shrink:0;}
+.author-row .concept{color:var(--paper-faint);text-align:right;font-size:11px;line-height:1.4;}
+
+.trap-item{
+  font-size:12.5px;
+  color:var(--paper-dim);
+  padding:10px 0 10px 20px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  line-height:1.5;
+}
+.trap-item:last-child{border-bottom:none;}
+.trap-item::before{
+  content:"?";
+  position:absolute;
+  left:0;top:9px;
+  font-family:var(--mono);
+  color:var(--rust);
+  font-weight:700;
+  font-size:12px;
+}
+
+.phrase-item{
+  font-size:12.5px;
+  font-style:italic;
+  color:var(--paper);
+  padding:10px 11px;
+  background:var(--carbon-2);
+  border-left:2px solid var(--ember);
+  border-radius:0 2px 2px 0;
+  margin-bottom:9px;
+  line-height:1.45;
+}
+.phrase-item:last-child{margin-bottom:0;}
+
+.hud-copy{
+  width:100%;
+  margin-top:6px;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  background:var(--carbon-3);
+  border:1px solid var(--ember-dim);
+  color:var(--paper);
+  padding:11px;
+  border-radius:var(--radius);
+  transition:background .2s ease, border-color .2s ease;
+}
+.hud-copy:hover{background:var(--carbon-2);border-color:var(--ember);}
+.hud-copy.copied{background:var(--ember);color:var(--carbon-0);border-color:var(--ember);}
+
+/* ============ FILTROS TRANSVERSALES (badges) ============ */
+.filter-rail{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:18px 0 0;
+}
+.filter-badge{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.05em;
+  padding:7px 12px;
+  border-radius:30px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid;
+}
+.fb-equidad{
+  border-color:rgba(63,174,126,0.4);
+  color:var(--systemic);
+  background:var(--systemic-glow);
+}
+.fb-complejidad{
+  border-color:rgba(212,166,42,0.4);
+  color:var(--ember);
+  background:var(--ember-glow);
+}
+.filter-badge::before{width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 6px currentColor;content:"";}
+
+/* ============ SCANLINE LABEL ============ */
+.tag{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ember);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.tag::before{content:"";width:6px;height:6px;background:var(--ember);border-radius:50%;box-shadow:0 0 8px var(--ember);}
+
+/* ============ HERO / NUCLEO ============ */
+.hero{padding:48px 0 28px;}
+.hero .tag{margin-bottom:22px;}
+h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(2rem,4.6vw,3.6rem);
+  line-height:1.06;
+  letter-spacing:-0.01em;
+  max-width:760px;
+}
+h1 em{font-style:italic;color:var(--ember);font-weight:500;}
+.hero-sub{margin-top:20px;max-width:560px;font-size:1rem;color:var(--paper-dim);}
+
+.nucleo-card{
+  margin-top:30px;
+  border:1px solid var(--ember-dim);
+  background:linear-gradient(135deg, var(--ember-glow), transparent 60%), var(--carbon-1);
+  border-radius:var(--radius);
+  padding:24px 26px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  align-items:center;
+}
+.nucleo-card .left{flex:1;min-width:220px;}
+.nucleo-card .label{
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--ember);
+  margin-bottom:8px;
+}
+.nucleo-card p{font-size:13.5px;color:var(--paper-dim);}
+.nucleo-card p strong{color:var(--paper);}
+
+/* ============ FRENTE NAV (anillos visuales) ============ */
+.ring-nav{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin:34px 0 50px;
+}
+@media(max-width:600px){.ring-nav{grid-template-columns:1fr;}}
+
+.ring-card{
+  border:1px solid var(--line);
+  background:var(--carbon-1);
+  border-radius:var(--radius);
+  padding:18px 20px;
+  cursor:pointer;
+  transition:border-color .2s ease, transform .2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.ring-card:hover{border-color:var(--ember-dim);transform:translateY(-2px);}
+.ring-card.active{border-color:var(--ember);background:linear-gradient(135deg, var(--ember-glow), transparent 70%), var(--carbon-1);}
+.ring-card .rc-num{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ember);
+  margin-bottom:6px;
+  display:block;
+}
+.ring-card h3{font-size:1.02rem;font-weight:700;color:var(--paper);}
+.ring-card .rc-sub{font-family:var(--mono);font-size:10px;color:var(--paper-faint);margin-top:5px;text-transform:uppercase;letter-spacing:0.05em;}
+
+/* ============ FRENTES (detalle) ============ */
+.frente-block{
+  padding:34px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:80px;
+}
+.frente-block:first-of-type{border-top:none;}
+
+.frente-head{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  margin-bottom:18px;
+}
+.frente-head .fh-num{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--ember);
+  border:1px solid var(--ember-dim);
+  border-radius:50%;
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.frente-head .fh-text .eyebrow{
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--paper-faint);
+  margin-bottom:4px;
+}
+.frente-head h2{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--paper);}
+
+.combat-row{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:18px;
+}
+@media(min-width:720px){.combat-row{grid-template-columns:1fr 1fr;}}
+
+.block{padding:16px 18px;border-radius:var(--radius);border:1px solid var(--line);background:var(--carbon-2);}
+.block-label{
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:10px;
+}
+.block-label::before{content:"";width:5px;height:5px;border-radius:50%;}
+.b-arg .block-label{color:var(--systemic);}
+.b-arg .block-label::before{background:var(--systemic);box-shadow:0 0 6px var(--systemic);}
+.b-arg{border-color:rgba(63,174,126,0.28);background:linear-gradient(180deg,var(--systemic-glow),transparent 60%),var(--carbon-2);}
+
+.b-atk .block-label{color:var(--rust);}
+.b-atk .block-label::before{background:var(--rust);box-shadow:0 0 6px var(--rust);}
+.b-atk{border-color:rgba(192,70,58,0.3);}
+
+.b-shield{margin-top:12px;border-color:rgba(212,166,42,0.32);background:linear-gradient(180deg,var(--ember-glow),transparent 60%),var(--carbon-2);}
+.b-shield .block-label{color:var(--ember);}
+.b-shield .block-label::before{background:var(--ember);box-shadow:0 0 6px var(--ember);}
+
+.block p{font-size:14px;color:var(--paper-dim);line-height:1.55;}
+.block p strong{color:var(--paper);font-weight:600;}
+
+.frontier-note{
+  margin-top:16px;
+  padding:17px 19px;
+  border-radius:var(--radius);
+  border:1px dashed var(--ember-dim);
+  background:repeating-linear-gradient(135deg,rgba(212,166,42,0.04) 0px,rgba(212,166,42,0.04) 2px,transparent 2px,transparent 10px);
+}
+.frontier-note .ftag{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:0.06em;
+  color:var(--carbon-0);
+  background:var(--ember);
+  padding:2px 7px;
+  border-radius:2px;
+  margin-bottom:9px;
+  text-transform:uppercase;
+}
+.frontier-note p{font-size:13.5px;color:var(--paper-dim);}
+
+footer{border-top:1px solid var(--line);padding:28px 0 60px;font-family:var(--mono);font-size:10.5px;color:var(--paper-faint);}
+
+@media(max-width:520px){
+  main.field{padding:0 18px 80px;}
+  .topbar{padding:0 14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand"><strong>Tablero de Guerra</strong> · IA / DS / RSU</div>
+  <div class="status-track" id="statusTrack">
+    <div class="status-pill active" data-target="nucleo"><span class="dot"></span>Núcleo</div>
+    <div class="status-pill" data-target="f1"><span class="dot"></span>Frente 01 · Ético</div>
+    <div class="status-pill" data-target="f2"><span class="dot"></span>Frente 02 · Ambiental</div>
+    <div class="status-pill" data-target="f3"><span class="dot"></span>Frente 03 · Económico</div>
+    <div class="status-pill" data-target="f4"><span class="dot"></span>Frente 04 · Educativo</div>
+  </div>
+  <button class="hud-toggle" onclick="document.getElementById('hud').classList.toggle('open')">Kit ▸</button>
+</div>
+
+<div class="app">
+
+  <main class="field">
+
+    <section class="hero" id="nucleo">
+      <span class="tag">Núcleo estratégico</span>
+      <h1>La inteligencia artificial no es buena ni mala <em>en sí misma</em> — es un sistema complejo.</h1>
+      <p class="hero-sub">Se gestiona con Responsabilidad Social Universitaria (Vallaeys) y se filtra por equidad — no igualdad — para cerrar brechas estructurales (Sachs).</p>
+
+      <div class="nucleo-card">
+        <div class="left">
+          <div class="label">Tesis defendible en cualquier frente</div>
+          <p>Los algoritmos no son neutrales ni autónomos de su contexto: <strong>reflejan el sistema que los entrena</strong>. El debate nunca es "IA sí o no", es <strong>"IA bajo qué filtro ético-regulatorio"</strong> (Morin, 1990).</p>
+        </div>
+        <div class="filter-rail">
+          <span class="filter-badge fb-equidad">Equidad ≠ Igualdad</span>
+          <span class="filter-badge fb-complejidad">Complejidad · No lineal</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="ring-nav" aria-label="Navegación de frentes">
+      <div class="ring-card" data-target="f1" onclick="goTo('f1')">
+        <span class="rc-num">Anillo 01</span>
+        <h3>Ético-Filosófico</h3>
+        <span class="rc-sub">El alma de la IA</span>
+      </div>
+      <div class="ring-card" data-target="f2" onclick="goTo('f2')">
+        <span class="rc-num">Anillo 02</span>
+        <h3>Ambiental</h3>
+        <span class="rc-sub">La huella de la IA</span>
+      </div>
+      <div class="ring-card" data-target="f3" onclick="goTo('f3')">
+        <span class="rc-num">Anillo 03</span>
+        <h3>Económico-Social</h3>
+        <span class="rc-sub">La brecha de la IA</span>
+      </div>
+      <div class="ring-card" data-target="f4" onclick="goTo('f4')">
+        <span class="rc-num">Anillo 04</span>
+        <h3>Educativo-Cognitivo</h3>
+        <span class="rc-sub">El rol de la IA</span>
+      </div>
+    </nav>
+
+    <!-- FRENTE 1 -->
+    <article class="frente-block" id="f1">
+      <div class="frente-head">
+        <div class="fh-num">01</div>
+        <div class="fh-text">
+          <div class="eyebrow">Módulo 4 · Derechos Humanos</div>
+          <h2>Frente Ético-Filosófico</h2>
+        </div>
+      </div>
+      <div class="filter-rail">
+        <span class="filter-badge fb-equidad">Equidad en acceso al diseño algorítmico</span>
+        <span class="filter-badge fb-complejidad">Sesgo emergente, no programado</span>
+      </div>
+
+      <div class="combat-row">
+        <div class="block b-arg">
+          <div class="block-label">Argumento de apertura</div>
+          <p>La IA debe ser <strong>transparente y auditable</strong>: los algoritmos no son neutrales, reproducen sesgos preexistentes en los datos sin necesidad de intención.</p>
+        </div>
+        <div class="block b-atk">
+          <div class="block-label">Ataque del oponente</div>
+          <p>"Los sesgos se corrigen con mejores datos." / "La IA no tiene intención, solo reproduce patrones — no es responsable de nada."</p>
+        </div>
+      </div>
+      <div class="block b-shield">
+        <div class="block-label">Escudo · Derechos Humanos + Sistemas Complejos</div>
+        <p>Corregir sesgos exige transformar la realidad social, no solo el dataset (principio dialógico, Morin 1990). La IA no necesita intención para causar daño — los patrones discriminan igual, y la dignidad humana (CNDH, Módulo 4) no es negociable frente a la "neutralidad técnica".</p>
+      </div>
+
+      <div class="frontier-note">
+        <span class="ftag">Frontera próxima</span>
+        <div class="block-label" style="color:var(--ember);">Sub-tópico · Transhumanismo y biohacking</div>
+        <p>Si el oponente escala hacia el cuerpo —edición genética, prótesis neuronales, interfaces cerebro-máquina— la lógica es la misma: la IA ya habilita autodiseño corporal (Sánchez Salazar, 2024; Bostrom, <em>Transhumanist FAQ</em>). El filtro sigue siendo <strong>autonomía corporal como derecho, regulación ética como condición</strong> — no rechazo de la tecnología, sino Derechos Humanos como filtro regulatorio (Habermas, 2004; Vallaeys, 2014).</p>
+      </div>
+    </article>
+
+    <!-- FRENTE 2 -->
+    <article class="frente-block" id="f2">
+      <div class="frente-head">
+        <div class="fh-num">02</div>
+        <div class="fh-text">
+          <div class="eyebrow">Módulo 1 · ODS 13 · Acción por el clima</div>
+          <h2>Frente Ambiental</h2>
+        </div>
+      </div>
+      <div class="filter-rail">
+        <span class="filter-badge fb-equidad">Equidad en acceso a energía limpia</span>
+        <span class="filter-badge fb-complejidad">Nodo = costo y solución simultáneos</span>
+      </div>
+
+      <div class="combat-row">
+        <div class="block b-arg">
+          <div class="block-label">Argumento de apertura</div>
+          <p>El consumo energético de la IA es real, pero es una <strong>externalidad gestionable</strong>: dentro de un sistema bien regulado, la misma tecnología optimiza recursos y monitorea ecosistemas (Rockström et al., 2009).</p>
+        </div>
+        <div class="block b-atk">
+          <div class="block-label">Ataque del oponente</div>
+          <p>"Entrenar modelos grandes consume cantidades brutales de energía y agua — la IA es ecológicamente insostenible por diseño."</p>
+        </div>
+      </div>
+      <div class="block b-shield">
+        <div class="block-label">Escudo · Sistemas Complejos + Sachs</div>
+        <p>Las consecuencias en un sistema complejo no son lineales (García, 2006): un mismo nodo puede ser costo y solución según cómo se regule. La huella no se resuelve prohibiendo la herramienta, sino integrando la dimensión ambiental (Sachs, 2012) desde el origen — auditoría energética como condición de despliegue, no como ocurrencia tardía.</p>
+      </div>
+    </article>
+
+    <!-- FRENTE 3 -->
+    <article class="frente-block" id="f3">
+      <div class="frente-head">
+        <div class="fh-num">03</div>
+        <div class="fh-text">
+          <div class="eyebrow">Módulo 1.2 · Análisis del Territorio</div>
+          <h2>Frente Económico-Social</h2>
+        </div>
+      </div>
+      <div class="filter-rail">
+        <span class="filter-badge fb-equidad">Herramientas diferenciadas por territorio</span>
+        <span class="filter-badge fb-complejidad">Impacto no uniforme entre regiones</span>
+      </div>
+
+      <div class="combat-row">
+        <div class="block b-arg">
+          <div class="block-label">Argumento de apertura</div>
+          <p>No basta con dar la misma IA a todos (igualdad formal); hay que dar <strong>herramientas diferenciadas</strong> según el punto de partida territorial de cada comunidad (Sachs, Módulo 1.4).</p>
+        </div>
+        <div class="block b-atk">
+          <div class="block-label">Ataque del oponente</div>
+          <p>"La IA va a automatizar empleos masivamente y ampliar la brecha digital entre quienes tienen acceso y quienes no."</p>
+        </div>
+      </div>
+      <div class="block b-shield">
+        <div class="block-label">Escudo · Territorio + Cartografía Social</div>
+        <p>La tecnología transforma el trabajo, no lo elimina sin más — pero el impacto territorial es desigual, y por eso debe construirse <strong>con</strong> las comunidades, no imponerse (Champollion, 2020; Ruiz, López & Luque, 2021). Identificar dónde y cómo impacta cada territorio es el primer paso del análisis, antes de cualquier despliegue.</p>
+      </div>
+    </article>
+
+    <!-- FRENTE 4 -->
+    <article class="frente-block" id="f4">
+      <div class="frente-head">
+        <div class="fh-num">04</div>
+        <div class="fh-text">
+          <div class="eyebrow">Módulo 3 · RSU</div>
+          <h2>Frente Educativo-Cognitivo</h2>
+        </div>
+      </div>
+      <div class="filter-rail">
+        <span class="filter-badge fb-equidad">Acceso desigual a IA educativa de calidad</span>
+        <span class="filter-badge fb-complejidad">Pedagogía como variable, no constante</span>
+      </div>
+
+      <div class="combat-row">
+        <div class="block b-arg">
+          <div class="block-label">Argumento de apertura</div>
+          <p>La IA es una herramienta para <strong>potenciar</strong> el pensamiento crítico, no un sustituto — la RSU exige formar ciudadanos críticos que diseñen y usen IA de forma ética (Vallaeys, 2021).</p>
+        </div>
+        <div class="block b-atk">
+          <div class="block-label">Ataque del oponente</div>
+          <p>"Los estudiantes solo van a copiar y pegar — la IA está erosionando la capacidad de pensar por sí mismos."</p>
+        </div>
+      </div>
+      <div class="block b-shield">
+        <div class="block-label">Escudo · RSU + Legitimación del conocimiento</div>
+        <p>El problema no es la herramienta, es la <strong>pedagogía</strong> que la rodea (UNESCO, 2020 — EDS 2030). La universidad debe seguir siendo garante de la legitimación del conocimiento (Vallaeys, 2014) — eso significa enseñar a usar la IA con rigor, no prohibirla por miedo a su mal uso.</p>
+      </div>
+    </article>
+
+    <footer>
+      Tablero de Guerra · UCA Desarrollo Sostenible, Equidad y RSU · Universidad Rosario Castellanos
+    </footer>
+
+  </main>
+
+  <!-- ============ HUD LATERAL FIJO ============ -->
+  <aside class="hud" id="hud">
+    <div class="hud-head">
+      <span class="tag">Cinturón de utilidades</span>
+      <button class="hud-close" onclick="document.getElementById('hud').classList.remove('open')">×</button>
+    </div>
+
+    <div class="hud-block">
+      <h4>Autores clave</h4>
+      <div class="author-row"><span class="name">Morin</span><span class="concept">Pensamiento complejo, principio dialógico</span></div>
+      <div class="author-row"><span class="name">García</span><span class="concept">Sistemas complejos, autoorganización</span></div>
+      <div class="author-row"><span class="name">Vallaeys</span><span class="concept">RSU, 4 ejes articulados</span></div>
+      <div class="author-row"><span class="name">Sachs</span><span class="concept">Equidad vs. Igualdad, 3 dimensiones</span></div>
+      <div class="author-row"><span class="name">Champollion</span><span class="concept">Territorialidad multidimensional</span></div>
+      <div class="author-row"><span class="name">Rockström</span><span class="concept">Límites planetarios</span></div>
+      <div class="author-row"><span class="name">CNDH</span><span class="concept">Derechos Humanos, filtro regulatorio</span></div>
+    </div>
+
+    <div class="hud-block">
+      <h4>Preguntas trampa</h4>
+      <div class="trap-item">¿Quién diseña y regula la IA en los territorios marginados — y quién queda fuera de esa mesa?</div>
+      <div class="trap-item">¿La IA que defiendes está optimizada para el beneficio colectivo o para el lucro de quien la entrena?</div>
+      <div class="trap-item">Si los sistemas complejos son impredecibles por definición (Crutchfield, 1994), ¿cómo garantizas que la regulación no llegue siempre tarde?</div>
+      <div class="trap-item">¿La universidad que forma ciudadanos críticos también audita sus propias herramientas de IA institucionales?</div>
+      <div class="trap-item">Si el cuerpo es territorio de disputa, ¿por qué el debate sobre IA evita la pregunta del autodiseño corporal que la misma IA ya habilita?</div>
+    </div>
+
+    <div class="hud-block">
+      <h4>Frases de cierre</h4>
+      <div class="phrase-item">"La IA no se opone al desarrollo sostenible — se vuelve sostenible o se vuelve otro factor de inequidad, no hay tercera opción."</div>
+      <div class="phrase-item">"No basta con dar la misma herramienta a todos: la equidad exige diseñar para quienes parten más atrás."</div>
+      <div class="phrase-item">"Si no blindamos hoy los principios éticos frente a la tecnología, los algoritmos decidirán quiénes somos antes de que nosotros podamos decidirlo."</div>
+    </div>
+
+    <button class="hud-copy" id="copyBtn" onclick="copyKit()">Copiar kit completo</button>
+  </aside>
+
+</div>
+
+<script>
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// Estado de frente activo via IntersectionObserver
+const sections = ['nucleo','f1','f2','f3','f4'].map(id => document.getElementById(id));
+const pills = document.querySelectorAll('.status-pill');
+const rings = document.querySelectorAll('.ring-card');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      pills.forEach(p => p.classList.toggle('active', p.dataset.target === id));
+      rings.forEach(r => r.classList.toggle('active', r.dataset.target === id));
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+
+sections.forEach(s => s && observer.observe(s));
+
+pills.forEach(p => p.addEventListener('click', () => goTo(p.dataset.target)));
+
+function copyKit(){
+  const text = `TABLERO DE GUERRA — IA, DESARROLLO SOSTENIBLE Y RSU
+
+NÚCLEO: La IA no es buena ni mala en sí misma; es un sistema complejo (Morin). Se gestiona con RSU (Vallaeys) y se filtra por equidad, no igualdad (Sachs).
+
+FILTROS TRANSVERSALES: Equidad vs Igualdad · Complejidad (no linealidad)
+
+FRENTE 1 — ÉTICO-FILOSÓFICO
+Argumento: La IA debe ser transparente y auditable; los algoritmos no son neutrales.
+Ataque: "Los sesgos se corrigen con mejores datos / la IA no tiene intención."
+Escudo: Corregir sesgos exige transformar la realidad social, no solo los datos (Morin). La dignidad humana (CNDH) no es negociable.
+Frontera próxima — Transhumanismo/biohacking: la misma IA habilita autodiseño corporal. Filtro: Derechos Humanos + regulación ética, no rechazo de la tecnología.
+
+FRENTE 2 — AMBIENTAL
+Argumento: Consumo energético es externalidad gestionable dentro de un sistema bien regulado.
+Ataque: "La IA es insostenible por diseño."
+Escudo: Las consecuencias en sistemas complejos no son lineales (García); un nodo es costo y solución. Auditoría energética desde el diseño.
+
+FRENTE 3 — ECONÓMICO-SOCIAL
+Argumento: Equidad exige herramientas diferenciadas por territorio, no la misma IA para todos.
+Ataque: "La IA automatiza empleos y amplía la brecha digital."
+Escudo: La IA debe construirse CON las comunidades (cartografía social, Champollion), identificando impacto territorial antes de desplegar.
+
+FRENTE 4 — EDUCATIVO-COGNITIVO
+Argumento: La IA potencia el pensamiento crítico, no lo sustituye.
+Ataque: "Los estudiantes solo copian y pegan."
+Escudo: El problema es la pedagogía, no la herramienta (UNESCO EDS 2030); la universidad legitima el conocimiento (Vallaeys).
+
+AUTORES CLAVE: Morin, García, Vallaeys, Sachs, Champollion, Rockström, CNDH.
+
+PREGUNTAS TRAMPA:
+- ¿Quién diseña y regula la IA en territorios marginados?
+- ¿La IA está optimizada para beneficio colectivo o para lucro?
+- Si los sistemas complejos son impredecibles, ¿cómo garantizas regulación a tiempo?
+- ¿La universidad audita sus propias herramientas de IA?
+- Si el cuerpo es territorio de disputa, ¿por qué evitar la pregunta del autodiseño corporal?
+
+CIERRE: "Si no blindamos hoy los principios éticos frente a la tecnología, los algoritmos decidirán quiénes somos antes de que nosotros podamos decidirlo."`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copiado al portapapeles';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar kit completo';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

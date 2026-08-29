@@ -2,570 +2,165 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Actividad Integradora - Módulo 5 · america latina y el caribe · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad Integradora — ALyC — Isaac Moctezuma Calderón</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#09100D;--surface:#0F1A14;--raised:#152019;
+  --border:#1C2B1E;--border2:#253528;
+  --selva:#2D6A4F;--selva-m:rgba(45,106,79,.10);
+  --oro:#C9A84C;
+  --texto:#DDD8CF;--dim:#8A8680;--ghost:#444040;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'IBM Plex Serif',Georgia,serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}
+body{background:var(--bg);color:var(--texto);font-family:var(--body);font-size:16px;line-height:1.85;padding:2.5rem 1.2rem 5rem;}
+.wrap{max-width:800px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+.banda{background:var(--bg);border-bottom:1px solid var(--border);padding:.5rem 2.2rem;display:flex;justify-content:space-between;}
+.banda span{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--ghost);text-transform:uppercase;}
+.banda .id{color:var(--oro);opacity:.75;}
+.cab{padding:2.8rem 2.8rem 1.8rem;border-bottom:1px solid var(--border);}
+.meta{display:flex;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap;}
+.tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;border:1px solid rgba(45,106,79,.35);color:var(--selva);padding:.2rem .65rem;border-radius:2px;background:var(--selva-m);}
+.tag2{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);}
+h1{font-family:var(--display);font-size:2.2rem;font-weight:300;line-height:1.18;letter-spacing:-.01em;margin-bottom:.55rem;}
+h1 strong{font-weight:700;color:#EDE8DF;}
+h1 em{font-style:italic;color:var(--oro);}
+.sub{font-family:var(--body);font-size:.92rem;font-style:italic;color:var(--dim);font-weight:300;}
+.firma{margin-top:1.3rem;display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;}
+.firma-n{font-family:var(--display);font-size:1rem;color:var(--texto);}
+.firma-sep{width:1.8rem;height:1px;background:var(--border2);display:inline-block;vertical-align:middle;}
+.firma-c{font-family:var(--mono);font-size:.6rem;color:var(--ghost);letter-spacing:.08em;text-transform:uppercase;}
+.epigrafe{padding:1.6rem 2.8rem;background:var(--raised);border-bottom:1px solid var(--border);}
+.epi-t{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ghost);margin-bottom:.6rem;}
+.epi-p{font-family:var(--display);font-size:1.12rem;font-style:italic;font-weight:300;color:#C8C2B8;line-height:1.55;}
+.epi-a{font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-top:.5rem;}
+.cuerpo{padding:2.5rem 2.8rem;}
+.sec-tag{display:flex;align-items:center;gap:.9rem;margin:2.4rem 0 1.5rem;}
+.sec-tag::before{content:'';display:block;width:.85rem;height:1px;background:var(--oro);}
+.sec-tag span{font-family:var(--mono);font-size:.6rem;color:var(--oro);letter-spacing:.14em;text-transform:uppercase;}
+.sec-tag::after{content:'';flex:1;height:1px;background:var(--border);}
+h2{font-family:var(--display);font-size:1.3rem;font-weight:400;color:#EDE8DF;margin:1.8rem 0 .7rem;letter-spacing:-.01em;}
+p{font-family:var(--body);font-size:.965rem;line-height:1.9;color:var(--texto);font-weight:300;margin-bottom:1.45rem;text-align:justify;text-indent:1.4rem;}
+p:first-of-type,p.no-ind{text-indent:0;}
+p strong{font-weight:600;color:#EDE8DF;}
+p em{font-style:italic;color:var(--dim);}
+.m{font-style:italic;color:var(--oro);opacity:.9;}
+.refs{margin-top:2.8rem;padding-top:1.6rem;border-top:1px solid var(--border);}
+.refs-t{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ghost);margin-bottom:1.2rem;}
+.ref{font-family:var(--body);font-size:.8rem;font-weight:300;color:#666260;margin-bottom:.8rem;padding-left:1.7rem;text-indent:-1.7rem;line-height:1.58;}
+.ref em{font-style:italic;}
+.decl{margin-top:2.3rem;padding:.95rem 1.3rem;background:var(--bg);border:1px solid var(--border);border-radius:2px;}
+.decl-t{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ghost);margin-bottom:.35rem;}
+.decl p{font-family:var(--body);font-size:.76rem;font-weight:300;color:var(--ghost);line-height:1.48;text-indent:0;margin-bottom:0;}
+@media(max-width:600px){.cab,.cuerpo,.epigrafe{padding:1.6rem 1.3rem;}.banda{padding:.5rem 1.3rem;}h1{font-size:1.65rem;}}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">12 · INTEGRADORA · UNRC · 2026</div>
-
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Actividad Integradora · Módulo 5</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">12 · Mayo 2026</span>
-    </div>
-    <h1>Síntesis <em>final</em> y prospectiva</h1>
-    <div class="lead-quote">
-      "El futuro se construye hoy con las herramientas del pasado."
-      <cite>— Tikun Olam</cite>
-    </div>
+<div class="wrap">
+<div class="banda">
+  <span>UNRC–SECIHTI · LRIN · América Latina y el Caribe</span>
+  <span class="id">AI-ALYC-2025 · BULKAN/DADPI</span>
+</div>
+<header class="cab">
+  <div class="meta">
+    <span class="tag">Actividad Integradora · Final de Curso</span>
+    <span class="tag2">América Latina y el Caribe</span>
   </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 5 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Articulación de aprendizajes
-          <span>Visión integral</span>
-        </div>
-      </div>
-      <p>Se articulan los aprendizajes de los 5 módulos en un documento integrador que demuestra dominio de competencias.</p>
-      <div class="chips">
-        <span class="chip">america</span>
-        <span class="chip">Módulo 5</span>
-        <span class="chip">INTEGRADORA</span>
-      </div>
-    </div>
+  <h1><strong>Plan de acción para la Relatoría</strong><br>sobre los derechos de los pueblos indígenas<br><em>hacia 2027</em></h1>
+  <div class="sub">Una propuesta de itinerario de reparación para el mandato Bulkan — Sistema Interamericano de DDHH</div>
+  <div class="firma">
+    <span class="firma-n">Isaac Moctezuma Calderón</span>
+    <span class="firma-sep"></span>
+    <span class="firma-c">DIF Guerrero · PAMAR · UNRC · LRIN</span>
   </div>
+</header>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+<div class="epigrafe">
+  <div class="epi-t">Preludio</div>
+  <div class="epi-p">La herida es el lugar por donde entra la luz. El corazón que no ha sido herido es un corazón que todavía no ha aprendido a ver.</div>
+  <div class="epi-a">— Rumi, Masnavi, Libro I (adaptación libre)</div>
+</div>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+<main class="cuerpo">
 
-  <div class="ritual-closer">
-    <p>La síntesis final corona el proceso formativo con una visión integral.</p>
-  </div>
+<div class="sec-tag"><span>Introducción</span></div>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 5: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+<p>Cuando Ari Bulkan asumió la Relatoría sobre los Derechos de los Pueblos Indígenas ante la CIDH en 2024, heredó una doble deuda: la institucional, acumulada desde que la propia Relatoría fuera creada en 1990 como primera iniciativa temática del Sistema Interamericano, y la histórica, que se remonta varios siglos antes — al momento en que la conquista no solo despojó territorios sino que construyó la arquitectura jurídica de ese despojo. <span class="m">Me gustaría imaginar</span> que Bulkan, la primera noche con el nuevo cargo, no leyó documentos de política exterior sino que pensó en esas 42 millones de personas que la Relatoría debe proteger: el 8% de la población latinoamericana, el 14% de los pobres de la región, familias con tres veces más probabilidades de vivir en pobreza extrema que el resto de sus conciudadanos.</p>
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">12 · UNRC · Actividad Integradora · M5</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+<p>El presente documento propone un <strong>itinerario de reparación</strong> — no un plan de escritorio — para el período 2024-2027. La diferencia no es semántica: un plan de escritorio administra el problema; un itinerario de reparación reconoce que existe una deuda estructural y propone una ruta para saldarla, aunque parcialmente, con los instrumentos disponibles. La base jurídica existe: la Declaración Americana sobre los Derechos de los Pueblos Indígenas, aprobada en 2016 por la Asamblea General de la OEA, es el marco más completo que el Sistema Interamericano ha producido en la materia. El problema no ha sido nunca la normativa. Ha sido la voluntad política de implementarla.</p>
+
+<div class="sec-tag"><span>Desarrollo — I. La problemática</span></div>
+
+<h2>Una herida estructural que el texto jurídico no cierra solo</h2>
+
+<p>América Latina alberga una contradicción que se ha vuelto rutinaria, y eso es lo más peligroso de todo: el continente con mayor diversidad indígena del mundo es también donde más defensores de territorios originarios son asesinados cada año. Según los datos de Global Witness, la región concentra entre el 60% y el 70% de los asesinatos de activistas ambientales y territoriales a nivel mundial. No es un accidente estadístico; es el resultado de un modelo extractivo que necesita despejar el territorio para operar y que utiliza la omisión estatal como herramienta de política pública silenciosa.</p>
+
+<p>Los derechos vulnerados son múltiples y se entrelazan: el derecho a la vida, el derecho al territorio, el derecho a la consulta previa libre e informada, la autodeterminación, la preservación de la lengua y la cultura propias. Pero <span class="m">desde mi punto de vista</span>, la vulneración central — la que habilita todas las demás — es la negación sistemática de la <strong>soberanía epistémica</strong>: el derecho de los pueblos a definir con sus propios marcos de comprensión qué es el desarrollo, qué es el bienestar, qué significa la tierra. Cuando ese derecho es arrebatado, todo lo demás puede ser arrebatado después, porque el sujeto ya no puede nombrarse a sí mismo.</p>
+
+<p>En México, país que junto con Guatemala, Bolivia y Perú concentra la mayor proporción de población indígena de América Latina, los datos del INPI muestran que más del 70% de los municipios con población mayoritariamente indígena se ubican en los rangos más bajos del Índice de Desarrollo Humano. La Montaña Alta de Guerrero — territorio que conozco desde mi trabajo cotidiano como enlace del programa PAMAR en el DIF — ilustra esta paradoja de manera descarnada: comunidades con una riqueza cultural milenaria que coexisten con indicadores de rezago propios de otro siglo. La exclusión no es herencia natural del terreno; es el resultado acumulado de siglos de despojo sistemático que el Estado moderno no ha resuelto, y en muchos casos ha profundizado.</p>
+
+<div class="sec-tag"><span>Desarrollo — II. El peso de la historia</span></div>
+
+<h2>Del Consejo de Indias a la consulta previa: el mismo patrón, distinta forma</h2>
+
+<p>El proceso colonial en América Latina no produjo solo territorios conquistados — produjo categorías jurídicas de humanidad diferenciada. La distinción entre "república de españoles" y "república de indios" no era solo administrativa: era una ontología política que declaraba a los pueblos originarios como sujetos incompletos, tutelados, incapaces de gobernarse sin intermediación colonial. Ese imaginario sobrevivió a las independencias del siglo XIX, que en su mayoría fueron procesos de las élites criollas para sustituir a la metrópoli, no para desmantelar el orden jerárquico heredado. Como observó un historiador: los independentistas latinoamericanos no instalaron un orden nuevo — vistieron el orden colonial con ropajes republicanos.</p>
+
+<p>El siglo XX trajo avances formales importantes: convenios internacionales, constituciones plurinacionales, reconocimiento del multiculturalismo como valor estatal. El Convenio 169 de la OIT (1989) fue un hito porque reconoció la consulta previa como derecho vinculante. La propia Relatoría nació en ese impulso en 1990. Y la Declaración de 2016 consolidó décadas de negociación y presión de los movimientos indígenas. <span class="m">Pero bueno</span> — y aquí está el nudo central — la distancia entre el reconocimiento formal y la realidad en el territorio sigue siendo abismal. La consulta previa, que debería ser un mecanismo de democracia directa con poder real de veto, ha sido reducida en la práctica a un procedimiento burocrático que legitima decisiones ya tomadas. El extractivismo ha encontrado la forma de usar el lenguaje de los derechos para vaciarlos de contenido.</p>
+
+<p>Steve Biko afirmaba que la colonización más peligrosa no es la que ocupa el territorio con soldados sino la que ocupa la mente con sus propias categorías. En ese sentido, la agenda de la Relatoría no puede limitarse a vigilar cumplimientos normativos: debe desafiar los marcos de interpretación que permiten que un Estado afirme respetar la consulta previa mientras aprueba concesiones mineras sobre territorios no consultados.</p>
+
+<div class="sec-tag"><span>Desarrollo — III. Evaluación de la Declaración</span></div>
+
+<h2>Ocho años de implementación diferida</h2>
+
+<p>La Declaración Americana de 2016 es, en su arquitectura normativa, el instrumento más ambicioso que el Sistema Interamericano ha producido en la materia. Reconoce derechos individuales y colectivos, establece el principio de autodeterminación, protege los derechos culturales y espirituales, y — crucialmente — establece el derecho a la libre determinación en materia de desarrollo: los pueblos pueden negarse a modelos que no correspondan a su cosmovisión. Ese artículo, en teoría, debería bastar para frenar la mayoría de los megaproyectos que amenazan territorios indígenas en la región.</p>
+
+<p>La realidad de ocho años de implementación es más modesta. Los avances son reales pero fragmentarios. Algunas sentencias de la Corte IDH han establecido estándares vinculantes importantes, particularmente en materia de territorios y consulta previa. El caso Saramaka vs. Surinam, y más recientemente las sentencias sobre pueblos en aislamiento voluntario, han ampliado la jurisprudencia protectora. Sin embargo, el principal obstáculo sigue siendo la ejecución: los Estados acatan las sentencias cuando les conviene y las incumplen cuando el costo económico es alto. No existe un mecanismo de presión efectivo que haga que el incumplimiento sea más costoso que el cumplimiento.</p>
+
+<p>Esta <strong>agenda de implementación diferida</strong> — el fenómeno por el cual los Estados ratifican instrumentos internacionales pero posponen indefinidamente su aplicación real — es quizás el mayor obstáculo que enfrenta Bulkan. Resolverlo requiere más que supervisión técnica: requiere una estrategia política que conecte la presión del sistema interamericano con las dinámicas internas de cada Estado.</p>
+
+<div class="sec-tag"><span>Desarrollo — IV. Iniciativas recomendadas</span></div>
+
+<h2>Primera iniciativa: litigio estratégico de alta visibilidad con palanca climática</h2>
+
+<p>La intersección entre la agenda climática global y los derechos territoriales indígenas genera una oportunidad política única que la Relatoría debería aprovechar sistemáticamente. Los territorios indígenas albergan aproximadamente el 80% de la biodiversidad terrestre que subsiste en condiciones razonablemente intactas. Los mismos Estados que incumplen la Declaración de 2016 han asumido compromisos de reducción de emisiones y conservación de biodiversidad ante la comunidad internacional — compromisos que son incompatibles con el extractivismo en territorios originarios.</p>
+
+<p>La iniciativa consiste en seleccionar anualmente entre tres y cinco casos emblemáticos donde esta contradicción sea documentable y llevables tanto ante la Corte IDH como ante los mecanismos de supervisión climática de la ONU. El efecto no es solo judicial: es reputacional y financiero. Los Estados que aspiran a acceder a fondos del mecanismo REDD+ o a financiamientos climáticos internacionales tendrán más dificultades para justificar su candidatura si tienen casos activos de destrucción de territorios indígenas. La palanca no es solo moral — es política y económica, y eso es lo que puede mover instituciones que de otro modo permanecerían inertes ante el clamor normativo.</p>
+
+<h2>Segunda iniciativa: red de documentación comunitaria con protocolo de internacionalización</h2>
+
+<p>Gene Sharp nos recuerda que el poder del Estado depende de nuestra obediencia, y que cuando retiramos la obediencia al silencio — documentando, denunciando, internacionalizando — el costo de gobernar mal se vuelve más alto que el costo de actuar bien. La segunda iniciativa propone capitalizar lo que los propios movimientos indígenas ya hacen pero sin suficiente infraestructura: la documentación territorial en tiempo real.</p>
+
+<p>La Relatoría debería impulsar, en coordinación con organizaciones como Cultural Survival y Frontline Defenders, una <strong>red regional de documentación comunitaria</strong> con tres componentes: primero, formación técnica a defensores territoriales en uso de tecnología satelital y herramientas jurídicas para documentar invasiones y violaciones; segundo, un protocolo estandarizado de internacionalización que permita elevar un caso de nivel local a nivel interamericano en menos de treinta días; y tercero, un fondo de respuesta rápida para cubrir los costos inmediatos de protección cuando un defensor es amenazado. La tecnología existe, el conocimiento jurídico existe — lo que falta es la articulación sistemática entre ambos. Eso es lo que la Relatoría puede proveer desde su posición institucional única.</p>
+
+<div class="sec-tag"><span>Conclusiones</span></div>
+
+<p>La herida que Rumi describía — ese espacio donde entra la luz — no cierra sola. Necesita quienes la sostengan abierta el tiempo suficiente para que la luz haga su trabajo. Eso es, en el mejor escenario, lo que puede hacer la Relatoría bajo el mandato Bulkan: no resolver en tres años una deuda de cinco siglos, pero sí crear las condiciones para que el siguiente ciclo comience en un punto más avanzado de lo que éste heredó.</p>
+
+<p>Las dos iniciativas propuestas — litigio estratégico con palanca climática y red de documentación comunitaria con protocolo de internacionalización — no son las únicas posibles pero sí las que ofrecen el mayor rendimiento estratégico dado el contexto político actual. Combinan presión externa sobre los Estados con fortalecimiento interno de los propios movimientos indígenas. No son caridad institucional — son reconocimiento de que la soberanía epistémica de estos pueblos es también una condición de posibilidad para cualquier proyecto de desarrollo sostenible genuino en América Latina y el Caribe.</p>
+
+<p>Desde Guerrero, donde trabajo a diario con comunidades que viven en la intersección de todos estos problemas, puedo afirmar que ningún documento internacional, por bien redactado que esté, llega solo a donde hace falta. Necesita personas e instituciones que lo traigan. Esa es la responsabilidad del mandato Bulkan, y también la nuestra.</p>
+
+<section class="refs">
+<p class="refs-t">Referencias bibliográficas — APA 7ª edición</p>
+<p class="ref">Amnistía Internacional. (2024). <em>Los derechos humanos en América</em>. https://www.es.amnesty.org/en-que-estamos/paises/america/</p>
+<p class="ref">Comisión Interamericana de Derechos Humanos. (s.f.). <em>Relatoría sobre los Derechos de los Pueblos Indígenas</em>. OEA. https://www.oas.org/es/CIDH/jsForm/?File=/es/cidh/r/dpi/relator.asp</p>
+<p class="ref">Dawson, N., &amp; Suich, H. (2025). Advancing social impact assessments for more effective and equitable conservation. <em>Conservation Biology</em>.</p>
+<p class="ref">Departamento de Derecho Internacional de la OEA. (2013). <em>Los Derechos de los pueblos Indígenas en el sistema interamericano. Principios básicos</em>. OEA. https://www.oas.org/es/sla/ddi/docs/pueblos_indigenas_publicaciones</p>
+<p class="ref">Global Witness. (2023). <em>Standing Firm: The land and environmental defenders on the frontlines of the climate crisis</em>. Global Witness.</p>
+<p class="ref">Organización de los Estados Americanos. (2016). <em>Declaración Americana sobre los Derechos de los Pueblos Indígenas</em>.</p>
+<p class="ref">Willetts, L., Fleming, L. E., &amp; Morgera, E. (2025). Biodiversity, health science, and the human right to a healthy environment. <em>The Lancet Planetary Health</em>.</p>
+</section>
+
+<div class="decl">
+  <p class="decl-t">Declaratoria · Uso responsable de IA generativa</p>
+  <p>La estructura argumentativa, el diseño del documento y el apoyo en la articulación de conceptos fueron asistidos por herramientas de IA (Claude / Anthropic). La postura crítica, las referencias territoriales de Guerrero, la selección de iniciativas y el fundamento ético son resultado del proceso de estudio e interpretación personal del autor.</p>
+</div>
+</main>
 </div>
 </body>
 </html>
-
-
-
