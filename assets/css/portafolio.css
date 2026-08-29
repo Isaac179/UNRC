@@ -1,0 +1,221 @@
+/* =====================================================================
+   portafolio.css — LRIN · Isaac Moctezuma
+   Dirección: el expediente diplomático. El trabajo exigido es el cuerpo
+   del documento; el pensamiento propio vive en el margen.
+   ===================================================================== */
+
+:root {
+  /* Tinta de pluma sobre papel de archivo, no negro sobre crema */
+  --papel:      #F7F6F3;
+  --papel-alto: #FFFFFF;
+  --tinta:      #16202B;   /* azul-negro de tinta */
+  --tinta-suave:#4A5A68;
+  --sello:      #1F5C4D;   /* verde institucional mexicano */
+  --margen:     #9A6B2F;   /* ocre de anotación manuscrita */
+  --regla:      #D8D4CB;
+
+  --display: "Spectral", "Iowan Old Style", Palatino, Georgia, serif;
+  --cuerpo:  "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --dato:    "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --ancho-cuerpo: 34rem;
+  --ancho-margen: 15rem;
+  --nav: 17rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #10161C; --papel-alto: #16202B;
+    --tinta: #E8E4DA; --tinta-suave: #9BA8B4;
+    --sello: #4FA88E; --margen: #C99A4F; --regla: #2A3742;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--cuerpo);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  padding-left: var(--nav);
+}
+
+/* ---------- Navegación persistente --------------------------------- */
+.nav-persistente {
+  position: fixed; inset: 0 auto 0 0; width: var(--nav);
+  background: var(--papel-alto);
+  border-right: 1px solid var(--regla);
+  overflow-y: auto; padding: 1.75rem 0;
+  z-index: 40;
+}
+.nav-marca { display: block; padding: 0 1.5rem 1.5rem; text-decoration: none; color: inherit; }
+.nav-sigla {
+  display: block; font-family: var(--display); font-size: 1.5rem;
+  font-weight: 600; letter-spacing: .06em;
+}
+.nav-sub {
+  display: block; font-family: var(--dato); font-size: .6875rem;
+  text-transform: uppercase; letter-spacing: .16em; color: var(--tinta-suave);
+}
+.nav-lista, .nav-ucas { list-style: none; margin: 0; padding: 0; }
+
+.nav-sem-btn {
+  width: 100%; display: flex; justify-content: space-between; align-items: baseline;
+  gap: .5rem; background: none; border: 0; cursor: pointer;
+  padding: .55rem 1.5rem; font: inherit; font-size: .875rem;
+  color: var(--tinta); text-align: left;
+}
+.nav-sem-btn:hover { background: var(--papel); }
+.nav-estado {
+  font-family: var(--dato); font-size: .625rem; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--tinta-suave);
+}
+.nav-ucas { display: none; padding-bottom: .5rem; }
+.nav-sem.abierto .nav-ucas { display: block; }
+
+.nav-ucas a {
+  display: grid; grid-template-columns: 2rem 1fr; gap: .5rem;
+  padding: .35rem 1.5rem; text-decoration: none;
+  color: var(--tinta-suave); font-size: .8125rem; line-height: 1.35;
+}
+.nav-ucas a:hover { color: var(--tinta); }
+.nav-ucas a.activa { color: var(--sello); border-left: 2px solid var(--sello); margin-left: -2px; }
+.uca-n { font-family: var(--dato); font-size: .75rem; opacity: .7; }
+
+.nav-toggle { display: none; }
+
+/* ---------- Documento ---------------------------------------------- */
+.doc { max-width: calc(var(--ancho-cuerpo) + var(--ancho-margen) + 4rem);
+       margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+.migas {
+  font-family: var(--dato); font-size: .6875rem;
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--tinta-suave); margin-bottom: 2rem;
+}
+.migas a { color: inherit; text-decoration: none; }
+.migas a:hover { color: var(--sello); }
+.migas span { margin: 0 .4rem; }
+.miga-actual { color: var(--sello); }
+
+/* El folio: la numeración es real, no decorativa —las UCA van del 01 al 48 */
+.folio {
+  font-family: var(--dato); font-size: 3.5rem; font-weight: 300;
+  line-height: 1; color: var(--regla); display: block; margin-bottom: .5rem;
+}
+.doc-cabecera { border-bottom: 2px solid var(--tinta); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
+.doc-uca {
+  font-family: var(--dato); font-size: .75rem; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--sello); margin: 0 0 .5rem;
+}
+.doc-titulo {
+  font-family: var(--display); font-weight: 600; font-size: 2.25rem;
+  line-height: 1.15; margin: 0 0 .75rem; letter-spacing: -.01em;
+}
+.doc-meta { font-family: var(--dato); font-size: .75rem; color: var(--tinta-suave); }
+.doc-meta span + span::before { content: "·"; margin: 0 .5rem; }
+
+/* Cuerpo con margen: la firma de este diseño */
+.doc-cuerpo { display: grid; grid-template-columns: var(--ancho-cuerpo) var(--ancho-margen); gap: 3rem; align-items: start; }
+.texto { min-width: 0; }
+.texto h2 {
+  font-family: var(--display); font-size: 1.375rem; font-weight: 600;
+  margin: 2.5rem 0 .75rem; line-height: 1.25;
+}
+.texto p { margin: 0 0 1.15rem; }
+.texto blockquote {
+  margin: 1.5rem 0; padding-left: 1.25rem;
+  border-left: 2px solid var(--sello); font-style: italic; color: var(--tinta-suave);
+}
+.texto cite { display: block; font-style: normal; font-family: var(--dato); font-size: .75rem; margin-top: .5rem; }
+
+/* La marginalia: donde la actividad deja de ser trámite */
+.margen { position: sticky; top: 3rem; }
+.nota {
+  border-top: 1px solid var(--margen); padding-top: .75rem; margin-bottom: 2rem;
+  font-size: .8125rem; line-height: 1.5; color: var(--tinta-suave);
+}
+.nota-tipo {
+  display: block; font-family: var(--dato); font-size: .625rem;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--margen); margin-bottom: .4rem;
+}
+.nota a { color: var(--sello); }
+
+.fuentes { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--regla); }
+.fuentes h2 { font-family: var(--dato); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--tinta-suave); margin: 0 0 1rem; }
+.fuentes ol { padding-left: 1.25rem; font-size: .875rem; line-height: 1.5; }
+.fuentes li { margin-bottom: .6rem; }
+
+/* Secuencia anterior / siguiente */
+.secuencia { display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--regla); }
+.secuencia a { text-decoration: none; color: var(--tinta); max-width: 45%; }
+.secuencia-next { text-align: right; margin-left: auto; }
+.secuencia-dir { display: block; font-family: var(--dato); font-size: .625rem; text-transform: uppercase; letter-spacing: .12em; color: var(--tinta-suave); }
+.secuencia-nombre { font-family: var(--display); font-size: 1.0625rem; }
+.secuencia a:hover .secuencia-nombre { color: var(--sello); }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sello); outline-offset: 3px; }
+
+/* ---------- Responsivo --------------------------------------------- */
+@media (max-width: 62rem) {
+  body { padding-left: 0; }
+  .nav-persistente {
+    inset: 0 auto auto 0; width: 100%; height: auto; padding: .75rem 0;
+    border-right: 0; border-bottom: 1px solid var(--regla);
+  }
+  .nav-marca { display: inline-block; padding: 0 1rem; }
+  .nav-toggle {
+    display: block; position: absolute; top: .9rem; right: 1rem;
+    background: none; border: 0; cursor: pointer; padding: .4rem;
+  }
+  .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--tinta); margin: 4px 0; }
+  .nav-lista { display: none; }
+  .nav-persistente.abierta .nav-lista { display: block; }
+  .doc { padding: 6rem 1.25rem 4rem; }
+  .doc-cuerpo { grid-template-columns: 1fr; gap: 2rem; }
+  .margen { position: static; border-top: 1px solid var(--regla); padding-top: 1.5rem; }
+  .doc-titulo { font-size: 1.75rem; }
+  .folio { font-size: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+@media print {
+  body { padding: 0; background: #fff; }
+  .nav-persistente, .secuencia, .nav-toggle { display: none; }
+  .doc-cuerpo { grid-template-columns: 1fr; }
+  .margen { border-top: 1px solid #ccc; padding-top: 1rem; margin-top: 2rem; }
+  a { color: inherit; text-decoration: none; }
+  .fuentes a::after { content: " (" attr(href) ")"; font-size: .7em; }
+}
+
+/* ---------- Elementos surgidos de la primera actividad real -------- */
+.doc-subtitulo {
+  font-family: var(--display); font-size: 1.1875rem; font-weight: 400;
+  font-style: italic; line-height: 1.35; color: var(--tinta-suave);
+  margin: -.25rem 0 .9rem;
+}
+.texto h3 {
+  font-family: var(--cuerpo); font-size: .8125rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .09em; color: var(--sello);
+  margin: 1.75rem 0 .5rem;
+}
+/* La pregunta que guía el trabajo: en un informe académico es el eje,
+   no una cita. Merece tratamiento propio. */
+.pregunta-guia {
+  font-family: var(--display); font-size: 1.25rem; font-style: italic;
+  line-height: 1.4; color: var(--tinta);
+  border-top: 1px solid var(--sello); border-bottom: 1px solid var(--sello);
+  padding: 1.1rem 0; margin: 1.75rem 0;
+}
+.marca-continua {
+  font-family: var(--dato); font-size: .75rem; color: var(--margen);
+  border: 1px dashed var(--margen); padding: .75rem 1rem; border-radius: 2px;
+}
+.nota-fuentes {
+  font-family: var(--dato); font-size: .6875rem; color: var(--tinta-suave);
+  margin-top: 1rem;
+}
