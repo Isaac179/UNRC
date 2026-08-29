@@ -1,0 +1,38 @@
+﻿# Sincronizacion
+*.tmp
+~$*
+.~lock.*#
+desktop.ini
+Thumbs.db
+*conflicted copy*
+
+# Editores
+.vscode/
+.idea/
+
+# Respaldos manuales: Git ya es el respaldo
+*_backup.*
+*_old.*
+*.orig
+
+# Volcados
+estructura*.txt
+node_modules/
+*.log
+
+# Binarios y material pesado: van a Drive, no al repo
+*.exe
+*.zip
+*.aup3
+*.mp3
+*.wav
+*.mp4
+
+# Privado: nunca al restaurante
+*prompt*.txt
+*gemelo_digital*
+*alma_isaac*
+*digital_twinn*
+
+# Duplicados comprimidos
+*_compressed.pdf
