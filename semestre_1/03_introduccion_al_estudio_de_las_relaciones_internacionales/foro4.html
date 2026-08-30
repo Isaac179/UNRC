@@ -1,578 +1,173 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 4 · introduccion al estudio de las relaciones internacionales · UNRC</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avance de México en la implementación de los ODS · Introducción al Estudio de las Relaciones Internacionales · LRIN</title>
+<meta name="description" content="Foro sobre el avance de México en la implementación de los Objetivos de Desarrollo Sostenible. Isaac Moctezuma Calderón, LRIN, Universidad Rosario Castellanos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,600;1,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/UNRC/assets/css/portafolio.css">
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<!-- COMPONENTE DE NAVEGACIÓN PERSISTENTE -->
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <a href="../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-            <a href="../index.html#semestresSection" style="color: white; text-decoration: none;">📚 Semestres</a>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 1</a>
-            <a href="../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 2</a>
-            <a href="../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 3</a>
-            <a href="../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 4</a>
-            <a href="../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 5</a>
-            <a href="../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 6</a>
-            <a href="../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 7</a>
-            <a href="../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 8</a>
-        </div>
-        <div style="font-size: 12px; color: white;">
-            <span>👨‍🎓 Isaac Moctezuma</span>
-        </div>
-    </div>
-</nav>
 
-<div class="page-wrapper">
-  <div class="corner-meta">03 · FORO · UNRC · 2026</div>
+<main class="doc">
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">03 · Mayo 2026</span>
-    </div>
-    <h1>Integración <em>de saberes</em> y conclusiones</h1>
-    <div class="lead-quote">
-      "La unidad es el camino, la diversidad es la riqueza."
-      <cite>— Subcomandante Marcos</cite>
-    </div>
-  </div>
+  <header class="doc-cabecera">
+    <span class="folio">03</span>
+    <p class="doc-uca">Introducción al Estudio de las Relaciones Internacionales</p>
+    <h1 class="doc-titulo">Avance de México en la implementación de los ODS</h1>
+    <p class="doc-meta">
+      <span>Foro</span>
+      <span>Semestre 1</span>
+      <span>Isaac Moctezuma Calderón</span>
+      <time datetime="2025">2025</time>
+    </p>
+  </header>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <div class="doc-cuerpo">
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Consensos y disensos
-          <span>Conclusiones del módulo</span>
-        </div>
+    <article class="texto">
+
+      <h2>Los Objetivos de Desarrollo Sostenible en México</h2>
+
+      <p>Analizando la información disponible en el sitio web de la <strong>ONU</strong> en
+      nuestro país, el cual ofrece información estructurada y dinámica en un formato
+      destacable por su eficiencia en la representación gráfica estadística y geográfica, lo
+      que nos provee de una base sólida para <strong>interpretar los avances</strong> e
+      intentar responder los cuestionamientos:</p>
+
+      <blockquote><em><strong>¿Hemos avanzado en México significativamente en la
+      implementación de los ODS?</strong></em><br>Creo que la respuesta, aunque ambigua es
+      <strong>"Sí y No"</strong> ya que hablamos de <strong>17 facciones</strong>, cada una de
+      ellas representa un <strong>universo de factores</strong> que a su vez retroalimenta a
+      los otros objetivos, por lo que muy fácilmente se han frenado o aletargado los
+      <strong>procesos de avance</strong> hacia las metas.</blockquote>
+
+      <h2>Resultados concretos que permitan evaluar el progreso</h2>
+
+      <p>Es importante mencionar que las fuentes no contienen datos de resultados concretos
+      que permitan evaluar el progreso en las metas específicas de los ODS, lo que dificulta
+      abordar la pregunta:</p>
+
+      <p><strong>¿Cuál ODS muestra el mayor avance y cuál el menor?</strong></p>
+
+      <p>Lo que sí encontramos en las fuentes es el enfoque de México en temas relacionados,
+      por ejemplo, con el ODS 1 (Fin de la pobreza), donde se resalta que México abogó por la
+      adopción de un enfoque multidimensional de la pobreza. Este enfoque es valioso porque
+      considera, además del ingreso de las personas, su acceso efectivo a otros derechos
+      básicos como la alimentación, la educación, la salud, la seguridad social y los
+      servicios básicos en la vivienda.</p>
+
+      <h2>¿Una aproximación factible?</h2>
+
+      <p>Una aproximación que <strong>considero</strong> factible para medir el avance, aunque
+      no determinante en su totalidad, son los <strong>recursos disponibles</strong> asignados
+      por la <strong>ONU</strong> y los principales <strong>Socios Contribuyentes</strong>:
+      <strong>$84,7 millones</strong>, donde el <strong>23,2 %</strong> están destinados a
+      fomentar la paz, justicia e instituciones sólidas.</p>
+
+      <p>Desde una <strong>perspectiva ciudadana</strong> considero que el fin de este
+      objetivo —"promover sociedades pacíficas e incluyentes para el desarrollo sostenible,
+      proveer <strong>acceso</strong> a la <strong>justicia</strong> para todos y crear
+      instituciones efectivas"— ha tenido un efecto altamente inverso, ya que la realidad en
+      nuestro país en términos de <strong>violencia</strong> se ha recrudecido a niveles
+      desproporcionados en casi todos los rincones de la república.</p>
+
+      <blockquote>Respecto al acceso a la justicia, venimos de un <strong>modelo</strong>
+      realmente infame y pasamos a uno <strong>"renovado"</strong> pero cuestionable, sin
+      mencionar las carencias generales en nuestras instituciones. Todo lo anterior cala hondo
+      en el <strong>tejido social</strong>, dejando a nuestro México en <em>"jaque"</em> o
+      <em>un pueblo que resiste</em>.</blockquote>
+
+      <h2>Aspectos de la implementación de México: colaborando con el Embajador Juan Ramón de
+      la Fuente</h2>
+
+      <ul>
+        <li>Enfatizar que <strong>México logró impulsar la inclusión</strong> de la
+        universalidad, la sostenibilidad, los derechos humanos, la igualdad y la inclusión
+        social y económica como ejes rectores de la Agenda.</li>
+        <li><strong>Mencionar la creación de mecanismos</strong> permanentes de coordinación
+        que aseguran la continuidad de la Agenda 2030 más allá de los ciclos políticos, a
+        través del Comité Técnico Especializado para el Desarrollo Sostenible (CTEDS).</li>
+        <li><strong>Proponer una solución para acelerar el progreso global:</strong> impulsar,
+        a nivel mundial, la adopción de un enfoque multidimensional de la pobreza.</li>
+      </ul>
+
+      <h2>Reflexión final</h2>
+
+      <p>Sí, México ha avanzado en múltiples objetivos, especialmente en la calidad de la
+      educación, pero persisten desafíos críticos: brechas de género marcadas, actividad
+      criminal y corrupción, entre otros problemas a combatir para llegar al 2030 dignamente.
+      Una amenaza de <em>"mate"</em> puede ser una oportunidad de mejorar nuestra estrategia,
+      frente al tablero internacional.</p>
+
+      <h3>Recursos multimedia</h3>
+
+      <ul>
+        <li><a href="https://mexico.un.org/es/sdgs" target="_blank" rel="noreferrer noopener">Naciones Unidas México — Objetivos de Desarrollo Sostenible</a></li>
+        <li><a href="https://unstats.un.org/sdgs/report/2023/The-Sustainable-Development-Goals-Report-2023_Spanish.pdf" target="_blank" rel="noreferrer noopener">Informe ODS 2023</a></li>
+        <li><a href="https://www.gob.mx/cnbv/articulos/panorama-anual-de-inclusion-financiera-2023" target="_blank" rel="noreferrer noopener">Panorama Agenda 2030 Subnacional — UNDP México</a></li>
+        <li><a href="https://www.youtube.com/watch?v=rXePTrsi1Xc" target="_blank" rel="noreferrer noopener">Webinario "El futuro de la Agenda de Mujeres"</a></li>
+        <li><a href="https://www.youtube.com/watch?v=grTrVWlbILg" target="_blank" rel="noreferrer noopener">https://www.youtube.com/watch?v=grTrVWlbILg</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Xr2osgh4mK4" target="_blank" rel="noreferrer noopener">https://www.youtube.com/watch?v=Xr2osgh4mK4</a></li>
+      </ul>
+
+    </article>
+
+    <aside class="margen">
+
+      <div class="nota">
+        <span class="nota-tipo">Qué abrió esto</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-      <p>Se sistematizan los aprendizajes del módulo y se reflexiona sobre su aplicación profesional.</p>
-      <div class="chips">
-        <span class="chip">introduccion</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">FORO</span>
+
+      <div class="nota">
+        <span class="nota-tipo">Eje de investigación</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-    </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Conecta con</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
+      </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Revisar</span>
+        Detectado en la migración: el bloque original incluía tres imágenes (logo ODS,
+        esquema del proceso de investigación y una captura de pantalla de "vinculación de las
+        inversiones") que no se conservaron por no ser de autoría propia. El enlace
+        "Panorama Agenda 2030 Subnacional — UNDP México" apuntaba en el original a una URL de
+        la CNBV sobre inclusión financiera que no corresponde al texto visible; se dejó tal
+        cual venía, confirmar la URL correcta. El primer enlace de YouTube traía como texto
+        visible un fragmento de interfaz de la propia página ("MX Skip navigation Search
+        Create 9+ Avatar image Webinario..."); se recortó a solo el título del webinario,
+        confirmar que corresponde al video correcto.
+      </div>
+
+    </aside>
+
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+  <section class="fuentes">
+    <h2>Fuentes</h2>
+    <ol>
+      <li>Misión Permanente de México ante la ONU. (2023). <em>Juan Ramón de la Fuente.
+      Representante Permanente de México ante la Organización de las Naciones Unidas</em>.
+      https://mision.sre.gob.mx/onu/</li>
+      <li>Naciones Unidas en México. (2025). <em>Acerca de nuestro trabajo para los Objetivos
+      de Desarrollo Sostenible en México</em>. https://mexico.un.org/es/sdgs</li>
+      <li>United Nations. (2023). <em>Global Sustainable Development Report. Advance, United
+      Version</em>. https://sdgs.un.org/sites/default/files/2023-06/Advance%20unedited%20GSDR%2014June2023.pdf</li>
+    </ol>
+    <p class="nota-fuentes">Referencias en formato aproximado, tal como aparecen en el
+    documento entregado. Verificar edición y páginas contra la fuente original.</p>
+  </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+</main>
 
-  <div class="ritual-closer">
-    <p>La integración de saberes nos prepara para la acción transformadora.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">03 · UNRC · Foro Integrador · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
+<script src="/UNRC/assets/js/data.js"></script>
+<script src="/UNRC/assets/js/nav.js"></script>
 </body>
 </html>
-
-
-
