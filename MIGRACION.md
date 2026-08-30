@@ -93,10 +93,19 @@ el andamio con los rótulos y sin contenido inventado:
 Fuente: nota `MIS DISEÑOS PARA FOROS.md` (bóveda `obsidian-unrc`, 167 KB) y su
 duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
+**Ojo con los borradores múltiples:** algunas piezas "HTML listo" no están en
+`MIS DISEÑOS PARA FOROS.md` sino en notas sueltas de la bóveda `isaac_life`
+(ver pieza 3, corrección 30 ago 2026), y esas notas a veces traen **más de una
+versión completa** del mismo foro (títulos y enfoques distintos para la misma
+actividad). Antes de dar una pieza por migrada, confirmar con Isaac cuál
+versión fue la entregada — no asumir la primera que aparezca en el archivo.
+Así se resolvió la pieza 2 (30 ago 2026): `Actividad uno RRII.md` traía dos
+borradores del foro del Módulo 1 de la UCA 01.
+
 | # | Pieza | Destino | Estado |
 |---|---|---|---|
 | 1 | La encomienda y la colonización | `semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior/foro2.html` | Texto plano — requiere estructurar |
-| 2 | Foro integrador: desarrollo, cooperación y educación | `semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales/` | HTML listo |
+| 2 | Foro integrador: desarrollo, cooperación y educación | `semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales/foro1.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. Fuente: `Actividad uno RRII.md` (bóveda `isaac_life`) líneas 253–347, título "¿Qué problemas estudian las Relaciones Internacionales?" — Isaac confirmó esta versión sobre otro borrador del mismo foro que traía el mismo archivo |
 | 3 | Orígenes históricos y filosóficos de las RRII | `semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales/foro1.html` | HTML listo |
 | 4 | Del humanismo a la soberanía | `semestre_1/03_.../foro2.html` | HTML listo |
 | 5 | ¿Para qué sirve hacer teorías sobre las RRII? | `semestre_1/03_.../foro3.html` | HTML listo |
@@ -119,7 +128,9 @@ duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
 ## Trabajo pendiente, en orden
 
-1. **Migrar las siete piezas** de la tabla, respetando la regla de no editar el cuerpo
+1. **Migrar las piezas restantes** de la tabla (1, 3, 4, 5, 6 y 7 — falta
+   confirmar/generar; 2 y 8 ya migradas), respetando la regla de no editar el
+   cuerpo
 2. **Generar `index.html` por UCA** — el menú ya apunta a ellos y hoy dan 404
 3. **Generar `index.html` por semestre**
 4. **Actualizar `data.js`** si aparecen UCA o nombres nuevos
