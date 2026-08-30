@@ -93,9 +93,19 @@ el andamio con los rótulos y sin contenido inventado:
 Fuente: nota `MIS DISEÑOS PARA FOROS.md` (bóveda `obsidian-unrc`, 167 KB) y su
 duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
+**Piezas "texto plano" (sin bloque HTML pre-diseñado):** no están en la nota de
+diseños. Viven en el volcado crudo del foro de Moodle de cada UCA, guardado en
+`J:\Mi unidad\obsidian-unrc\UNRC\<NOMBRE DE LA UCA>.md`. Ese archivo trae el
+hilo completo de la clase — todas las participaciones de todos los
+compañeros —, no solo las de Isaac. Para encontrar la pieza correcta: buscar
+el nombre "ISAAC MOCTEZUMA" y localizar su publicación propia (encabezada por
+su foto y "#### [ISAAC MOCTEZUMA](...) respondiendo a ..."), no las respuestas
+de otros estudiantes que también mencionan el mismo tema. Así se resolvió la
+pieza 1 (30 ago 2026).
+
 | # | Pieza | Destino | Estado |
 |---|---|---|---|
-| 1 | La encomienda y la colonización | `semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior/foro2.html` | Texto plano — requiere estructurar |
+| 1 | La encomienda y la colonización | `semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior/foro2.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. Fuente: `HISTORIA Y FORMACIÓN DEL ESTADO MEXICANO Y POLÍTICA EXTERIOR.md` (bóveda `obsidian-unrc`, `J:\Mi unidad\obsidian-unrc\UNRC\`) líneas 1601–1611, publicación "Mi Aporte A Nuestro Foro: El Nuevo Mundo" de Isaac Moctezuma |
 | 2 | Foro integrador: desarrollo, cooperación y educación | `semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales/` | HTML listo |
 | 3 | Orígenes históricos y filosóficos de las RRII | `semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales/foro1.html` | HTML listo |
 | 4 | Del humanismo a la soberanía | `semestre_1/03_.../foro2.html` | HTML listo |
@@ -119,7 +129,9 @@ duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
 ## Trabajo pendiente, en orden
 
-1. **Migrar las siete piezas** de la tabla, respetando la regla de no editar el cuerpo
+1. **Migrar las piezas restantes** de la tabla (2, 3, 4, 5, 6 y 7 — falta
+   confirmar/generar; 1 y 8 ya migradas), respetando la regla de no editar el
+   cuerpo
 2. **Generar `index.html` por UCA** — el menú ya apunta a ellos y hoy dan 404
 3. **Generar `index.html` por semestre**
 4. **Actualizar `data.js`** si aparecen UCA o nombres nuevos
