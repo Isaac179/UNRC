@@ -1,578 +1,167 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 2 · historia y formacion del estado mexicano y politica exterior · UNRC</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La encomienda y la colonización · Historia y Formación del Estado Mexicano y Política Exterior · LRIN</title>
+<meta name="description" content="Foro sobre la encomienda, la acumulación originaria y sus efectos en la identidad mexicana. Isaac Moctezuma Calderón, LRIN, Universidad Rosario Castellanos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,600;1,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/UNRC/assets/css/portafolio.css">
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<!-- COMPONENTE DE NAVEGACIÓN PERSISTENTE -->
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <a href="../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-            <a href="../index.html#semestresSection" style="color: white; text-decoration: none;">📚 Semestres</a>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 1</a>
-            <a href="../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 2</a>
-            <a href="../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 3</a>
-            <a href="../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 4</a>
-            <a href="../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 5</a>
-            <a href="../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 6</a>
-            <a href="../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 7</a>
-            <a href="../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">Semestre 8</a>
-        </div>
-        <div style="font-size: 12px; color: white;">
-            <span>👨‍🎓 Isaac Moctezuma</span>
-        </div>
-    </div>
-</nav>
 
-<div class="page-wrapper">
-  <div class="corner-meta">05 · FORO · UNRC · 2026</div>
+<main class="doc">
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 2</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">05 · Mayo 2026</span>
-    </div>
-    <h1>Debate <em>colectivo</em> y construcción dialógica</h1>
-    <div class="lead-quote">
-      "La verdad nace del conflicto de ideas, no del consenso forzado."
-      <cite>— John Stuart Mill</cite>
-    </div>
-  </div>
+  <header class="doc-cabecera">
+    <span class="folio">05</span>
+    <p class="doc-uca">Historia y Formación del Estado Mexicano y Política Exterior</p>
+    <h1 class="doc-titulo">La encomienda y la colonización</h1>
+    <p class="doc-subtitulo">Reflexiones sobre la encomienda, la acumulación originaria y sus efectos en la
+    identidad mexicana</p>
+    <p class="doc-meta">
+      <span>Foro</span>
+      <span>Semestre 1</span>
+      <span>Isaac Moctezuma Calderón</span>
+      <time datetime="2025">2025</time>
+    </p>
+  </header>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 2 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <div class="doc-cuerpo">
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Postura fundamentada y réplica
-          <span>Intercambio de ideas</span>
-        </div>
+    <article class="texto">
+
+      <p class="pregunta-guia">¿Qué es la encomienda? ¿Qué argumentos se utilizaron para encomendar
+      personas? ¿La encomienda fue una fuente de riqueza? ¿Es viable la teoría de la acumulación y la
+      desacumulación originaria como origen del desarrollo de los países colonizadores y el subdesarrollo
+      de los países colonizados?</p>
+
+      <p>Hola qué tal compañeros y profesora, nuevamente hago uso de este espacio para desarrollar la
+      actividad perteneciente al Módulo número 2 de nuestra materia. Me resultó bastante grato el poder
+      abordar este módulo, ya que nos aporta una perspectiva nueva de la colonización que vivieron
+      nuestros pueblos originarios.</p>
+
+      <p>Tal como se mencionó en nuestra sesión síncrona, diferentes factores como la desacumulación, la
+      acumulación sistemática, el sistema de castas y otras herramientas utilizadas por la Corona española
+      impactaron profundamente a nuestro México antiguo, con implicaciones hasta la actualidad. Además,
+      este módulo nos permite reflexionar sobre cómo la <strong>multiculturalidad permeó desde entonces
+      nuestra identidad nacional</strong>.</p>
+
+      <h2>Cuestionamientos sobre la encomienda</h2>
+
+      <p>A mi parecer, <strong>la encomienda fue una estrategia clave para los colonizadores</strong>. Yo
+      considero que el factor ideológico fue uno de los más relevantes en la forma en que se instauró un
+      sistema que permitió controlar de una manera efectiva a la población nativa.</p>
+
+      <p>Al provenir de una raíz judeocristiana, el monoteísmo supuso un choque cultural importante, ya
+      que la cosmovisión de nuestros antepasados era antagónica a cómo los españoles percibían a las
+      deidades. Pensemos en las deidades de nuestra civilización madre (Mesoamérica), como aquellas que
+      controlaban diferentes fenómenos de la naturaleza, como la lluvia o el fuego, lo cual contrasta con
+      el canon español donde Dios padre era la máxima autoridad, aunque existían semidioses canonizados
+      como santos (un paralelismo claro a las deidades nativas).</p>
+
+      <p>Me gusta hacer el ejercicio de contrastar la historia con nuestro presente: aunque esos modelos
+      qué podemos ver como arcaicos, si analizamos a profundidad, <strong>se siguen perpetuando en nuestra
+      era tecnológica</strong>. Ciertamente, la forma cambia, pero el fondo sigue siendo la
+      <strong>dominación y el control</strong>.</p>
+
+      <p>(Sobre si la encomienda fue una fuente de riqueza: la encomienda, al ser un sistema de control de
+      la población que facilitaba la explotación de la fuerza laboral y la extracción de recursos para la
+      Corona española, funcionó <em>de facto</em> como una fuente de riqueza, aunque los textos no
+      mencionan los argumentos específicos utilizados para <em>encomendar</em> personas, sino el hecho de
+      la evangelización como proceso de conversión de creencias politeístas a monoteístas que se llevó a
+      cabo con la conquista política).</p>
+
+      <h2>Mi perspectiva sobre la teoría de la acumulación</h2>
+
+      <p><strong>Sí, considero viable la teoría de la acumulación y de la desacumulación originaria</strong>
+      como origen del desarrollo de los países colonizadores y el subdesarrollo de los países
+      colonizados.</p>
+
+      <p>Esta forma de ver el desarrollo histórico de nuestros pueblos muestra cómo <strong>la
+      implementación forzosa de la cultura europea</strong> en el México antiguo ha perpetuado
+      desigualdades históricas, culturales, religiosas, de género, y no únicamente materiales. La
+      desacumulación originaria, concepto que explica Marx y Dussel, se entiende como la acumulación de
+      capital a través del despojo (de fuerza laboral y riquezas materiales). Esta riqueza se enviaba
+      directamente a Europa, produciendo allá la <em>acumulación originaria</em>, mientras que en nuestro
+      territorio generaba la <em>desacumulación originaria</em>.</p>
+
+      <p>En definitiva, fue una afectación <strong>multifactorial</strong> que tiene implicaciones hasta
+      nuestros días. Definitivamente, no hubo una regulación justa donde hubiera una retribución mutua de
+      ambos mundos, el viejo continente y el nuevo (entre comillas), sino que <strong>todo fue
+      unilateral</strong>, una barbarie en todo sentido y una burla para la dignidad humana de nuestros
+      pueblos. Este proceso de reorganización mundial desigual posicionó a los territorios colonizados en
+      desventaja en la distribución de la riqueza.</p>
+
+      <blockquote>El análisis del módulo nos permite comprender que los efectos de la colonización
+      trascienden lo económico y se manifiestan en nuestra identidad cultural actual. La comprensión de
+      estos procesos históricos es fundamental para construir una sociedad más consciente de sus raíces y
+      más comprometida con la justicia social.
+      <cite>— Reflexión final</cite></blockquote>
+
+      <h2>Referencias rápidas</h2>
+
+      <ul>
+        <li><em>Dussel, E.</em> (1992). <strong>1492: El encubrimiento del Otro</strong>.</li>
+        <li><em>Marx, K.</em> (1867). <strong>El Capital</strong>.</li>
+        <li><em>Galeano, E.</em> (1971). <strong>Las venas abiertas de América Latina</strong>.</li>
+      </ul>
+
+      <h3>Recursos multimedia</h3>
+
+      <ul>
+        <li><a href="https://unamglobal.unam.mx/el-amor-predicado-por-la-evangelizacion-y-la-violencia-ejercida-por-los-conquistadores/" target="_blank" rel="noreferrer noopener">El amor predicado: la evangelización y la violencia ejercida por los conquistadores</a></li>
+      </ul>
+
+    </article>
+
+    <aside class="margen">
+
+      <div class="nota">
+        <span class="nota-tipo">Qué abrió esto</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-      <p>Se presenta una postura personal fundamentada, seguida de réplicas constructivas a las intervenciones de compañeros.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 2</span>
-        <span class="chip">FORO</span>
+
+      <div class="nota">
+        <span class="nota-tipo">Eje de investigación</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-    </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Conecta con</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
+      </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Revisar</span>
+        Detectado en la migración: el bloque original incluía tres videos incrustados ("Reproducir
+        Vídeo") de los que la nota de Obsidian no conservó la URL de destino, y dos imágenes/GIF
+        decorativos que no se conservaron por no ser de autoría propia. El enlace al blog personal
+        ("🎓 Isaac Moctezuma") apuntaba a la plataforma institucional, que exige sesión iniciada y se
+        borra al cerrar el semestre; no se conservó. Las "Referencias Históricas" venían como lista de
+        autor y año sin más datos editoriales; confirmar edición y páginas contra la fuente original antes
+        de dar la página por definitiva.
+      </div>
+
+    </aside>
+
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+  <section class="fuentes">
+    <h2>Fuentes</h2>
+    <ol>
+      <li>Dussel, E. (1992). <em>1492: El encubrimiento del Otro</em>.</li>
+      <li>Galeano, E. (1971). <em>Las venas abiertas de América Latina</em>.</li>
+      <li>Marx, K. (1867). <em>El Capital</em>.</li>
+    </ol>
+    <p class="nota-fuentes">Referencias en formato aproximado, tal como aparecen en el documento
+    entregado. Verificar edición, traductor y páginas contra la fuente original.</p>
+  </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+</main>
 
-  <div class="ritual-closer">
-    <p>El debate enriquece nuestra comprensión colectiva.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 2: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">05 · UNRC · Foro Integrador · M2</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
+<script src="/UNRC/assets/js/data.js"></script>
+<script src="/UNRC/assets/js/nav.js"></script>
 </body>
 </html>
-
-
-
