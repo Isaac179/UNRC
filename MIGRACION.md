@@ -1,7 +1,7 @@
 # Migración del portafolio LRIN — brief de trabajo
 
 Documento de traspaso. Colocar en la raíz de `C:\Users\isaac\repos\UNRC`.
-Última actualización: 29 ago 2026.
+Última actualización: 30 ago 2026.
 
 ---
 
@@ -93,14 +93,20 @@ el andamio con los rótulos y sin contenido inventado:
 Fuente: nota `MIS DISEÑOS PARA FOROS.md` (bóveda `obsidian-unrc`, 167 KB) y su
 duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
+**Corrección (30 ago 2026):** la pieza 3 no estaba en `MIS DISEÑOS PARA FOROS.md`.
+Estaba en `BLOG RRII-1.md`, bóveda `isaac_life`
+(`C:\Users\isaac\OneDrive\Documents\isaac_life\BLOG RRII-1.md`, 157 973 bytes), bajo
+el encabezado literal `BLOQUE 1 MEET RRII LOURDES`. Si falta otra pieza, revisar
+también esta bóveda antes de asumir que no existe.
+
 | # | Pieza | Destino | Estado |
 |---|---|---|---|
 | 1 | La encomienda y la colonización | `semestre_1/05_historia_y_formacion_del_estado_mexicano_y_politica_exterior/foro2.html` | Texto plano — requiere estructurar |
 | 2 | Foro integrador: desarrollo, cooperación y educación | `semestre_1/01_introduccion_a_la_investigacion_en_ciencias_sociales/` | HTML listo |
-| 3 | Orígenes históricos y filosóficos de las RRII | `semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales/foro1.html` | HTML listo |
-| 4 | Del humanismo a la soberanía | `semestre_1/03_.../foro2.html` | HTML listo |
-| 5 | ¿Para qué sirve hacer teorías sobre las RRII? | `semestre_1/03_.../foro3.html` | HTML listo |
-| 6 | Avance de México en la implementación de los ODS | `semestre_1/03_.../foro4.html` | Confirmar con Isaac: 03 o 10 |
+| 3 | Orígenes históricos y filosóficos de las RRII | `semestre_1/03_introduccion_al_estudio_de_las_relaciones_internacionales/foro1.html` | **Migrada y cerrada** — enlaces de video corregidos, margen escrito por Isaac (30 ago 2026) |
+| 4 | Del humanismo a la soberanía | `semestre_1/03_.../foro2.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. Fuente: `_fuente_blog.md` 1403–1546 (`BLOQUE 2 MEET RRII LOURDES`) |
+| 5 | ¿Para qué sirve hacer teorías sobre las RRII? | `semestre_1/03_.../foro3.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. Fuente: `_fuente_blog.md` 1880–2037 |
+| 6 | Avance de México en la implementación de los ODS | `semestre_1/03_.../foro4.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. Fuente: `BLOG RRII-1.md` (bóveda `isaac_life`) líneas 2040–2250, encabezado `MODULO-IV` |
 | 7 | Desborde ecológico y desarrollo sostenible | `semestre_2/10_desarrollo_sostenible_equidad_y_responsabilidad_social/foro4.html` | HTML listo |
 | 8 | Entre el papel y la tierra | `semestre_2/08_taller_de_expresion_escrita/integradora.html` | **Ya migrada** — texto truncado, falta completar |
 
@@ -117,9 +123,32 @@ duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
 ---
 
+## Cascarones de relleno detectados (30 ago 2026)
+
+Auditoría del repo: **105 archivos** con el mismo relleno genérico
+(`<h1>Reflexión <em>inicial</em> y fundamentos</h1>` + cita de Paulo Freire, diseño
+"Syne/rust/JetBrains Mono"), generados en un solo lote automático el 31 may–1 jun 2026.
+No son trabajos reales.
+
+- 52 archivos `foro1.html` (más un `foro3.html` y un `tarea3.html` atípicos), uno por UCA
+  en los ocho semestres, incluidos los semestres 3–8 que Isaac aún no cursa.
+- 53 archivos `foro1_moodle.html`, misma plantilla.
+- Semestre 1: UCA 01, 02, 04, 05, 06. Semestre 2: UCA 07–12. Semestres 3–8: UCA 13–51.
+- Las UCA 03 `foro2.html` y `foro3.html` ya salieron de la lista (piezas 4 y 5).
+
+**Riesgo:** `nav.js`/`data.js` ya los enlazan. Si el sitio se publica tal cual, cualquier
+visitante llega a "trabajo" falso de semestres no cursados. Decidir: borrarlos, o dejar
+solo un `index.html` por UCA que diga "sin entregas publicadas todavía".
+
+No se tocó ninguno, por instrucción de Isaac.
+
+---
+
 ## Trabajo pendiente, en orden
 
-1. **Migrar las siete piezas** de la tabla, respetando la regla de no editar el cuerpo
+0. **Resolver los 105 cascarones** antes de publicar (ver sección anterior)
+1. **Migrar las piezas restantes** de la tabla (1, 2 y 7 — faltan; 3, 4, 5, 6 y 8 ya
+   migradas), respetando la regla de no editar el cuerpo
 2. **Generar `index.html` por UCA** — el menú ya apunta a ellos y hoy dan 404
 3. **Generar `index.html` por semestre**
 4. **Actualizar `data.js`** si aparecen UCA o nombres nuevos
@@ -129,7 +158,6 @@ duplicado `Diseno_HTML_Foro_Vino.md`. Los bloques HTML vienen de corrido.
 
 ## Pendiente de confirmar con Isaac
 
-- Pieza 6: ¿UCA 03 o UCA 10?
 - Nombre de la UCA 14 del tercer semestre, cuando salga la tira de materias
 
 ---
