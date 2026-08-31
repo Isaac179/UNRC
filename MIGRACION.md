@@ -110,7 +110,7 @@ borradores del foro del Módulo 1 de la UCA 01.
 | 4 | Del humanismo a la soberanía | `semestre_1/03_.../foro2.html` | HTML listo |
 | 5 | ¿Para qué sirve hacer teorías sobre las RRII? | `semestre_1/03_.../foro3.html` | HTML listo |
 | 6 | Avance de México en la implementación de los ODS | `semestre_1/03_.../foro4.html` | Confirmar con Isaac: 03 o 10 |
-| 7 | Desborde ecológico y desarrollo sostenible | `semestre_2/10_desarrollo_sostenible_equidad_y_responsabilidad_social/foro4.html` | HTML listo |
+| 7 | Desborde ecológico y desarrollo sostenible | `semestre_2/10_desarrollo_sostenible_equidad_y_responsabilidad_social/foro4.html` | **Migrada** — reemplazó cascarón; margen en andamio, pendiente Isaac. **Ojo:** no estaba en `MIS DISEÑOS PARA FOROS.md` (esa nota no tiene nada de sostenibilidad). El contenido real ya vivía dentro del repo, en `foro4_moodle.html` de la misma carpeta, con otro título: "Crisis ambiental: polinizadores y DDHH" (junio 2026). Confirmar si es la misma pieza |
 | 8 | Entre el papel y la tierra | `semestre_2/08_taller_de_expresion_escrita/integradora.html` | **Ya migrada** — texto truncado, falta completar |
 
 ### Excluidos por decisión de Isaac
