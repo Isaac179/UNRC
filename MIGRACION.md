@@ -128,20 +128,49 @@ borradores del foro del Módulo 1 de la UCA 01.
 
 ## Trabajo pendiente, en orden
 
-1. **Migrar las piezas restantes** de la tabla (1, 3, 4, 5, 6 y 7 — falta
-   confirmar/generar; 2 y 8 ya migradas), respetando la regla de no editar el
+1. **Migrar las piezas restantes** de la tabla (1, 3, 4, 5 y 6 — falta
+   confirmar/generar; 2, 7 y 8 ya migradas), respetando la regla de no editar el
    cuerpo
-2. **Generar `index.html` por UCA** — el menú ya apunta a ellos y hoy dan 404
-3. **Generar `index.html` por semestre**
+2. ~~Generar `index.html` por UCA~~ — **hecho (30 ago 2026).** Ver sección
+   siguiente
+3. **Generar `index.html` por semestre** — siguen siendo los viejos
 4. **Actualizar `data.js`** si aparecen UCA o nombres nuevos
 5. **Completar el texto truncado** de la integradora del Taller (dato del Censo 2020)
 6. Más adelante: tareas auténticas e integradoras restantes, que están en texto
    plano y requieren trabajo de redacción, no de script
 
+## Índices de UCA: se generan, no se escriben
+
+`herramientas/generar_indices.py` regenera el `index.html` de las 18 UCA que
+existen en `data.js`. Es idempotente; se corre las veces que haga falta:
+
+```
+python herramientas/generar_indices.py
+```
+
+Lee cada carpeta y clasifica archivo por archivo:
+
+- **Publicada** — ya migrada a la plantilla (contiene `portafolio.css`). Se
+  enlaza con su título real, extraído del `<h1 class="doc-titulo">`.
+- **Formato anterior** — trabajo real que todavía no pasa por la plantilla. Se
+  enlaza y se marca.
+- **Sin publicar** — cascarón o archivo ausente. **Se nombra pero no se
+  enlaza**, para que nadie llegue a trabajo falso.
+
+Los índices anteriores decían "✨ Próximamente" en todos los módulos y no
+enlazaban nada; además traían menú escrito a mano, contra la regla del proyecto.
+
+**Importante:** el índice refleja el estado del disco al momento de correrlo.
+Después de mergear una migración hay que volver a correrlo, o la actividad
+recién migrada seguirá figurando como "sin publicar".
+
 ## Pendiente de confirmar con Isaac
 
 - Pieza 6: ¿UCA 03 o UCA 10?
-- Nombre de la UCA 14 del tercer semestre, cuando salga la tira de materias
+- **Resuelto (30 ago 2026):** la UCA 14 es Historia Contemporánea de las
+  Relaciones Internacionales — la carpeta ya existía con ese nombre. `data.js`
+  la tenía como `14_por_definir`, un slug sin carpeta: el menú daba 404 en esa
+  entrada. Corregido.
 
 ---
 

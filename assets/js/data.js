@@ -42,7 +42,7 @@ const PLAN = {
       n: 3, estado: "en curso",
       ucas: [
         { n: 13, slug: "13_derecho_internacional_publico", nombre: "Derecho Internacional Público" },
-        { n: 14, slug: "14_por_definir", nombre: "Por definir" },
+        { n: 14, slug: "14_historia_contemporanea_de_las_relaciones_internacionales", nombre: "Historia Contemporánea de las Relaciones Internacionales" },
         { n: 15, slug: "15_pensamiento_politico_y_social", nombre: "Pensamiento Político y Social" },
         { n: 16, slug: "16_pensamiento_complejo_para_la_argumentacion", nombre: "Pensamiento Complejo para la Argumentación" },
         { n: 17, slug: "17_teoria_economica", nombre: "Teoría Económica" },
@@ -62,7 +62,8 @@ const TIPOS = {
   foro:        { etiqueta: "Foro",                sigla: "F" },
   tarea:       { etiqueta: "Tarea",               sigla: "T" },
   ta:          { etiqueta: "Tarea auténtica",     sigla: "TA" },
-  integradora: { etiqueta: "Actividad integradora", sigla: "AI" }
+  integradora: { etiqueta: "Actividad integradora", sigla: "AI" },
+  index:       { etiqueta: "Índice",                sigla: "IX" }
 };
 
 /* Ruta de una actividad. Convención:

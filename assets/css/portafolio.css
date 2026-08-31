@@ -219,3 +219,38 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--sello); outline
   font-family: var(--dato); font-size: .6875rem; color: var(--tinta-suave);
   margin-top: 1rem;
 }
+
+/* ---------- Índice de una UCA --------------------------------------
+   El índice no promete lo que no existe: lo entregado se enlaza, lo
+   pendiente se nombra y se deja sin enlace. */
+.indice { max-width: var(--ancho-cuerpo); }
+.indice-modulo { margin-bottom: 2.5rem; }
+.indice-modulo h2 {
+  font-family: var(--dato); font-size: .6875rem; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--tinta-suave);
+  margin: 0 0 .5rem; padding-bottom: .45rem; border-bottom: 1px solid var(--tinta);
+}
+.indice-lista { list-style: none; margin: 0; padding: 0; }
+.indice-lista li {
+  display: grid; grid-template-columns: 2.25rem 1fr auto;
+  gap: .75rem; align-items: baseline;
+  padding: .55rem 0; border-bottom: 1px solid var(--regla);
+}
+.indice-sigla { font-family: var(--dato); font-size: .75rem; color: var(--regla); }
+.indice-lista a {
+  font-family: var(--display); font-size: 1.0625rem; line-height: 1.3;
+  color: var(--tinta); text-decoration: none;
+}
+.indice-lista a:hover { color: var(--sello); text-decoration: underline; }
+.indice-vacia { color: var(--tinta-suave); }
+.indice-estado {
+  font-family: var(--dato); font-size: .625rem; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--tinta-suave); white-space: nowrap;
+}
+.indice-estado.publicada { color: var(--sello); }
+.indice-estado.anterior { color: var(--margen); }
+
+@media (max-width: 62rem) {
+  .indice-lista li { grid-template-columns: 2rem 1fr; }
+  .indice-estado { grid-column: 2; }
+}
