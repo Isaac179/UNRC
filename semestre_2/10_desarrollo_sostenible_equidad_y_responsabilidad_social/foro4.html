@@ -1,573 +1,181 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
-<head><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/nav.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 4 · desarrollo sostenible equidad y responsabilidad social · UNRC</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crisis ambiental: polinizadores y DDHH · Desarrollo Sostenible, Equidad y Responsabilidad Social · LRIN</title>
+<meta name="description" content="Foro reforzador sobre la crisis de los polinizadores, la gestión de proyectos y la responsabilidad social universitaria. Isaac Moctezuma Calderón, LRIN, Universidad Rosario Castellanos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,600;1,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/UNRC/assets/css/portafolio.css">
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">10 · FORO · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">10 · Mayo 2026</span>
-    </div>
-    <h1>Integración <em>de saberes</em> y conclusiones</h1>
-    <div class="lead-quote">
-      "La unidad es el camino, la diversidad es la riqueza."
-      <cite>— Subcomandante Marcos</cite>
-    </div>
-  </div>
+<main class="doc">
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <header class="doc-cabecera">
+    <span class="folio">10</span>
+    <p class="doc-uca">Desarrollo Sostenible, Equidad y Responsabilidad Social</p>
+    <h1 class="doc-titulo">Crisis ambiental: polinizadores y DDHH</h1>
+    <p class="doc-subtitulo">Gestión de proyectos, ODS y Responsabilidad Social</p>
+    <p class="doc-meta">
+      <span>Foro reforzador</span>
+      <span>Semestre 2</span>
+      <span>Isaac Moctezuma Calderón</span>
+      <time datetime="2026-06">Junio 2026</time>
+    </p>
+  </header>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Consensos y disensos
-          <span>Conclusiones del módulo</span>
-        </div>
+  <div class="doc-cuerpo">
+
+    <article class="texto">
+
+      <blockquote><strong>«La extinción de las abejas no es un mero accidente
+      industrial,</strong> sino un patrón estructural. La agroindustria neoliberal opera como
+      un mito que se piensa a sí mismo, reproduciéndose ciegamente sin medir el costo
+      territorial.»
+      <cite>— Reflexión sobre el Desarrollo Sostenible</cite></blockquote>
+
+      <h2>01 · El escenario: el mito del progreso infinito</h2>
+
+      <p><strong>Estimada profesora y compañeros:</strong></p>
+
+      <p>Domingo por la tarde, el café ya se enfrió y afuera la lluvia sobre Chilpancingo
+      amenaza con ir para largo. En el chat del grupo debatíamos hace rato sobre la planta
+      química alemana, mientras de fondo corre el partido de España contra Arabia Saudita,
+      pero es momento de aterrizar en nuestro ultimo foro. Retomo el incidente crítico de la
+      crisis de los polinizadores para analizar cómo, desde la gestión de proyectos, el
+      vaciamiento técnico puede vulnerar profundamente nuestros derechos humanos y el
+      Desarrollo Sostenible.</p>
+
+      <p>Si tomamos el lente analítico de Lévi-Strauss, la pérdida de biodiversidad es el
+      síntoma de un modelo económico que separa la responsabilidad ética de la técnica
+      operativa, aislando el "desarrollo" de la vida misma.</p>
+
+      <h2>02 · Diagnóstico: impacto ambiental y vulneración de ODS</h2>
+
+      <p>Aquí identifico la afectación directa al <strong>ODS 2 (Hambre Cero)</strong> y al
+      <strong>ODS 15 (Vida de ecosistemas terrestres)</strong>. Como advierten Brunet y Fragoso
+      (2024), la degradación del hábitat y el uso sistemático de pesticidas violentan
+      directamente el derecho humano a una alimentación adecuada y el derecho a un medio
+      ambiente sano. El problema central en la gestión de proyectos corporativos o estatales es
+      tratar la biodiversidad como un simple trámite de administracion.</p>
+
+      <p>Cares, Franco y Bond (2023) demuestran cómo las evaluaciones de impacto suelen ser una
+      ilusión burocrática que prioriza la compensación sobre la protección. Esto nos lleva al
+      <strong>ODS 16 (Paz, justicia e instituciones sólidas)</strong>. Cuando se imponen
+      macroproyectos, quedan fuera las familias campesinas sometidas a esta visión puramente
+      extractivista sin embargo los responsables avalan el "progreso" desde oficinas lejanas,
+      vulnerando su derecho a la información y a la participación ciudadana.</p>
+
+      <h2>03 · El rol universitario: la RSU frente al despojo</h2>
+
+      <p>Pero bueno, tocando tierra, ¿cuál es mi participación como agente responsable ante
+      esto? Desde mi trinchera en el DIF Guerrero, veo de primera mano cómo las estrcuturas
+      institucionales suelen llegar tarde a reparar el tejido social y ambiental que otros
+      destruyeron. Como estudiante de la UNRC, asumo que la Responsabilidad Social
+      Universitaria (RSU) me exige no ser un observador pasivo.</p>
+
+      <p>Si aplicamos la tecnología o diseñamos políticas que facilitan esta acumulación
+      destructiva, somos parte del problema. Como diría Paulo Freire: no somos salvadores,
+      somos facilitadores y cómplices éticos en la resistencia comunitaria.</p>
+
+      <h2>04 · Cierre: Tikun Olam y reparación</h2>
+
+      <p>Mónica G. nos enseñó a preguntar siempre: <em>¿quién queda fuera?</em> En el caso de
+      la crisis alimentaria que advierte el incidente crítico, quedan fuera las infancias más
+      vulnerables de las zonas rurales. Por ello, la RSU no es simple filantropía; es la
+      obligación metódica de reparar el mundo, exigiendo en nuestra gestión evaluaciones de
+      impacto éticas, transparentes y centradas en la dignidad humana.</p>
+
+      <p>Escribir la historia desde los últimos, como exige Dussel, significa impulsar
+      proyectos donde la vida importe más que el margen de rentabilidad a corto plazo. Quedo
+      atento a sus lecturas. <strong>Seguimos construyendo.</strong> (◕ᴥ◕ʋ)</p>
+
+      <p>«El dato sin dignidad no sirve de nada.»</p>
+
+      <h2>Apuntes al margen del propio trabajo</h2>
+
+      <ul>
+        <li><strong>Lente estructural — el mito del desarrollo:</strong> la agroindustria
+        neoliberal opera como un sistema cerrado que invisibiliza el despojo territorial bajo
+        excusas técnicas.</li>
+        <li><strong>Amenaza actual — vulneración de ODS:</strong> la pérdida de polinizadores
+        amenaza directamente el derecho alimentario (ODS 2) y la vida de ecosistemas
+        (ODS 15).</li>
+        <li><strong>Compromiso RSU — ética profesional:</strong> la universidad debe formar
+        agentes que cuestionen el diseño burocrático de megaproyectos y exijan evaluaciones de
+        impacto reales.</li>
+        <li><strong>Cita de apoyo:</strong> «No somos salvadores, somos cómplices éticos en la
+        resistencia comunitaria.» — Paulo Freire.</li>
+      </ul>
+
+      <h3>Declaratoria · Uso responsable de IA</h3>
+
+      <p>Durante la preparación de este cruce interdisciplinario se utilizó inteligencia
+      artificial (Claude, Anthropic) para síntesis y estructuración argumentativa. El
+      contenido, integración temática y postura ética son de autoría y responsabilidad
+      personal.</p>
+
+    </article>
+
+    <aside class="margen">
+
+      <div class="nota">
+        <span class="nota-tipo">Qué abrió esto</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-      <p>Se sistematizan los aprendizajes del módulo y se reflexiona sobre su aplicación profesional.</p>
-      <div class="chips">
-        <span class="chip">desarrollo</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">FORO</span>
+
+      <div class="nota">
+        <span class="nota-tipo">Eje de investigación</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
       </div>
-    </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Conecta con</span>
+        <span class="marca-continua">Pendiente de relectura.</span>
+      </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Trabajo paralelo</span>
+        La pieza se firma desde el puesto de Enlace de Prevención en PAMAR · DIF Guerrero, y
+        el cuerpo argumenta desde esa experiencia institucional. Es el único trabajo migrado
+        hasta ahora que cruza explícitamente el empleo con la materia.
+      </div>
+
+      <div class="nota">
+        <span class="nota-tipo">Revisar</span>
+        Detectado en la migración: <code>MIGRACION.md</code> registraba esta pieza como
+        "Desborde ecológico y desarrollo sostenible" con fuente en
+        <code>MIS DISEÑOS PARA FOROS.md</code>, pero esa nota no contiene ningún bloque sobre
+        sostenibilidad. El contenido real estaba dentro del propio repo, en
+        <code>foro4_moodle.html</code>, con otro título. Confirmar que es la misma pieza y no
+        una distinta que siga sin aparecer. El cuerpo conserva las erratas del original
+        ("ultimo", "administracion", "estrcuturas") por la regla de no editar lo entregado.
+      </div>
+
+    </aside>
+
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+  <section class="fuentes">
+    <h2>Fuentes</h2>
+    <ol>
+      <li>Brunet, J., &amp; Fragoso, F. (2024). What are the main reasons for the worldwide
+      decline in pollinator populations? <em>CABI Reviews</em>.</li>
+      <li>Cares, R. A., Franco, A., &amp; Bond, A. (2023). Investigating the implementation of
+      the mitigation hierarchy approach in environmental impact assessment in relation to
+      biodiversity impacts. <em>Environmental Impact Assessment Review</em>, 102, 106952.</li>
+      <li>Willetts, L., Fleming, L. E., &amp; Morgera, E. (2025). Biodiversity, health science,
+      and the human right to a healthy environment. <em>The Lancet Planetary Health</em>.</li>
+    </ol>
+    <p class="nota-fuentes">Referencias tal como aparecen en el documento entregado.</p>
+  </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+</main>
 
-  <div class="ritual-closer">
-    <p>La integración de saberes nos prepara para la acción transformadora.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">10 · UNRC · Foro Integrador · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
-<script src="assets/js/nav.js" defer></script>
+<script src="/UNRC/assets/js/data.js"></script>
+<script src="/UNRC/assets/js/nav.js"></script>
 </body>
 </html>
-
-
-
-
