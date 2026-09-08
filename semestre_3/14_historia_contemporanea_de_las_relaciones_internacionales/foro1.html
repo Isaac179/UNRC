@@ -1,571 +1,496 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 1 · historia contemporanea de las relaciones internacionales · UNRC</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El análisis de conflictos bélicos en RRII · Foro 1</title>
+<meta name="description" content="Aporte al foro integrador del Módulo 1 — Historia Contemporánea de las Relaciones Internacionales. Caso: las guerras yugoslavas, 1991–1999.">
+<meta name="color-scheme" content="dark light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
+/*══════════════════════════════════════════════════════════════════
+  TOKENS · petróleo profundo contra vino institucional
+  Datos validados con el script de paleta en ambos modos.
+══════════════════════════════════════════════════════════════════*/
+:root{
+  --surface:#101B1F; --panel:#17252A; --deep:#0B1417; --raise:#1D2E34;
+  --line:#2A3B41;    --line-soft:#223138;
+  --ink:#F5FAFB; --ink-2:#E9F1F3; --ink-3:#A9BFC6; --ink-4:#78939B; --ink-5:#4C6169;
+  --wine:#C25E72; --wine-deep:#6E2E3C; --brass:#C9A227;
+  --c1:#1FA5A0; --c2:#BF7C14; --c3:#8A74DC;
+  --c1-soft:#12312F; --c2-soft:#2A2011; --c3-soft:#211E33;
+  --shadow:0 1px 0 rgb(255 255 255 / .04), 0 20px 44px -26px rgb(0 0 0 / .9);
+  --display:'Bodoni Moda',Didot,'Baskerville Old Face',Georgia,serif;
+  --sans:'Archivo','Franklin Gothic Medium',Arial,sans-serif;
+  --body:'Source Serif 4',Constantia,Cambria,Georgia,serif;
+  --mono:'JetBrains Mono',Consolas,'Lucida Console',monospace;
+  --pad:clamp(16px,4.4vw,34px);
+  --gutter:max(var(--pad), env(safe-area-inset-left));
+}
+:root[data-theme="light"]{
+  --surface:#F4F1EC; --panel:#FFF; --deep:#EBE6DE; --raise:#FBF9F6;
+  --line:#DDD5C9; --line-soft:#E8E1D6;
+  --ink:#14201F; --ink-2:#26332F; --ink-3:#4E5C58; --ink-4:#75827D; --ink-5:#9AA69F;
+  --wine:#8E2438; --wine-deep:#D9B8BF; --brass:#8A6A0E;
+  --c1:#0F9A94; --c2:#AE6D0A; --c3:#6E5BCA;
+  --c1-soft:#DDF0EE; --c2-soft:#F6E9D5; --c3-soft:#E7E2F8;
+  --shadow:0 1px 0 rgb(0 0 0 / .02), 0 18px 36px -28px rgb(40 25 20 / .5);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--surface);color:var(--ink-2);
+  font-family:var(--body);font-size:clamp(15.5px,.42rem + .55vw,17.5px);
+  line-height:1.72;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.45;
+  background-image:repeating-linear-gradient(135deg,transparent 0 22px,
+    color-mix(in srgb,var(--line) 32%,transparent) 22px 23px);
+}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;
+  padding-inline:var(--gutter);padding-bottom:clamp(56px,12vw,110px)}
+h1,h2,h3,p,figure{margin:0}
+p{text-wrap:pretty}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/*── barra superior ────────────────────────────────────────────────*/
+.rail{position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line);
+  padding-top:env(safe-area-inset-top)}
+.rail-in{max-width:1120px;margin:0 auto;padding:9px var(--gutter);
+  display:flex;align-items:center;gap:12px}
+.mark{font-family:var(--mono);font-size:clamp(9.5px,2.4vw,11px);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-4);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.mark b{color:var(--wine);font-weight:500}
+.rail nav{display:flex;gap:2px;margin-left:auto}
+.rail nav a{font-family:var(--sans);font-size:12.5px;text-decoration:none;color:var(--ink-4);
+  min-width:40px;min-height:40px;display:grid;place-items:center;border-radius:999px;
+  border:1px solid transparent;transition:.16s}
+.rail nav a:hover,.rail nav a:focus-visible{color:var(--ink);border-color:var(--line);background:var(--panel)}
+.tog{margin-left:auto;font-family:var(--mono);font-size:15px;cursor:pointer;color:var(--ink-4);
+  background:transparent;border:1px solid var(--line);border-radius:999px;
+  min-width:44px;min-height:40px;display:grid;place-items:center;transition:.16s}
+.tog:hover{color:var(--brass);border-color:var(--brass)}
+@media (max-width:640px){.rail nav{display:none}}
+#prog{height:2px;background:linear-gradient(90deg,var(--wine),var(--brass));width:0}
 
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
+/*── cabecera ──────────────────────────────────────────────────────*/
+header.hero{padding-top:clamp(30px,7vw,58px)}
+.seal{width:56px;height:56px;flex:none;border:1px solid var(--wine-deep);padding:5px;
+  border-radius:4px;display:grid}
+.seal>span{border:2px solid var(--wine);border-radius:2px;display:grid;place-items:center;
+  font-family:var(--display);font-size:18px;color:var(--brass);letter-spacing:.1em}
+.eyebrow{font-family:var(--mono);font-size:clamp(9.5px,2.5vw,11px);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-4);line-height:1.9}
+.eyebrow b{color:var(--ink-3);font-weight:500}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,7.4vw,64px);
+  line-height:1.04;letter-spacing:-.015em;color:var(--ink);text-wrap:balance;margin:.35em 0 0}
+h1 em{font-style:italic;color:var(--brass)}
+.rule{height:2px;width:88px;background:var(--wine);margin:clamp(16px,3vw,26px) 0 14px;border-radius:2px}
+.dek{font-family:var(--sans);font-size:clamp(14px,3.4vw,16px);color:var(--ink-3);max-width:52ch}
+.head-top{display:flex;gap:clamp(14px,3vw,22px);align-items:flex-start}
 
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
+/*── banda ─────────────────────────────────────────────────────────*/
+.band{margin-top:clamp(22px,5vw,36px);border:1px solid var(--line);border-radius:6px;
+  background:var(--deep);overflow:hidden;box-shadow:var(--shadow);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.band img{display:block;width:100%;height:clamp(74px,17vw,160px);object-fit:cover;
+  filter:saturate(.92) contrast(1.04)}
 
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
+/*── retícula ──────────────────────────────────────────────────────*/
+.grid{display:grid;gap:clamp(26px,5vw,40px);margin-top:clamp(30px,6vw,52px)}
+@media (min-width:940px){
+  .grid{grid-template-columns:minmax(0,1fr) 286px;align-items:start}
+  aside{position:sticky;top:78px}
+}
+@media (max-width:939px){ aside{order:2} main{order:1} }
 
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
+/*── bloques de caracteres ─────────────────────────────────────────*/
+.ficha{background:var(--deep);border:1px solid var(--line);border-left:3px solid var(--c1);
+  border-radius:5px;padding:clamp(14px,3.4vw,20px);font-family:var(--mono);
+  font-size:clamp(10.5px,2.65vw,12.5px);line-height:1.85;color:var(--ink-3);
+  overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ficha pre{margin:0;white-space:pre;font:inherit}
+.ficha .k{color:var(--ink-5)} .ficha .v{color:var(--c1)}
+.ia{background:var(--deep);border:1px solid var(--line);border-left:3px solid var(--brass);
+  border-radius:5px;padding:clamp(13px,3.2vw,18px);font-family:var(--mono);
+  font-size:clamp(10.5px,2.6vw,11.5px);line-height:1.75;color:var(--ink-3);margin-bottom:16px}
+.ia b{color:var(--brass)}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
+/*── secciones ─────────────────────────────────────────────────────*/
+section{margin-top:clamp(40px,8vw,66px);scroll-margin-top:76px}
+.sec-h{display:flex;gap:clamp(12px,3vw,20px);align-items:baseline;
+  border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:clamp(16px,3.6vw,24px)}
+.sec-n{font-family:var(--display);font-size:clamp(28px,7vw,44px);line-height:.85;
+  color:var(--wine);flex:none;font-variant-numeric:lining-nums}
+.sec-h h2{font-family:var(--sans);font-weight:600;font-size:clamp(15px,3.9vw,20px);
+  letter-spacing:.01em;text-transform:uppercase;color:var(--ink);text-wrap:balance}
+p+p,p+.card,.card+p{margin-top:16px}
+strong{color:var(--ink);font-weight:600}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:clamp(16px,4vw,26px);margin:clamp(18px,4vw,28px) 0;box-shadow:var(--shadow)}
+.card-k{font-family:var(--mono);font-size:clamp(9.5px,2.4vw,11px);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-4);margin-bottom:16px}
 
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
+/*── barras del umbral ─────────────────────────────────────────────*/
+.bars{display:grid;grid-template-columns:auto 1fr;gap:9px 14px;align-items:center;
+  font-family:var(--sans);font-size:clamp(12.5px,3.2vw,14px)}
+.bars .lb{color:var(--ink-3);white-space:nowrap}
+.bars .track{display:block;height:12px;background:var(--line-soft);border-radius:2px;overflow:hidden}
+.bars .fill{display:block;height:100%;border-radius:0 3px 3px 0;background:var(--c1);
+  width:var(--w);transform-origin:left}
+.bars .fill.in{animation:grow .9s cubic-bezier(.2,.7,.3,1) backwards}
+.bars .nt{grid-column:1/-1;color:var(--ink-4);font-size:clamp(11px,2.9vw,12px);
+  font-family:var(--mono);margin:-4px 0 6px}
+@media (min-width:600px){
+  .bars{grid-template-columns:auto 1fr auto}
+  .bars .nt{grid-column:auto;margin:0}
+}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
+/*── cadena causal ─────────────────────────────────────────────────*/
+.chain{display:grid;gap:8px;font-family:var(--sans);
+  font-size:clamp(11.5px,2.9vw,12.5px);text-align:center}
+.chain .step{background:var(--deep);border:1px solid var(--line);border-radius:5px;
+  padding:13px 10px;color:var(--ink-3)}
+.chain .step.on{background:var(--c1-soft);border:2px solid var(--c1);color:var(--ink)}
+.chain .arw{color:var(--wine);font-size:16px;line-height:1;justify-self:center}
+@media (min-width:640px){
+  .chain{grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch}
+  .chain .step{display:grid;place-items:center}
+  .chain .arw{align-self:center}
+}
+.chain-note{font-family:var(--sans);font-size:clamp(11px,2.8vw,12.5px);color:var(--ink-4);
+  font-style:italic;text-align:center;margin-top:12px}
 
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
+/*── composición por tramo ─────────────────────────────────────────*/
+.comp{display:flex;gap:2px;height:40px;border-radius:3px;overflow:hidden}
+.comp>button{border:0;padding:0;cursor:pointer;position:relative;color:var(--deep);
+  font-family:var(--mono);font-size:12px;transition:filter .15s;min-height:40px}
+.comp>button:hover,.comp>button:focus-visible{filter:brightness(1.2);outline:none}
+:root[data-theme="light"] .comp>button{color:#fff}
+.s1{background:var(--c1)} .s2{background:var(--c2)} .s3{background:var(--c3)}
+.axis{display:flex;gap:2px;font-family:var(--mono);font-size:clamp(9.5px,2.4vw,10.5px);
+  color:var(--ink-4);letter-spacing:.06em;margin-top:8px}
+.keys{display:grid;gap:10px;margin-top:16px;font-family:var(--sans);
+  font-size:clamp(11.5px,2.9vw,12.5px)}
+@media (min-width:620px){.keys{grid-template-columns:repeat(3,1fr);gap:14px}}
+.keys .tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:3px 8px;
+  border-radius:3px;color:var(--deep);display:inline-block;margin-bottom:5px}
+:root[data-theme="light"] .keys .tag{color:#fff}
+.keys .k1 .tag{background:var(--c1)} .keys .k2 .tag{background:var(--c2)} .keys .k3 .tag{background:var(--c3)}
+.keys span{color:var(--ink-3);display:block}
+.detail{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft);
+  font-family:var(--sans);font-size:clamp(12.5px,3.1vw,13.5px);color:var(--ink-3);min-height:3.4em}
+.detail b{color:var(--ink);display:block;margin-bottom:3px;font-family:var(--mono);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
+/*── cierre y referencias ──────────────────────────────────────────*/
+.close{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--brass);
+  border-radius:6px;padding:clamp(20px,5vw,32px);margin-top:clamp(30px,6vw,50px);box-shadow:var(--shadow)}
+.close .k{font-family:var(--mono);font-size:clamp(9.5px,2.4vw,11px);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+.close .q{font-family:var(--display);font-style:italic;font-size:clamp(17px,4.4vw,25px);
+  line-height:1.48;color:var(--ink);text-wrap:pretty}
+.refs{margin-top:clamp(34px,7vw,54px);border-top:1px solid var(--line);padding-top:22px}
+.refs ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.refs li{font-family:var(--sans);font-size:clamp(12px,3vw,13.5px);color:var(--ink-3);
+  border-left:3px solid var(--c1);border-radius:0 4px 4px 0;padding:11px 0 11px 14px;
+  background:linear-gradient(90deg,var(--c1-soft),transparent 65%);overflow-wrap:anywhere}
 
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
+/*── firma ─────────────────────────────────────────────────────────*/
+.sign{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  margin-top:clamp(32px,6vw,50px);border-top:1px solid var(--line);padding-top:24px}
+.medal{width:clamp(64px,16vw,92px);aspect-ratio:1;flex:none;border-radius:50%;overflow:hidden;
+  border:1px solid var(--wine-deep);padding:4px;background:var(--panel)}
+.medal{display:grid}
+.medal svg{width:100%;height:100%;display:block}
+.who{font-family:var(--mono);font-size:clamp(10px,2.6vw,11.5px);letter-spacing:.09em;
+  color:var(--ink-4);line-height:2}
+.who b{color:var(--ink-2);font-weight:500}
+.sign .tag{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-5)}
 
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
+/*── panel lateral ─────────────────────────────────────────────────*/
+.mini{background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:18px;margin-bottom:16px}
+.mini h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-4);margin:0 0 12px;font-weight:500}
+.mini ul{list-style:none;margin:0;padding:0;font-family:var(--sans);font-size:13px}
+.mini li{padding:7px 0;border-bottom:1px solid var(--line-soft);color:var(--ink-3);
+  display:flex;justify-content:space-between;gap:10px}
+.mini li:last-child{border:0}
+.mini li b{color:var(--ink);font-weight:500;text-align:right}
+.orn{text-align:center;font-family:var(--display);font-size:20px;color:var(--wine-deep);
+  margin:clamp(30px,6vw,46px) 0}
+@media print{.rail,.tog,.comp{display:none}body::before{display:none}}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">14 · FORO · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 1</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">14 · Mayo 2026</span>
-    </div>
-    <h1>Reflexión <em>inicial</em> y fundamentos</h1>
-    <div class="lead-quote">
-      "El diálogo es el encuentro de los hombres para transformar el mundo."
-      <cite>— Paulo Freire</cite>
-    </div>
+<div class="rail">
+  <div class="rail-in">
+    <div class="mark">LRIN3HIS8 ▪ <b>Foro integrador</b> ▪ Aporte 1</div>
+    <nav>
+      <a href="#s1" title="Definición">I</a><a href="#s2" title="El caso">II</a>
+      <a href="#s3" title="Método">III</a><a href="#s4" title="Tipología">IV</a>
+    </nav>
+    <button class="tog" id="theme" type="button" aria-label="Cambiar tema">☾</button>
   </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 1 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Contextualización y primeras aproximaciones
-          <span>Aportación inicial</span>
-        </div>
-      </div>
-      <p>En esta primera aproximación, se exploran los conceptos fundamentales de la materia, estableciendo un diálogo entre la teoría y la práctica cotidiana.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 1</span>
-        <span class="chip">FORO</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La reflexión inicial nos permite sembrar las primeras semillas del pensamiento crítico.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 1: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">14 · UNRC · Foro Integrador · M1</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+  <div id="prog"></div>
 </div>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="head-top">
+    <div class="seal"><span>M1</span></div>
+    <div style="min-width:0">
+      <div class="eyebrow">Historia Contemporánea de las RRII &middot; Aporte 1<br><b>Isaac Moctezuma Calderón</b></div>
+      <h1>El análisis de conflictos bélicos<br><em>en Relaciones Internacionales</em></h1>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <p class="dek">Caso: las guerras yugoslavas, 1991–1999. Un caso, muchos intervalos,
+  explicación mínima suficiente.</p>
+
+  <!-- ══ [IMG-1] BANDA · cambia SOLO el src ═══════════════════════
+       Vive en assets/images/banner_yugoslavia.jpg del repo.
+       object-fit:cover recorta solo, así que puedes sustituirla
+       por cualquier proporción sin tocar el CSS.
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="band">
+    <img src="../../assets/images/banner_yugoslavia.jpg"
+         alt="Banda gráfica de apertura" width="1796" height="180" loading="eager" decoding="async">
+  </div>
+</header>
+
+<div class="grid">
+<main>
+
+  <div class="ia"><b>Manifiesto IA:</b> Estructura HTML y síntesis dialéctica asistida por IA.
+  La narrativa, el posicionamiento ético y las experiencias territoriales son autoría 100% humana.</div>
+
+  <div class="ficha"><pre><span class="k">┌─ DISEÑO ─────────────────────────────────┐</span>
+<span class="k">│</span> <span class="v">web &amp; ux/ui</span> <span class="k">· Isaac + Claude</span>
+<span class="k">│</span> <span class="v">Illustration</span> <span class="k">· Šabac, Serbia</span>
+<span class="k">└──────────────────────────────────────────┘</span></pre></div>
+
+  <div class="ficha" style="border-left-color:var(--brass);margin-top:12px"><pre><span class="k">┌─ SALUDO ─────────────────────────────────┐</span>
+<span class="k">│</span> <span class="v">Compañeros y docente</span><span class="k">, un gusto iniciar un</span>
+<span class="k">│</span> <span class="k">nuevo ciclo escolar. Espero aportar</span> <span class="v">claridad</span>
+<span class="k">│</span> <span class="k">en esta actividad que hoy nos ocupa.</span>
+<span class="k">└──────────────────────────────────────────┘</span></pre></div>
+
+  <section id="s1">
+    <div class="sec-h"><div class="sec-n">I</div><h2>¿Qué es un conflicto armado?</h2></div>
+    <p>No es «cuando hay guerra»: es un <strong>límite que activa un régimen jurídico</strong>.
+    El Tribunal Penal Internacional para la ex Yugoslavia lo fijó en 1995: existe conflicto armado
+    cuando hay recurso a la fuerza entre Estados, o violencia armada prolongada entre autoridades
+    gubernamentales y grupos armados organizados, o entre esos grupos dentro de un Estado
+    (TPIY, 1995, párr. 70). Si el <strong>«umbral»</strong> no se alcanza, no aplica el Derecho
+    Internacional Humanitario sino el derecho interno.</p>
+
+    <div class="card">
+      <div class="card-k">Las tres condiciones del LÍMITE</div>
+      <div class="bars">
+        <span class="lb">Intensidad</span>
+        <span class="track"><span class="fill" style="--w:90%"></span></span>
+        <span class="nt">escala · bajas · desplazamiento</span>
+        <span class="lb">Duración</span>
+        <span class="track"><span class="fill" style="--w:100%;background:var(--c2)"></span></span>
+        <span class="nt">violencia prolongada, no un choque</span>
+        <span class="lb">Organización</span>
+        <span class="track"><span class="fill" style="--w:80%;background:var(--c3)"></span></span>
+        <span class="nt">mando · estructura · capacidad</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="sec-h"><div class="sec-n">II</div><h2>¿Las guerras yugoslavas lo son?</h2></div>
+    <p>Sí, aunque con un detalle: <strong>el criterio con el que las juzgo salió del tribunal
+    creado para juzgarlas</strong>. Las trato como un caso y sus tres dimensiones son comparables
+    entre sí porque pertenecen a la misma clase: tramos de una misma disolución estatal
+    (Sartori, citado en López-Vallejo et al., cap. 13).</p>
+  </section>
+
+  <section id="s3">
+    <div class="sec-h"><div class="sec-n">III</div><h2>¿Qué información necesitaríamos?</h2></div>
+    <p>Recientemente tuve la oportunidad de visitar la 14 FLRI 2026, y un título —«Herramientas
+    Metodológicas en RRII», de Marcela López Vallejo— me aporta mucho valor para analizar este tipo
+    de conflictos. Ahora aplico un método que encontré interesante en esa literatura: el
+    <strong>rastreo de procesos</strong> reconstruye la cadena causal y exige evidencia propia para
+    cada eslabón — incluidas las explicaciones rivales que hay que descartar
+    (Tawil y Martínez, cap. 14).</p>
+
+    <div class="card">
+      <div class="chain">
+        <div class="step">Crisis económica y ajuste</div><div class="arw">▸</div>
+        <div class="step">Competencia entre élites</div><div class="arw">▸</div>
+        <div class="step">Movilización nacionalista</div><div class="arw">▸</div>
+        <div class="step on">Violencia organizada</div>
+      </div>
+      <div class="chain-note">Ningún eslabón se da por supuesto</div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-h"><div class="sec-n">IV</div><h2>¿Simétricos, asimétricos o híbridos?</h2></div>
+    <p>El criterio no es el tamaño de las fuerzas sino su naturaleza — y por eso <strong>no admiten
+    una sola etiqueta: cambian según el tramo</strong>. Ése es mi análisis: el caso donde la
+    tipología clásica se queda corta.</p>
+
+    <div class="card">
+      <div class="card-k">Naturaleza del conflicto a lo largo del caso</div>
+      <div class="comp" id="comp" role="group" aria-label="Tramos del conflicto">
+        <button class="s1" style="flex:18" data-t="Simétrico ■" data-d="Eslovenia y Croacia, 1991 — ejército federal frente a fuerzas territoriales organizadas.">■</button>
+        <button class="s2" style="flex:47" data-t="Híbrido ▲" data-d="Bosnia-Herzegovina, 1992–1995 — milicias irregulares; la violencia sobre población civil empleada como método.">▲</button>
+        <button class="s3" style="flex:35" data-t="Asimétrico ◆" data-d="Kosovo, 1998–1999 — insurgencia y después campaña aérea frente a un ejército que no puede responder en ese medio.">◆</button>
+      </div>
+      <div class="axis"><span style="flex:18">1991</span><span style="flex:47">1992–1995</span>
+        <span style="flex:35;text-align:right">1998–1999</span></div>
+      <div class="keys">
+        <div class="k1"><span class="tag">SIM ■</span><span>Eslovenia y Croacia · ejércitos regulares</span></div>
+        <div class="k2"><span class="tag">HÍB ▲</span><span>Bosnia · milicias, el civil como método</span></div>
+        <div class="k3"><span class="tag">ASI ◆</span><span>Kosovo · insurgencia y campaña aérea</span></div>
+      </div>
+      <div class="detail" id="detail" aria-live="polite">
+        <b>Toca un tramo</b>Cada segmento abre su descripción aquí.
+      </div>
+    </div>
+  </section>
+
+  <div class="orn">⁂</div>
+
+  <div class="close">
+    <div class="k">❖ Para sumar al debate</div>
+    <div class="q">Si un actor híbrido opera de forma poco clara, ¿cómo se le aplica un Derecho
+    Internacional Humanitario construido en la distinción entre combatiente y no combatiente?</div>
+  </div>
+
+  <div class="refs">
+    <div class="card-k">§ Referencias · APA 7</div>
+    <ul>
+      <li>Tribunal Penal Internacional para la ex Yugoslavia. (1995). <em>Fiscal c. Duško Tadić</em>, Decisión sobre la moción de la defensa de apelación interlocutoria sobre la competencia (Caso n.º IT-94-1-AR72), párr. 70. Sala de Apelaciones.</li>
+      <li>López-Vallejo, M., Toral, P. y Pacheco-Vega, R. Análisis comparativo de las Relaciones Internacionales. En <em>Metodología, métodos y herramientas metodológicas en Relaciones Internacionales</em> (pp. 215–230).</li>
+      <li>Tawil, M. y Martínez, N. El rastreo de procesos. En <em>Metodología, métodos y herramientas metodológicas en Relaciones Internacionales</em> (pp. 231–248).</li>
+    </ul>
+  </div>
+
+  <div class="sign">
+    <div class="medal" aria-hidden="true"><svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="var(--wine)" stroke-width="2"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="var(--brass)" stroke-width=".7"/>
+      <path d="M50 12 a38 38 0 0 1 33 19" fill="none" stroke="var(--c1)" stroke-width="4"/>
+      <path d="M83 31 a38 38 0 0 1 -14 52" fill="none" stroke="var(--c2)" stroke-width="4"/>
+      <path d="M69 83 a38 38 0 0 1 -50 -14" fill="none" stroke="var(--c3)" stroke-width="4"/>
+      <text x="50" y="58" text-anchor="middle" fill="var(--brass)"
+        font-family="Bodoni Moda, Georgia, serif" font-size="26">IM</text>
+    </svg></div>
+    <div class="who"><b>ISAAC MOCTEZUMA CALDERÓN</b><br>LRIN · Universidad Rosario Castellanos · 2026-2</div>
+    <div class="tag">APORTE 1 DE 3</div>
+  </div>
+
+</main>
+
+<aside>
+  <div class="mini"><h3>Ficha del aporte</h3><ul>
+    <li><span>Caso</span><b>Yugoslavia 1991–99</b></li>
+    <li><span>Unidades</span><b>3 tramos</b></li>
+    <li><span>Método</span><b>rastreo, var. iii</b></li>
+    <li><span>Ilustración</span><b>Šabac, Serbia</b></li>
+  </ul></div>
+  <div class="mini"><h3>Aparato citado</h3><ul>
+    <li><span>TPIY 1995</span><b>párr. 70</b></li>
+    <li><span>Cap. 13</span><b>comparación</b></li>
+    <li><span>Cap. 14</span><b>rastreo</b></li>
+    <li><span>Sartori</span><b>comparabilidad</b></li>
+  </ul></div>
+</aside>
+</div>
+</div>
+
+<script>
+const root=document.documentElement,tb=document.getElementById('theme');
+const set=t=>{root.dataset.theme=t;tb.textContent=t==='light'?'☀':'☾';
+  try{localStorage.setItem('foro-tema',t)}catch(e){}};
+try{const s=localStorage.getItem('foro-tema');if(s)set(s)}catch(e){}
+tb.addEventListener('click',()=>set(root.dataset.theme==='light'?'dark':'light'));
+
+const pr=document.getElementById('prog');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;
+  pr.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
+
+const det=document.getElementById('detail');
+document.querySelectorAll('#comp button').forEach(b=>{
+  const show=()=>{det.innerHTML='<b>'+b.dataset.t+'</b>'+b.dataset.d};
+  b.addEventListener('click',show);b.addEventListener('mouseenter',show);
+  b.addEventListener('focus',show);
+});
+
+// Las barras se dibujan al entrar en pantalla. La animación es un añadido:
+// si no hay JS o falla el observador, la barra ya está pintada a su ancho.
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  }),{threshold:.35});
+  document.querySelectorAll('.fill').forEach(f=>io.observe(f));
+}
+</script>
+
+<!--
+════════════════════════════════════════════════════════════════════
+ VERSIÓN LIENZO · GitHub Pages — a partir de lo que publicaste
+════════════════════════════════════════════════════════════════════
+ Conserva la esencia: misma paleta validada, mismos cinco registros
+ tipográficos, la ficha en caracteres, el manifiesto IA y las 234
+ palabras de prosa. Cambia el vehículo, no el argumento.
+
+ MÓVIL PRIMERO — lo que se hizo de verdad, no de adorno
+ · Tipografía fluida con clamp() en todo: títulos, cuerpo, etiquetas
+   y hasta los bloques monoespaciados. Nada se lee a 9px en un
+   teléfono ni a 64px en un monitor.
+ · Padding fluido y env(safe-area-inset) para el notch.
+ · La cadena causal es columna en móvil y fila en ≥640px, sin
+   scroll horizontal en ningún punto.
+ · Las etiquetas de las barras bajan a su propia línea en <600px.
+ · Los tres segmentos de la barra son <button>: 40px de alto real,
+   táctiles, con foco visible y aria-live en el detalle. En la
+   versión anterior eran tooltips de hover — inservibles en móvil.
+ · La navegación numérica desaparece bajo 640px; queda el conmutador
+   de tema, que es lo único que se usa con el pulgar.
+ · overflow-x:hidden en body y overflow-wrap en referencias: las
+   URLs largas ya no rompen el ancho.
+
+ DETALLES DE OFICIO
+ · Las barras animan sólo al entrar en pantalla (IntersectionObserver)
+   y se desactivan con prefers-reduced-motion.
+ · text-wrap:balance en títulos, pretty en párrafos.
+ · La banda usa mask-image para desvanecer los bordes.
+ · Tema claro con pasos propios revalidados, no una inversión.
+
+ LAS DOS IMÁGENES: busca [IMG-1] y [IMG-2], cambia el src.
+ Aquí el medallón es redondo por CSS, así que sirve cualquier
+ imagen cuadrada — al revés que en Moodle.
+
+ IMPORTANTE, VIENE DE TU VERSIÓN PUBLICADA
+ · El banner apuntaba a draftfile.php (área temporal del editor de
+   Moodle). Revisa en incógnito si se ve; si no, reinsértalo con el
+   botón de imagen del editor.
+ · El medallón iba con width:80px y height:127px sobre un archivo
+   de 75×150: deformado. Aquí va con aspect-ratio:1 y object-fit,
+   imposible deformarlo.
+ · Cambiaste «umbral» por «límite» y dejaste «umbral» entrecomillado.
+   Umbral es el término técnico del DIH; recuperado aquí.
+════════════════════════════════════════════════════════════════════
+-->
 </body>
 </html>
-
-
-
