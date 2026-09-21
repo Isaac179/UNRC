@@ -1,571 +1,600 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 2 · historia contemporanea de las relaciones internacionales · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El bloque capitalista occidental · Guerra Fría · Isaac Moctezuma Calderón</title>
+<meta name="description" content="Infografía editorial: organización política, económica y social del bloque capitalista occidental durante la Guerra Fría, y su impacto en el conflicto de la Ex Yugoslavia.">
 <style>
+@layer tokens, reset, layout, typography, components, print;
+
+@layer tokens {
   :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
+    --ink: #0b1220;
+    --ink-2: #1e293b;
+    --ink-3: #475569;
+    --ink-4: #94a3b8;
+    --rule: #d6d3cd;
+    --rule-soft: #ebe8e2;
+    --paper: #fbfaf7;
+    --paper-2: #f4f2ed;
+    --paper-3: #ece9e2;
+    --cobalt: #1e40af;
+    --cobalt-2: #1d4ed8;
+    --cobalt-3: #dbe4ff;
+    --copper: #b45309;
+    --copper-2: #fef3e2;
+
+    --serif: Charter, 'Iowan Old Style', 'Source Serif Pro', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', Inter, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+    --t-3xs: 0.625rem;
+    --t-2xs: 0.6875rem;
+    --t-xs: 0.75rem;
+    --t-sm: 0.8125rem;
+    --t-md: 0.9375rem;
+    --t-lg: 1.0625rem;
+    --t-xl: 1.375rem;
+    --t-2xl: 1.875rem;
+    --t-3xl: 2.75rem;
+    --t-4xl: 3.75rem;
+
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+    --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+    --stroke-hair: 1px;
+    --stroke-thin: 1.5px;
+    --stroke-bold: 3px;
+    --stroke-rule: 4px;
+
+    --disc: 240px;
   }
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  h1, h2, h3, h4, p, dl, dd, dt, figure, ul, ol { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  img, svg { display: block; max-width: 100%; }
+  table { border-collapse: collapse; width: 100%; }
+  a { color: var(--cobalt-2); text-underline-offset: 2px; }
+  a:hover { color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+}
 
+@layer layout {
   body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
+    background: var(--paper-3);
+    color: var(--ink-2);
+    font-family: var(--serif);
+    font-size: var(--t-md);
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1, "ss01" 1;
+    padding: var(--s-7) var(--s-4);
   }
 
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
+  .sheet {
+    container-type: inline-size;
+    container-name: sheet;
+    max-width: 1080px;
+    margin: 0 auto var(--s-7);
     background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
+    border-top: var(--stroke-rule) solid var(--ink);
+    box-shadow: 0 1px 0 var(--rule), 0 12px 32px -24px rgba(11, 18, 32, .35);
+    padding: var(--s-8) clamp(20px, 4.5vw, 72px) var(--s-7);
   }
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
+  .sheet--page2 {
+    border-top: var(--stroke-rule) solid var(--cobalt);
   }
 
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
+  .section { margin-top: var(--s-8); }
+}
 
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
+@layer typography {
+  .display {
+    font-family: var(--serif);
     font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
+    font-size: clamp(2rem, 5.6cqw, var(--t-3xl));
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     color: var(--ink);
+    max-width: 22ch;
+    text-wrap: balance;
   }
-
-  em {
+  .kicker {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: var(--t-2xs);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+  }
+  .meta, .mono { font-family: var(--mono); font-size: var(--t-xs); font-feature-settings: "tnum" 1; color: var(--ink-3); }
+  .lede {
+    font-family: var(--serif);
+    font-size: var(--t-lg);
+    line-height: 1.5;
+    max-width: 62ch;
+    text-wrap: pretty;
+    color: var(--ink-2);
+  }
+  .standfirst {
+    font-family: var(--serif);
     font-style: italic;
-    font-family: 'Instrument Serif', serif;
+    font-size: var(--t-lg);
+    line-height: 1.38;
+    color: var(--ink-2);
+    max-width: 62ch;
+    border-left: var(--stroke-bold) solid var(--cobalt);
+    padding-left: var(--s-4);
+  }
+}
+
+@layer components {
+  .masthead { margin-bottom: var(--s-7); }
+  .masthead__top {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
+    border-bottom: var(--stroke-hair) solid var(--rule); padding-bottom: var(--s-3);
+  }
+  .masthead__inst { font-family: var(--sans); font-size: var(--t-xs); letter-spacing: 0.04em; color: var(--ink-3); }
+  .masthead__row {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--s-6);
+    align-items: end; margin-top: var(--s-6);
+  }
+  .byline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); }
+  .byline dt {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .byline dd { margin-top: var(--s-1); font-size: var(--t-sm); color: var(--ink); line-height: 1.35; }
+
+  .section__head {
+    display: grid; grid-template-columns: 56px 1fr auto; align-items: baseline; gap: var(--s-4);
+    border-bottom: var(--stroke-thin) solid var(--ink); padding-bottom: var(--s-3); margin-bottom: var(--s-5);
+  }
+  .section__num { font-family: var(--mono); font-size: var(--t-sm); font-feature-settings: "tnum" 1; color: var(--cobalt); }
+  .section__title {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-sm);
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
   }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
+  .discs {
+    display: flex; flex-wrap: wrap; align-items: flex-start;
+    justify-content: center; gap: var(--s-5); margin: var(--s-6) 0 var(--s-5);
   }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
+  .disc { width: var(--disc); max-width: 100%; text-align: center; }
+  .disc__frame {
+    position: relative; width: 100%; max-width: var(--disc); aspect-ratio: 1 / 1;
+    margin: 0 auto; border-radius: 50%; overflow: hidden;
+    border: var(--stroke-thin) solid var(--ink);
+    background-color: var(--paper-2);
+    display: grid; place-content: center;
   }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
+  .disc__frame::after {
+    content: ""; position: absolute; inset: 7px; border-radius: 50%;
+    border: var(--stroke-hair) dashed var(--rule); pointer-events: none;
+    z-index: 2;
   }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
+  .disc__img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
     border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
+    transform: scale(1.05);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
+  .disc__caption {
+    margin-top: var(--s-3); padding-top: var(--s-2);
+    border-top: var(--stroke-hair) solid var(--rule);
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-2xs);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+  }
+  .disc__note { margin-top: var(--s-1); font-size: var(--t-sm); line-height: 1.4; color: var(--ink-3); font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  /* ══════════════════════════════════════════════════════════════
+     FORZADO DE ENCUADRE CIRCULAR
+     Las imágenes con proporción horizontal extrema (2048×1152, etc.)
+     requieren scale() más agresivo para llenar el círculo sin dejar
+     los bordes visibles dentro del aro punteado.
+     ══════════════════════════════════════════════════════════════ */
+  .disc--truman .disc__img {
+    transform: scale(1.85);
+    object-position: 50% 45%;
+  }
+  .disc--alianzas .disc__img {
+    transform: scale(1.35);
+    object-position: 50% 50%;
+  }
+  .disc--bretton .disc__img {
+    transform: scale(1.55);
+    object-position: 50% 50%;
+  }
+  .disc--democracia .disc__img {
+    transform: scale(1.55);
+    object-position: 50% 50%;
   }
 
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
+  .connector { flex: 0 0 auto; align-self: center; margin-top: -40px; color: var(--cobalt); }
+  .connector svg { width: 46px; height: 16px; }
+
+  .zones {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5);
+    margin: var(--s-5) 0;
+  }
+  .zone {
+    border: var(--stroke-hair) solid var(--rule);
+    border-top: var(--stroke-bold) solid var(--cobalt);
+    padding: var(--s-5);
+    background: var(--paper);
+  }
+  .zone--periferia { border-top-color: var(--copper); }
+  .zone__tag {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--cobalt);
+    margin-bottom: var(--s-2);
+  }
+  .zone--periferia .zone__tag { color: var(--copper); }
+  .zone__title {
+    font-family: var(--serif); font-weight: 400; font-size: var(--t-xl);
+    line-height: 1.15; color: var(--ink); margin-bottom: var(--s-3);
+  }
+  .zone__desc { font-size: var(--t-sm); line-height: 1.55; color: var(--ink-3); margin-bottom: var(--s-3); }
+  .zone__list { font-family: var(--mono); font-size: var(--t-xs); line-height: 1.7; color: var(--ink-2); }
+  .zone__list strong { color: var(--ink); font-weight: 500; }
+
+  .traits {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5);
+    margin: var(--s-6) 0;
+  }
+  .trait { border-top: var(--stroke-bold) solid var(--ink); padding-top: var(--s-3); }
+  .trait__n {
+    font-family: var(--mono); font-size: var(--t-2xs); color: var(--cobalt);
+    letter-spacing: 0.08em;
+  }
+  .trait__t {
+    display: block; font-family: var(--sans); font-weight: 600; font-size: var(--t-sm);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
+    margin-top: var(--s-2); margin-bottom: var(--s-3);
+  }
+  .trait__list { font-size: var(--t-sm); line-height: 1.6; color: var(--ink-2); }
+  .trait__list li { padding-left: var(--s-4); position: relative; margin-bottom: var(--s-2); }
+  .trait__list li::before {
+    content: "—"; position: absolute; left: 0; color: var(--cobalt);
+    font-family: var(--mono); font-size: var(--t-xs);
+  }
+  .trait__list em { font-style: italic; color: var(--ink); }
+
+  .datastrip {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5);
+    border-top: var(--stroke-hair) solid var(--rule); border-bottom: var(--stroke-hair) solid var(--rule);
+    padding: var(--s-4) 0; margin: var(--s-6) 0;
+  }
+  .datastrip__value { font-family: var(--serif); font-size: var(--t-2xl); line-height: 1; color: var(--ink); font-feature-settings: "tnum" 1; }
+  .datastrip__label {
+    margin-top: var(--s-2); font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3);
   }
 
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--t-sm);
+    margin: var(--s-5) 0;
   }
+  .matrix thead th {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
+    text-align: left; padding: var(--s-2) var(--s-3) var(--s-3) 0;
+    border-bottom: var(--stroke-thin) solid var(--ink);
+    vertical-align: bottom;
+  }
+  .matrix tbody td {
+    padding: var(--s-3) var(--s-3) var(--s-3) 0;
+    border-bottom: var(--stroke-hair) solid var(--rule-soft);
+    vertical-align: top; line-height: 1.55; color: var(--ink-2);
+  }
+  .matrix tbody tr:last-child td { border-bottom: var(--stroke-hair) solid var(--ink); }
+  .matrix td:first-child {
+    font-family: var(--serif); font-size: var(--t-md); color: var(--ink); width: 22%;
+  }
+  .matrix td:nth-child(2) { width: 16%; font-family: var(--mono); font-size: var(--t-xs); color: var(--cobalt); }
+  .matrix td:last-child { font-size: var(--t-xs); color: var(--ink-3); }
+  .matrix em { font-style: italic; color: var(--ink); }
+
+  .timeline {
+    margin: var(--s-6) 0;
+    border-top: var(--stroke-hair) solid var(--rule);
+    border-bottom: var(--stroke-hair) solid var(--rule);
+    padding: var(--s-4) 0;
+  }
+  .timeline__rail {
+    width: 100%; height: 34px; color: var(--cobalt);
+    margin-bottom: var(--s-3);
+  }
+  .timeline__events {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--s-3);
+  }
+  .t-event { text-align: center; }
+  .t-event__year {
+    font-family: var(--mono); font-size: var(--t-xs); color: var(--cobalt);
+    font-feature-settings: "tnum" 1; font-weight: 500;
+  }
+  .t-event__label {
+    display: block; font-family: var(--sans); font-size: var(--t-3xs);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+    margin-top: var(--s-1); line-height: 1.4;
+  }
+
+  .pullquote {
+    position: relative; border-left: var(--stroke-bold) solid var(--cobalt);
+    padding: var(--s-2) 0 var(--s-2) var(--s-5); margin: var(--s-6) 0; max-width: 60ch;
+  }
+  .pullquote::before {
+    content: "\201C"; position: absolute; left: var(--s-3); top: -0.3em;
+    font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--cobalt-3); z-index: 0;
+  }
+  .pullquote p {
+    position: relative; z-index: 1; font-family: var(--serif); font-style: italic;
+    font-size: var(--t-xl); line-height: 1.38; color: var(--ink); text-wrap: pretty;
+  }
+  .pullquote cite {
+    display: block; margin-top: var(--s-3); font-family: var(--sans);
+    font-size: var(--t-3xs); letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-3); font-style: normal;
+  }
+
+  .reflection {
+    background: var(--copper-2);
+    border-left: var(--stroke-bold) solid var(--copper);
+    padding: var(--s-5) var(--s-6);
+    margin: var(--s-6) 0;
+  }
+  .reflection__label {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--copper);
+    margin-bottom: var(--s-3);
+  }
+  .reflection p {
+    font-size: var(--t-md); line-height: 1.7; color: var(--ink-2);
+    text-align: justify; margin-bottom: var(--s-3);
+  }
+  .reflection p:last-child { margin-bottom: 0; }
+
+  .refs {
+    columns: 2; column-gap: var(--s-7);
+    margin: var(--s-4) 0;
+  }
+  .refs li {
+    padding-left: 24px; text-indent: -24px; font-size: var(--t-xs);
+    line-height: 1.5; break-inside: avoid; color: var(--ink-3);
+    margin-bottom: var(--s-3);
+  }
+  .refs li em { font-style: italic; color: var(--ink-2); }
+
+  .colophon {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
+    border-top: var(--stroke-thin) solid var(--ink); margin-top: var(--s-8); padding-top: var(--s-3);
+    font-family: var(--sans); font-size: var(--t-xs); letter-spacing: 0.06em; color: var(--ink-3);
+  }
+
+  @container sheet (max-width: 760px) {
+    .masthead__row, .datastrip, .traits, .zones, .timeline__events { grid-template-columns: 1fr; }
+    .refs { columns: 1; }
+    .connector { display: none; }
+    .section__head { grid-template-columns: 44px 1fr; }
+    .section__head .meta { grid-column: 1 / -1; }
+    .colophon { flex-direction: column; gap: var(--s-2); }
+    .byline { grid-template-columns: 1fr; }
+  }
+}
+
+@layer print {
+  @media print {
+    @page { size: letter; margin: 12mm; }
+    body { background: #fff; padding: 0; font-size: 10pt; }
+    .sheet {
+      max-width: none; box-shadow: none; padding: 0;
+      background: #fff; margin: 0;
+      border-top-width: 3px;
+    }
+    .sheet + .sheet {
+      page-break-before: always;
+      break-before: page;
+      margin-top: 0;
+    }
+    .section { margin-top: 20px; }
+    .discs, .disc, .matrix, .pullquote, .datastrip, .reflection, figure, .refs li, .zone, .trait, .timeline { break-inside: avoid; }
+    .section__head { break-after: avoid; }
+    a { color: inherit; text-decoration: none; }
+    .disc__frame { background-color: #fff; }
+    /* En PDF conservamos los scales porque son necesarios para llenar el círculo */
+  }
+}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">14 · TAREA · UNRC · 2026</div>
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 2</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">14 · Mayo 2026</span>
-    </div>
-    <h1>Análisis <em>aplicado</em> y estudio de caso</h1>
-    <div class="lead-quote">
-      "La teoría sin práctica es estéril; la práctica sin teoría es ciega."
-      <cite>— Immanuel Kant</cite>
-    </div>
-  </div>
+<!-- ══════════════════════════════════════════════════════════════════════
+     PÁGINA 1 — PORTADA, PAÍSES Y CARACTERÍSTICAS DEL BLOQUE
+     ══════════════════════════════════════════════════════════════════════ -->
+<main class="sheet">
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 2 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
+  <header class="masthead">
+    <div class="masthead__top">
+      <p class="masthead__inst">Universidad Nacional Rosario Castellanos · Licenciatura en Relaciones Internacionales</p>
+      <p class="mono">LRIN · HIS8 · M2 · 2026-2</p>
     </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Metodología de análisis aplicado
-          <span>Desarrollo del caso</span>
-        </div>
+    <div class="masthead__row">
+      <div>
+        <p class="kicker">Tarea auténtica · Módulo 2 · El bloque capitalista</p>
+        <h1 class="display" style="margin-top:var(--s-3)">El bloque capitalista occidental</h1>
+        <p class="standfirst" style="margin-top:var(--s-4)">Organización política, económica y social durante la Guerra Fría (1947–1991), y su impacto en el conflicto de la Ex Yugoslavia.</p>
       </div>
-      <p>Se desarrolla un análisis detallado de un caso concreto, aplicando las herramientas conceptuales del módulo.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 2</span>
-        <span class="chip">TAREA</span>
+      <dl class="byline">
+        <div><dt>Autor</dt><dd>Isaac Moctezuma Calderón</dd></div>
+        <div><dt>Unidad de aprendizaje</dt><dd>Historia Contemporánea de las RRII · LRIN3HIS8</dd></div>
+        <div><dt>Docente</dt><dd>Rodrigo Antonio Barbosa Hurtado</dd></div>
+        <div><dt>Grupo</dt><dd>DH-LRIN3HIS8-B1-O-2026-2-G302</dd></div>
+        <div><dt>Fecha</dt><dd>Septiembre de 2026</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- Sección 01 -->
+  <section class="section">
+    <div class="section__head">
+      <p class="section__num">01</p>
+      <h2 class="section__title">El bloque y sus fronteras</h2>
+      <p class="meta">1947–1991</p>
+    </div>
+    <p class="lede">
+      Bajo hegemonía estadounidense, el bloque capitalista se organizó en dos
+      tipos de relación: <strong>interdependencia</strong> con Europa Occidental
+      y Japón, y <strong>dependencia</strong> con Asia, África y América Latina.
+      Su doble objetivo: ampliar el poder económico de la burguesía internacional
+      e impedir la expansión soviética más allá de su área de influencia
+      (Silva Michelena, 1976, p. 77).
+    </p>
+
+    <div class="discs">
+      <figure class="disc disc--truman">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/5983585/file/original-2301db67516ec8c6274a143cb0a94f87.jpg?resize=2048x1152&vertical=center"
+               alt="Doctrina Truman — declaración presidencial del 12 de marzo de 1947"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Doctrina Truman<p class="disc__note">12 de marzo de 1947</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc disc--alianzas">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/31269117/file/original-f670035320cbcd2eaa01bc5460d9c3db.jpg?resize=2048x2048&vertical=center"
+               alt="Países del bloque capitalista — diplomacia de alianzas"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Alianzas<p class="disc__note">Europa Occidental · Japón · Canadá</p></figcaption>
+      </figure>
+    </div>
+
+    <div class="zones">
+      <div class="zone">
+        <p class="zone__tag">Zona de equilibrio</p>
+        <h3 class="zone__title">Interdependencia con EUA</h3>
+        <p class="zone__desc">Territorio, economía y poder militar tan grandes que un cambio de zona alteraría cualitativamente la correlación de fuerzas entre las potencias.</p>
+        <p class="zone__list">
+          <strong>Europa Occidental:</strong> Reino Unido · Francia · RFA · Italia · Países Bajos · Bélgica · Luxemburgo · Dinamarca · Noruega · Portugal · Grecia · Turquía · España (1982)<br>
+          <strong>Asia-Pacífico:</strong> Japón · Corea del Sur · Filipinas · Tailandia · Australia · Nueva Zelanda · Taiwán<br>
+          <strong>América:</strong> Canadá
+        </p>
+      </div>
+      <div class="zone zone--periferia">
+        <p class="zone__tag">Zona periférica</p>
+        <h3 class="zone__title">Dependencia con EUA</h3>
+        <p class="zone__desc">Economías dependientes, escaso desarrollo tecnológico, débil fuerza militar y baja influencia internacional.</p>
+        <p class="zone__list">
+          <strong>Asia:</strong> la mayoría de los Estados de la región con excepción de China<br>
+          <strong>África:</strong> Estados surgidos de la descolonización<br>
+          <strong>América Latina:</strong> casi todo el hemisferio (con matices — ver la contención en el Cono Sur)
+        </p>
       </div>
     </div>
-  </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+    <div class="datastrip">
+      <div><p class="datastrip__value">12</p><p class="datastrip__label">Miembros OTAN 1949</p></div>
+      <div><p class="datastrip__value">$13 mm</p><p class="datastrip__label">Plan Marshall 1948–52</p></div>
+      <div><p class="datastrip__value">10.6:1</p><p class="datastrip__label">Brecha PIB per cápita 1960</p></div>
+      <div><p class="datastrip__value">8</p><p class="datastrip__label">Estrategias de defensa</p></div>
+    </div>
+  </section>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+  <!-- Sección 02 -->
+  <section class="section">
+    <div class="section__head">
+      <p class="section__num">02</p>
+      <h2 class="section__title">Características del bloque</h2>
+      <p class="meta">política · economía · sociedad</p>
+    </div>
 
-  <div class="ritual-closer">
-    <p>El análisis aplicado nos acerca a la realidad con herramientas críticas.</p>
-  </div>
+    <div class="traits">
+      <div class="trait">
+        <p class="trait__n">A · Políticas</p>
+        <span class="trait__t">Democracia liberal y contención</span>
+        <ul class="trait__list">
+          <li>Democracia liberal representativa con separación de poderes y elecciones periódicas</li>
+          <li>Multipartidismo con alternancia real en el poder</li>
+          <li>Declaración Universal de los Derechos Humanos (1948) como marco civilizatorio</li>
+          <li>Política de contención articulada por <em>George F. Kennan</em> (1946-1947)</li>
+          <li>Anticomunismo estructural: ilegalización de partidos comunistas en varios países</li>
+          <li>Alianzas militares defensivas bajo paraguas nuclear estadounidense</li>
+        </ul>
+      </div>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 2: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+      <div class="trait">
+        <p class="trait__n">B · Económicas</p>
+        <span class="trait__t">Bretton Woods y mercado</span>
+        <ul class="trait__list">
+          <li>Arquitectura de <em>Bretton Woods</em> (1944): FMI y Banco Mundial en operación desde 1946</li>
+          <li>Dólar estadounidense como moneda de reserva mundial (patrón oro-dólar hasta 1971)</li>
+          <li><em>GATT</em> (1947) → liberalización comercial; transformado en OMC en 1995</li>
+          <li><em>Plan Marshall</em> (1948–1952): más de $13 mil millones USD para reconstrucción europea</li>
+          <li>Estado de bienestar con distintos grados de intervención según el país</li>
+          <li>Oligopolios y cárteles trasnacionales en sectores primarios (minería, energía)</li>
+        </ul>
+      </div>
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">14 · UNRC · Tarea Auténtica · M2</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
-</body>
-</html>
+      <div class="trait">
+        <p class="trait__n">C · Sociales</p>
+        <span class="trait__t">Consumo masivo y cultura</span>
+        <ul class="trait__list">
+          <li>Sociedad de consumo masivo y ampliación de la clase media</li>
+          <li>Estado de bienestar: educación, salud y seguridad social ampliados</li>
+          <li>Movimientos por derechos civiles (EUA, años 60), feministas y contraculturales</li>
+          <li><em>Guerra Fría Cultural:</em> arquitectura, artes, cine como propaganda (Iber, 2015)</li>
+          <li>Cinematografía estadounidense anticomunista (finales de los 40 a los 70)</li>
+          <li>Migración interna (rural→urbana) y externa (Sur→Norte) masiva</li>
+        </ul>
+      </div>
+    </div>
 
+    <div class="discs">
+      <figure class="disc disc--bretton">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScnUCB6yjHRdtZTkF_rmF0BkSCoAk3Xen1d6_YFmP6Wg&s=10"
+               alt="Bretton Woods — sistema económico FMI y Banco Mundial"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Bretton Woods<p class="disc__note">FMI · Banco Mundial · GATT</p></figcaption>
+      </figure>
 
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
 
+      <figure class="disc disc--democracia">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2018/09/26/15379921602862.jpg"
+               alt="Democracia liberal — características políticas del bloque capitalista"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Democracia liberal<p class="disc__note">DDHH 1948 · separación de poderes</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span>Isaac Moctezuma Calderón</span>
+    <span>Historia Contemporánea de las RRII
