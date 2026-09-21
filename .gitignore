@@ -46,3 +46,4 @@ sre_fondo_sdocumentales_primarios/
 # Fuentes de trabajo, no publicables
 MIS DISE*.md
 _fuente_*.md
+.claude/

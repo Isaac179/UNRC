@@ -1,571 +1,561 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 2 · derecho internacional publico · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fuentes del Derecho Internacional Público · Isaac Moctezuma Calderón</title>
+<meta name="description" content="Infografía editorial: fuentes del DIP (art. 38.1 CIJ) y generación de un tratado internacional (CV 1969).">
 <style>
+@layer tokens, reset, layout, typography, components, print;
+
+@layer tokens {
   :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
+    --ink: #0b1220;
+    --ink-2: #1e293b;
+    --ink-3: #475569;
+    --ink-4: #94a3b8;
+    --rule: #d6d3cd;
+    --rule-soft: #ebe8e2;
+    --paper: #fbfaf7;
+    --paper-2: #f4f2ed;
+    --paper-3: #ece9e2;
+    --cobalt: #1e40af;
+    --cobalt-2: #1d4ed8;
+    --cobalt-3: #dbe4ff;
+    --copper: #b45309;
+    --copper-2: #fef3e2;
+
+    --serif: Charter, 'Iowan Old Style', 'Source Serif Pro', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', Inter, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+    --t-3xs: 0.625rem;
+    --t-2xs: 0.6875rem;
+    --t-xs: 0.75rem;
+    --t-sm: 0.8125rem;
+    --t-md: 0.9375rem;
+    --t-lg: 1.0625rem;
+    --t-xl: 1.375rem;
+    --t-2xl: 1.875rem;
+    --t-3xl: 2.75rem;
+    --t-4xl: 3.75rem;
+
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+    --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+    --stroke-hair: 1px;
+    --stroke-thin: 1.5px;
+    --stroke-bold: 3px;
+    --stroke-rule: 4px;
+
+    --disc: 250px;
   }
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  h1, h2, h3, p, dl, dd, dt, figure, ul, ol { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  img, svg { display: block; max-width: 100%; }
+  table { border-collapse: collapse; width: 100%; }
+  a { color: var(--cobalt-2); text-underline-offset: 2px; }
+  a:hover { color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+}
 
+@layer layout {
   body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
+    background: var(--paper-3);
+    color: var(--ink-2);
+    font-family: var(--serif);
+    font-size: var(--t-md);
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1, "ss01" 1;
+    padding: var(--s-7) var(--s-4);
   }
-
-  .page-wrapper {
-    max-width: 900px;
+  .sheet {
+    container-type: inline-size;
+    container-name: sheet;
+    max-width: 1080px;
     margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
     background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
+    border-top: var(--stroke-rule) solid var(--ink);
+    box-shadow: 0 1px 0 var(--rule), 0 12px 32px -24px rgba(11, 18, 32, .35);
+    padding: var(--s-8) clamp(20px, 4.5vw, 72px) var(--s-7);
   }
+  .section { margin-top: var(--s-8); }
+}
 
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
+@layer typography {
+  .display {
+    font-family: var(--serif);
     font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
+    font-size: clamp(2rem, 5.6cqw, var(--t-3xl));
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     color: var(--ink);
+    max-width: 20ch;
+    text-wrap: balance;
   }
-
-  em {
+  .kicker {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: var(--t-2xs);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+  }
+  .meta, .mono { font-family: var(--mono); font-size: var(--t-xs); font-feature-settings: "tnum" 1; color: var(--ink-3); }
+  .lede {
+    font-family: var(--serif);
+    font-size: var(--t-lg);
+    line-height: 1.5;
+    max-width: 62ch;
+    text-wrap: pretty;
+    color: var(--ink-2);
+  }
+  .standfirst {
+    font-family: var(--serif);
     font-style: italic;
-    font-family: 'Instrument Serif', serif;
+    font-size: var(--t-lg);
+    line-height: 1.38;
+    color: var(--ink-2);
+    max-width: 60ch;
+    border-left: var(--stroke-bold) solid var(--cobalt);
+    padding-left: var(--s-4);
+  }
+}
+
+@layer components {
+  .masthead { margin-bottom: var(--s-7); }
+  .masthead__top {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
+    border-bottom: var(--stroke-hair) solid var(--rule); padding-bottom: var(--s-3);
+  }
+  .masthead__inst { font-family: var(--sans); font-size: var(--t-xs); letter-spacing: 0.04em; color: var(--ink-3); }
+  .masthead__row {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--s-6);
+    align-items: end; margin-top: var(--s-6);
+  }
+  .byline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); }
+  .byline dt {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .byline dd { margin-top: var(--s-1); font-size: var(--t-sm); color: var(--ink); line-height: 1.35; }
+
+  .section__head {
+    display: grid; grid-template-columns: 56px 1fr auto; align-items: baseline; gap: var(--s-4);
+    border-bottom: var(--stroke-thin) solid var(--ink); padding-bottom: var(--s-3); margin-bottom: var(--s-5);
+  }
+  .section__num { font-family: var(--mono); font-size: var(--t-sm); font-feature-settings: "tnum" 1; color: var(--cobalt); }
+  .section__title {
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-sm);
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
   }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
+  .discs {
+    display: flex; flex-wrap: wrap; align-items: flex-start;
+    justify-content: center; gap: var(--s-5); margin: var(--s-6) 0 var(--s-5);
   }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
+  .disc { width: var(--disc); max-width: 100%; text-align: center; }
+  .disc__frame {
+    position: relative; width: 100%; max-width: var(--disc); aspect-ratio: 1 / 1;
+    margin: 0 auto; border-radius: 50%; overflow: hidden;
+    border: var(--stroke-thin) solid var(--ink);
+    background-color: var(--paper-2);
+    display: grid; place-content: center;
   }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
+  .disc__frame::after {
+    content: ""; position: absolute; inset: 7px; border-radius: 50%;
+    border: var(--stroke-hair) dashed var(--rule); pointer-events: none;
+    z-index: 2;
   }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
+  .disc__img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
     border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
+  .disc__caption {
+    margin-top: var(--s-3); padding-top: var(--s-2);
+    border-top: var(--stroke-hair) solid var(--rule);
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-2xs);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+  }
+  .disc__note { margin-top: var(--s-1); font-size: var(--t-sm); line-height: 1.4; color: var(--ink-3); font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  .connector { flex: 0 0 auto; align-self: center; margin-top: -40px; color: var(--cobalt); }
+  .connector svg { width: 46px; height: 16px; }
+
+  .flow { margin: var(--s-6) 0; }
+  .flow__rail { width: 100%; height: 26px; color: var(--cobalt); }
+  .flow__steps {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-4); margin-top: var(--s-3);
+  }
+  .step { border-top: var(--stroke-bold) solid var(--ink); padding-top: var(--s-2); }
+  .step__n { font-family: var(--mono); font-size: var(--t-2xs); color: var(--cobalt); font-feature-settings: "tnum" 1; }
+  .step__t {
+    display: block; font-family: var(--sans); font-weight: 600; font-size: var(--t-xs);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-top: var(--s-1);
+  }
+  .step__a { display: block; font-family: var(--mono); font-size: var(--t-3xs); color: var(--ink-3); margin-top: var(--s-1); }
+
+  .pullquote {
+    position: relative; border-left: var(--stroke-bold) solid var(--cobalt);
+    padding: var(--s-2) 0 var(--s-2) var(--s-5); margin: var(--s-5) 0; max-width: 56ch;
+  }
+  .pullquote::before {
+    content: "\201C"; position: absolute; left: var(--s-3); top: -0.3em;
+    font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--cobalt-3); z-index: 0;
+  }
+  .pullquote p {
+    position: relative; z-index: 1; font-family: var(--serif); font-style: italic;
+    font-size: var(--t-xl); line-height: 1.38; color: var(--ink); text-wrap: pretty;
   }
 
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
+  .datastrip {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5);
+    border-top: var(--stroke-hair) solid var(--rule); border-bottom: var(--stroke-hair) solid var(--rule);
+    padding: var(--s-4) 0; margin: var(--s-6) 0;
+  }
+  .datastrip__value { font-family: var(--serif); font-size: var(--t-2xl); line-height: 1; color: var(--ink); font-feature-settings: "tnum" 1; }
+  .datastrip__label {
+    margin-top: var(--s-2); font-family: var(--sans); font-weight: 600; font-size: var(--t-3xs);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3);
   }
 
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7); align-items: start; }
+
+  .refs { columns: 2; column-gap: var(--s-7); }
+  .refs li {
+    padding-left: 24px; text-indent: -24px; font-size: var(--t-sm);
+    line-height: 1.4; break-inside: avoid; color: var(--ink-3);
   }
+  .refs li + li { margin-top: var(--s-2); }
+
+  .colophon {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
+    border-top: var(--stroke-thin) solid var(--ink); margin-top: var(--s-8); padding-top: var(--s-3);
+    font-family: var(--sans); font-size: var(--t-xs); letter-spacing: 0.06em; color: var(--ink-3);
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     AJUSTE FINO DE ENCUADRE POR FIGURA
+     object-position: qué punto del archivo se usa como centro
+     transform: scale(): cuánto se amplía la imagen para llenar el círculo
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ── Sección 02 · Fuentes del DIP ── */
+  .section--fuentes .disc:nth-of-type(1) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.05);
+  }
+  .section--fuentes .disc:nth-of-type(2) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.05);
+  }
+  .section--fuentes .disc:nth-of-type(3) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.05);
+  }
+  .section--fuentes .disc:nth-of-type(4) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.10);
+  }
+
+  /* ── Sección 03 · Generación de un tratado ── */
+  .section--tratado .disc:nth-of-type(1) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.05);
+  }
+  .section--tratado .disc:nth-of-type(2) .disc__img {
+    object-position: 50% 70%;
+    transform: scale(1.55);
+  }
+  .section--tratado .disc:nth-of-type(3) .disc__img {
+    object-position: 70% 50%;
+    transform: scale(1.75);
+  }
+  .section--tratado .disc:nth-of-type(4) .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.10);
+  }
+
+  /* ── Sección 04+05 · Recepción interna ── */
+  .section--cierre .disc .disc__img {
+    object-position: 50% 50%;
+    transform: scale(1.05);
+  }
+
+  @container sheet (max-width: 760px) {
+    .masthead__row, .duo, .datastrip { grid-template-columns: 1fr; }
+    .flow__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .refs { columns: 1; }
+    .connector { display: none; }
+    .section__head { grid-template-columns: 44px 1fr; }
+    .section__head .meta { grid-column: 1 / -1; }
+    .colophon { flex-direction: column; gap: var(--s-2); }
+    .byline { grid-template-columns: 1fr; }
+  }
+}
+
+@layer print {
+  @media print {
+    @page { size: letter; margin: 12mm; }
+    body { background: #fff; padding: 0; font-size: 10.5pt; }
+    .sheet { max-width: none; box-shadow: none; padding: 0; background: #fff; }
+    .section { margin-top: 24px; }
+    .discs, .disc, .flow, .pullquote, .datastrip, figure, .refs li { break-inside: avoid; }
+    .section__head { break-after: avoid; }
+    a { color: inherit; text-decoration: none; }
+    .disc__frame { background-color: #fff; }
+  }
+}
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">13 · FORO · UNRC · 2026</div>
+<main class="sheet">
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 2</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">13 · Mayo 2026</span>
+  <header class="masthead">
+    <div class="masthead__top">
+      <p class="masthead__inst">Universidad Nacional Rosario Castellanos · Licenciatura en Relaciones Internacionales</p>
+      <p class="mono">LRIN · M2 · 2026-2</p>
     </div>
-    <h1>Debate <em>colectivo</em> y construcción dialógica</h1>
-    <div class="lead-quote">
-      "La verdad nace del conflicto de ideas, no del consenso forzado."
-      <cite>— John Stuart Mill</cite>
-    </div>
-  </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 2 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Postura fundamentada y réplica
-          <span>Intercambio de ideas</span>
-        </div>
+    <div class="masthead__row">
+      <div>
+        <p class="kicker">Tarea auténtica · Módulo 2</p>
+        <h1 class="display" style="margin-top:var(--s-3)">Fuentes del Derecho Internacional Público</h1>
+        <p class="standfirst" style="margin-top:var(--s-4)">Del artículo 38.1 del Estatuto de la CIJ al clausulado del T-MEC.</p>
       </div>
-      <p>Se presenta una postura personal fundamentada, seguida de réplicas constructivas a las intervenciones de compañeros.</p>
-      <div class="chips">
-        <span class="chip">derecho</span>
-        <span class="chip">Módulo 2</span>
-        <span class="chip">FORO</span>
+      <dl class="byline">
+        <div><dt>Autor</dt><dd>Isaac Moctezuma Calderón</dd></div>
+        <div><dt>Unidad de aprendizaje</dt><dd>Derecho Internacional Público · LRIN3DER8</dd></div>
+        <div><dt>Docente</dt><dd>Darío Yair Santana Trujeque</dd></div>
+        <div><dt>Grupo</dt><dd>DH-LRIN3DER8-B1-O-2026-2-G302</dd></div>
+        <div><dt>Fecha</dt><dd>Septiembre de 2026</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__head">
+      <p class="section__num">01</p>
+      <h2 class="section__title">Introducción</h2>
+      <p class="meta">propósito</p>
+    </div>
+    <p class="lede">Dos organizadores gráficos: las fuentes del DIP y la ruta de generación de un tratado internacional.</p>
+  </section>
+
+  <section class="section section--fuentes">
+    <div class="section__head">
+      <p class="section__num">02</p>
+      <h2 class="section__title">Fuentes del DIP</h2>
+      <p class="meta">art. 38.1 CIJ</p>
+    </div>
+    <p class="lede">Creadoras: tratado, costumbre, principios generales. Auxiliares: jurisprudencia y doctrina.</p>
+
+    <div class="discs">
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/39212675/file/original-6a32de1fdbe414eec402cf54d7a6c4ab.jpeg?resize=2048x1536&vertical=center"
+               alt="Tratado firmado con sello — representación visual de un acuerdo internacional"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Tratado<p class="disc__note">Acuerdo escrito entre Estados.</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/34708789/file/original-c8ed81f854360cb45c5a7d46f4f3678b.png?resize=752x&vertical=center"
+               alt="Diagrama circular que representa la práctica constante y la opinio iuris"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Costumbre<p class="disc__note">Práctica constante y opinio iuris.</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/27430666/file/original-b4ad6560eed3fbc3250fd39e7ceaf8e1.png?resize=1504x1128&vertical=center"
+               alt="Balanza de la justicia — principios generales del derecho"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Principios<p class="disc__note">Comunes a los sistemas jurídicos.</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/45513825/file/94f5576a732a4f03bdd200b4c61fba1d.jpg?format=webp&resize=400x300&vertical=center"
+               alt="Sala de la Corte Internacional de Justicia — decisiones judiciales"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Auxiliares<p class="disc__note">Jurisprudencia y doctrina.</p></figcaption>
+      </figure>
+    </div>
+
+    <div class="datastrip">
+      <div><p class="datastrip__value">4</p><p class="datastrip__label">Fuentes art. 38.1</p></div>
+      <div><p class="datastrip__value">1945</p><p class="datastrip__label">Estatuto CIJ</p></div>
+      <div><p class="datastrip__value">1969</p><p class="datastrip__label">Convención de Viena</p></div>
+      <div><p class="datastrip__value">133</p><p class="datastrip__label">Art. constitucional</p></div>
+    </div>
+  </section>
+
+  <section class="section section--tratado">
+    <div class="section__head">
+      <p class="section__num">03</p>
+      <h2 class="section__title">Generación de un tratado</h2>
+      <p class="meta">CV 1969</p>
+    </div>
+    <p class="lede">Ocho etapas: de la negociación a la terminación, con aprobación del Senado en México.</p>
+
+    <div class="discs">
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/14573008/file/original-a84b50f3ad2addb4d9485df535626c1c.jpg?resize=1200x1697&vertical=center"
+               alt="Mesa de negociación diplomática — plenos poderes"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Negociación<p class="disc__note">Arts. 7–8 CV</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/41858492/file/original-3259ab684bc9526042f8f1d7872ebcf3.jpg?resize=800x600&vertical=center"
+               alt="Pluma firmando un texto autenticado"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Firma<p class="disc__note">Arts. 9–10 CV</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/25143925/file/original-5260ff56ba8d3c7a068aa91774960749.png?resize=1504x1128&vertical=center"
+               alt="Recinto legislativo — ratificación por el Senado mexicano"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Ratificación<p class="disc__note">Arts. 11–16 CV · art. 76 CPEUM</p></figcaption>
+      </figure>
+
+      <div class="connector" aria-hidden="true">
+        <svg viewBox="0 0 46 16"><path d="M0 8h34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M34 3l8 5-8 5z" fill="currentColor"/></svg>
+      </div>
+
+      <figure class="disc">
+        <div class="disc__frame">
+          <img class="disc__img"
+               src="https://cdn.dribbble.com/userupload/41955058/file/original-3eea083281b175091f5cfd6d8e811871.png?resize=800x600&vertical=center"
+               alt="Sede de la Organización de las Naciones Unidas — depósito y registro"
+               loading="eager" decoding="async">
+        </div>
+        <figcaption class="disc__caption">Vigor y depósito<p class="disc__note">Arts. 26 y 77 CV</p></figcaption>
+      </figure>
+    </div>
+
+    <div class="flow">
+      <svg class="flow__rail" viewBox="0 0 1000 26" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="4" y1="13" x2="960" y2="13" stroke="currentColor" stroke-width="1.5"/>
+        <g fill="currentColor">
+          <circle cx="4" cy="13" r="4"/><circle cx="140" cy="13" r="4"/><circle cx="277" cy="13" r="4"/>
+          <circle cx="414" cy="13" r="4"/><circle cx="551" cy="13" r="4"/><circle cx="688" cy="13" r="4"/>
+          <circle cx="825" cy="13" r="4"/><circle cx="960" cy="13" r="4"/>
+        </g>
+        <g stroke="currentColor" stroke-width="1.5">
+          <line x1="4" y1="4" x2="4" y2="22"/><line x1="960" y1="4" x2="960" y2="22"/>
+        </g>
+        <path d="M968 7l10 6-10 6z" fill="currentColor"/>
+      </svg>
+      <div class="flow__steps">
+        <div class="step"><span class="step__n">01</span><span class="step__t">Negociación</span><span class="step__a">Arts. 7–8</span></div>
+        <div class="step"><span class="step__n">02</span><span class="step__t">Adopción</span><span class="step__a">Art. 9</span></div>
+        <div class="step"><span class="step__n">03</span><span class="step__t">Autenticación</span><span class="step__a">Art. 10</span></div>
+        <div class="step"><span class="step__n">04</span><span class="step__t">Consentimiento</span><span class="step__a">Arts. 11–16</span></div>
+        <div class="step"><span class="step__n">05</span><span class="step__t">Reservas</span><span class="step__a">Arts. 19–20</span></div>
+        <div class="step"><span class="step__n">06</span><span class="step__t">Entrada en vigor</span><span class="step__a">Art. 26</span></div>
+        <div class="step"><span class="step__n">07</span><span class="step__t">Depositario</span><span class="step__a">Art. 77</span></div>
+        <div class="step"><span class="step__n">08</span><span class="step__t">Terminación</span><span class="step__a">Arts. 54–64</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+  <section class="section section--cierre">
+    <div class="duo">
+      <div>
+        <div class="section__head">
+          <p class="section__num">04</p>
+          <h2 class="section__title">Reflexión</h2>
+          <p class="meta">concepto</p>
+        </div>
+        <p class="lede">El art. 38.1 es catálogo de aplicación, no jerarquía: el soft law queda fuera de la lista y dentro de la práctica.</p>
+        <blockquote class="pullquote">
+          <p>La Convención de Viena de 1969 codificó en un solo texto lo que era práctica consuetudinaria.</p>
+        </blockquote>
+        <p class="lede">El T-MEC y su Mecanismo Laboral de Respuesta Rápida convierten lo aspiracional en exigible.</p>
+      </div>
+      <div>
+        <div class="section__head">
+          <p class="section__num">05</p>
+          <h2 class="section__title">Conclusión</h2>
+          <p class="meta">cierre</p>
+        </div>
+        <p class="lede">Las fuentes no son catálogo cerrado; la tarea del internacionalista es traducir el clausulado al orden local.</p>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+        <figure class="disc" style="margin-top:var(--s-6)">
+          <div class="disc__frame">
+            <img class="disc__img"
+                 src="https://cdn.dribbble.com/userupload/20905921/file/original-dff9a4f6ec17439ca7ff457a4b0a8f62.png?resize=752x564&vertical=center"
+                 alt="Mapa de México con globo terráqueo — recepción interna del tratado"
+                 loading="eager" decoding="async">
+          </div>
+          <figcaption class="disc__caption">Recepción interna<p class="disc__note">Del tratado a la norma aplicable.</p></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-  <div class="ritual-closer">
-    <p>El debate enriquece nuestra comprensión colectiva.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 2: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">13 · UNRC · Foro Integrador · M2</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
-</div>
-</body>
-</html>
-
-
-
+  <section class="section">
+    <div class="section__head">
+      <p class="section__num">06</p>
+      <h2 class="section__title">Fuentes de consulta (APA 7)</h2>
+      <p class="meta">referencias</p>
+    </div>
+    <ul class="refs">
+      <li>Becerra Ramírez, M. (1991). <em>Derecho Internacional Público</em>. UNAM.</li>
+      <li>Convención de Viena sobre el Derecho de los Tratados. (1980). OEA.</li>
+      <li>Estatuto de la Corte Internacional de Justicia. (1945). ONU.</li>
+      <li>Herdegen, M. (2016). <em>Derecho Internacional Público</em>. UNAM-IIJ.</li>
+      <li>Organización de las Naciones Unidas. (1945). <em>Carta de las Naciones Unidas</em>.</li>
+      <li>Rojas Amandi, V. M. (2016). <em>Derecho Internacional Público</em>. UNAM-IIJ.</li>
+      <li>Vallarta
