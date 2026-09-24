@@ -1,571 +1,122 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 2 · pensamiento politico y social · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>En qué fallamos</title>
 </head>
-<body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">15 · TAREA · UNRC · 2026</div>
+<body style="margin: 0; background-color: #e2e8f0; padding: 24px 0;">
+<div style="max-width: 700px; margin: 0 auto; background-color: #f8fafc; color: #1e293b; font-family: Constantia, Cambria, Georgia, 'Times New Roman', serif; font-size: 15px; line-height: 1.75; padding: 40px 38px 32px 38px; border: 1px solid #cbd5e1;">
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 2</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">15 · Mayo 2026</span>
-    </div>
-    <h1>Análisis <em>aplicado</em> y estudio de caso</h1>
-    <div class="lead-quote">
-      "La teoría sin práctica es estéril; la práctica sin teoría es ciega."
-      <cite>— Immanuel Kant</cite>
-    </div>
-  </div>
+<div style="border-top: 3px solid #1d3557; margin-bottom: 24px;"></div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 2 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 28px;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #64748b;">Unidad de aprendizaje</td>
+<td style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #334155;">Pensamiento Político y Social · LRIN3PEP8 · Módulo 2</td>
+</tr>
+<tr>
+<td style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #64748b;">Actividad</td>
+<td style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #334155;">Tarea auténtica · Ensayo individual · 2 cuartillas</td>
+</tr>
+<tr>
+<td style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #64748b;">Autor</td>
+<td style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #334155;">Isaac Moctezuma Calderón</td>
+</tr>
+</tbody>
+</table>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Metodología de análisis aplicado
-          <span>Desarrollo del caso</span>
-        </div>
-      </div>
-      <p>Se desarrolla un análisis detallado de un caso concreto, aplicando las herramientas conceptuales del módulo.</p>
-      <div class="chips">
-        <span class="chip">pensamiento</span>
-        <span class="chip">Módulo 2</span>
-        <span class="chip">TAREA</span>
-      </div>
-    </div>
-  </div>
+<div style="font-family: 'Bodoni MT', Didot, 'Baskerville Old Face', 'Palatino Linotype', Georgia, serif; font-size: 26px; line-height: 1.25; color: #0f172a; margin-bottom: 6px;">¿En qué fallamos? La modernidad vista desde una pequeña pelota amarilla</div>
+<div style="font-size: 14px; font-style: italic; color: #475569; line-height: 1.55; margin-bottom: 20px;">Ensayo sobre la modernidad como problema central de la sociología, el Estado mexicano y el caso de Antonio</div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
+<div style="font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 11px; line-height: 1.55; letter-spacing: 0.02em; color: #1e3a8a; text-align: left; margin-bottom: 4px; white-space: nowrap; overflow-x: auto;">┌─ PREGUNTA DE PARTIDA ────────────────────────────┐<br>│<br>│ Me gustaría iniciar con una pregunta:<br>│ ¿en qué fallamos?, ¿cómo llegamos<br>│ hasta este punto?<br>│<br>└──────────────────────────────────────────────────┘</div>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
+<table style="width: 100%; border-collapse: collapse; margin-top: 24px; margin-bottom: 24px;" cellspacing="0" cellpadding="0"><tbody><tr><td style="border-top: 1px solid #cbd5e1; height: 1px;"></td></tr></tbody></table>
 
-  <div class="ritual-closer">
-    <p>El análisis aplicado nos acerca a la realidad con herramientas críticas.</p>
-  </div>
+<table style="width: 100%; border-collapse: collapse; margin-top: 0; margin-bottom: 6px;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #2563eb; padding-top: 2px;">01</td>
+<td style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f172a; padding-top: 2px;">Introducción</td>
+</tr></tbody></table>
+<div style="padding-left: 26px;">
+<p style="margin-top: 0; margin-bottom: 16px; text-align: justify;">Para quienes no me conocen, me presento: Isaac Moctezuma, habitante del planeta Tierra, el único punto verde que conocemos en el universo. En versión exprés, somos homínidos cuya masa encefálica ha cambiado poco desde que vivíamos en cavernas, y cuyo mayor capital sigue siendo la manada. Vivir en grupo nunca garantizó sobrevivir, pero valerse solo era una muerte casi segura.</p>
+<p style="margin-top: 0; margin-bottom: 0; text-align: justify; font-style: italic; border-left: 3px solid #1d3557; background-color: #f1f5f9; padding: 8px 14px;">Lévi-Strauss (1955/2006) advirtió contra un prejuicio muy nuestro: «estamos acostumbrados a asociar con la vida urbana nuestros valores más altos» (p. 134). Sorprende que una huella elocuente de civilización sea un hueso y no una ciudad: Shanidar 1, un neandertal de hace unos 50,000 años, llegó a los cuarenta con traumatismos severos y pérdida auditiva gracias al cuidado de su grupo (Trinkaus y Villotte, 2017). La civilización empezó cuando alguien decidió cargar al herido; sostengo que la modernidad multiplicó las herramientas para hacerlo, pero también para concentrar.</p>
+</div>
 
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 2: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
+<table style="width: 100%; border-collapse: collapse; margin-top: 22px; margin-bottom: 6px;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #2563eb; padding-top: 2px;">02</td>
+<td style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f172a; padding-top: 2px;">Definición de modernidad y su importancia en la sociología</td>
+</tr></tbody></table>
+<div style="padding-left: 26px;">
+<p style="margin-top: 0; margin-bottom: 16px; text-align: justify;">De la manada llegamos a la sociología en el siglo XIX, cuando las revoluciones burguesas, la industria y las ciudades cambiaron la sociedad tan rápido que necesitó una ciencia para explicarse: por eso Comte, Marx, Weber y Durkheim hicieron de la modernidad el problema central de la sociología.</p>
+<p style="margin-top: 0; margin-bottom: 0; text-align: justify;">Mi definición: la modernidad es el conjunto de herramientas culturales, ideológicas y tecnológicas, y de tendencias de los colectivos humanos, que funciona como pináculo del quehacer humano y puede jugar a favor o en contra de la sociedad. Pienso en el «juego de la vida» de Conway, donde reglas simples producen una complejidad enorme y la célula aislada muere (Gardner, 1970), como muere la sociedad que se aísla. Bauman (1973/2002) lo dice así: «la idea de estructura como tal no es sino una abstracción de esta restricción del azar» (p. 39). Las reglas de la modernidad fueron la razón, la ciencia y el individuo; su traducción política, el liberalismo: derechos individuales (Locke), división de poderes (Montesquieu), libre mercado (Smith) e imperio de la ley. Su valor sociológico está en los vestigios históricos que muestran tendencias en la línea del tiempo.</p>
+</div>
 
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">15 · UNRC · Tarea Auténtica · M2</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+<table style="width: 100%; border-collapse: collapse; margin-top: 22px; margin-bottom: 6px;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #2563eb; padding-top: 2px;">03</td>
+<td style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f172a; padding-top: 2px;">Problemas, dilemas y su relevancia actual</td>
+</tr></tbody></table>
+<div style="padding-left: 26px;">
+<p style="margin-top: 0; margin-bottom: 16px; text-align: justify;">Considero que el principal problema es la polarización. La modernidad trae ventajas y desventajas; combinada con patrones sociopolíticos heredados, crea un campo de cultivo para nuevas formas de pensamiento, estilos de vida, tecnología, culto, arte y diseño. Eso es parte de las libertades humanas, pero para ópticas conservadoras es una amenaza al statu quo, que busca perpetuar el capital en las mismas cabezas. Los clásicos ya nombraron los costos de la modernidad: alienación (Marx), jaula de hierro (Weber) y anomia (Durkheim).</p>
+<p style="margin-top: 0; margin-bottom: 0; text-align: justify;">Hoy lo más relevante es lo bélico, lo político e, inevitablemente, lo social. Más que de una modernidad madura, hablaría de una modernidad 3.0, equivalente a la evolución de internet: <i>deep web</i>, <i>blockchain</i>, retos virales, cultura <i>gamer</i> y una tecnología que se funde con el entorno cada vez más discretamente. Bauman (1973/2002), siguiendo a Beck, habla de una sociedad de riesgo (p. 25). En lo bélico, Varoufakis (2026) llama <i>techlordism</i> a la ideología de los dueños del capital en la nube, y el Pentágono usó herramientas de Claude, de Anthropic, para apoyar operaciones durante el conflicto con Irán (Stone et al., 2026).</p>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 22px; margin-bottom: 6px;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #2563eb; padding-top: 2px;">04</td>
+<td style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f172a; padding-top: 2px;">Reflexión personal: el Estado mexicano y el caso de Antonio</td>
+</tr></tbody></table>
+<div style="padding-left: 26px;">
+<p style="margin-top: 0; margin-bottom: 0; text-align: justify;">El Estado mexicano nació de esta misma modernidad, y a medias. La Ley Lerdo de 1856 y la Constitución de 1857 adoptaron el programa liberal y convirtieron las propiedades corporativas, incluidas muchas tierras comunales de los pueblos, en propiedad privada que favoreció a los grandes propietarios (Neri Guarneros, 2013); la Revolución respondió en 1917 con derechos sociales. Hoy el artículo 4 reconoce a toda persona el derecho a una vivienda adecuada (CPEUM, 1917, art. 4), pero, como analicé en el foro, la norma avanzó a medias: ya topa los aumentos de renta (Redacción Animal Político, 2026), no el precio de entrada que enfrenta Antonio. De la Ley Lerdo a Antonio, la misma lógica: la tierra y la casa como mercancía.</p>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 22px; margin-bottom: 6px;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #2563eb; padding-top: 2px;">05</td>
+<td style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f172a; padding-top: 2px;">Conclusión: la pequeña pelota amarilla</td>
+</tr></tbody></table>
+<div style="padding-left: 26px;">
+<p style="margin-top: 0; margin-bottom: 0; text-align: justify; font-style: italic; border-left: 3px solid #1d3557; background-color: #f1f5f9; padding: 8px 14px;">¿En qué fallamos? En olvidar el hueso sanado y usar para concentrar las herramientas que la modernidad nos dio para cuidar. En «La pequeña pelota amarilla» escribí que los tecnócratas y cúpulas de nuestra sociedad digital se creen deidades solares y olvidan que no son más que una pequeña pelota amarilla (Moctezuma Calderón, 2025). Antonio no necesita dioses solares: necesita un Estado que regule y una sociedad que recuerde para qué se juntó en manada.</p>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 28px; margin-bottom: 20px;" cellspacing="0" cellpadding="0"><tbody><tr><td style="border-top: 1px solid #cbd5e1; height: 1px;"></td></tr></tbody></table>
+
+<div style="font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #64748b; margin-bottom: 12px;">Referencias · APA 7</div>
+<table style="width: 100%; border-collapse: collapse; font-size: 11.5px; line-height: 1.6; color: #475569; table-layout: fixed;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Bauman, Z. (2002). <i>La cultura como praxis</i> (A. Roca Álvarez, Trad.). Paidós. (Trabajo original publicado en 1973)</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Constitución Política de los Estados Unidos Mexicanos [CPEUM]. (1917). <i>Diario Oficial de la Federación</i>. Última reforma DOF 02-06-2026. https://www.diputados.gob.mx/LeyesBiblio/pdf/CPEUM.pdf</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Gardner, M. (1970). Mathematical games: The fantastic combinations of John Conway's new solitaire game «life». <i>Scientific American, 223</i>(4), 120-123. https://doi.org/10.1038/scientificamerican1070-120</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Lévi-Strauss, C. (2006). <i>Tristes trópicos</i> (N. Bastard, Trad.). Paidós. (Trabajo original publicado en 1955)</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Moctezuma Calderón, I. (2025). <i>La pequeña pelota amarilla</i> [Trabajo académico no publicado, Introducción al Estudio de las Relaciones Internacionales]. Universidad Nacional Rosario Castellanos.</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Neri Guarneros, P. (2013). Sociedades agrícolas en resistencia. Los pueblos de San Miguel, Santa Cruz y San Pedro, 1878-1883. <i>Historia Crítica</i>, (51), 21-44. https://www.redalyc.org/pdf/811/81129188003.pdf</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Redacción Animal Político. (2026, 19 de febrero). Suprema Corte avala por unanimidad la constitucionalidad del tope a rentas en CDMX. <i>Animal Político</i>. https://grupoanimal.mx/politica/corte-constitucionalidad-tope-rentas-cdmx</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Stone, M., Alper, A. y Satter, R. (2026, 19 de marzo). Hegseth wants Pentagon to dump Claude, but military users say it's not so easy [Nota de Reuters]. <i>Military Times</i>. https://www.militarytimes.com/news/pentagon-congress/2026/03/19/hegseth-wants-pentagon-to-dump-claude-but-military-users-say-its-not-so-easy/</td></tr>
+<tr><td style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px; word-break: break-word;">Trinkaus, E. y Villotte, S. (2017). External auditory exostoses and hearing loss in the Shanidar 1 Neandertal. <i>PLoS ONE, 12</i>(10), e0186684. https://doi.org/10.1371/journal.pone.0186684</td></tr>
+<tr><td style="padding-bottom: 0; padding-left: 22px; text-indent: -22px; word-break: break-word;">Varoufakis, Y. (2026, 5 de mayo). <i>Palantir and the new order: Neoliberalism is dead. Say hello to techlordism</i> [Entrada de blog, publicada originalmente en The Point]. https://www.yanisvaroufakis.eu/2026/05/05/palantir-and-the-new-order-neoliberalism-is-dead-say-hello-to-techlordism-the-point/</td></tr>
+</tbody>
+</table>
+
+<div style="background-color: #f1f5f9; padding: 18px 20px 16px 20px; margin-top: 26px; border-left: 3px solid #2563eb;">
+<div style="font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #64748b; margin-bottom: 10px;">Manifiesto de uso responsable de IA</div>
+<table style="width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.6; color: #334155;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr><td style="width: 36px; vertical-align: top; color: #2563eb; font-family: Consolas, monospace;">i</td><td style="padding-bottom: 8px;">Mías: la pregunta de partida, la presentación como habitante de la Tierra, la manada, mi definición de modernidad con el juego de la vida, la polarización, la modernidad 3.0 y la pequeña pelota amarilla, que retomo de mi tarea de Introducción a las RRII. A Bauman y a Lévi-Strauss los leí y subrayé en mi Kindle.</td></tr>
+<tr><td style="width: 36px; vertical-align: top; color: #2563eb; font-family: Consolas, monospace;">ii</td><td style="padding-bottom: 8px;">Con apoyo de IA: la estructura sobre el andamiaje del docente, la redacción conectiva, la verificación de datos (Shanidar 1, la Ley Lerdo, el artículo 4 vigente, el tope de rentas) y la localización de citas en mis subrayados.</td></tr>
+<tr><td style="width: 36px; vertical-align: top; color: #2563eb; font-family: Consolas, monospace;">iii</td><td style="padding-bottom: 0;">La herramienta que usé (Claude, de Anthropic) aparece en la sección 03; ese dato proviene de Reuters, no de la herramienta.</td></tr>
+</tbody>
+</table>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 22px; border-top: 1px solid #cbd5e1;" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td style="padding-top: 10px; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #64748b;">Isaac Moctezuma Calderón</td>
+<td style="padding-top: 10px; text-align: right; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #64748b;">LRIN · UNRC · 2026-2</td>
+</tr></tbody>
+</table>
 </div>
 </body>
 </html>
-
-
-
