@@ -1,571 +1,130 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 3 · derecho internacional publico · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LRIN_M3_Moctezuma_Calderon_Isaac_EA — Sujetos del DIP</title>
 <style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
+  @page { size: A4; margin: 2.2cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; background: #f1f3f5; margin: 0; padding: 24px 10px; font-size: 12.5px; line-height: 1.7; }
+  .hoja { max-width: 760px; margin: 0 auto; background: #fff; padding: 60px 64px; border: 1px solid #d0d5dd; box-sizing: border-box; }
+  @media print { body { background: #fff; padding: 0; } .hoja { border: none; padding: 0; max-width: none; } .salto { page-break-before: always; } }
+  h1 { font-size: 21px; margin: 0 0 4px; color: #10243e; }
+  h2 { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: #10243e; border-bottom: 2px solid #10243e; padding-bottom: 5px; margin-top: 34px; }
+  h3 { font-size: 13px; margin: 18px 0 8px; color: #8c1d18; }
+  .meta { font-size: 12px; color: #444; margin-top: 26px; line-height: 1.9; }
+  .meta b { display: inline-block; min-width: 150px; color: #10243e; }
+  .org { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11.5px; }
+  .org th { background: #10243e; color: #fff; padding: 7px 9px; text-align: left; font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.06em; }
+  .org td { border: 1px solid #b9c2cc; padding: 7px 9px; vertical-align: top; }
+  .cat { background: #eef2f6; font-weight: bold; width: 132px; font-family: Arial, sans-serif; font-size: 10.5px; letter-spacing: 0.04em; color: #10243e; }
+  ul { margin: 6px 0 6px 18px; padding: 0; }
+  li { margin-bottom: 4px; }
+  .ficha { border-left: 4px solid #8c6d1f; background: #faf7ef; padding: 12px 16px; margin: 14px 0; }
+  .fuentes p { margin: 0 0 9px; padding-left: 28px; text-indent: -28px; font-size: 11.5px; }
+  .pie { text-align: center; font-size: 10px; color: #777; margin-top: 40px; }
 </style>
 </head>
 <body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">13 · TAREA · UNRC · 2026</div>
+<div class="hoja">
 
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 3</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">13 · Mayo 2026</span>
-    </div>
-    <h1>Profundización <em>crítica</em> e investigación</h1>
-    <div class="lead-quote">
-      "La crítica es la base de todo progreso social."
-      <cite>— Karl Popper</cite>
+  <!-- PORTADA -->
+  <div style="text-align: center; margin-top: 40px;">
+    <div style="font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #8c1d18;">Universidad Nacional Rosario Castellanos</div>
+    <div style="font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-top: 3px;">Licenciatura en Relaciones Internacionales · Periodo 2026-2</div>
+    <div style="border-top: 2px solid #10243e; width: 120px; margin: 26px auto;"></div>
+    <h1>Evidencia de Aprendizaje · Módulo 3</h1>
+    <div style="font-size: 15px; font-style: italic; color: #334155; margin-top: 8px;">Sujetos del Derecho Internacional Público</div>
+    <div style="border-top: 2px solid #10243e; width: 120px; margin: 26px auto;"></div>
+    <div class="meta" style="text-align: left; display: inline-block;">
+      <div><b>Unidad de aprendizaje:</b> Derecho Internacional Público (LRIN3DER8)</div>
+      <div><b>Actividad:</b> Tarea Auténtica · Módulo 3</div>
+      <div><b>Estudiante:</b> Isaac Moctezuma Calderón</div>
+      <div><b>Docente:</b> Darío Yair Santana Trujeque</div>
+      <div><b>Fecha:</b> 28 de septiembre de 2026</div>
+      <div><b>Archivo:</b> LRIN_M3_Moctezuma_Calderon_Isaac_EA.pdf</div>
     </div>
   </div>
 
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 3 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
+  <!-- INTRODUCCIÓN -->
+  <div class="salto"></div>
+  <h2>Introducción</h2>
+  <p>El objetivo de esta evidencia es sintetizar el contenido del módulo 3 mediante un organizador gráfico que ordena a los sujetos del Derecho Internacional Público: quiénes son, qué requisitos cumplen para ser reconocidos como tales y qué capacidad jurídica tienen frente a la comunidad internacional. El eje que articula el documento es la pregunta que atraviesa todo el módulo: <em>¿quién puede ser titular de derechos y obligaciones ante el derecho internacional y quién queda fuera de esa lista?</em> Para aterrizar la síntesis, cierro con una reflexión personal en dos tiempos: primero la doctrina del contenido nuclear y el caso del incidente crítico (mecanismo laboral del T-MEC, Mina San Martín, Sombrerete) y después la pregunta incómoda que aprendí documentando mi propio territorio, la Montaña de Guerrero.</p>
 
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Marco teórico avanzado
-          <span>Investigación documental</span>
-        </div>
-      </div>
-      <p>Se desarrolla una investigación que profundiza en los temas del módulo con fuentes académicas especializadas.</p>
-      <div class="chips">
-        <span class="chip">derecho</span>
-        <span class="chip">Módulo 3</span>
-        <span class="chip">TAREA</span>
-      </div>
-    </div>
+  <!-- ORGANIZADOR GRÁFICO -->
+  <h2>Desarrollo · Organizador gráfico: los sujetos del DIP</h2>
+
+  <table class="org">
+    <tr><th style="width:132px;">Categoría</th><th>Elementos / requisitos</th><th>Contenido esencial</th><th>Ejemplo o caso</th></tr>
+    <tr>
+      <td class="cat">ESTADOS<br>(sujetos plenos)</td>
+      <td><ul><li>Población permanente</li><li>Territorio definido</li><li>Gobierno</li><li>Capacidad jurídica para entablar relaciones internacionales</li></ul><em>Convención de Montevideo, 1933</em></td>
+      <td>Son el sujeto prototípico: personalidad plena conferida por el propio derecho internacional. La soberanía es su atributo indispensable (art. 2.1, Carta ONU: igualdad soberana); hoy se discute si sigue siendo un concepto jurídico o un discurso político, porque las competencias del Consejo de Seguridad y las interdependencias económicas lo relativizan.</td>
+      <td>Estado mexicano frente al panel del Anexo 31-A del T-MEC (Mina San Martín, MEX-USA-2023-31A-01): invoca soberanía y gana la cuestión de jurisdicción.</td>
+    </tr>
+    <tr>
+      <td class="cat">RECONOCIMIENTO<br>(acto unilateral)</td>
+      <td><ul><li>De Estados: efecto <b>declarativo</b> vs. <b>constitutivo</b></li><li>De gobiernos: efectividad + legitimidad (gobierno de facto)</li><li>Expreso o tácito</li></ul></td>
+      <td>Dixon: el reconocimiento constituye al Estado para la teoría constitutiva; la tesis mayoritaria (Institut du Droit International) es declarativa: la estatalidad existe aunque nadie la reconozca, pero sin reconocimiento no hay relaciones bilaterales ni plena eficacia práctica.</td>
+      <td>Talibanes en Afganistán: poder de facto efectivo sin reconocimiento internacional.</td>
+    </tr>
+    <tr>
+      <td class="cat">SUJETOS ATÍPICOS<br>(sui generis)</td>
+      <td><ul><li>Sin territorio o con soberanía mínima</li><li>Relevancia funcional o humanitaria</li></ul></td>
+      <td><b>Santa Sede</b> (jefatura de la Iglesia, nuncios, Concordatos, observador en la ONU; distinta del Estado del Vaticano, 0.44 km²); <b>Soberana Orden de Malta</b> (humanitaria, sin territorio); <b>CICR</b> (asociación de derecho suizo, sujeto por sus funciones en conflictos armados); <b>beligerantes</b> y <b>individuos</b> (responsabilidad penal internacional; derechos humanos básicos por costumbre).</td>
+      <td>Corte Penal Internacional juzga a combatientes individuales; Santa Sede como mediadora.</td>
+    </tr>
+    <tr>
+      <td class="cat">ORGANIZACIONES INTERNACIONALES<br>(intergubernamentales)</td>
+      <td><ul><li>Tratado constitutivo</li><li>Órganos propios y voluntad autónoma</li><li>Capacidad jurídica expresa o implícita</li></ul></td>
+      <td>Nacen del derecho de los tratados (antecedentes: UPU 1874; consolidación: Liga de Naciones y OIT, 1919). Capacidad distinta de la que tienen en el derecho interno de los Estados (art. 104 Carta ONU). Estructura típica: asamblea de todos los miembros (AG ONU), órgano restringido con jerarquía (Consejo de Seguridad, 5 permanentes con veto), secretaría ejecutiva, órganos casi parlamentarios (Parlamento Europeo).</td>
+      <td>ONU y su personalidad internacional reconocida (opinión consultiva de la CIJ sobre reparación de daños, 1949); OIT y su caja de indicadores de Trabajo Decente aplicada al caso T-MEC.</td>
+    </tr>
+    <tr>
+      <td class="cat">ONG E INSTITUCIONES NO ESTATALES</td>
+      <td><ul><li>Sin personalidad plena de DIP</li><li>Incidencia por presión, documentación y expertise</li></ul></td>
+      <td>No son sujetos plenos pero intervienen en la agenda internacional. La CIJ (1949) aclaró que los sujetos de un sistema jurídico no son idénticos en naturaleza ni extensión de derechos: la personalidad se determina caso por caso.</td>
+      <td>Organizaciones sindicales y de derechos humanos que dieron visibilidad internacional al conflicto de la Mina San Martín (2007–2024).</td>
+    </tr>
+  </table>
+
+  <div class="ficha">
+    <b>Clave de lectura del organizador.</b> La columna "Categoría" ordena los sujetos de mayor a menor personalidad jurídica: del Estado pleno (Montevideo) al actor sin categoría. La última fila es deliberadamente el punto de partida de mi reflexión: entre las ONG reconocibles y el silencio normativo queda un espacio donde operan actores reales —empresas transnacionales que incumplen contratos colectivos y grupos criminales que desplazan poblaciones— que el derecho internacional todavía no sabe nombrar como sujetos obligados.
   </div>
 
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
+  <!-- REFLEXIÓN -->
+  <h2>Reflexión personal · ¿Qué entendemos por sujetos del derecho?</h2>
+  <p>Entiendo por sujetos del derecho a los destinatarios que el propio derecho reconoce como titulares de derechos y obligaciones exigibles. Esa definición, tan limpia en la doctrina, se ensucia rápido en el territorio. El caso de la Mina San Martín lo muestra con claridad: dieciséis años de conflicto sindical, una petición de Estados Unidos bajo el Anexo 31-A, y un panel que en 2024 se declaró sin jurisdicción porque el conflicto nació antes del tratado. El "triunfo" fue del Estado mexicano como sujeto pleno; los mineros de Sombrerete siguieron donde estaban. Si el mecanismo laboral del T-MEC existe para proteger derechos en instalaciones específicas, pero la jurisdicción se interpone antes que el fondo, entonces la subjetividad jurídica funcionó más como escudo de las partes del tratado que como protección de las personas.</p>
+  <p>Y hay un segundo punto que me parece más grave porque lo vivo desde casa: mientras discutimos si la ONU es intergubernamental o si la Santa Sede cabe en 0.44 km², en la Montaña de Guerrero grupos criminales operan con lógica transnacional, se diversifican al negocio minero, cobijan a empresas extranjeras y desplazan a población originaria e indígena sin que ningún tribunal —ni nacional ni internacional— los tenga en su lista de sujetos obligados. Ese vacío no es una curiosidad doctrinal: es gente. Documentar ese vacío es parte de mi postura como internacionalista desde el sur.</p>
+
+  <!-- CONCLUSIÓN -->
+  <h2>Conclusión</h2>
+  <p>El módulo 3 demuestra que la lista de sujetos del derecho internacional es histórica, no natural: pasó del Estado absoluto a las organizaciones internacionales, a los sujetos atípicos y, a golpes, a los individuos. Cada ampliación respondió a una crisis concreta —las guerras mundiales, la descolonización, la globalización— y no a la generosidad de la doctrina. El caso T-MEC/San Martín confirma la tendencia y su límite: el derecho internacional hoy sí alcanza el interior del Estado para proteger derechos laborales, pero su eficacia sigue mediada por la soberanía, el veto de las potencias y los intereses comerciales. La tarea de mi generación de internacionalistas, creo, es completar el mapa: nombrar como sujetos obligados a los actores que hoy explotan ese vacío, empezando por las personas y los pueblos que el derecho todavía trata solo como víctimas.</p>
+
+  <!-- FUENTES -->
+  <div class="salto"></div>
+  <h2>Anexo · Fuentes de consulta (APA 7)</h2>
+  <div class="fuentes">
+    <p>Bensusán, G. (2020). <em>The transformation of the Mexican labour regulation model and its link with North American economic integration</em> (Working paper). Organización Internacional del Trabajo.</p>
+    <p>Crawford, J. (2006). <em>The creation of states in international law</em> (2.ª ed.). Oxford University Press.</p>
+    <p>Dixon, M. (2007). <em>Textbook on international law</em> (6.ª ed.). Oxford University Press.</p>
+    <p>Herdegen, M. (2016). <em>Derecho Internacional Público</em> (1.ª reimp.). Instituto de Investigaciones Jurídicas, UNAM.</p>
+    <p>Júnior, A., &amp; Casarella, G. (2017). El reconocimiento de nuevos Estados como sujetos en la ciencia del derecho internacional a partir de la deflagración de la Segunda Guerra Mundial: abordajes doctrinarios de la Convención de Montevideo a la "Opinión Consultiva Kosovo" (1933-2010). <em>Anuario Mexicano de Derecho Internacional, 17</em>, 513-546.</p>
+    <p>Miranda Torres, B. D. (2020). <em>Inserción de los estados de facto como plenos actores estatales de las relaciones internacionales: un estudio de caso sobre la república de Kosovo</em> [Tesis de licenciatura]. Universidad de las Américas.</p>
+    <p>Organización de las Naciones Unidas. (1945). <em>Carta de las Naciones Unidas</em>.</p>
+    <p>Organización de las Naciones Unidas. (1992). <em>Resúmenes de los fallos, opiniones consultivas y providencias de la Corte Internacional de Justicia 1948-1991</em>.</p>
+    <p>Rojas, V. (2016). <em>Derecho Internacional Público</em>. Instituto de Investigaciones Jurídicas, UNAM.</p>
+    <p>Seidelmann, R. (2016). La soberanía y la soberanía popular. En <em>Fundamentos, teoría e ideas políticas</em>. Instituto de Investigaciones Jurídicas, UNAM.</p>
+    <p>Secretaría del Trabajo y Previsión Social. (1 de agosto de 2023). <em>Respecto al conflicto en la Mina San Martín en Sombrerete, Zacatecas, el Gobierno de México informa</em> [Comunicado de prensa]. Gobierno de México.</p>
+    <p>Secretaría de Economía. (26 de abril de 2024). <em>El Panel laboral del T-MEC resuelve a favor de México en el caso de la mina San Martín</em> [Comunicado de prensa]. Gobierno de México. https://www.gob.mx/se/</p>
+    <p>Sosa, A. E. C., Velasco, A. I., &amp; Musso, J. A. (2018). Sujetos y actores en Derecho internacional: los casos controvertidos de la Soberana Orden de Malta y del Comité Internacional de la Cruz Roja. <em>Revista Electrónica de Derecho Internacional Contemporáneo, 1</em>(1), 55-59.</p>
   </div>
 
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
+  <div class="ficha">
+    <b>Nota de transparencia.</b> Este documento partió de mis apuntes y mi reflexión propia; usé asistencia de IA (Mistral) para verificar datos del caso Mina San Martín contra los comunicados oficiales de la STPS y la Secretaría de Economía, y para dar formato. Los argumentos y la reflexión sobre la Montaña de Guerrero son míos y se sustentan en mi propio trabajo de documentación (<em>Guerrero Resiste</em>).
   </div>
 
-  <div class="ritual-closer">
-    <p>La profundización crítica nos permite ir más allá de lo evidente.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 3: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">13 · UNRC · Tarea Auténtica · M3</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+  <div class="pie">LRIN_M3_Moctezuma_Calderon_Isaac_EA · Sujetos del Derecho Internacional Público · Módulo 3</div>
 </div>
 </body>
 </html>
-
-
-

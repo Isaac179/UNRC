@@ -1,571 +1,399 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tarea Auténtica - Módulo 3 · pensamiento politico y social · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
-</head>
-<body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">15 · TAREA · UNRC · 2026</div>
-
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Tarea Auténtica · Módulo 3</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">15 · Mayo 2026</span>
-    </div>
-    <h1>Profundización <em>crítica</em> e investigación</h1>
-    <div class="lead-quote">
-      "La crítica es la base de todo progreso social."
-      <cite>— Karl Popper</cite>
-    </div>
+﻿<div
+  style="max-width: 760px; margin: 0 auto; background-color: #f7f4ee; color: #2b2620; font-family: Constantia, Cambria, Georgia, 'Times New Roman', serif; font-size: 15px; line-height: 1.75; border: 1px solid #d8d2c4;">
+  <table style="width: 100%; border-collapse: collapse;" cellspacing="0"
+    cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="width: 50%; height: 7px; background-color: #8c1d18;"> </td>
+        <td style="width: 50%; height: 7px; background-color: #1f3a3d;"> </td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding: 34px 38px 0 38px;">
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 26px;"
+      cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td
+            style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8071;">
+            Unidad de aprendizaje</td>
+          <td
+            style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #453f36;">
+            Pensamiento Político y Social · LRIN3PEP8 · Módulo 3 · Ideas
+            políticas y sociales del siglo XX</td>
+        </tr>
+        <tr>
+          <td
+            style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8071;">
+            Actividad</td>
+          <td
+            style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #453f36;">
+            Tarea Auténtica · Cuadro comparativo: capitalismo y socialismo ·
+            Grupo DH-LRIN3PEP8-B1-O-2026-2-G302</td>
+        </tr>
+        <tr>
+          <td
+            style="width: 152px; padding: 3px 14px 3px 0; vertical-align: top; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8071;">
+            Autor</td>
+          <td
+            style="padding: 3px 0; vertical-align: top; font-size: 12px; line-height: 1.55; color: #453f36;">
+            Isaac Moctezuma Calderón</td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      style="font-family: 'Bodoni MT', Didot, 'Baskerville Old Face', 'Palatino Linotype', Georgia, serif; font-size: 27px; line-height: 1.22; color: #1a1612; margin-bottom: 8px;">
+      Dos sistemas, una pregunta: ¿quién decide y para quién?</div>
+    <div
+      style="font-size: 14px; font-style: italic; color: #6b6353; line-height: 1.55; margin-bottom: 24px;">
+      Cuadro comparativo entre capitalismo y socialismo, su relación con la
+      democracia y su lectura del Estado mínimo en el caso de Antonio</div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 8px;"
+      cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td style="width: 6px; background-color: #8c1d18;"> </td>
+          <td style="background-color: #efe9dc; padding: 14px 18px;">
+            <p
+              style="margin: 0; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 11.5px; line-height: 1.7; color: #3d362c;">
+              Introducción. El siglo XX no fue solo un enfrentamiento militar:
+              fue una disputa por definir qué debe hacer el Estado y qué debe
+              dejarle al mercado. Este cuadro compara ambos sistemas en su <span
+                style="color: #8c1d18; font-weight: bold;">lógica teórica</span>
+              y en su <span
+                style="color: #1f3a3d; font-weight: bold;">realización
+                histórica</span>, y los pone a dialogar con el incidente crítico
+              del Estado mínimo.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 3 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Marco teórico avanzado
-          <span>Investigación documental</span>
-        </div>
-      </div>
-      <p>Se desarrolla una investigación que profundiza en los temas del módulo con fuentes académicas especializadas.</p>
-      <div class="chips">
-        <span class="chip">pensamiento</span>
-        <span class="chip">Módulo 3</span>
-        <span class="chip">TAREA</span>
-      </div>
-    </div>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 30px;"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td
+          style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #8c1d18; padding-top: 2px;">
+          01</td>
+        <td
+          style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #8c1d18; padding-top: 3px;">
+          Cuadro comparativo: capitalismo y socialismo</td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    style="padding-left: 26px; border-left: 2px solid #e5dccb; margin-top: 8px; margin-right: 38px; padding-right: 0;">
+    <table
+      style="width: 100%; border-collapse: collapse; margin-bottom: 4px; font-size: 13px; line-height: 1.6;"
+      cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <td
+            style="width: 26%; background-color: #8c1d18; color: #f7f4ee; padding: 10px 12px; font-family: 'Century Gothic', Futura, sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle;">
+            Criterio</td>
+          <td
+            style="width: 37%; background-color: #8c1d18; color: #f7f4ee; padding: 10px 12px; font-family: 'Century Gothic', Futura, sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle; border-left: 1px solid #a83a34;">
+            Capitalismo</td>
+          <td
+            style="width: 37%; background-color: #1f3a3d; color: #f7f4ee; padding: 10px 12px; font-family: 'Century Gothic', Futura, sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle; border-left: 1px solid #3a5a5d;">
+            Socialismo</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Propiedad de los medios de producción</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Privada. El capital pertenece a individuos y corporaciones, que
+            deciden qué, cómo y cuánto producir (Smith, 2007).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Colectiva o estatal. La propiedad privada de los medios se considera
+            la raíz de la explotación y debe abolirse (Marx y Engels, 2011).
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Motor económico</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            El interés individual. La búsqueda de ganancia, guiada por la «mano
+            invisible», produce beneficio colectivo (Smith, 2007).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            La planificación. La producción se organiza según necesidades
+            sociales, no según rentabilidad (Marx, 1973).</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Distribución de la riqueza</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Según la posición en el mercado. Quien posee capital acumula más; el
+            salario se fija por oferta y demanda.</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Según necesidad. «De cada cual según sus capacidades, a cada cual
+            según sus necesidades» (Marx, 1973).</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Clases sociales</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Burguesía y proletariado; en la práctica, clases medias amplias y
+            movilidad social.</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Sociedad sin clases. En la práctica surgió una nueva clase
+            dirigente: la nomenklatura (Fontana, 2011).</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Papel del Estado</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Mínimo: policía, justicia y defensa. Su expansión se ve como amenaza
+            a la libertad (Hayek, 2013).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Central. Dirige la economía y la vida social; debería extinguirse al
+            alcanzar la sociedad sin clases.</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Libertades políticas</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Libertad individual, propiedad y empresa como derechos fundamentales
+            (Gray, 1994).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Igualdad material como prioridad; en la práctica, restricción de
+            libertades políticas.</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Innovación y eficiencia</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Alta. La competencia premia la innovación y la productividad (Smith,
+            2007).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Baja. Sin precios libres, el cálculo económico falla (Hayek, 2013).
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Crisis y estabilidad</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Crisis cíclicas de sobreproducción (1929, 1997, 2008), amortiguadas
+            por intervención estatal.</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Escasez crónica y colapso interno (URSS, 1991) por falta de
+            incentivos.</td>
+        </tr>
+        <tr>
+          <td
+            style="background-color: #efe9dc; padding: 10px 12px; vertical-align: top; font-weight: bold; color: #6b3330;">
+            Resultado histórico</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; background-color: #faf7f0;">
+            Crecimiento sin precedentes con desigualdad creciente; se adaptó vía
+            Estado de bienestar (Piketty, 2014).</td>
+          <td
+            style="padding: 10px 12px; vertical-align: top; border-top: 1px solid #e5dccb; border-left: 1px solid #e5dccb; background-color: #f4f6f2;">
+            Logros en salud y educación, pero represión, censura y derrumbe
+            económico (Hobsbawm, 1995).</td>
+        </tr>
+      </tbody>
+    </table>
+    <p
+      style="margin: 10px 0 0 0; font-size: 11px; font-style: italic; color: #8a8071;">
+      Criterios construidos a partir de los fundamentos teóricos de Smith
+      (2007), Marx (1973) y Marx y Engels (2011), y contrastados con las
+      realizaciones históricas documentadas por Hobsbawm (1995), Fontana (2011)
+      y Piketty (2014).</p>
   </div>
-
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 30px;"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td
+          style="width: 34px; vertical-align: top; font-family: Consolas, 'Lucida Console', 'Courier New', monospace; font-size: 13px; color: #1f3a3d; padding-top: 2px;">
+          02</td>
+        <td
+          style="vertical-align: top; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #1f3a3d; padding-top: 3px;">
+          Reflexión: democracia, capitalismo, socialismo y el Estado mínimo</td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    style="padding-left: 26px; border-left: 2px solid #e5dccb; margin-top: 8px; margin-right: 38px;">
+    <p style="margin-top: 0; margin-bottom: 14px; text-align: justify;">Ninguno
+      de los dos sistemas es democrático por sí mismo. La democracia es un
+      régimen político —cómo se elige y se limita el poder—, mientras que
+      capitalismo y socialismo son sistemas económicos. El capitalismo puede
+      convivir con democracia (Suecia) y con autoritarismo (Pinochet); el
+      socialismo, en teoría, también, pero en la práctica todos los socialismos
+      realizados derivaron en partido único y censura (Fontana, 2011). Ahí está
+      el punto: la democracia no pertenece a ningún sistema económico, es un
+      logro político que debe defenderse de ambos.</p>
+    <p style="margin-top: 0; margin-bottom: 14px; text-align: justify;">Esto es
+      lo que me ayuda a leer el caso de Antonio. El Estado mínimo no es un
+      problema técnico ni una falla administrativa: es la consecuencia de haber
+      dejado que el mercado decida quién accede a la vivienda. Desde la teoría
+      crítica, la pregunta es por qué la vivienda se trata como mercancía y no
+      como derecho humano (Jaramillo, 2022). Desde la teoría del conflicto, el
+      acaparamiento inmobiliario es el puesto de limonadas a escala estructural.
+      Ninguno de los dos sistemas, por separado, resuelve esto: el capitalismo
+      puro excluye a quien no tiene capital, el socialismo puro no calcula
+      cuánta vivienda construir. La lección es incómoda pero clara: ni Estado
+      ausente ni Estado dueño de todo. Estado con razón de Estado, que regule,
+      grave y garantice —sin dejar de reconocer que la democracia es el único
+      marco donde esa tensión puede procesarse sin violencia.</p>
+    <p style="margin-top: 0; margin-bottom: 0; text-align: justify;">Tocando
+      tierra desde el DIF Guerrero: lo que veo en la Montaña Baja no es un
+      debate teórico entre dos sistemas, es la consecuencia de haber dejado que
+      el mercado decida por nosotros. La vivienda digna, como la salud y la
+      educación, exige un Estado que recupere su razón de ser. No más mercado,
+      no menos mercado: mejor Estado.</p>
   </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
+  <div style="margin: 30px 38px 0 38px;">
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px;"
+      cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td style="width: 50%; height: 5px; background-color: #8c1d18;"> </td>
+          <td style="width: 50%; height: 5px; background-color: #1f3a3d;"> </td>
+        </tr>
+      </tbody>
+    </table>
+    <p
+      style="margin: 0 0 0 0; text-align: center; font-style: italic; color: #8c1d18;">
+      Dos sistemas, una pregunta: ¿quién decide y para quién? La respuesta del
+      siglo XXI no está en ninguno de los dos extremos.</p>
   </div>
-
-  <div class="ritual-closer">
-    <p>La profundización crítica nos permite ir más allá de lo evidente.</p>
+  <div
+    style="margin: 30px 38px 0 38px; border-top: 1px solid #d8d2c4; padding-top: 20px;">
+    <div
+      style="font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8071; margin-bottom: 12px;">
+      Referencias · APA 7</div>
+    <table
+      style="width: 100%; border-collapse: collapse; font-size: 11.5px; line-height: 1.6; color: #6b6353; table-layout: fixed;"
+      cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td
+            style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px;">
+            Gray, J. (1994). <i>Liberalismo</i>. Alianza.</td>
+        </tr>
+        <tr>
+          <td
+            style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px;">
+            Hobsbawm, E. (1995). <i>Historia del siglo XX</i>. Crítica.</td>
+        </tr>
+        <tr>
+          <td
+            style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px;">
+            Jaramillo, M. (2022, 16 de noviembre). Protestar por el derecho a la
+            vivienda en Ciudad de México. <i>Animal Político</i>.
+            https://www.animalpolitico.com/analisis/organizaciones/el-ronroneo/protestar-por-el-derecho-a-la-vivienda-en-ciudad-de-mexico
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px;">
+            Marx, K. (1973). <i>Contribución a la crítica de la economía
+              política</i>. Siglo XXI.</td>
+        </tr>
+        <tr>
+          <td
+            style="padding-bottom: 8px; padding-left: 22px; text-indent: -22px;">
+            Smith, A. (2007). <i>La riqueza de las naciones</i>. Alianza
+            Editorial.</td>
+        </tr>
+        <tr>
+          <td
+            style="padding-bottom: 0; padding-left: 22px; text-indent: -22px;">
+            Uvalle, R. (2015). Horizontes contemporáneos de la gestión pública.
+            En D. Arellano Gault y F. Patrón Sánchez (Coords.), <i>Gestión
+              pública y buen gobierno en México</i> (pp. 23-58). Universidad de
+            Guanajuato.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 3: [Tema del módulo]. Plataforma SECIHTI.</p>
+  <div
+    style="margin: 24px 38px 0 38px; background-color: #efe9dc; padding: 18px 20px 16px 20px; border-top: 3px solid #8a6d1f;">
+    <div
+      style="font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8071; margin-bottom: 10px;">
+      Manifiesto de uso responsable de IA</div>
+    <table
+      style="width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.6; color: #453f36;"
+      cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td
+            style="width: 36px; vertical-align: top; color: #8a6d1f; font-family: Consolas, monospace;">
+            i</td>
+          <td style="padding-bottom: 8px;">
+            <p>La estructura del cuadro con criterios propios, la lectura del
+              caso de Antonio como prueba de que los híbridos superan a los
+              extremos, la reflexión final sobre la democracia como logro
+              político independiente de ambos sistemas, y el anclaje en la
+              experiencia del DIF Guerrero.</p>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="width: 36px; vertical-align: top; color: #8a6d1f; font-family: Consolas, monospace;">
+            ii</td>
+          <td style="padding-bottom: 0;">Con apoyo de IA: la corrección
+            ortográfica y la redacción conectiva, la verificación del formato
+            APA 7, la organización de las tablas comparativas a partir de mis
+            notas del módulo 3, y la estructura HTML/CSS del documento.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">15 · UNRC · Tarea Auténtica · M3</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 30px;"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="width: 50%; height: 7px; background-color: #8c1d18;"> </td>
+        <td style="width: 50%; height: 7px; background-color: #1f3a3d;"> </td>
+      </tr>
+      <tr>
+        <td style="padding: 14px 38px 12px 38px;" colspan="2">
+          <table style="width: 100%; border-collapse: collapse;" cellspacing="0"
+            cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8071;">
+                  Isaac Moctezuma Calderón</td>
+                <td
+                  style="text-align: right; font-family: 'Century Gothic', Futura, 'Trebuchet MS', sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8071;">
+                  LRIN · UNRC · 2026-2</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-</body>
-</html>
-
-
-

@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruptura &amp; Tribunal · Simulador de jurisprudencia y crisis histórica</title>
+<style>
+:root{
+  --verde:#2e6b46; --crema:#f7f4ee; --rojo:#a13a2e; --ambar:#d9a13a; --ambar-osc:#a1741f;
+  --papel:#fdfaf1; --tinta:#1a1612; --tinta2:#453f36; --gris:#8a8071; --borde:#c9c1ae;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:#e9e4d8; font-family:Georgia,'Times New Roman',serif; color:var(--tinta2); font-size:15px; line-height:1.55; min-height:100vh; padding:16px;}
+.app{max-width:1180px; margin:0 auto;}
+/* ===== header ===== */
+header{background:var(--crema); border:1px solid var(--borde);}
+.banda{display:flex; height:8px;}
+.banda div{flex:1;}
+.banda .b1{background:var(--verde);} .banda .b2{background:#d9d4c8;} .banda .b3{background:var(--rojo);} .banda .b4{background:var(--ambar);}
+.head-inner{padding:20px 26px 16px;}
+.kicker{font-family:'Century Gothic',Futura,'Trebuchet MS',sans-serif; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gris); margin-bottom:6px;}
+h1{font-family:'Bodoni MT',Didot,Georgia,serif; font-size:30px; color:var(--tinta); line-height:1.15;}
+.sub{font-style:italic; color:#6b6353; font-size:14px; margin-top:4px;}
+.toolbar{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center;}
+button{font-family:'Century Gothic',Futura,sans-serif; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:10px 16px; border:none; cursor:pointer; transition:transform .08s, box-shadow .15s;}
+button:active{transform:scale(.97);}
+.btn-verde{background:var(--verde); color:#fff;}
+.btn-rojo{background:var(--rojo); color:#fff;}
+.btn-ambar{background:var(--ambar-osc); color:#fff;}
+.btn-gris{background:#6b6353; color:#fff;}
+.btn-line{background:transparent; color:var(--tinta2); border:1px solid var(--borde);}
+button:disabled{opacity:.4; cursor:not-allowed;}
+/* ===== board ===== */
+.board{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+.q{background:var(--crema); border:1px solid var(--borde); border-top:4px solid; padding:16px 18px;}
+.q.verde{border-top-color:var(--verde);} .q.rojo{border-top-color:var(--rojo);}
+.q.blanco{border-top-color:#8a8071;} .q.ambar{border-top-color:var(--ambar);}
+.q h3{font-family:'Century Gothic',Futura,sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px;}
+.q.verde h3{color:var(--verde);} .q.rojo h3{color:var(--rojo);} .q.blanco h3{color:#6b6353;} .q.ambar h3{color:var(--ambar-osc);}
+/* dice row */
+.dice-row{display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;}
+.die{width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-family:Consolas,monospace; font-size:22px; font-weight:bold; color:#fff; border-radius:6px; box-shadow:inset 0 -3px 0 rgba(0,0,0,.25); animation:pop .3s;}
+.die.g{background:var(--verde);} .die.w{background:#7d7768;} .die.r{background:var(--rojo);} .die.y{background:var(--ambar); color:#3d2f10;}
+@keyframes pop{0%{transform:scale(.4) rotate(-18deg);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+.die.rolling{animation:roll .5s linear infinite;}
+@keyframes roll{0%{transform:rotate(0);}25%{transform:rotate(90deg);}50%{transform:rotate(180deg);}75%{transform:rotate(270deg);}100%{transform:rotate(360deg);}}
+.die-label{font-size:10px; color:var(--gris); font-family:'Century Gothic',sans-serif; letter-spacing:.1em; text-transform:uppercase; margin-top:4px; text-align:center;}
+.die-wrap{text-align:center;}
+/* result text */
+.res{background:var(--papel); border:1px dashed var(--ambar-osc); padding:10px 14px; font-size:14px;}
+.res b{color:var(--tinta);}
+.res .pg{font-family:'Century Gothic',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ambar-osc); display:block; margin-top:4px;}
+.pending{color:var(--gris); font-style:italic;}
+/* tribunal */
+.tribunal{grid-column:1 / -1; background:#1f2a22; color:#e8e4d8; padding:22px 26px; border:1px solid var(--borde);}
+.tribunal h2{font-family:'Bodoni MT',Georgia,serif; font-size:22px; color:#fff; margin-bottom:8px;}
+.fase{font-family:'Century Gothic',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ambar);}
+.caso{background:rgba(255,255,255,.06); border-left:3px solid var(--ambar); padding:14px 18px; margin-top:10px; min-height:52px;}
+.caso .linea{margin-bottom:8px;}
+.caso .tag{font-family:'Century Gothic',sans-serif; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ambar); margin-right:8px;}
+/* timer */
+.timer-box{display:flex; align-items:center; gap:16px; margin-top:14px; flex-wrap:wrap;}
+.chrono{font-family:Consolas,monospace; font-size:44px; color:#fff; min-width:150px;}
+.chrono.prep{color:#7fd0a0;} .chrono.aleg{color:#f0c060;} .chrono.over{color:#ff9a8a; animation:blink 1s infinite;}
+@keyframes blink{50%{opacity:.4;}}
+.timer-controls{display:flex; gap:8px;}
+.btn-mini{padding:8px 12px; font-size:11px;}
+/* score */
+.score-box{margin-top:16px; border-top:1px solid rgba(255,255,255,.15); padding-top:14px;}
+.crit{display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+.crit label{flex:1; min-width:220px; font-size:13px;}
+.crit select{background:var(--papel); border:1px solid var(--borde); padding:6px 8px; font-family:Georgia,serif; font-size:14px;}
+.total{font-family:'Century Gothic',sans-serif; font-size:18px; letter-spacing:.14em; color:var(--ambar); margin-top:6px;}
+/* ===== banco ===== */
+.banco{background:var(--crema); border:1px solid var(--borde); margin-top:16px; padding:16px 20px;}
+.banco h3{font-family:'Century Gothic',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-bottom:10px;}
+.banco-item{background:var(--papel); border:1px solid var(--borde); padding:10px 14px; margin-bottom:8px; font-size:13px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+.banco-item .pts{font-family:Consolas,monospace; color:var(--verde); font-weight:bold;}
+.del{background:none; border:none; color:var(--rojo); font-family:Georgia,serif; font-size:13px; text-transform:none; letter-spacing:0; cursor:pointer; padding:0; text-decoration:underline;}
+/* ===== modals ===== */
+.modal-bg{position:fixed; inset:0; background:rgba(26,22,18,.55); display:none; align-items:center; justify-content:center; z-index:50; padding:16px;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--crema); border:1px solid var(--borde); max-width:760px; width:100%; max-height:88vh; overflow-y:auto; padding:26px 30px;}
+.modal h2{font-family:'Bodoni MT',Georgia,serif; font-size:24px; color:var(--tinta); margin-bottom:12px;}
+.modal h4{font-family:'Century Gothic',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; margin:16px 0 6px;}
+.modal p, .modal li{font-size:14px; margin-bottom:8px;}
+.modal ol, .modal ul{padding-left:22px;}
+.close-x{float:right; background:none; border:1px solid var(--borde); color:var(--tinta2); padding:6px 12px;}
+/* arsenal */
+.ars-search{width:100%; padding:10px 12px; border:1px solid var(--borde); background:var(--papel); font-family:Georgia,serif; font-size:14px; margin-bottom:12px;}
+.ars-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+.chip{font-family:'Century Gothic',sans-serif; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--borde); background:var(--papel); cursor:pointer;}
+.chip.on{background:var(--tinta); color:#fff;}
+.ars-card{background:var(--papel); border:2px dashed var(--ambar-osc); padding:12px 16px; margin-bottom:10px; font-size:13px;}
+.ars-card .cat{font-family:'Century Gothic',sans-serif; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--ambar-osc);}
+.ars-card .tit{font-family:'Bodoni MT',Georgia,serif; font-size:16px; color:var(--tinta); margin:2px 0 6px;}
+.ars-card p{margin-bottom:5px;}
+footer{margin-top:18px; text-align:center; font-family:'Century Gothic',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gris); padding:14px;}
+.toast{position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--tinta); color:#fff; padding:10px 20px; font-family:'Century Gothic',sans-serif; font-size:12px; letter-spacing:.1em; display:none; z-index:99; border-radius:4px;}
+/* ===== responsive ===== */
+@media (max-width:860px){
+  .board{grid-template-columns:1fr;}
+  h1{font-size:24px;}
+  .head-inner{padding:14px 16px;}
+  .q{padding:12px 14px;}
+  .die{width:42px; height:42px; font-size:18px;}
+  .chrono{font-size:34px;}
+  .toolbar button{flex:1; min-width:130px;}
+  .modal{padding:18px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="banda"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="b4"></div></div>
+  <div class="head-inner">
+    <div class="kicker">DIP × Historia Contemporánea de las RRII · Semestre 3 · Atlas DK «El Mundo Moderno 1914–Presente»</div>
+    <h1>Ruptura &amp; Tribunal</h1>
+    <div class="sub">Simulador de jurisprudencia y crisis histórica · Dados virtuales, cronómetro y banco de casos</div>
+    <div class="toolbar">
+      <button class="btn-verde" id="btnQuick">⟳ Modo rápido · 4 dados</button>
+      <button class="btn-rojo" id="btnFull">⚖ Modo tribunal · 8 dados</button>
+      <button class="btn-ambar" id="btnAuto">▶ Corrida automática</button>
+      <button class="btn-gris" id="btnArs">📚 Arsenal jurídico</button>
+      <button class="btn-line" id="btnTut">? Cómo se juega</button>
+    </div>
+  </div>
+  <div class="banda"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="b4"></div></div>
+</header>
+
+<div class="board">
+  <div class="q verde">
+    <h3>Contexto histórico · Dados verdes</h3>
+    <div class="dice-row" id="diceGreen"></div>
+    <div class="res" id="resGreen"><span class="pending">Sin tirada. El atlas DK espera en su atril.</span></div>
+  </div>
+  <div class="q rojo">
+    <h3>Hecho ilícito · Dados rojos</h3>
+    <div class="dice-row" id="diceRed"></div>
+    <div class="res" id="resRed"><span class="pending">Sin ilícito tipificado.</span></div>
+  </div>
+  <div class="q blanco">
+    <h3>Fuentes y foro · Dados blancos</h3>
+    <div class="dice-row" id="diceWhite"></div>
+    <div class="res" id="resWhite"><span class="pending">Sin fuente ni mecanismo asignados.</span></div>
+  </div>
+  <div class="q ambar">
+    <h3>Fricción y cronómetro · Dados amarillos</h3>
+    <div class="dice-row" id="diceYellow"></div>
+    <div class="res" id="resYellow"><span class="pending">Sin traba procesal.</span></div>
+  </div>
+
+  <div class="tribunal">
+    <div class="fase" id="faseTxt">EL TRIBUNAL CENTRAL · Esperando convocatoria</div>
+    <h2>Dictamen en curso</h2>
+    <div class="caso" id="casoBox">
+      <span class="pending" style="color:#b8b0a0;">Lanza los dados para que la Corte emplace el caso.</span>
+    </div>
+    <div class="timer-box">
+      <div class="chrono" id="chrono">00:00</div>
+      <div class="timer-controls">
+        <button class="btn-verde btn-mini" id="btnPrep">⏱ Cancillería (60s)</button>
+        <button class="btn-ambar btn-mini" id="btnAleg">🗣 Iniciar alegato</button>
+        <button class="btn-gris btn-mini" id="btnPause">⏸</button>
+        <button class="btn-line btn-mini" id="btnReset" style="color:#e8e4d8; border-color:#6b6353;">↺</button>
+      </div>
+    </div>
+    <div class="score-box">
+      <div class="fase">Autoevaluación de la ronda</div>
+      <div class="crit"><label>Dominio conceptual — artículos citados y terminología (0–3)</label><select id="s1"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+      <div class="crit"><label>Coherencia histórica — el caso encaja en la era y el mapa (0–3)</label><select id="s2"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+      <div class="crit"><label>Control del tiempo — sin pausas mayores a 5 segundos (0–2)</label><select id="s3"><option>0</option><option>1</option><option>2</option></select></div>
+      <div class="crit"><label>Resolución de la traba — salida sólida ante la excepción (0–2)</label><select id="s4"><option>0</option><option>1</option><option>2</option></select></div>
+      <div class="total" id="totalTxt">TOTAL: 0 / 10</div>
+      <div class="toolbar" style="margin-top:10px;">
+        <button class="btn-verde btn-mini" id="btnSave">💾 Guardar caso en el banco</button>
+        <button class="btn-line btn-mini" id="btnPrint" style="color:#e8e4d8; border-color:#6b6353;">🖨 Imprimir ficha</button>
+        <button class="btn-line btn-mini" id="btnExport" style="color:#e8e4d8; border-color:#6b6353;">⬇ Exportar banco (.txt)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banco">
+  <h3>Banco de casos resueltos · se guarda en este navegador</h3>
+  <div id="bancoList"><p class="pending" style="color:var(--gris); font-style:italic;">Aún no hay casos archivados.</p></div>
+</div>
+
+<footer>Ruptura &amp; Tribunal · Isaac Moctezuma · LRIN · UNRC · 2026-2</footer>
+</div>
+
+<!-- ============ MODAL TUTORIAL ============ -->
+<div class="modal-bg" id="tutModal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModals()">✕ Cerrar</button>
+    <h2>Cómo se juega · versión analógica y web</h2>
+    <h4>La idea</h4>
+    <p>Los dados son un <b>generador de restricciones aleatorias</b>: cada tirada te obliga a conectar una época histórica, un ilícito internacional, una fuente de derecho y una traba procesal que normalmente no pondrías juntos. Es práctica de recuperación activa, no memorización.</p>
+    <h4>Equivalencia analógico ↔ web</h4>
+    <ol>
+      <li><b>Los 8 dados físicos</b> (pares verde, blanco, rojo, amarillo) = los botones de tirada. En físico, cada par se coloca sobre su cuadrante del tablero impreso.</li>
+      <li><b>El atlas DK</b> «El Mundo Moderno 1914–Presente» (págs. 278–348) = el cuadrante verde te da la página exacta: ábrela en el libro y ahí está tu teatro de operaciones.</li>
+      <li><b>Fichas rayadas</b> = durante los 60 segundos de cancillería anotas solo palabras clave (ilícito, fuente, vía, traba). En la web, el cronómetro corriendo hace esa función.</li>
+      <li><b>Fichas blancas del arsenal jurídico</b> (las 28 impresas) = el botón «Arsenal jurídico»: máximo 2 fichas consultadas por alegato.</li>
+      <li><b>Cronómetro físico</b> = dado amarillo 2 × 30 segundos. La web lo calcula y corre sola.</li>
+    </ol>
+    <h4>Modo rápido (calentamiento, 5 min)</h4>
+    <p>Un dado de cada color. Abre el atlas en el mapa, y en 60 segundos formula en voz alta: <b>(a)</b> qué ocurre en el mapa, <b>(b)</b> qué norma lo rige, <b>(c)</b> cómo se resuelve o qué traba lo impide.</p>
+    <h4>Modo tribunal (completo, 10–15 min)</h4>
+    <ol>
+      <li>Tira los 8 dados y agrúpalos por color en sus cuadrantes.</li>
+      <li>Abre el atlas en la página que marquen los verdes: lee fronteras, flechas y actores.</li>
+      <li><b>Cancillería</b> (60 s): ficha rayada con palabras clave. Puedes apoyarte en 2 fichas del arsenal.</li>
+      <li><b>Alegato</b> (cronómetro del amarillo): señalando el mapa — (1) ubicación espacio-temporal, (2) imputación del ilícito, (3) subsunción jurídica con la fuente del art. 38 y la vía del art. 33, (4) contestación a la traba.</li>
+      <li>Autoevalúa con la rúbrica (10 pts). Menos de 6: repite el caso con los mismos dados.</li>
+      <li>Guarda la ficha fechada: tu <b>banco de casos</b> para repasar antes de foros y exámenes.</li>
+    </ol>
+    <h4>Con compañeros («Duelo ante la Corte»)</h4>
+    <p>Cancillería A (demandante) vs. Cancillería B (demandado, que defiende con la traba del amarillo), una Presidencia que evalúa con la rúbrica y puede hacer una pregunta por bando, y una Secretaría con dados y cronómetro. Ronda de 10 minutos y rotación de roles.</p>
+  </div>
+</div>
+
+<!-- ============ MODAL ARSENAL ============ -->
+<div class="modal-bg" id="arsModal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModals()">✕ Cerrar</button>
+    <h2>Arsenal jurídico · 28 fichas</h2>
+    <p style="font-style:italic;">Regla: máximo 2 fichas consultadas por alegato. Elige bien.</p>
+    <input class="ars-search" id="arsSearch" placeholder="Buscar (ej. veto, costumbre, Avena, UNCLOS…)">
+    <div class="ars-filters">
+      <span class="chip on" data-f="all">Todas</span>
+      <span class="chip" data-f="tratado">Tratados</span>
+      <span class="chip" data-f="principio">Principios</span>
+      <span class="chip" data-f="juris">Jurisprudencia</span>
+      <span class="chip" data-f="mecanismo">Mecanismos</span>
+    </div>
+    <div id="arsList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================== DATA ================== */
+const ERAS = [
+ {n:"La Gran Guerra y la revolución (1914–1929)", maps:[[280,"La Primera Guerra Mundial"],[282,"Las trincheras"],[284,"Una guerra global"],[286,"La Revolución Rusa"],[290,"Secuelas de la Gran Guerra"],[292,"La Gran Depresión"]]},
+ {n:"Totalitarismos y camino a la guerra (1929–1939)", maps:[[288,"Extremismo político"],[292,"La Gran Depresión"],[294,"China y el nacionalismo"],[296,"La URSS bajo Stalin"],[298,"La Guerra Civil española"],[300,"La Segunda Guerra Mundial"]]},
+ {n:"La Segunda Guerra Mundial (1939–1945)", maps:[[302,"El avance de las Potencias del Eje"],[304,"La Europa ocupada"],[306,"La guerra en el Pacífico"],[308,"La derrota de Alemania"],[310,"La derrota japonesa"],[312,"Hiroshima y Nagasaki"]]},
+ {n:"Posguerra y Guerra Fría temprana (1945–1960)", maps:[[314,"La partición de India"],[316,"La fundación de la China comunista"],[318,"Superpotencias"],[320,"La Guerra Fría"],[322,"La guerra de Corea"],[326,"La unidad europea"]]},
+ {n:"Descolonización y conflictos periféricos (1950–1975)", maps:[[324,"Descolonización del sureste de Asia"],[328,"Descolonización de África"],[330,"Misiles y carrera espacial"],[332,"Derechos civiles y revueltas estudiantiles"],[334,"Las guerras de Indochina"],[336,"Intervención de EE. UU. en Latinoamérica"]]},
+ {n:"Oriente Medio, fin de la URSS y globalización (1948–presente)", maps:[[338,"Israel y Oriente Medio"],[340,"El boom económico y su coste medioambiental"],[342,"La caída del comunismo"],[344,"Guerra en Yugoslavia"],[346,"Globalización"],[348,"Irán y las guerras del Golfo"]]}
+];
+const RED1 = [
+ "Uso de la fuerza o agresión armada (Art. 2.4 Carta ONU)",
+ "Coerción económica: bloqueo, embargo o aranceles punitivos",
+ "Disputa de soberanía: delimitación marítima, ZEE, estrechos o secesión",
+ "Violación grave de DDHH / DIH: crímenes de guerra o lesa humanidad",
+ "Ruptura o incumplimiento unilateral de tratado (pacta sunt servanda)",
+ "Intervención en asuntos internos / apoyo a insurgentes (autodeterminación)"
+];
+const ESC = [
+ {min:1,max:2,t:"Crisis diplomática — notas de protesta, retiro de embajadores, canales consulares."},
+ {min:3,max:4,t:"Retorsión y contramedidas — congelamiento de activos, sanciones, suspensión de ventajas."},
+ {min:5,max:6,t:"Amenaza a la paz — movilización, alianzas colectivas, escenario Capítulo VII."}
+];
+const WHITE1 = [
+ "Tratado o convención (Carta ONU, Conv. de Viena 1969, T-MEC)",
+ "Costumbre internacional (práctica general + opinio juris)",
+ "Principios generales del derecho (buena fe, pacta sunt servanda)",
+ "Jurisprudencia (CIJ, Corte IDH — p. ej. Avena 2004)",
+ "Doctrina de los publicistas de mayor competencia",
+ "Norma de ius cogens (prohibición de agresión, genocidio, esclavitud)"
+];
+const WHITE2 = [
+ "Negociación diplomática directa",
+ "Buenos oficios o mediación (tercer Estado o Secretario General ONU)",
+ "Investigación o conciliación internacional",
+ "Arbitraje internacional con laudo vinculante",
+ "Arreglo judicial ante la CIJ (La Haya)",
+ "Organismos y acuerdos regionales (OEA, paneles T-MEC, CILA)"
+];
+const YEL1 = [
+ "Legítima defensa invocada (Art. 51 Carta ONU)",
+ "Reserva formal introducida al tratado",
+ "Falta de jurisdicción: cláusula facultativa de la CIJ no aceptada",
+ "Parálisis por derecho de veto en el Consejo de Seguridad",
+ "Estado de necesidad o fuerza mayor",
+ "Falta de legitimación activa (ius standi) o recursos internos no agotados"
+];
+const ARSENAL = [
+ {c:"tratado", t:"Carta de las Naciones Unidas (1945)", x:"Art. 2.4 prohíbe la fuerza; Art. 33 (Cap. VI) es el menú de arreglo pacífico; Art. 51 legítima defensa; Cap. VII medidas coercitivas con veto P5. Fundamento de casi toda demanda por agresión y respuesta obligada ante la traba de defensa propia. Límite: el Consejo puede paralizarse por veto."},
+ {c:"tratado", t:"Convención de Viena sobre el Derecho de los Tratados (1969)", x:"Art. 26 pacta sunt servanda; arts. 19–23 reservas (compatibles con objeto y fin); art. 62 rebus sic stantibus (cambio imprevisible); art. 53 ius cogens (tratado que lo contradice es nulo). Contra ruptura de tratado y contra las trabas de reserva y necesidad."},
+ {c:"tratado", t:"Convención de Viena sobre Relaciones Consulares (1963)", x:"Art. 36: aviso consular sin demora al detenido extranjero — la norma del Caso Avena. La protección diplomática es el puente del individuo hacia la CIJ. Límite: no crea acción individual."},
+ {c:"tratado", t:"Pacto Briand-Kellogg (1928)", x:"Renuncia a la guerra como instrumento de política nacional. Vigente antes de la Carta: útil en eras 1–2. Lección: norma sin mecanismo de ejecución es norma débil — la Segunda Guerra Mundial lo probó."},
+ {c:"tratado", t:"T-MEC (2018–2020)", x:"Cap. 31: solución de controversias entre Partes por panel; mecanismo RAC para revisión de resoluciones antidumping (caso Atento). Vía correcta para coerción económica entre las partes. Límite: EE.UU. mantiene el RAC suspendido de facto desde 2020."},
+ {c:"tratado", t:"Estatuto de la CIJ (1945)", x:"Art. 38.1: catálogo de fuentes (a tratados, b costumbre, c principios, d jurisprudencia/doctrina como auxiliares); art. 36: jurisdicción por consentimiento; art. 59: la sentencia obliga solo a las partes del caso."},
+ {c:"tratado", t:"Convenios de Ginebra (1949) + Protocolos (1977)", x:"Núcleo del DIH: heridos, prisioneros, civiles. Hoy costumbre y, en su núcleo, ius cogens: sin reservas válidas contra él. Ojo: DIH regula el conflicto (ius in bello), no la legalidad de la guerra (ius ad bellum)."},
+ {c:"tratado", t:"Convención del Chamizal (1963)", x:"Tratado bilateral México–EE.UU. que resolvió El Paso–Cd. Juárez por negociación soberana. Precedente mexicano de arreglo directo. Límite: los residentes afectados no participaron — invisibilidad del individuo."},
+ {c:"tratado", t:"UNCLOS — Convención del Mar (1982)", x:"Mar territorial 12 mn, ZEE 200 mn, plataforma, estrechos; TIDM y arbitraje anexo VII. Fuente de toda disputa marítima. Límite: EE.UU. no la ratificó y las disputas de límites admiten excepción de jurisdicción."},
+ {c:"tratado", t:"Convención Americana sobre DDHH (San José, 1969)", x:"Sistema interamericano: Corte IDH donde el individuo sí comparece (tras agotar recursos internos). México la aceptó con competencia contenciosa plena en 1998. Vía regional para DDHH en el hemisferio."},
+ {c:"principio", t:"Pacta Sunt Servanda y Buena Fe", x:"Lo pactado obliga y se cumple honestamente (art. 26 CV; art. 38.1.c). Respuesta estándar contra rebus sic stantibus: la estabilidad del pacto prima. Límite: obliga pero no ejecuta."},
+ {c:"principio", t:"Ius Cogens", x:"Norma imperativa: agresión, genocidio, esclavitud, tortura, autodeterminación. Obliga erga omnes, sin reserva ni derogación (art. 53 CV). Anula de golpe las trabas de reserva y necesidad. Límite: nombrarlo no lo ejecuta."},
+ {c:"principio", t:"Costumbre Internacional (Diuturnitas + Opinio Juris)", x:"Práctica general, constante y uniforme + convicción de obligatoriedad. Pruébala con resoluciones de AG, protestas, manuales militares. La prohibición de la fuerza es hoy costumbre e ius cogens con o sin Carta."},
+ {c:"principio", t:"Soberanía, Igualdad y No Intervención", x:"Columna westfaliana: art. 2.1 Carta (igualdad), 2.7 (no intervención), res. 2625 AG. Contra intervención y apoyo a insurgentes. Límite: protege al Estado, no a su población — la tensión humanitaria clásica."},
+ {c:"principio", t:"Autodeterminación de los Pueblos", x:"Res. 1514 (1960) y 2625: motor jurídico de la descolonización. Límite (caso Sahel): pueblos sin Estado, como los tuareg, son titulares sin foro — capacidad jurídica sin capacidad de obrar en su extremo."},
+ {c:"principio", t:"Mare Liberum (Grocio, 1609)", x:"El mar es de todos y de nadie: base doctrinal de la alta mar y UNCLOS. Contraste: Grocio vs. Selden (mare clausum). Límite: la ZEE convirtió el 40% del mar en jurisdicción costera; libre solo queda la alta mar."},
+ {c:"principio", t:"Responsabilidad Internacional del Estado", x:"Todo ilícito genera: cesación, reparación (restitución, indemnización, satisfacción) y garantías de no repetición (Artículos CDI 2001). Es el «¿y qué pides?» del alegato. Límite: la CDI circula como costumbre en formación."},
+ {c:"principio", t:"Monismo, Dualismo y Recepción (México)", x:"Art. 133: tratados aprobados (Senado 76-I, Presidente 89-X, DOF) son ley suprema de la Unión. El derecho interno no justifica incumplir — la responsabilidad internacional sigue. Matiz fino: dos voluntades, dos límites."},
+ {c:"juris", t:"Caso Avena (México c. EE.UU., CIJ 2004)", x:"Violación del art. 36 consular con condenados a muerte. Sentencia favorable (31-03-2004) con reparación… sujeta a la voluntad de EE.UU. Demuestra: ganar en derecho ≠ obtener el resultado. Precedente para rojo 4 + traba de legitimación."},
+ {c:"juris", t:"Uso de fuerza — línea CIJ (Nicaragua 1986 y sucesoras)", x:"La Corte evalúa proporcionalidad, atribución e imputabilidad: «la acción armada, aun de escala limitada, es agresión». Límite: Nicaragua ganó en 1986 y el Consejo quedó paralizado por veto — la lección, otra vez."},
+ {c:"juris", t:"Chamizal (1963) + CILA", x:"La CILA administra ríos internacionales México–EE.UU.: competencia técnica sin poder final, opera por consenso — capacidad delegada. Demuestra que la técnica funciona sin coerción cuando hay voluntad política."},
+ {c:"juris", t:"Caso Atento (T-MEC)", x:"Disputa laboral/comercial resuelta por panel del tratado, no por la CIJ: el derecho comercial moderno vive en paneles. Límite: los paneles deciden entre partes; no crean jurisprudencia general."},
+ {c:"juris", t:"Azawad / Pueblos sin Estado", x:"No hay caso: esa es la lección. Titulares de autodeterminación sin foro que la reconozca — «ni siquiera tienen dónde perder». Úsala como reflexión crítica, no como precedente en tareas escritas."},
+ {c:"juris", t:"Resoluciones de la Asamblea General", x:"No obligan (el Cap. VII es del Consejo) pero prueban opinio juris: res. 1514 (descolonización), 2625 (relaciones amistosas), 377A (Uniting for Peace: la AG recomienda cuando el Consejo se paraliza). Soft law: evidencia, no norma."},
+ {c:"mecanismo", t:"La CIJ por dentro", x:"Solo Estados, solo con consentimiento (tratado, cláusula facultativa, compromiso especial). Sin policía: la ejecución va por el art. 94 → Consejo de Seguridad → donde hay veto. Tu alegato ante la CIJ siempre debe decir de dónde sale el consentimiento."},
+ {c:"mecanismo", t:"Medidas Provisionales y Contramedidas", x:"Provisionales (art. 41): urgencia para proteger derechos en litigio. Contramedidas: represalias no armadas proporcionadas y reversibles — jamás contra ius cogens ni con fuerza. La línea proporcional/desproporcionada decide las escaladas 3–4."},
+ {c:"mecanismo", t:"El Veto del Consejo de Seguridad", x:"P5 bloquea cualquier resolución sustantiva (herencia de Yalta). Rutas alternas: Uniting for Peace (377A), coaliciones regionales, CIJ contenciosa. La parálisis estructural es el argumento crítico más potente del juego."},
+ {c:"mecanismo", t:"Soft Law y Codificación Progresiva", x:"Declaraciones, códigos, lineamientos: orientan sin obligar. La CDI codifica costumbre que los Estados adoptan. Distingue siempre qué es norma y qué aspiración — el error inverso al de ignorar su valor probatorio."}
+];
+
+/* ================== STATE ================== */
+let S = {mode:null, era:0, map:0, red1:0, red2:0, w1:0, w2:0, y1:0, y2:0, rolling:false};
+let timer = {total:0, left:0, running:false, raf:null, last:0, phase:"idle"};
+
+/* ================== UTILS ================== */
+const $ = id => document.getElementById(id);
+const rnd = () => 1 + Math.floor(Math.random()*6);
+function toast(msg){const t=$("toast"); t.textContent=msg; t.style.display="block"; setTimeout(()=>t.style.display="none",2200);}
+function escLevel(v){ return v<=2?ESC[0].t : v<=4?ESC[1].t : ESC[2].t; }
+function diceHTML(n, cls, label){
+  return '<div class="die-wrap"><div class="die '+cls+'">'+n+'</div>'+(label?'<div class="die-label">'+label+'</div>':'')+'</div>';
+}
+
+/* ================== ROLL ================== */
+function rollDice(container, colors, labels, values, cb){
+  const box = $(container);
+  box.innerHTML = colors.map((c,i)=>'<div class="die-wrap"><div class="die '+c+' rolling">?</div>'+(labels&&labels[i]?'<div class="die-label">'+labels[i]+'</div>':'')+'</div>').join('');
+  let ticks=0;
+  const iv = setInterval(()=>{
+    box.querySelectorAll(".die").forEach((d,i)=> d.textContent = rnd());
+    ticks++;
+    if(ticks>10){
+      clearInterval(iv);
+      box.innerHTML = colors.map((c,i)=>diceHTML(values[i], c, labels?labels[i]:null)).join("");
+      if(cb) cb();
+    }
+  },60);
+}
+function animateRoll(pairs, done){
+  S.rolling = true;
+  const jobs = [];
+  if(pairs.green){ const v=[rnd(),rnd()]; S.era=v[0]-1; S.map=v[1]-1; jobs.push(rollDice("diceGreen",["g","g"],["Era","Mapa"],v)); }
+  if(pairs.red){ const v=[rnd(),rnd()]; S.red1=v[0]-1; S.red2=v[1]; jobs.push(rollDice("diceRed",["r","r"],["Ilícito","Escalada"],v)); }
+  if(pairs.white){ const v=[rnd(),rnd()]; S.w1=v[0]-1; S.w2=v[1]-1; jobs.push(rollDice("diceWhite",["w","w"],["Art. 38","Art. 33"],v)); }
+  if(pairs.yellow){ const v=[rnd(),rnd()]; S.y1=v[0]-1; S.y2=v[1]; jobs.push(rollDice("diceYellow",["y","y"],["Traba","Cronómetro"],v)); }
+  setTimeout(()=>{ S.rolling=false; renderResults(pairs); if(done)done(); }, 800);
+}
+
+function renderResults(pairs){
+  if(pairs.green){
+    const era = ERAS[S.era], m = era.maps[S.map];
+    $("resGreen").innerHTML = "<b>Era:</b> "+era.n+"<br><b>Mapa:</b> "+m[1]+"<span class='pg'>Atlas DK · pág. "+m[0]+" · ábrelo en el libro</span>";
+  }
+  if(pairs.red){
+    $("resRed").innerHTML = "<b>Ilícito:</b> "+RED1[S.red1]+"<br><b>Escalada ("+S.red2+"/6):</b> "+escLevel(S.red2);
+  }
+  if(pairs.white){
+    $("resWhite").innerHTML = "<b>Fuente (Art. 38 CIJ):</b> "+WHITE1[S.w1]+"<br><b>Vía (Art. 33 ONU):</b> "+WHITE2[S.w2];
+  }
+  if(pairs.yellow){
+    $("resYellow").innerHTML = "<b>Traba:</b> "+YEL1[S.y1]+"<br><b>Cronómetro:</b> "+(S.y2*30)+" segundos de alegato";
+  }
+  renderCaso(pairs);
+}
+function renderCaso(pairs){
+  const lines = [];
+  if(pairs.green){ const m=ERAS[S.era].maps[S.map]; lines.push("<div class='linea'><span class='tag'>Teatro</span>"+m[1]+" — "+ERAS[S.era].n+" (Atlas DK pág. "+m[0]+")</div>"); }
+  if(pairs.red) lines.push("<div class='linea'><span class='tag'>Imputación</span>"+RED1[S.red1]+" · "+escLevel(S.red2)+"</div>");
+  if(pairs.white) lines.push("<div class='linea'><span class='tag'>Fundamento</span>"+WHITE1[S.w1]+" vía "+WHITE2[S.w2]+"</div>");
+  if(pairs.yellow) lines.push("<div class='linea'><span class='tag'>Traba</span>"+YEL1[S.y1]+" · alegato de "+(S.y2*30)+"s</div>");
+  $("casoBox").innerHTML = lines.join("") || "<span class='pending' style='color:#b8b0a0;'>Lanza los dados.</span>";
+  const quick = !pairs.red && !pairs.white;
+  $("faseTxt").textContent = quick ? "MODO RÁPIDO · 60 segundos, en voz alta: qué pasa, qué norma rige, cómo se resuelve" : "EL TRIBUNAL CENTRAL · Caso emplazado — prepara la cancillería";
+}
+
+/* ================== TIMER ================== */
+function fmt(s){const m=Math.floor(s/60),r=s%60;return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0");}
+function setChrono(sec, phase){
+  timer.total=sec; timer.left=sec; timer.phase=phase; stopTimer();
+  const c=$("chrono"); c.className="chrono "+(phase==="prep"?"prep":"aleg"); c.textContent=fmt(sec);
+}
+function startTimer(){
+  if(timer.total===0){ toast("Primero tira los dados o elige una fase."); return; }
+  if(timer.left===0){ timer.left=timer.total; }
+  timer.running=true; timer.last=Date.now();
+  tick();
+}
+function tick(){
+  if(!timer.running) return;
+  const now=Date.now(); timer.left -= Math.floor((now-timer.last)/1000); timer.last=now;
+  if(timer.left<=0){ timer.left=0; timer.running=false; $("chrono").className="chrono over";
+    $("chrono").textContent=fmt(0); $("faseTxt").textContent="TIEMPO — se cerró la sesión. Autoevalúa y archiva."; return; }
+  $("chrono").textContent=fmt(timer.left);
+  requestAnimationFrame(tick);
+}
+function stopTimer(){ timer.running=false; }
+function resetTimer(){ stopTimer(); timer.left=timer.total; const c=$("chrono"); c.className="chrono "+(timer.phase==="prep"?"prep":timer.phase==="aleg"?"aleg":""); c.textContent=fmt(timer.total||0); }
+
+/* ================== SCORE / BANCO ================== */
+function updTotal(){
+  const t=(+$("s1").value)+(+$("s2").value)+(+$("s3").value)+(+$("s4").value);
+  $("totalTxt").textContent="TOTAL: "+t+" / 10"+(t<6?" · se recomienda repetir el caso con los mismos dados":"");
+  return t;
+}
+[ "s1","s2","s3","s4" ].forEach(id=>$(id).addEventListener("change",updTotal));
+
+function casoData(){
+  const m=ERAS[S.era].maps[S.map];
+  return {
+    fecha:new Date().toLocaleString("es-MX"), modo:S.mode,
+    mapa:m[1]+" (pág. "+m[0]+")", era:ERAS[S.era].n,
+    ilicito:RED1[S.red1]||"—", escalada:escLevel(S.red2),
+    fuente:WHITE1[S.w1]||"—", via:WHITE2[S.w2]||"—",
+    traba:YEL1[S.y1]||"—", segs:(S.y2*30)||0,
+    pts:updTotal()
+  };
+}
+function saveCaso(){
+  if(!$("casoBox").querySelector(".linea")){ toast("No hay caso que guardar: tira los dados primero."); return; }
+  const c=casoData();
+  const bank=JSON.parse(localStorage.getItem("rt_banco")||"[]");
+  bank.unshift(c); localStorage.setItem("rt_banco",JSON.stringify(bank));
+  renderBanco(); toast("Caso archivado en el banco.");
+}
+function renderBanco(){
+  const bank=JSON.parse(localStorage.getItem("rt_banco")||"[]");
+  const box=$("bancoList");
+  if(!bank.length){ box.innerHTML="<p class='pending' style='color:var(--gris); font-style:italic;'>Aún no hay casos archivados.</p>"; return; }
+  box.innerHTML=bank.map((c,i)=>
+    "<div class='banco-item'><div><b>"+c.mapa+"</b> · "+c.ilicito+"<br><span style='color:var(--gris); font-size:12px;'>"+c.fecha+" · "+c.modo+" · fuente: "+c.fuente+" · traba: "+c.traba+"</span></div><div style='display:flex; align-items:center; gap:12px;'><span class='pts'>"+c.pts+"/10</span><button class='del' onclick='delCaso("+i+")'>✕</button></div></div>"
+  ).join("");
+}
+function delCaso(i){
+  const bank=JSON.parse(localStorage.getItem("rt_banco")||"[]");
+  bank.splice(i,1); localStorage.setItem("rt_banco",JSON.stringify(bank)); renderBanco();
+}
+function exportBanco(){
+  const bank=JSON.parse(localStorage.getItem("rt_banco")||"[]");
+  if(!bank.length){ toast("El banco está vacío."); return; }
+  let txt="RUPTURA & TRIBUNAL — BANCO DE CASOS\n"+"=".repeat(50)+"\n\n";
+  bank.forEach((c,i)=>{ txt+="CASO "+(i+1)+" · "+c.fecha+" · "+c.modo+"\n - Mapa: "+c.mapa+" ("+c.era+")\n - Ilícito: "+c.ilicito+" | "+c.escalada+"\n - Fuente: "+c.fuente+" vía "+c.via+"\n - Traba: "+c.traba+"\n - Puntaje: "+c.pts+"/10\n\n"; });
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([txt],{type:"text/plain"}));
+  a.download="banco-casos-ruptura-tribunal.txt"; a.click();
+}
+
+/* ================== ARSENAL ================== */
+let arsFilter="all";
+function renderArs(){
+  const q=($("arsSearch").value||"").toLowerCase();
+  $("arsList").innerHTML=ARSENAL.filter(x=>(arsFilter==="all"||x.c===arsFilter)&&(x.t+" "+x.x).toLowerCase().includes(q))
+    .map(x=>"<div class='ars-card'><div class='cat'>"+({tratado:"Tratado",principio:"Principio",juris:"Jurisprudencia",mecanismo:"Mecanismo"})[x.c]+"</div><div class='tit'>"+x.t+"</div><p>"+x.x+"</p></div>")
+    .join("")||"<p class='pending'>Sin resultados.</p>";
+}
+document.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(c=>c.classList.remove("on"));
+  ch.classList.add("on"); arsFilter=ch.dataset.f; renderArs();
+}));
+$("arsSearch").addEventListener("input",renderArs);
+
+/* ================== MODALS ================== */
+function openModal(id){ $(id).classList.add("open"); }
+function closeModals(){ document.querySelectorAll(".modal-bg").forEach(m=>m.classList.remove("open")); }
+document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",e=>{ if(e.target===m) closeModals(); }));
+
+/* ================== PRINT ================== */
+function printFicha(){
+  if(!$("casoBox").querySelector(".linea")){ toast("Tira los dados primero."); return; }
+  const c=casoData();
+  const w=window.open("","_blank");
+  w.document.write("<html><head><title>Ficha de caso</title><style>body{font-family:Georgia,serif;padding:40px;color:#222;line-height:1.6}h1{font-size:22px;border-bottom:2px solid #a13a2e;padding-bottom:6px}.tag{font-weight:bold}.blk{margin:8px 0;border:1px dashed #a1741f;padding:10px 14px;background:#fdfaf1}</style></head><body>");
+  w.document.write("<h1>Ruptura &amp; Tribunal · Ficha de caso</h1><p>"+c.fecha+" · "+c.modo+"</p>");
+  w.document.write("<div class='blk'><span class='tag'>CASO / MAPA:</span> "+c.mapa+" — "+c.era+"</div>");
+  if(c.ilicito!=="—") w.document.write("<div class='blk'><span class='tag'>HECHO ILÍCITO:</span> "+c.ilicito+"<br><span class='tag'>ESCALADA:</span> "+c.escalada+"</div>");
+  if(c.fuente!=="—") w.document.write("<div class='blk'><span class='tag'>FUENTE (Art. 38 CIJ):</span> "+c.fuente+"<br><span class='tag'>VÍA (Art. 33 ONU):</span> "+c.via+"</div>");
+  if(c.traba!=="—") w.document.write("<div class='blk'><span class='tag'>TRABA PROCESAL:</span> "+c.traba+"<br><span class='tag'>TIEMPO:</span> "+c.segs+"s</div>");
+  w.document.write("<div class='blk'><span class='tag'>ESTRATEGIA DE DEFENSA:</span> ______________________________</div>");
+  w.document.write("<div class='blk'><span class='tag'>AUTOEVALUACIÓN:</span> "+c.pts+"/10</div>");
+  w.document.write("</body></html>"); w.document.close(); w.print();
+}
+
+/* ================== BUTTONS ================== */
+$("btnQuick").addEventListener("click",()=>{ if(S.rolling)return; S.mode="Modo rápido"; $("faseTxt").textContent="MODO RÁPIDO · Calentamiento de 5 minutos"; animateRoll({green:true}); });
+$("btnFull").addEventListener("click",()=>{ if(S.rolling)return; S.mode="Modo tribunal"; animateRoll({green:true,red:true,white:true,yellow:true}); });
+$("btnAuto").addEventListener("click",()=>{
+  if(S.rolling)return; S.mode="Modo tribunal (auto)";
+  $("faseTxt").textContent="CORRIDA AUTOMÁTICA · La Corte emplaza el caso…";
+  animateRoll({green:true,red:true,white:true,yellow:true},()=>{
+    setTimeout(()=>{ $("faseTxt").textContent="FASE DE CANCELERÍA · 60 segundos para palabras clave (máx. 2 fichas del arsenal)"; setChrono(60,"prep"); startTimer(); },600);
+  });
+});
+$("btnPrep").addEventListener("click",()=>{ $("faseTxt").textContent="FASE DE CANCELERÍA · anota solo palabras clave"; setChrono(60,"prep"); startTimer(); });
+$("btnAleg").addEventListener("click",()=>{
+  if(!S.y2){ toast("Tira los dados primero: el amarillo fija tu tiempo."); return; }
+  $("faseTxt").textContent="FASE DE TRIBUNAL · ubica el mapa, imputa, fundamenta, contesta la traba";
+  setChrono(S.y2*30,"aleg"); startTimer();
+});
+$("btnPause").addEventListener("click",()=>{ if(timer.running){stopTimer();}else{startTimer();} });
+$("btnReset").addEventListener("click",resetTimer);
+$("btnSave").addEventListener("click",saveCaso);
+$("btnPrint").addEventListener("click",printFicha);
+$("btnExport").addEventListener("click",exportBanco);
+$("btnTut").addEventListener("click",()=>openModal("tutModal"));
+$("btnArs").addEventListener("click",()=>{renderArs(); openModal("arsModal");});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModals(); });
+
+/* init */
+renderBanco();
+</script>
+</body>
+</html>
