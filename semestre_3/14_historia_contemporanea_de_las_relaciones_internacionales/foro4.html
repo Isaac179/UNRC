@@ -1,571 +1,567 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Foro Integrador - Módulo 4 · historia contemporanea de las relaciones internacionales · UNRC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0b;
-    --paper: #f5f0e8;
-    --warm: #f0ead8;
-    --rust: #c4440a;
-    --rust-light: #f0d4c4;
-    --gold: #c89b2a;
-    --gold-pale: #f7eecc;
-    --sage: #3d5a47;
-    --sage-light: #d4e4d8;
-    --cream-border: #d8cfc0;
-    --muted: #6b6455;
-    --accent-line: 3px solid var(--rust);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a1410;
-    font-family: 'Syne', system-ui, sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .page-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .corner-meta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: #6b5a44;
-    text-transform: uppercase;
-    opacity: 0.7;
-    user-select: none;
-  }
-
-  .masthead {
-    background: var(--paper);
-    border-top: 5px solid var(--rust);
-    padding: 3.5rem 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: var(--rust);
-    opacity: 0.04;
-  }
-
-  .issue-line {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .issue-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    font-weight: 500;
-  }
-
-  .issue-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--cream-border);
-  }
-
-  .issue-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-  }
-
-  .masthead h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 1.4rem;
-    max-width: 85%;
-  }
-
-  .masthead h1 em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .lead-quote {
-    border-left: var(--accent-line);
-    padding: 0.8rem 0 0.8rem 1.4rem;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--sage);
-    max-width: 80%;
-    margin-top: 1rem;
-  }
-
-  .lead-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    font-style: normal;
-    color: var(--muted);
-    margin-top: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .body-zone {
-    background: var(--paper);
-    border-top: 1px solid var(--cream-border);
-    padding: 3rem 3.5rem;
-  }
-
-  .intro-saludo {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--cream-border);
-  }
-
-  .section-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--rust);
-    min-width: 32px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 0.15rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.78;
-    margin-bottom: 1.3rem;
-    text-align: justify;
-    color: #2a261e;
-    hyphens: auto;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong {
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  em {
-    font-style: italic;
-    font-family: 'Instrument Serif', serif;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.9rem;
-    border: 1px solid var(--cream-border);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--warm);
-  }
-
-  .pull-quote {
-    float: right;
-    width: 38%;
-    margin: 0 0 1.5rem 2rem;
-    padding: 1.2rem 1.4rem;
-    border-top: 3px solid var(--gold);
-    border-bottom: 1px solid var(--cream-border);
-    background: var(--gold-pale);
-  }
-
-  .pull-quote p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: #4a3c18;
-    text-align: left;
-    margin: 0;
-  }
-
-  .pull-quote cite {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.7rem;
-  }
-
-  .highlight-box {
-    background: var(--sage-light);
-    border-left: 4px solid var(--sage);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .highlight-box p {
-    font-size: 0.93rem;
-    color: #233328;
-    margin: 0;
-    line-height: 1.65;
-    text-align: left;
-  }
-
-  .highlight-box strong {
-    color: var(--sage);
-  }
-
-  .ritual-closer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.5rem 3.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ritual-closer::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18rem;
-    color: rgba(255,255,255,0.02);
-    pointer-events: none;
-  }
-
-  .ritual-closer p {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: #d4c9b0;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 0;
-  }
-
-  .ritual-closer strong {
-    color: var(--gold);
-  }
-
-  .glossary-zone {
-    background: var(--sage-light);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-  
-  .glossary-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .glossary-term { 
-    font-weight: 700; 
-    color: var(--sage); 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.85rem; 
-    display: inline-block;
-    margin-bottom: 0.3rem;
-  }
-
-  .glossary-def { 
-    font-size: 0.95rem; 
-    margin-bottom: 1.2rem; 
-    color: #233328; 
-    line-height: 1.6;
-  }
-
-  .manifesto-zone {
-    background: var(--paper);
-    padding: 2.5rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-    border-left: 4px solid var(--gold);
-  }
-
-  .manifesto-title { 
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: 0.75rem; 
-    color: var(--gold); 
-    margin-bottom: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-  }
-
-  .manifesto-text { 
-    font-size: 0.85rem; 
-    line-height: 1.6; 
-    color: var(--muted); 
-    text-align: justify;
-  }
-
-  .refs-zone {
-    background: var(--warm);
-    padding: 2rem 3.5rem;
-    border-top: 1px solid var(--cream-border);
-  }
-
-  .refs-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.2rem;
-  }
-
-  .ref-item {
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    padding-left: 1.2rem;
-    text-indent: -1.2rem;
-  }
-
-  .ref-item em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .footer-bar {
-    background: #0f0e0b;
-    padding: 1.2rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-bar .f-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-
-  .footer-bar .f-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #5a5040;
-  }
-
-  .footer-bar .f-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  .clearfix::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @media (max-width: 680px) {
-    .masthead, .body-zone, .refs-zone, .ritual-closer, .footer-bar, .glossary-zone, .manifesto-zone { padding-left: 1.8rem; padding-right: 1.8rem; }
-    .masthead h1 { max-width: 100%; }
-    .pull-quote { float: none; width: 100%; margin: 1.2rem 0; }
-    .intro-saludo { grid-template-columns: 1fr; }
-    .intro-saludo .vertical-label { writing-mode: horizontal-tb; transform: none; }
-  }
-</style>
-</head>
-<body>
-<nav class="menu-funcional" style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-radius: 0 0 20px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
-        <div class="menu-logo">
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Isaac Moctezuma</a><br>
-            <span style="font-size: 0.65rem; color: rgba(255,255,255,0.8);">Relaciones Internacionales · UNRC</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="semestre_1/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 1</a>
-            <a href="semestre_2/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 2</a>
-            <a href="semestre_3/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 3</a>
-            <a href="semestre_4/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 4</a>
-            <a href="semestre_5/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 5</a>
-            <a href="semestre_6/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 6</a>
-            <a href="semestre_7/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 7</a>
-            <a href="semestre_8/" style="background: rgba(0,0,0,0.3); color: white; padding: 8px 16px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📚 Semestre 8</a>
-        </div>
-        <div style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 25px; font-size: 0.7rem; color: white;">
-            👨‍🎓 25228942-2
-        </div>
-    </div>
-</nav>
-<nav style="background: linear-gradient(135deg, #002395, #009edb, #d4af37); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; font-family: system-ui, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <a href="../../index.html" style="color: white; text-decoration: none; font-weight: bold;">🎓 Inicio</a>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-            <a href="../../semestre_1/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S1</a>
-            <a href="../../semestre_2/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S2</a>
-            <a href="../../semestre_3/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S3</a>
-            <a href="../../semestre_4/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S4</a>
-            <a href="../../semestre_5/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S5</a>
-            <a href="../../semestre_6/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S6</a>
-            <a href="../../semestre_7/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S7</a>
-            <a href="../../semestre_8/" style="color: white; text-decoration: none; padding: 5px 10px; background: rgba(255,255,255,0.2); border-radius: 20px;">S8</a>
-        </div>
-        <span style="font-size: 12px; color: white;">👨‍🎓 Isaac</span>
-    </div>
-</nav>
-<div class="page-wrapper">
-  <div class="corner-meta">14 · FORO · UNRC · 2026</div>
-
-  <div class="masthead">
-    <div class="issue-line">
-      <span class="issue-tag">Foro Integrador · Módulo 4</span>
-      <div class="issue-divider"></div>
-      <span class="issue-num">14 · Mayo 2026</span>
-    </div>
-    <h1>Integración <em>de saberes</em> y conclusiones</h1>
-    <div class="lead-quote">
-      "La unidad es el camino, la diversidad es la riqueza."
-      <cite>— Subcomandante Marcos</cite>
-    </div>
-  </div>
-
-  <div class="body-zone">
-    <div class="intro-saludo">
-      <p><strong>Estimada profesora, compañeras y compañeros:</strong> Esta actividad del módulo 4 busca construir un espacio de reflexión colectiva donde los saberes académicos y comunitarios confluyan en un diálogo horizontal. <em>Peut-être</em> las ideas aquí vertidas sirvan como insumo para repensar nuestras prácticas desde la justicia epistémica y la responsabilidad social universitaria.</p>
-    </div>
-
-    <div class="section-block">
-      <div class="section-header">
-        <span class="section-num">01 /</span>
-        <div class="section-title">
-          Consensos y disensos
-          <span>Conclusiones del módulo</span>
-        </div>
-      </div>
-      <p>Se sistematizan los aprendizajes del módulo y se reflexiona sobre su aplicación profesional.</p>
-      <div class="chips">
-        <span class="chip">historia</span>
-        <span class="chip">Módulo 4</span>
-        <span class="chip">FORO</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="glossary-zone">
-    <div class="glossary-title">Glosario de Términos Simbólicos y Conceptos</div>
-    <span class="glossary-term">Justicia epistémica:</span>
-    <div class="glossary-def">El acto de retirar la obediencia al monopolio del saber, reconociendo que el conocimiento válido también habita fuera de la academia.</div>
-    <span class="glossary-term">Responsabilidad Social Universitaria:</span>
-    <div class="glossary-def">Gestión de impactos organizacionales, formativos, cognitivos y sociales. No es filantropía, es justicia institucional.</div>
-  </div>
-
-  <div class="manifesto-zone">
-    <div class="manifesto-title">Manifiesto de Uso Responsable de IA</div>
-    <p class="manifesto-text">Este documento fue estructurado con asistencia de IA para optimización de código HTML/CSS. Las experiencias narradas y el posicionamiento ético son producto de la reflexión y autoría humana de Isaac Moctezuma Calderón.</p>
-  </div>
-
-  <div class="ritual-closer">
-    <p>La integración de saberes nos prepara para la acción transformadora.</p>
-  </div>
-
-  <div class="refs-zone">
-    <div class="refs-label">Referencias · APA 7ª edición</div>
-    <p class="ref-item">Vallaeys, F. (2014). La responsabilidad social universitaria: un nuevo modelo universitario contra la mercantilización.</p>
-    <p class="ref-item">Universidad Rosario Castellanos. (2026). Módulo 4: [Tema del módulo]. Plataforma SECIHTI.</p>
-  </div>
-
-  <div class="footer-bar">
-    <span class="f-name">Isaac Moctezuma Calderón</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">14 · UNRC · Foro Integrador · M4</span>
-    <div class="f-dot"></div>
-    <span class="f-meta">Mayo 2026</span>
-  </div>
+﻿<div
+  style="max-width: 860px; margin: 0 auto; background-color: #eef1ec; border: 1px solid #c9d1cb; color: #1d2b36; font-family: Georgia, 'Palatino Linotype', 'TeX Gyre Pagella', serif;">
+  <table style="width: 100%; border-collapse: collapse;" border="0"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="padding: 0; line-height: 0;"> </td>
+      </tr>
+      <tr>
+        <td
+          style="background-color: #1d2b36; padding: 6px 28px; border-bottom: 4px solid #b3261e;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; color: #a9b6bf; margin: 0;">
+            Campamento de desplazados internos en Kosovo, vista aérea, 1999.
+            Fuente: Alianza Atlántica, dominio público (Wikimedia Commons).</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #1d2b36; padding: 26px 30px 28px 30px;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #c9a227; margin: 0 0 10px 0;">
+            <img class="img-fluid" style="height: 313px; float: right;"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Kosovo_internally_displaced_persons_1999.jpg/960px-Kosovo_internally_displaced_persons_1999.jpg"
+              alt="Vista aérea de un campamento de desplazados internos dentro de Kosovo, 1999"
+              width="409"></p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #c9a227; margin: 0 0 10px 0;">
+            Historia Contemporánea de las RRII · Módulo 4 · Foro de
+            reforzamiento</p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: bold; line-height: 1.02; color: #ffffff; margin: 0 0 12px 0;">
+            Veinticuatro horas<br>para decidir</p>
+          <p
+            style="font-size: 16px; font-style: italic; color: #dfe5e1; margin: 0 0 16px 0; line-height: 1.45;">
+            Tomando la decisión en Kosovo · 20 de febrero de 1999</p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #ffffff; margin: 0;">
+            Isaac Moctezuma Calderón</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%; border-collapse: collapse;" border="0"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="padding: 30px 32px 0 32px;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #b3261e; margin: 0 0 4px 0; font-weight: bold;">
+            Pregunta 1</p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: bold; color: #1d2b36; margin: 0 0 16px 0; line-height: 1.15; border-bottom: 2px solid #1d2b36; padding-bottom: 8px;">
+            Las reglas del desafío que enfrenta Javier Solana</p>
+          <table
+            style="width: 100%; border-collapse: collapse; margin: 0 0 6px 0;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="width: 190px; vertical-align: top; padding: 4px 22px 0 0;">
+                  <img class="img-fluid"
+                    style="width: 190px; height: auto; border-left: 6px solid #1f4e8c;"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Javier_Solana_1999.jpg/960px-Javier_Solana_1999.jpg"
+                    alt="Javier Solana, secretario general de la OTAN, en 1999"
+                    width="190">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; line-height: 1.4; color: #55646e; margin: 6px 0 0 0;">
+                    Javier Solana en el Pentágono, 23 de septiembre de 1999.
+                    Foto: R. D. Ward, Departamento de Defensa de EE. UU.,
+                    dominio público.</p>
+                </td>
+                <td style="vertical-align: top;">
+                  <p
+                    style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+                    Para entender las reglas del juego me ayudó volver a ver a
+                    Solana en la entrevista que dio a <i>El tercer grado</i> el
+                    15 de abril de 1999 (Televisión Española, 1999). Aunque es
+                    de abril, con la campaña aérea ya en curso, deja ver lo que
+                    pesaba sobre él desde febrero: para Solana, Kosovo era la
+                    prueba del fracaso de la diplomacia frente a una limpieza
+                    étnica que avanzaba por la vía de la guerra, y el adversario
+                    tenía nombre, Slobodan Milošević. Sus metas coinciden con
+                    las cinco condiciones que la Alianza fijaría por escrito en
+                    abril: que se detenga la violencia, que salgan de Kosovo las
+                    fuerzas militares, policiales y paramilitares, que se
+                    despliegue una presencia militar internacional, que los
+                    refugiados regresen sin condiciones y que se negocie sobre
+                    la base de Rambouillet (Organización del Tratado del
+                    Atlántico Norte [OTAN], 1999, párr. 4).</p>
+                  <p style="font-size: 15px; line-height: 1.75; margin: 0;">Pero
+                    entre la meta y la decisión hay reglas que nadie le deja
+                    romper sin costo. Yo veo seis:</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table
+            style="width: 100%; border-collapse: collapse; margin: 18px 0 8px 0; font-size: 14px; line-height: 1.55;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="width: 44px; padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R1</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <strong>No hay mandato del Consejo de Seguridad.</strong> La
+                  Resolución 1199, adoptada bajo el capítulo VII el 23 de
+                  septiembre de 1998, exige el cese de hostilidades y evitar una
+                  «catástrofe humanitaria inminente» (Consejo de Seguridad de
+                  las Naciones Unidas, 1998, párr. 2), pero no autoriza el uso
+                  de la fuerza, y China se abstuvo. Con Rusia y China en el
+                  Consejo, un mandato explícito es improbable.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R2</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <strong>El tiempo se mide en vidas.</strong> El 15 de enero de
+                  1999, en Račak, al menos 45 albaneses fueron asesinados, según
+                  lo que estableció el Tribunal Penal Internacional para la ex
+                  Yugoslavia (Kandić, 2026). Cada día de espera tiene un costo
+                  humano.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R3</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <strong>La diplomacia se está agotando.</strong> El 19 de
+                  febrero venció el plazo de las negociaciones de Rambouillet
+                  sin acuerdo (Universidad Nacional Rosario Castellanos [UNRC],
+                  2026, pp. 2–3), y Estados Unidos ya había advertido que, si
+                  solo firmaba la parte albanesa, habría intervención de la OTAN
+                  (Portilla Gómez, 2012, p. 79).</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R4</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <strong>Rusia tiene el corazón partido.</strong> Así lo dijo
+                  Solana en la entrevista: Moscú debía sumarse táctica y
+                  estratégicamente, pero lo une a Serbia un sentimiento profundo
+                  de identidad eslava (Televisión Española, 1999). Sin Rusia no
+                  hay estabilidad duradera en los Balcanes.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R5</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd;">
+                  <strong>El derecho de la guerra obliga a todos.</strong>
+                  Distinguir entre civiles y combatientes, no causar daños
+                  desproporcionados y tomar todas las precauciones posibles son
+                  obligaciones de todas las partes de un conflicto (Comité
+                  Internacional de la Cruz Roja [CICR], 2023). Una intervención
+                  que las viole destruiría la causa que dice defender.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd; border-bottom: 1px solid #b9c3bd;">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #1f4e8c; margin: 0; line-height: 1;">
+                    R6</p>
+                </td>
+                <td
+                  style="padding: 12px 0; vertical-align: top; border-top: 1px solid #b9c3bd; border-bottom: 1px solid #b9c3bd;">
+                  <strong>Kosovo no es solo territorio, es mito.</strong> La
+                  derrota de 1389 dejó una profunda huella en el espíritu serbio
+                  (Portilla Gómez, 2012, p. 69), y en el 600 aniversario de esa
+                  batalla, en 1989, Milošević habló ahí mismo (Portilla Gómez,
+                  2012, p. 76). Cualquier solución que ignore ese peso simbólico
+                  será leída como una humillación.</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 22px;"
+    border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="width: 10px; background-color: #1f4e8c;"> </td>
+        <td style="background-color: #1d2b36; padding: 22px 28px;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #c9a227; margin: 0 0 4px 0; font-weight: bold;">
+            Pregunta 2</p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: bold; color: #ffffff; margin: 0 0 10px 0; line-height: 1.15;">
+            El objetivo: la estabilización final de los Balcanes</p>
+          <p
+            style="font-size: 15px; line-height: 1.75; color: #eef1ec; margin: 0;">
+            El objetivo no puede ser «ganarle» a Milošević; tiene que ser la
+            estabilización final de los Balcanes, una solución que encontremos
+            juntos, con Rusia y con los países aliados. En la entrevista, la
+            postura dominante parecía ser que no habría tregua hasta que ganara
+            la OTAN, y Solana respondía con lo urgente: tienen que parar de
+            matar (Televisión Española, 1999). Pero entonces surge la pregunta
+            que más me inquieta: ¿cómo convencer a los refugiados de regresar a
+            un lugar donde fueron masacrados? Por eso el objetivo tiene dos
+            tiempos: detener la violencia ya, y construir las condiciones para
+            que volver sea posible.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%; border-collapse: collapse;" border="0"
+    cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="padding: 30px 32px 0 32px;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #b3261e; margin: 0 0 4px 0; font-weight: bold;">
+            Pregunta 3</p>
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: bold; color: #1d2b36; margin: 0 0 16px 0; line-height: 1.15; border-bottom: 2px solid #1d2b36; padding-bottom: 8px;">
+            Alternativas: cada regla, una pregunta «¿y si…?»</p>
+          <p style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+            Para generar alternativas usé el método que Duncan Wardle trajo de
+            Disney y que vimos en el video del foro: primero se escriben las
+            reglas sin juzgarlas y después se pregunta qué pasaría si no
+            existieran (Grupo Bancolombia, 2021). Así salieron estas diez:</p>
+          <table
+            style="width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="padding: 8px 10px; background-color: #1f4e8c; color: #ffffff; font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; width: 34%;">
+                  ¿Y si…?</td>
+                <td
+                  style="padding: 8px 10px; background-color: #b3261e; color: #ffffff; font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-weight: bold;">
+                  Alternativa para Solana</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …la opinión pública fuera parte del plan? <span
+                    style="color: #55646e;">(R3)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>1. Comunicación estratégica.</strong> Una campaña
+                  fuerte para alinear la percepción pública y comunicar con
+                  claridad los objetivos concretos de la OTAN: restituir los
+                  derechos humanos y contener a las fuerzas hostiles, con metas
+                  que se puedan medir.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …Rusia no fuera el obstáculo, sino el mediador? <span
+                    style="color: #55646e;">(R1, R4)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>2. Mediación conjunta con Moscú.</strong> Un enviado
+                  europeo y uno ruso hablan con Belgrado al mismo tiempo; Rusia
+                  gana un papel de garante y Serbia una salida sin humillación.
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …el plazo fuera corto y la amenaza creíble? <span
+                    style="color: #55646e;">(R2)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>3. Ultimátum de días, no de semanas</strong>, con las
+                  cinco condiciones por escrito y la fuerza visible pero en
+                  reserva.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …se pudiera ver todo lo que pasa en el terreno? <span
+                    style="color: #55646e;">(R2, R5)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>4. Observadores internacionales con mandato
+                    reforzado</strong> y acceso libre a las aldeas, para que
+                  cada abuso quede documentado al momento.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …la prioridad fuera proteger, no castigar? <span
+                    style="color: #55646e;">(R5)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>5. Corredores humanitarios</strong> y campamentos
+                  protegidos con las agencias de las Naciones Unidas, porque los
+                  refugiados y desplazados tienen protección específica en el
+                  derecho humanitario (CICR, 2023).</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …la presión cayera sobre la élite y no sobre el pueblo? <span
+                    style="color: #55646e;">(R5)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>6. Sanciones dirigidas:</strong> congelar bienes y
+                  prohibir viajes a quienes dirigen la represión, en lugar de
+                  castigos que paga la población.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …la justicia llegara antes que las bombas? <span
+                    style="color: #55646e;">(R2)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>7. Advertencia penal pública:</strong> el Tribunal
+                  para la ex Yugoslavia ya existía; anunciar que cada orden de
+                  represión será investigada eleva el costo personal de seguir
+                  matando.</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …se respetara el mito en lugar de pelearlo? <span
+                    style="color: #55646e;">(R6)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>8. Garantías para la minoría serbia</strong> y para
+                  sus monasterios y sitios históricos, como parte de cualquier
+                  acuerdo, para que la paz no se viva como una derrota sagrada.
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  …volver fuera más seguro que quedarse fuera? <span
+                    style="color: #55646e;">(objetivo)</span></td>
+                <td
+                  style="padding: 10px; vertical-align: top; border-bottom: 1px solid #c9d1cb;">
+                  <strong>9. Plan de retorno:</strong> reconstrucción de
+                  viviendas, policía con presencia internacional y comisiones de
+                  verdad en cada municipio, para responder a la pregunta de cómo
+                  regresar a donde hubo una masacre.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; vertical-align: top;">…la fuerza fuera
+                  inevitable? <span style="color: #55646e;">(R1, R5)</span></td>
+                <td style="padding: 10px; vertical-align: top;"><strong>10.
+                    Fuerza limitada como último recurso</strong>, solo contra
+                  objetivos militares y bajo los principios de distinción y
+                  proporcionalidad, asumiendo abiertamente el costo de actuar
+                  sin mandato del Consejo.</td>
+              </tr>
+            </tbody>
+          </table>
+          <table
+            style="width: 100%; border-collapse: collapse; margin: 18px 0 0 0;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td style="width: 6px; background-color: #c9a227;"> </td>
+                <td style="background-color: #e2e7e1; padding: 14px 18px;">
+                  <p style="font-size: 15px; line-height: 1.7; margin: 0;">
+                    <strong>Mi recomendación:</strong> combinar la 2, la 3 y la
+                    1, con la 5 desde el primer día. Mediación con Rusia, un
+                    plazo corto, una amenaza creíble y objetivos comunicados con
+                    claridad. La 10 solo si todo lo anterior falla, y ceñida al
+                    derecho humanitario, porque una paz ganada violando sus
+                    reglas no estabiliza nada.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 30px;"
+    border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td style="padding: 0 32px;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 26px; font-weight: bold; color: #1d2b36; margin: 0 0 16px 0; line-height: 1.15; border-bottom: 2px solid #1d2b36; padding-bottom: 8px;">
+            Apartado creativo: un latino frente a la Europa profunda</p>
+          <p style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+            Como latino, esta historia me resulta en primera instancia ajena y
+            compleja. Desde niño uno de mis pasatiempos favoritos era ver
+            documentales de Discovery Channel y History, y aunque tengo presente
+            cierto conocimiento histórico, debo reconocer que cargo un alto
+            grado de rechazo a la cultura y la historia anglo. Al mismo tiempo,
+            estoy muy influenciado por la ola británica del rock —The Who, The
+            Rolling Stones, Pink Floyd, The Specials— y por el house, el techno
+            y el psytrance. Esa contradicción es honesta: en mi formación como
+            internacionalista le estoy encontrando el gusto a una historia llena
+            de emoción que, no tengo duda, sigue permeando nuestra realidad,
+            aunque todavía me cuesta comprender la de países en los que no vivo.
+          </p>
+          <table
+            style="width: 100%; border-collapse: collapse; margin: 0 0 14px 0;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td style="vertical-align: top; padding-right: 22px;">
+                  <p
+                    style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+                    Me parece más que curioso que un español esté al frente de
+                    la OTAN en esta crisis, y confieso que me deja cierta
+                    sospecha ver a una figura que siento más cercana a la
+                    hispanidad latinoamericana tan adentrada en un conflicto de
+                    la Europa profunda. La ironía crece cuando el módulo
+                    recuerda que Solana se había opuesto a la permanencia de
+                    España en la OTAN, y aun así su candidatura fue aprobada por
+                    unanimidad en 1995 (UNRC, 2026, pp. 2–3). Los años del fin
+                    de la Guerra Fría reestructuraron todo, hasta las
+                    biografías.</p>
+                  <p style="font-size: 15px; line-height: 1.75; margin: 0;">A
+                    pesar de lo ajeno, empatizo con el secretario, porque sin
+                    importar el lugar o el tiempo los problemas humanos siguen
+                    ciertos patrones. Uno de ellos es la disputa por la
+                    historia: leyendo sobre Ucrania encontré que Rusia y Ucrania
+                    se disputan la herencia de la Rus de Kiev y de Volodímir el
+                    Grande, el príncipe que en 988 bautizó a su pueblo en el
+                    Dniéper; Putin lo presenta como fundador de un Estado
+                    unificado y centralizado, y usa ese pasado común para
+                    minimizar las diferencias entre rusos y ucranianos (Cohen,
+                    2023). Lo mismo pasa con Kosovo y la batalla de 1389: quien
+                    se apropia del pasado reclama el territorio.</p>
+                </td>
+                <td style="width: 210px; vertical-align: top;"><img
+                    class="img-fluid"
+                    style="width: 210px; height: auto; border-bottom: 6px solid #b3261e;"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gazimestan_monument.JPG/960px-Gazimestan_monument.JPG"
+                    alt="Monumento de Gazimestan, que recuerda la batalla de Kosovo de 1389"
+                    width="210">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; line-height: 1.4; color: #55646e; margin: 6px 0 0 0;">
+                    Monumento de Gazimestan, memorial de la batalla de 1389.
+                    Foto: Jan Pešula, 2014, CC0.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+            Aquí me sirve lo que vimos en Pensamiento Político y Social. Cuando
+            cayó la URSS, Fukuyama habló del fin de la historia y de la
+            expansión global de la democracia liberal; la idea fue refutada casi
+            de inmediato por el propio curso de los acontecimientos en los
+            Balcanes y en África, donde los conflictos mostraron lo lejos que
+            estaba el mundo de pacificarse, y en ese vacío cobró fuerza la tesis
+            de Huntington sobre el choque de civilizaciones (Jaramillo Jassir,
+            2015). Kosovo es justo eso: un lugar donde la historia no terminó,
+            sino que regresó con todos sus mitos.</p>
+          <table
+            style="width: 100%; border-collapse: collapse; margin: 6px 0 0 0;"
+            border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td
+                  style="width: 210px; vertical-align: top; padding-right: 22px;">
+                  <img class="img-fluid"
+                    style="width: 210px; height: auto; border-bottom: 6px solid #1f4e8c;"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Mikhail_Gorbachev_1987.jpg/960px-Mikhail_Gorbachev_1987.jpg"
+                    alt="Mijaíl Gorbachov en la biblioteca de la Casa Blanca, 1987"
+                    width="210">
+                  <p
+                    style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 11px; line-height: 1.4; color: #55646e; margin: 6px 0 0 0;">
+                    Mijaíl Gorbachov en Washington, 8 de diciembre de 1987.
+                    White House Photo Office, dominio público.</p>
+                </td>
+                <td style="vertical-align: top;">
+                  <p
+                    style="font-size: 15px; line-height: 1.75; margin: 0 0 14px 0;">
+                    Y aunque no tuvieron el éxito esperado, no puedo dejar fuera
+                    la perestroika y la glásnost. La glásnost abrió la crítica a
+                    la burocracia, pero al multiplicarse las denuncias el efecto
+                    se invirtió: mostró que los problemas no eran pasajeros,
+                    sino propios del sistema (Miranda, 1992, como se citó en
+                    UNRC, 2026, pp. 6–8). Mientras tanto había racionamiento y
+                    huelgas: en julio de 1989 pararon los mineros de Siberia
+                    Occidental, primero por demandas económicas y luego
+                    políticas (Brom, 1992, como se citó en UNRC, 2026, pp. 3–5).
+                  </p>
+                  <p style="font-size: 15px; line-height: 1.75; margin: 0;">Por
+                    eso cierro con la imagen que me dejaron los documentales:
+                    una obrera con las manos llenas de hollín reclamándole
+                    directamente a Gorbachov la falta de alimentos. Me recuerda
+                    que un plan lleno de buenas intenciones puede fallar si no
+                    se ejecuta adecuadamente y en el momento oportuno. Esa es
+                    también la lección para Solana: en Kosovo, el momento
+                    oportuno era el 20 de febrero.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 30px;"
+    border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td
+          style="background-color: #e2e7e1; padding: 24px 32px 26px 32px; border-top: 4px solid #1d2b36;">
+          <p
+            style="font-family: 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: bold; color: #1d2b36; margin: 0 0 12px 0;">
+            Referencias</p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0 0 7px 0; padding-left: 26px; text-indent: -26px;">
+            Cohen, J. (2023, 25 de enero). Vladimir versus Volodymyr:
+            Conflicting Russian and Ukrainian application of Rus' heritage.
+            <i>Cultures of History Forum</i>.
+            https://cultures-of-history.uni-jena.de/politics/russia/vladimir-versus-volodymyr-conflicting-russian-and-ukrainian-application-of-rus-heritage
+          </p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0 0 7px 0; padding-left: 26px; text-indent: -26px;">
+            Comité Internacional de la Cruz Roja. (2023, 20 de julio).
+            <i>Preguntas más frecuentes sobre las leyes de la guerra</i>.
+            https://www.icrc.org/es/document/preguntas-mas-frecuentes-sobre-las-leyes-de-la-guerra
+          </p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0 0 7px 0; padding-left: 26px; text-indent: -26px;">
+            Consejo de Seguridad de las Naciones Unidas. (1998, 23 de
+            septiembre). <i>Resolución 1199 (1998)</i> (S/RES/1199).
+            https://digitallibrary.un.org/record/260416</p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0 0 7px 0; padding-left: 26px; text-indent: -26px;">
+            Portilla Gómez, J. M. (2012). El devenir histórico y legal de
+            Kosovo. <i>Anuario Mexicano de Derecho Internacional</i>, (número
+            del décimo aniversario), 65–106.
+            https://revistas.juridicas.unam.mx/index.php/derecho-internacional/article/view/379/640
+          </p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0 0 7px 0; padding-left: 26px; text-indent: -26px;">
+            Televisión Española. (1999, 15 de abril). Javier Solana [Episodio de
+            programa de televisión]. En <i>El tercer grado</i>. RTVE.</p>
+          <p
+            style="font-size: 13px; line-height: 1.6; margin: 0; padding-left: 26px; text-indent: -26px;">
+            Universidad Nacional Rosario Castellanos. (2026). <i>Módulo 4. El
+              fin de la Guerra Fría y el Nuevo Orden Mundial</i> [Contenido
+            nuclear, Historia Contemporánea de las Relaciones Internacionales,
+            LRIN3HIS8].</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-</body>
-</html>
-
-
-

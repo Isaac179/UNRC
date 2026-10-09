@@ -21,6 +21,21 @@
   ul { margin: 6px 0 6px 18px; padding: 0; }
   li { margin-bottom: 4px; }
   .ficha { border-left: 4px solid #8c6d1f; background: #faf7ef; padding: 12px 16px; margin: 14px 0; }
+  /* ——— Diagrama de flujo ——— */
+  .flujo { width: 100%; margin: 16px 0 6px 0; font-size: 11px; line-height: 1.55; }
+  .fnodo { background: #10243e; color: #fff; padding: 9px 12px; text-align: center; font-family: Arial, sans-serif; font-weight: bold; letter-spacing: 0.08em; font-size: 11.5px; }
+  .fsub { background: #eef2f6; border: 1px solid #10243e; color: #10243e; padding: 6px 10px; text-align: center; font-family: Arial, sans-serif; font-weight: bold; font-size: 10.5px; letter-spacing: 0.05em; }
+  .fcaja { border: 1px solid #8fa3b8; background: #fff; padding: 9px 11px; vertical-align: top; }
+  .fcaja h4 { margin: 0 0 6px 0; font-size: 11.5px; color: #10243e; font-family: Arial, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 1px solid #d5dde6; padding-bottom: 4px; }
+  .fcaja h4 .req { display: block; font-size: 9px; color: #8c6d1f; font-weight: normal; letter-spacing: 0.02em; text-transform: none; margin-top: 2px; }
+  .fcaja ul { margin: 0 0 5px 14px; padding: 0; }
+  .fcaja li { margin-bottom: 2px; }
+  .fcaja p { margin: 0; }
+  .fcaja .ej { color: #8c1d18; font-style: italic; font-size: 10.5px; border-top: 1px dashed #d5dde6; padding-top: 4px; margin-top: 5px; }
+  .conector { width: 2px; background: #10243e; margin: 0 auto; height: 16px; }
+  .flecha { text-align: center; color: #10243e; font-size: 11px; line-height: 8px; margin-top: -4px; }
+  .fila { display: flex; gap: 14px; align-items: stretch; }
+  .fila > * { flex: 1; }
   .fuentes p { margin: 0 0 9px; padding-left: 28px; text-indent: -28px; font-size: 11.5px; }
   .pie { text-align: center; font-size: 10px; color: #777; margin-top: 40px; }
 </style>
@@ -54,42 +69,63 @@
   <!-- ORGANIZADOR GRÁFICO -->
   <h2>Desarrollo · Organizador gráfico: los sujetos del DIP</h2>
 
-  <table class="org">
-    <tr><th style="width:132px;">Categoría</th><th>Elementos / requisitos</th><th>Contenido esencial</th><th>Ejemplo o caso</th></tr>
-    <tr>
-      <td class="cat">ESTADOS<br>(sujetos plenos)</td>
-      <td><ul><li>Población permanente</li><li>Territorio definido</li><li>Gobierno</li><li>Capacidad jurídica para entablar relaciones internacionales</li></ul><em>Convención de Montevideo, 1933</em></td>
-      <td>Son el sujeto prototípico: personalidad plena conferida por el propio derecho internacional. La soberanía es su atributo indispensable (art. 2.1, Carta ONU: igualdad soberana); hoy se discute si sigue siendo un concepto jurídico o un discurso político, porque las competencias del Consejo de Seguridad y las interdependencias económicas lo relativizan.</td>
-      <td>Estado mexicano frente al panel del Anexo 31-A del T-MEC (Mina San Martín, MEX-USA-2023-31A-01): invoca soberanía y gana la cuestión de jurisdicción.</td>
-    </tr>
-    <tr>
-      <td class="cat">RECONOCIMIENTO<br>(acto unilateral)</td>
-      <td><ul><li>De Estados: efecto <b>declarativo</b> vs. <b>constitutivo</b></li><li>De gobiernos: efectividad + legitimidad (gobierno de facto)</li><li>Expreso o tácito</li></ul></td>
-      <td>Dixon: el reconocimiento constituye al Estado para la teoría constitutiva; la tesis mayoritaria (Institut du Droit International) es declarativa: la estatalidad existe aunque nadie la reconozca, pero sin reconocimiento no hay relaciones bilaterales ni plena eficacia práctica.</td>
-      <td>Talibanes en Afganistán: poder de facto efectivo sin reconocimiento internacional.</td>
-    </tr>
-    <tr>
-      <td class="cat">SUJETOS ATÍPICOS<br>(sui generis)</td>
-      <td><ul><li>Sin territorio o con soberanía mínima</li><li>Relevancia funcional o humanitaria</li></ul></td>
-      <td><b>Santa Sede</b> (jefatura de la Iglesia, nuncios, Concordatos, observador en la ONU; distinta del Estado del Vaticano, 0.44 km²); <b>Soberana Orden de Malta</b> (humanitaria, sin territorio); <b>CICR</b> (asociación de derecho suizo, sujeto por sus funciones en conflictos armados); <b>beligerantes</b> y <b>individuos</b> (responsabilidad penal internacional; derechos humanos básicos por costumbre).</td>
-      <td>Corte Penal Internacional juzga a combatientes individuales; Santa Sede como mediadora.</td>
-    </tr>
-    <tr>
-      <td class="cat">ORGANIZACIONES INTERNACIONALES<br>(intergubernamentales)</td>
-      <td><ul><li>Tratado constitutivo</li><li>Órganos propios y voluntad autónoma</li><li>Capacidad jurídica expresa o implícita</li></ul></td>
-      <td>Nacen del derecho de los tratados (antecedentes: UPU 1874; consolidación: Liga de Naciones y OIT, 1919). Capacidad distinta de la que tienen en el derecho interno de los Estados (art. 104 Carta ONU). Estructura típica: asamblea de todos los miembros (AG ONU), órgano restringido con jerarquía (Consejo de Seguridad, 5 permanentes con veto), secretaría ejecutiva, órganos casi parlamentarios (Parlamento Europeo).</td>
-      <td>ONU y su personalidad internacional reconocida (opinión consultiva de la CIJ sobre reparación de daños, 1949); OIT y su caja de indicadores de Trabajo Decente aplicada al caso T-MEC.</td>
-    </tr>
-    <tr>
-      <td class="cat">ONG E INSTITUCIONES NO ESTATALES</td>
-      <td><ul><li>Sin personalidad plena de DIP</li><li>Incidencia por presión, documentación y expertise</li></ul></td>
-      <td>No son sujetos plenos pero intervienen en la agenda internacional. La CIJ (1949) aclaró que los sujetos de un sistema jurídico no son idénticos en naturaleza ni extensión de derechos: la personalidad se determina caso por caso.</td>
-      <td>Organizaciones sindicales y de derechos humanos que dieron visibilidad internacional al conflicto de la Mina San Martín (2007–2024).</td>
-    </tr>
-  </table>
+  <div class="flujo">
+    <!-- NODO RAÍZ -->
+    <div class="fnodo">SUJETOS DEL DERECHO INTERNACIONAL PÚBLICO</div>
+    <div class="conector"></div>
+    <div class="flecha">▼</div>
+    <div style="text-align:center; font-size:10px; color:#555; font-style:italic; margin:2px 0 10px 0;">¿Quiénes pueden ser titulares de derechos y obligaciones ante el derecho internacional?</div>
 
-  <div class="ficha">
-    <b>Clave de lectura del organizador.</b> La columna "Categoría" ordena los sujetos de mayor a menor personalidad jurídica: del Estado pleno (Montevideo) al actor sin categoría. La última fila es deliberadamente el punto de partida de mi reflexión: entre las ONG reconocibles y el silencio normativo queda un espacio donde operan actores reales —empresas transnacionales que incumplen contratos colectivos y grupos criminales que desplazan poblaciones— que el derecho internacional todavía no sabe nombrar como sujetos obligados.
+    <!-- RAMA 1: SUJETOS CON PERSONALIDAD JURÍDICA -->
+    <div class="fsub">RAMA 1 · SUJETOS CON PERSONALIDAD JURÍDICA PLENA O RECONOCIDA</div>
+    <div class="conector"></div><div class="flecha">▼</div>
+
+    <div class="fila">
+      <div class="fcaja">
+        <h4>1 · Estados (sujetos plenos)<span class="req">Montevideo 1933: población permanente · territorio · gobierno · capacidad de relaciones internacionales</span></h4>
+        <p>Personalidad plena otorgada por el propio DIP. Soberanía como atributo indispensable (art. 2.1 Carta ONU: igualdad soberana), hoy relativizada por el Consejo de Seguridad y la interdependencia.</p>
+        <p class="ej">Caso: Estado mexicano ante el panel del Anexo 31-A (Mina San Martín) — invoca soberanía y gana la jurisdicción.</p>
+      </div>
+      <div class="fcaja">
+        <h4>2 · Reconocimiento (acto unilateral)<span class="req">De Estados: declarativo vs. constitutivo · de gobiernos: efectividad + legitimidad · expreso o tácito</span></h4>
+        <p>Para la teoría constitutiva, el reconocimiento crea al Estado; la tesis mayoritaria (Institut du Droit International) es declarativa: existe sin reconocimiento, pero sin eficacia plena.</p>
+        <p class="ej">Caso: Talibanes en Afganistán — poder de facto efectivo, sin reconocimiento internacional.</p>
+      </div>
+    </div>
+    <div class="conector"></div><div class="flecha">▼</div>
+
+    <div class="fila">
+      <div class="fcaja">
+        <h4>3 · Organizaciones internacionales<span class="req">Tratado constitutivo · órganos y voluntad propios · capacidad jurídica expresa o implícita</span></h4>
+        <p>Del derecho de los tratados (UPU 1874 → Liga de Naciones y OIT, 1919). Estructura: asamblea general, órgano restringido (CS-ONU, veto de los 5), secretaría, órganos cuasi parlamentarios. Capacidad ≠ la del derecho interno (art. 104 Carta).</p>
+        <p class="ej">Caso: personalidad internacional de la ONU (CIJ, reparación de daños, 1949); OIT y Trabajo Decente aplicado al T-MEC.</p>
+      </div>
+      <div class="fcaja">
+        <h4>4 · Sujetos atípicos (sui generis)<span class="req">Territorio mínimo o nulo · relevancia funcional o humanitaria</span></h4>
+        <p>Santa Sede (distinta del Vaticano, 0.44 km²) · Soberana Orden de Malta (humanitaria, sin territorio) · CICR (asociación de derecho suizo, sujeto por sus funciones) · beligerantes e individuos (responsabilidad penal internacional; DDHH básicos por costumbre).</p>
+        <p class="ej">Caso: la CPI juzga a individuos; la Santa Sede como mediadora.</p>
+      </div>
+    </div>
+
+    <div class="conector" style="height:20px;"></div>
+    <div class="flecha">▼</div>
+
+    <!-- RAMA 2 -->
+    <div class="fsub">RAMA 2 · SUJETOS PARCIALES Y VACÍO NORMATIVO (la CIJ, 1949: la personalidad se determina caso por caso)</div>
+    <div class="conector"></div><div class="flecha">▼</div>
+
+    <div class="fila">
+      <div class="fcaja">
+        <h4>5 · ONG e instituciones no estatales<span class="req">Sin personalidad plena de DIP · incidencia por presión, documentación y expertise</span></h4>
+        <p>Intervienen en la agenda internacional sin ser sujetos plenos: la CIJ aclaró que los sujetos no son idénticos en naturaleza ni extensión de derechos.</p>
+        <p class="ej">Caso: sindicatos y organizaciones de DDHH que dieron visibilidad internacional al conflicto de la Mina San Martín (2007–2024).</p>
+      </div>
+      <div class="fcaja">
+        <h4>6 · Actores sin categoría (el vacío)<span class="req">Operan con lógica transnacional · sin obligaciones exigibles ante el DIP</span></h4>
+        <p>Empresas transnacionales que incumplen contratos colectivos y grupos criminales que se diversifican a la minería y desplazan poblaciones: actores reales que el derecho internacional aún no nombra como sujetos obligados.</p>
+        <p class="ej">Caso: crimen organizado y mineras cobijadas en la Montaña de Guerrero → punto de partida de mi reflexión.</p>
+      </div>
+    </div>
   </div>
 
   <!-- REFLEXIÓN -->
