@@ -89,12 +89,18 @@
     for (let m = 1; m <= 4; m++) PLAN.modulo.forEach(t => orden.push({ tipo: t, modulo: m }));
     orden.push({ tipo: "integradora", modulo: null });
 
-    const i = orden.findIndex(o => o.tipo === aqui.tipo && o.modulo === aqui.modulo);
+    // Solo se encadena trabajo publicado (assets/js/publicadas.js, generado).
+    const pub = (typeof PUBLICADAS !== "undefined") ? PUBLICADAS : null;
+    const clave = o => `${aqui.semestre.n}|${aqui.uca.slug}|${o.tipo}|${o.modulo || ""}`;
+    const visibles = pub ? orden.filter(o => pub[clave(o)] || (o.tipo === aqui.tipo && o.modulo === aqui.modulo)) : orden;
+
+    const i = visibles.findIndex(o => o.tipo === aqui.tipo && o.modulo === aqui.modulo);
     if (i === -1) return null;
+    orden.length = 0; visibles.forEach(o => orden.push(o));
 
     const enlace = (o, dir) => {
       if (!o) return `<span class="secuencia-vacia"></span>`;
-      const href = BASE + rutaActividad(aqui.semestre.n, aqui.uca.slug, o.tipo, o.modulo);
+      const href = BASE + (pub && pub[clave(o)] ? pub[clave(o)] : rutaActividad(aqui.semestre.n, aqui.uca.slug, o.tipo, o.modulo));
       const t = TIPOS[o.tipo];
       return `<a class="secuencia-${dir}" href="${href}">
                 <span class="secuencia-dir">${dir === "prev" ? "Anterior" : "Siguiente"}</span>
@@ -110,7 +116,19 @@
   }
 
   // ---- Montar ---------------------------------------------------------
-  document.addEventListener("DOMContentLoaded", function () {
+  // publicadas.js se carga aquí para no tocar cada página: si no llega, la
+  // secuencia cae a la convención de rutas de data.js.
+  const listo = new Promise(function (resolver) {
+    if (typeof PUBLICADAS !== "undefined") return resolver();
+    const s = document.createElement("script");
+    s.src = BASE + "assets/js/publicadas.js";
+    s.onload = s.onerror = function () { resolver(); };
+    document.head.appendChild(s);
+  });
+
+  document.addEventListener("DOMContentLoaded", function () { listo.then(montar); });
+
+  function montar() {
     const nav = construir();
     document.body.insertBefore(nav, document.body.firstChild);
 
@@ -134,5 +152,5 @@
         b.setAttribute("aria-expanded", abierto);
       });
     });
-  });
+  }
 })();

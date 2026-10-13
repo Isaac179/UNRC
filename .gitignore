@@ -40,10 +40,26 @@ node_modules/
 DisplayCAL*/
 
 # Lecturas: van a la despensa
+# Contenidos de los cursos (material de la UNRC, no de autoria propia)
+contenido_nuclear*
+*Contenido Nuclear*
+*Contenido_Nuclear*
+NUCLEAR_FULL*
+LRIN*_Contenido*.pdf
+# Libros de terceros
+*Tristes*Tr*picos*
+levi-strauss_*
+# Plantillas con huecos: no son trabajo terminado
+*_plantilla.html
 LIT/
 sre_fondo_sdocumentales_primarios/
 
 # Fuentes de trabajo, no publicables
 MIS DISE*.md
 _fuente_*.md
+MIGRACION.md
 .claude/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,25 @@
+name: Verificar portafolio
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regla del restaurante (terceros, cascarones, enlaces)
+        run: python herramientas/verificar_restaurante.py
+      - name: Índices al día
+        run: |
+          python herramientas/generar_indices.py
+          git diff --exit-code || (echo "::error::Los índices no están al día: corre python herramientas/generar_indices.py y haz commit." && exit 1)

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ruptura & Tribunal: simulador con dados para practicar Derecho Internacional Público, Historia Contemporánea y Pensamiento Político y Social. Isaac Moctezuma Calderón, LRIN UNRC.">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Ruptura &amp; Tribunal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout: una mesa de juego — franja de cinco colores, cuadrantes de dados en rejilla, estrado oscuro de la Corte debajo; pestañas para arsenal y banco. */
+:root{
+  --papel:#f7f4ee; --ficha:#fdfaf1; --fondo:#e9e4d8; --borde:#c9c1ae; --tinta:#1a1612; --tinta2:#453f36; --gris:#7a7063;
+  --verde:#2e6b46; --verde-bg:#eaf0ea; --rojo:#a13a2e; --rojo-bg:#f5e9e6; --blanco:#6b6353; --blanco-bg:#efece2;
+  --ambar:#d9a13a; --ambar-osc:#9a6c16; --ambar-bg:#f6efdd; --morado:#5b3f78; --morado-bg:#efe9f4;
+  --estrado:#1f2a22; --estrado-txt:#e8e4d8; --estrado-sub:#b8b0a0; --ok:#2e6b46; --mal:#a13a2e;
+  --f-disp:'Bodoni Moda', 'Bodoni MT', Didot, Georgia, serif;
+  --f-cuerpo:'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --f-util:'Jost', 'Century Gothic', Futura, 'Trebuchet MS', sans-serif;
+  --f-num:ui-monospace, Consolas, 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --papel:#1d1b17; --ficha:#24211c; --fondo:#141310; --borde:#3d382f; --tinta:#f2ede2; --tinta2:#d6cfbf; --gris:#a39a8a;
+  --verde:#6fb58a; --verde-bg:#1d2a21; --rojo:#e07a6b; --rojo-bg:#2e1f1c; --blanco:#bdb4a2; --blanco-bg:#27241e;
+  --ambar:#e3b458; --ambar-osc:#e3b458; --ambar-bg:#2c2616; --morado:#b79ad8; --morado-bg:#261f2e;
+  --estrado:#0f1612; --estrado-txt:#ece7dc; --estrado-sub:#a39a8a; --ok:#6fb58a; --mal:#e07a6b; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --papel:#1d1b17; --ficha:#24211c; --fondo:#141310; --borde:#3d382f; --tinta:#f2ede2; --tinta2:#d6cfbf; --gris:#a39a8a;
+  --verde:#6fb58a; --verde-bg:#1d2a21; --rojo:#e07a6b; --rojo-bg:#2e1f1c; --blanco:#bdb4a2; --blanco-bg:#27241e;
+  --ambar:#e3b458; --ambar-osc:#e3b458; --ambar-bg:#2c2616; --morado:#b79ad8; --morado-bg:#261f2e;
+  --estrado:#0f1612; --estrado-txt:#ece7dc; --estrado-sub:#a39a8a; --ok:#6fb58a; --mal:#e07a6b; color-scheme:dark; }
+
+*{box-sizing:border-box;}
+body{background:var(--fondo); color:var(--tinta2); font-family:var(--f-cuerpo); font-size:15px; line-height:1.55; margin:0; padding-inline:16px; padding-block:16px 40px;}
+.app{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
+h1,h2,h3{text-wrap:balance; margin:0;}
+button{font-family:var(--f-util); font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:10px 14px; border:1px solid transparent; cursor:pointer; background:var(--blanco); color:#fff; border-radius:2px;}
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--ambar); outline-offset:2px;}
+button:disabled{opacity:.4; cursor:not-allowed;}
+.b-verde{background:var(--verde);} .b-rojo{background:var(--rojo);} .b-morado{background:var(--morado);} .b-ambar{background:var(--ambar-osc);}
+.b-linea{background:transparent; color:var(--tinta2); border-color:var(--borde);}
+.dark-ui .b-linea{color:var(--estrado-txt); border-color:#4c5a50;}
+:root[data-theme="dark"] .b-verde, :root[data-theme="dark"] .b-rojo, :root[data-theme="dark"] .b-morado, :root[data-theme="dark"] .b-ambar{color:#111;}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .b-verde, :root:not([data-theme="light"]) .b-rojo, :root:not([data-theme="light"]) .b-morado, :root:not([data-theme="light"]) .b-ambar{color:#111;} }
+
+/* cabecera */
+header{background:var(--papel); border:1px solid var(--borde);}
+.franja{display:flex; height:8px;} .franja i{flex:1;}
+.franja i:nth-child(1){background:var(--verde);} .franja i:nth-child(2){background:#d9d4c8;} .franja i:nth-child(3){background:var(--rojo);} .franja i:nth-child(4){background:var(--ambar);} .franja i:nth-child(5){background:var(--morado);}
+.cab{padding:18px 22px 14px; display:flex; flex-direction:column; gap:10px;}
+.kicker{font-family:var(--f-util); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gris);}
+h1{font-family:var(--f-disp); font-weight:700; font-size:clamp(28px,5vw,40px); color:var(--tinta); line-height:1.05;}
+h1 em{font-style:italic; font-weight:500; color:var(--rojo);}
+.sub{font-style:italic; color:var(--gris); font-size:14px; max-width:70ch;}
+.acciones{display:flex; gap:8px; flex-wrap:wrap;}
+.tabs{display:flex; gap:0; border-top:1px solid var(--borde); overflow-x:auto;}
+.tab{background:transparent; color:var(--gris); border:none; border-bottom:3px solid transparent; padding:12px 16px; white-space:nowrap;}
+.tab[aria-selected="true"]{color:var(--tinta); border-bottom-color:var(--tinta);}
+.kbd{font-family:var(--f-num); font-size:10px; border:1px solid var(--borde); padding:0 4px; border-radius:2px; margin-left:6px; color:var(--gris); text-transform:none; letter-spacing:0;}
+
+/* mesa */
+.mesa{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:12px;}
+.q{background:var(--papel); border:1px solid var(--borde); border-top:4px solid var(--c); padding:14px 16px; display:flex; flex-direction:column; gap:10px; min-width:0;}
+.q h3{font-family:var(--f-util); font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--c);}
+.q.apagado{opacity:.5;}
+.dados{display:flex; gap:10px; flex-wrap:wrap; min-height:70px;}
+.dw{text-align:center;}
+.dado{width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-family:var(--f-num); font-size:21px; font-weight:700; color:#fff; border-radius:7px; background:var(--c); box-shadow:inset 0 -3px 0 rgba(0,0,0,.25);}
+.q.ambar .dado{color:#3d2f10;}
+.dado.vacio{background:transparent; border:1px dashed var(--borde); color:var(--gris); box-shadow:none;}
+.dado.gira{animation:gira .45s linear infinite;}
+@keyframes gira{to{transform:rotate(360deg);}}
+.dado.cae{animation:cae .3s ease-out;}
+@keyframes cae{0%{transform:scale(.5) rotate(-18deg);}70%{transform:scale(1.12);}100%{transform:none;}}
+@media (prefers-reduced-motion: reduce){ .dado.gira, .dado.cae{animation:none;} }
+.dl{font-family:var(--f-util); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); margin-top:4px;}
+.res{background:var(--ficha); border:1px dashed var(--c); padding:10px 12px; font-size:14px; flex:1;}
+.res b{color:var(--tinta);}
+.pg{display:block; font-family:var(--f-util); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--c); margin-top:6px;}
+.pend{color:var(--gris); font-style:italic;}
+.verde{--c:var(--verde);} .rojo{--c:var(--rojo);} .blanco{--c:var(--blanco);} .ambar{--c:var(--ambar-osc);} .morado{--c:var(--morado);}
+.q.verde{background:linear-gradient(var(--verde-bg),var(--papel) 60%);} .q.rojo{background:linear-gradient(var(--rojo-bg),var(--papel) 60%);}
+.q.blanco{background:linear-gradient(var(--blanco-bg),var(--papel) 60%);} .q.ambar{background:linear-gradient(var(--ambar-bg),var(--papel) 60%);}
+.q.morado{background:linear-gradient(var(--morado-bg),var(--papel) 60%);}
+
+/* estrado */
+.estrado{background:var(--estrado); color:var(--estrado-txt); padding:20px 22px; display:flex; flex-direction:column; gap:14px; border:1px solid var(--borde);}
+.fase{font-family:var(--f-util); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ambar);}
+.estrado h2{font-family:var(--f-disp); font-size:24px; font-weight:500; color:var(--estrado-txt);}
+.caso{background:rgba(255,255,255,.05); border-left:3px solid var(--ambar); padding:12px 16px; display:flex; flex-direction:column; gap:6px;}
+.tag{font-family:var(--f-util); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ambar); margin-right:8px;}
+.dos{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:18px;}
+@media (max-width:860px){ .dos{grid-template-columns:1fr;} }
+.reloj{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+.crono{font-family:var(--f-num); font-size:44px; min-width:140px; font-variant-numeric:tabular-nums;}
+.crono.prep{color:#8fd1a8;} .crono.aleg{color:#f0c060;} .crono.rep{color:#c9a8ec;} .crono.fin{color:#ff9a8a;}
+.fila{display:flex; gap:8px; flex-wrap:wrap;}
+.mini{padding:8px 11px; font-size:11px;}
+.sug{display:flex; flex-direction:column; gap:6px;}
+.sug-item{display:flex; gap:10px; align-items:flex-start; padding:8px 10px; background:rgba(255,255,255,.04); border:1px solid #3a463d; cursor:pointer; text-align:left; text-transform:none; letter-spacing:0; font-family:var(--f-cuerpo); font-size:13.5px; color:var(--estrado-txt); font-weight:400;}
+.sug-item[aria-pressed="true"]{border-color:var(--ambar); background:rgba(217,161,58,.14);}
+.sug-item .cat{font-family:var(--f-util); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ambar); display:block;}
+.sug-item .caja{width:16px; height:16px; border:1px solid var(--estrado-sub); flex:none; margin-top:3px;}
+.sug-item[aria-pressed="true"] .caja{background:var(--ambar); border-color:var(--ambar);}
+.estrado label{font-size:13.5px;}
+.crit{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding-block:4px; border-bottom:1px solid #2f3b33;}
+.crit select{background:var(--ficha); color:var(--tinta); border:1px solid var(--borde); padding:5px 8px; font-family:var(--f-cuerpo); font-size:14px;}
+.total{font-family:var(--f-util); font-size:17px; letter-spacing:.12em; color:var(--ambar);}
+textarea{width:100%; min-height:88px; background:rgba(255,255,255,.05); color:var(--estrado-txt); border:1px solid #3a463d; padding:10px; font-family:var(--f-cuerpo); font-size:14px; resize:vertical;}
+.interruptor{display:flex; align-items:center; gap:8px; font-family:var(--f-util); font-size:12px; letter-spacing:.08em; text-transform:uppercase;}
+
+/* paneles */
+.panel{background:var(--papel); border:1px solid var(--borde); padding:18px 20px; display:flex; flex-direction:column; gap:12px;}
+.panel h2{font-family:var(--f-disp); font-size:26px; font-weight:500; color:var(--tinta);}
+.nota{font-style:italic; color:var(--gris); font-size:14px; margin:0;}
+input[type=search]{width:100%; padding:10px 12px; border:1px solid var(--borde); background:var(--ficha); color:var(--tinta); font-family:var(--f-cuerpo); font-size:15px;}
+.chips{display:flex; gap:6px; flex-wrap:wrap;}
+.chip{background:var(--ficha); color:var(--tinta2); border:1px solid var(--borde); padding:6px 11px; font-size:10.5px;}
+.chip[aria-pressed="true"]{background:var(--tinta); color:var(--papel); border-color:var(--tinta);}
+.fichas{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px;}
+.ficha{background:var(--ficha); border:2px dashed var(--c,var(--ambar-osc)); padding:12px 14px; font-size:13.5px; display:flex; flex-direction:column; gap:5px; min-width:0;}
+.ficha .cat{font-family:var(--f-util); font-size:9.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--c,var(--ambar-osc));}
+.ficha .tit{font-family:var(--f-disp); font-size:17px; color:var(--tinta); line-height:1.25;}
+.ficha p{margin:0;}
+.ficha .lim{color:var(--gris); font-style:italic;}
+.ficha.doctrina{--c:var(--morado);} .ficha.estante{--c:var(--verde);}
+.sello{display:inline-block; font-family:var(--f-util); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; border:1px solid var(--verde); color:var(--verde); padding:1px 6px; margin-top:2px;}
+
+/* banco */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px;}
+.stat{border:1px solid var(--borde); background:var(--ficha); padding:10px 12px;}
+.stat .n{font-family:var(--f-disp); font-size:30px; color:var(--tinta); font-variant-numeric:tabular-nums;}
+.stat .l{font-family:var(--f-util); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gris);}
+.barra{height:8px; background:var(--blanco-bg); border:1px solid var(--borde); margin-top:6px;}
+.barra i{display:block; height:100%; background:var(--verde);}
+.barra.debil i{background:var(--rojo);}
+.caso-b{border:1px solid var(--borde); background:var(--ficha); padding:10px 12px; display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; font-size:13.5px;}
+.caso-b .meta{color:var(--gris); font-size:12.5px;}
+.pts{font-family:var(--f-num); font-weight:700; color:var(--verde); font-variant-numeric:tabular-nums;}
+.enlace{background:none; border:none; color:var(--rojo); text-decoration:underline; padding:0; text-transform:none; letter-spacing:0; font-family:var(--f-cuerpo); font-size:13px;}
+.aviso{border-left:3px solid var(--ambar-osc); background:var(--ambar-bg); padding:10px 14px; font-size:14px;}
+pre.md{white-space:pre-wrap; background:var(--ficha); border:1px solid var(--borde); padding:12px; font-family:var(--f-num); font-size:12px; max-height:340px; overflow:auto; color:var(--tinta2);}
+.tuto h3{font-family:var(--f-util); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--rojo); margin-top:6px;}
+.tuto p, .tuto li{max-width:72ch;}
+.toast{position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); background:var(--tinta); color:var(--papel); padding:10px 18px; font-family:var(--f-util); font-size:12px; letter-spacing:.08em; z-index:9; max-width:calc(100% - 32px);}
+.integ{border:1px solid var(--borde); border-left:6px solid var(--morado); background:var(--papel); padding:14px 18px; display:flex; flex-direction:column; gap:10px;}
+.integ .fila{align-items:center;}
+.plazo{font-family:var(--f-util); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--rojo);}
+.guia{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px;}
+.mesa-g{border:1px solid #3a463d; border-top:3px solid var(--c); padding:10px 12px; display:flex; flex-direction:column; gap:6px; background:rgba(255,255,255,.03);}
+.mesa-g .fase{color:var(--c);}
+.mesa-g .para{font-family:var(--f-util); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--estrado-sub);}
+.mesa-g textarea{min-height:96px;}
+.mesa-g.verde{--c:#8fd1a8;} .mesa-g.rojo{--c:#f0a090;} .mesa-g.ambar{--c:#f0c060;} .mesa-g.morado{--c:#c9a8ec;}
+.est-nav{display:flex; gap:6px; flex-wrap:wrap;}
+.est-nav button{padding:6px 10px; font-size:10.5px; background:var(--ficha); color:var(--tinta2); border:1px solid var(--borde);}
+.est-nav button[aria-current="true"]{background:var(--morado); color:#fff; border-color:var(--morado);}
+.est-nav button.hecha{border-color:var(--verde); color:var(--verde);}
+.estacion{border:1px solid var(--borde); background:var(--ficha); padding:14px 16px; display:flex; flex-direction:column; gap:8px;}
+.estacion h3{font-family:var(--f-disp); font-size:22px; font-weight:500; color:var(--tinta);}
+.estacion .autores{font-family:var(--f-util); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--morado);}
+.estacion .pregunta{font-size:16px; color:var(--tinta);}
+.estacion label{font-family:var(--f-util); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gris);}
+.estacion textarea{background:var(--papel); color:var(--tinta); border:1px solid var(--borde); min-height:80px;}
+.crono2{font-family:var(--f-num); font-size:30px; color:var(--morado); font-variant-numeric:tabular-nums; min-width:90px;}
+footer{text-align:center; font-family:var(--f-util); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gris);}
+</style>
+
+<div class="app">
+<header>
+  <div class="franja"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cab">
+    <div class="kicker">DIP × Historia Contemporánea × Pensamiento Político · Semestre 3 · Atlas DK «El Mundo Moderno»</div>
+    <h1>Ruptura <em>&amp;</em> Tribunal</h1>
+    <p class="sub" style="margin:0">Simulador de jurisprudencia y crisis histórica. Los dados te obligan a unir una época, un ilícito, una fuente, una traba y —nuevo— una lente de pensamiento político que no pondrías juntas.</p>
+    <div class="acciones">
+      <button class="b-verde" id="btnRapido">Modo rápido · 4 dados<span class="kbd">R</span></button>
+      <button class="b-rojo" id="btnTribunal">Modo tribunal · 8 dados<span class="kbd">T</span></button>
+      <button class="b-morado" id="btnDoctrina">Tribunal + doctrina · 10 dados<span class="kbd">D</span></button>
+      <button class="b-linea" id="btnRepetir" disabled>Repetir con los mismos dados</button>
+    </div>
+    <div class="integ">
+      <div class="plazo">Fase integradora · cierre de las tres materias el jueves 15 de octubre</div>
+      <div class="fila">
+        <button class="b-morado" id="btnCorridaA">Corrida A · Kosovo 1999 en tres mesas<span class="kbd">K</span></button>
+        <button class="b-verde" id="btnCorridaB">Corrida B · Siete lentes ante el Estado mínimo<span class="kbd">L</span></button>
+      </div>
+      <p class="nota" style="margin:0">A alimenta el ensayo de DIP y el informe a Solana de HIS; B, el cartel de PEP. Lo que escribas en las mesas y estaciones es tu borrador: se archiva en el banco y sale a Obsidian.</p>
+    </div>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="mesa" id="tab-mesa">La mesa</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="lentes" id="tab-lentes">Corrida de lentes · PEP</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="arsenal" id="tab-arsenal"><span id="tabArsenalTxt">Arsenal</span><span class="kbd">A</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="banco" id="tab-banco">Banco y progreso</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="tuto" id="tab-tuto">Cómo se juega</button>
+  </div>
+  <div class="franja"><i></i><i></i><i></i><i></i><i></i></div>
+</header>
+
+<!-- ======================= MESA ======================= -->
+<section id="vista-mesa">
+<div class="mesa">
+  <div class="q verde" id="qVerde"><h3>Contexto histórico · verdes</h3><div class="dados" id="dVerde"></div><div class="res" id="rVerde"><span class="pend">Sin tirada. El atlas espera en su atril.</span></div></div>
+  <div class="q rojo" id="qRojo"><h3>Hecho ilícito · rojos</h3><div class="dados" id="dRojo"></div><div class="res" id="rRojo"><span class="pend">Sin ilícito tipificado.</span></div></div>
+  <div class="q blanco" id="qBlanco"><h3>Fuente y foro · blancos</h3><div class="dados" id="dBlanco"></div><div class="res" id="rBlanco"><span class="pend">Sin fuente ni vía.</span></div></div>
+  <div class="q ambar" id="qAmbar"><h3>Traba y cronómetro · ámbar</h3><div class="dados" id="dAmbar"></div><div class="res" id="rAmbar"><span class="pend">Sin excepción procesal.</span></div></div>
+  <div class="q morado apagado" id="qMorado"><h3>Lente doctrinal · morados</h3><div class="dados" id="dMorado"></div><div class="res" id="rMorado"><span class="pend">Sólo en el modo con doctrina. Pensamiento Político y Social entra aquí.</span></div></div>
+</div>
+
+<div class="estrado dark-ui" style="margin-top:12px">
+  <div class="fase" id="fase">El tribunal central · esperando convocatoria</div>
+  <h2>Dictamen en curso</h2>
+  <div class="caso" id="caso"><span class="pend" style="color:var(--estrado-sub)">Lanza los dados para que la Corte emplace el caso.</span></div>
+
+  <div class="dos">
+    <div style="display:flex; flex-direction:column; gap:14px; min-width:0">
+      <div>
+        <div class="fase">Cronómetro</div>
+        <div class="reloj">
+          <div class="crono" id="crono" aria-live="polite">00:00</div>
+          <div class="fila">
+            <button class="b-verde mini" id="btnPrep">Cancillería 60 s</button>
+            <button class="b-ambar mini" id="btnAleg">Alegato</button>
+            <button class="b-morado mini" id="btnRep" hidden>Réplica</button>
+            <button class="b-linea mini" id="btnPausa">Pausa</button>
+            <button class="b-linea mini" id="btnReinicio">Reiniciar</button>
+          </div>
+        </div>
+        <label class="interruptor" style="margin-top:10px"><input type="checkbox" id="chkDuelo"> Duelo ante la Corte (dos cancillerías)</label>
+      </div>
+      <div>
+        <div class="fase">Fichas sugeridas para este caso · elige hasta 2</div>
+        <div class="sug" id="sug"><span class="pend" style="color:var(--estrado-sub)">Aparecen al tirar.</span></div>
+      </div>
+      <div>
+        <label class="fase" for="estrategia">Estrategia del alegato</label>
+        <textarea id="estrategia" placeholder="Palabras clave de la cancillería: norma, vía, respuesta a la traba, lectura doctrinal…"></textarea>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px; min-width:0">
+      <div class="fase">Autoevaluación de la ronda</div>
+      <div class="crit"><label for="s1">Dominio conceptual — artículos y terminología (0–3)</label><select id="s1"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+      <div class="crit"><label for="s2">Coherencia histórica — encaja en la era y el mapa (0–3)</label><select id="s2"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+      <div class="crit"><label for="s3">Control del tiempo — sin pausas de más de 5 s (0–2)</label><select id="s3"><option>0</option><option>1</option><option>2</option></select></div>
+      <div class="crit"><label for="s4">Resolución de la traba — salida sólida ante la excepción (0–2)</label><select id="s4"><option>0</option><option>1</option><option>2</option></select></div>
+      <div class="crit" id="critLente" hidden><label for="s5">Lente doctrinal — lectura coherente con la corriente (0–2)</label><select id="s5"><option>0</option><option>1</option><option>2</option></select></div>
+      <div class="total" id="total">Total: 0 / 10</div>
+      <div class="fila" style="margin-top:6px">
+        <button class="b-verde mini" id="btnGuardar">Archivar en el banco</button>
+        <button class="b-linea mini" id="btnMdCaso">Nota para Obsidian</button>
+      </div>
+      <div class="pend" id="estadoBanco" style="color:var(--estrado-sub); font-size:13px"></div>
+    </div>
+  </div>
+  <div id="guiaA" hidden>
+    <div class="fase" style="margin-bottom:8px">Corrida A · las tres mesas · escribe con tus palabras (R8): esto es tu borrador</div>
+    <div class="guia">
+      <div class="mesa-g verde"><label class="fase" for="mVerde">Mesa verde · historia</label><span class="para">Para HIS · apartados 2 y 3</span><span>¿Qué procesos, de 1945 a febrero de 1999, llevan a Kosovo? Tres hitos y el actor que más pesa.</span><textarea id="mVerde"></textarea></div>
+      <div class="mesa-g rojo"><label class="fase" for="mRoja">Mesas roja y blanca · derecho</label><span class="para">Para DIP · sujetos, fuentes y medios</span><span>¿Quién es parte, de dónde sale la obligación y qué peldaño de la escalera procede? Usa el dado de la vía.</span><textarea id="mRoja"></textarea></div>
+      <div class="mesa-g ambar"><label class="fase" for="mAmbar">Mesa ámbar · la traba</label><span class="para">Para DIP · propuesta de reforma · y HIS · recomendación</span><span>El veto paraliza al Consejo. ¿Qué regla lo destrabaría? ¿Y qué le recomiendas hoy a Solana?</span><textarea id="mAmbar"></textarea></div>
+      <div class="mesa-g morado"><label class="fase" for="mMorada">Mesa morada · la lente</label><span class="para">Para HIS · reflexión · y PEP · ejemplo internacional</span><span id="mMoradaPreg">Desde la corriente del dado morado: ¿se justifica intervenir o abstenerse?</span><textarea id="mMorada"></textarea></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ======================= LENTES (PEP) ======================= -->
+<section id="vista-lentes" class="panel" hidden>
+  <h2>Corrida B · Siete lentes ante el Estado mínimo</h2>
+  <p class="nota">El caso de Antonio y la vivienda, leído por cada corriente en orden histórico: de la polis a la posmodernidad. Un minuto por estación, en voz alta, y luego tu frase. Las ocho frases son la línea del tiempo del cartel; la segunda casilla alimenta el bloque «Cómo viajaron las ideas».</p>
+  <div class="aviso">Incidente crítico: Antonio, 30 años, ahorra para su primera vivienda y descubre precios desproporcionados frente a su ingreso. ¿Quién debe garantizar su derecho: el Estado o el mercado?</div>
+  <div class="est-nav" id="estNav"></div>
+  <div class="estacion" id="estacion"></div>
+  <div class="fila">
+    <div class="crono2" id="crono2">01:00</div>
+    <button class="b-morado mini" id="btnEst60">Un minuto en voz alta</button>
+    <button class="b-linea mini" id="btnEstAnt">Anterior</button>
+    <button class="b-linea mini" id="btnEstSig">Siguiente</button>
+  </div>
+  <div class="fila">
+    <button class="b-verde mini" id="btnGuardarB">Archivar la corrida en el banco</button>
+    <button class="b-linea mini" id="btnMdB">Nota para Obsidian</button>
+    <button class="b-linea mini" id="btnLimpiarB">Empezar de nuevo</button>
+  </div>
+  <div class="pend" id="estadoB"></div>
+</section>
+
+<!-- ======================= ARSENAL ======================= -->
+<section id="vista-arsenal" class="panel" hidden>
+  <h2>Arsenal jurídico y doctrinal</h2>
+  <p class="nota">Regla: máximo 2 fichas por alegato. Las fichas «Tu estante» son libros que ya tienes: úsalas cuando el dado blanco caiga en doctrina.</p>
+  <input type="search" id="buscar" placeholder="Buscar: veto, costumbre, Avena, Kant, Sepúlveda…" aria-label="Buscar en el arsenal">
+  <div class="chips" id="filtros">
+    <button class="chip" aria-pressed="true" data-f="todas">Todas</button>
+    <button class="chip" aria-pressed="false" data-f="tratado">Tratados</button>
+    <button class="chip" aria-pressed="false" data-f="principio">Principios</button>
+    <button class="chip" aria-pressed="false" data-f="juris">Jurisprudencia</button>
+    <button class="chip" aria-pressed="false" data-f="mecanismo">Mecanismos</button>
+    <button class="chip" aria-pressed="false" data-f="doctrina">Doctrina · PEP</button>
+    <button class="chip" aria-pressed="false" data-f="estante">Tu estante</button>
+  </div>
+  <div class="fichas" id="listaArsenal"></div>
+</section>
+
+<!-- ======================= BANCO ======================= -->
+<section id="vista-banco" class="panel" hidden>
+  <h2>Banco de casos y progreso</h2>
+  <p class="nota" id="notaBanco">El banco se guarda en línea y tu cerebro digital puede leerlo: pide a Claude «pasa mis casos de Ruptura & Tribunal al vault».</p>
+  <div class="stats" id="stats"></div>
+  <div class="fila">
+    <button class="b-verde mini" id="btnMdBanco">Banco completo para Obsidian</button>
+  </div>
+  <div id="listaBanco" style="display:flex; flex-direction:column; gap:8px"></div>
+  <div id="mdPanel" hidden>
+    <div class="aviso">Tu navegador no permitió descargar el archivo. Copia el texto y pégalo en una nota nueva de Obsidian.</div>
+    <div class="fila" style="margin-top:8px"><button class="b-linea mini" id="btnCopiarMd">Copiar texto</button></div>
+    <pre class="md" id="mdTexto"></pre>
+  </div>
+</section>
+
+<!-- ======================= TUTORIAL ======================= -->
+<section id="vista-tuto" class="panel tuto" hidden>
+  <h2>Cómo se juega</h2>
+  <p>Los dados son un <b>generador de restricciones</b>: cada tirada te obliga a conectar una época, un ilícito internacional, una fuente de derecho y una traba procesal que normalmente no pondrías juntas. Es práctica de recuperación activa, no memorización.</p>
+  <h3>Los cinco pares</h3>
+  <ul>
+    <li><b>Verdes</b> · era y mapa del atlas DK: la página exacta es tu teatro de operaciones.</li>
+    <li><b>Rojos</b> · hecho ilícito y escalada.</li>
+    <li><b>Blancos</b> · fuente (art. 38 Estatuto CIJ) y vía de arreglo (art. 33 Carta ONU).</li>
+    <li><b>Ámbar</b> · traba procesal y tiempo del alegato (valor × 30 s).</li>
+    <li><b>Morados</b> · corriente de pensamiento político y la pregunta que esa corriente le hace al caso. Es la materia de Pensamiento Político y Social dentro del tribunal.</li>
+  </ul>
+  <h3>Modo rápido · 5 minutos</h3>
+  <p>Un dado de cada color, sin morados. En 60 segundos y en voz alta: qué pasa en el mapa, qué norma lo rige, cómo se resuelve o qué lo impide.</p>
+  <h3>Modo tribunal · 10–15 minutos</h3>
+  <ol>
+    <li>Tira los 8 dados y abre el atlas en la página de los verdes.</li>
+    <li><b>Cancillería</b> (60 s): elige hasta 2 fichas sugeridas y anota palabras clave.</li>
+    <li><b>Alegato</b> (tiempo del ámbar): ubicación en el mapa, imputación del ilícito, subsunción con la fuente y la vía, respuesta a la traba.</li>
+    <li>Autoevalúa. Menos de 6 de 10: «Repetir con los mismos dados».</li>
+    <li>Archiva el caso. El banco muestra tu criterio más débil.</li>
+  </ol>
+  <h3>Tribunal + doctrina · 10 dados</h3>
+  <p>Igual que el tribunal, y al final del alegato <b>lee el caso desde la corriente del dado morado</b> contestando su pregunta. Ejemplo: una disputa marítima leída desde el realismo pregunta quién gana poder con la norma; leída desde el marxismo, qué intereses de clase o qué lugar en el sistema-mundo explica la disputa. Se evalúa aparte, sobre 2 puntos.</p>
+  <h3>Fase integradora · hasta el jueves 15 de octubre</h3>
+  <p><b>Corrida A · Kosovo 1999 en tres mesas.</b> Se fijan los dados que el caso ya determina: era 6, mapa «Guerra en Yugoslavia» (atlas pág. 344), uso de la fuerza, Carta de la ONU y veto en el Consejo. Se tiran los que obligan a pensar: escalada, vía, tiempo y lente, que ahora puede caer en la séptima corriente, la posmodernidad del M4. Bajo el estrado aparecen cuatro mesas: cada una dice a qué entrega va lo que escribas.</p>
+  <p><b>Corrida B · Siete lentes ante el Estado mínimo.</b> Ocho estaciones, de la polis griega a la posmodernidad, contra el caso de Antonio. Un minuto en voz alta por estación y una frase tuya. Es la columna del cartel de PEP.</p>
+  <p>Archiva las dos corridas en el banco: Claude las lee desde ahí y arma los andamios con tus palabras.</p>
+  <h3>Duelo ante la Corte</h3>
+  <p>Activa el interruptor: la cancillería A alega, la cancillería B replica con la traba del ámbar en el mismo tiempo, y una tercera persona preside y evalúa. Rotación de roles cada ronda.</p>
+  <h3>Con tu cerebro digital</h3>
+  <p>Cada caso sale como nota de Obsidian con propiedades (era, ilícito, fuente, traba, lente, puntaje) y enlaces a tus notas de las tres materias. Guárdalas en <code>06_Proyectos_Aplicados/Ruptura_Tribunal/Casos</code>: el índice de esa carpeta las ordena solo.</p>
+  <p><b>Atajos:</b> R rápido · T tribunal · D doctrina · K corrida A · L corrida B · A arsenal · Espacio pausa el cronómetro.</p>
+</section>
+
+<footer>Ruptura &amp; Tribunal · Isaac Moctezuma · LRIN · UNRC · 2026-2 · versión 3 · fase integradora</footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ============================ DATOS ============================ */
+const ERAS=[
+ {n:"La Gran Guerra y la revolución (1914–1929)",m:[[280,"La Primera Guerra Mundial"],[282,"Las trincheras"],[284,"Una guerra global"],[286,"La Revolución Rusa"],[290,"Secuelas de la Gran Guerra"],[292,"La Gran Depresión"]]},
+ {n:"Totalitarismos y camino a la guerra (1929–1939)",m:[[288,"Extremismo político"],[292,"La Gran Depresión"],[294,"China y el nacionalismo"],[296,"La URSS bajo Stalin"],[298,"La Guerra Civil española"],[300,"La Segunda Guerra Mundial"]]},
+ {n:"La Segunda Guerra Mundial (1939–1945)",m:[[302,"El avance de las Potencias del Eje"],[304,"La Europa ocupada"],[306,"La guerra en el Pacífico"],[308,"La derrota de Alemania"],[310,"La derrota japonesa"],[312,"Hiroshima y Nagasaki"]]},
+ {n:"Posguerra y Guerra Fría temprana (1945–1960)",m:[[314,"La partición de India"],[316,"La fundación de la China comunista"],[318,"Superpotencias"],[320,"La Guerra Fría"],[322,"La guerra de Corea"],[326,"La unidad europea"]]},
+ {n:"Descolonización y conflictos periféricos (1950–1975)",m:[[324,"Descolonización del sureste de Asia"],[328,"Descolonización de África"],[330,"Misiles y carrera espacial"],[332,"Derechos civiles y revueltas estudiantiles"],[334,"Las guerras de Indochina"],[336,"Intervención de EE. UU. en Latinoamérica"]]},
+ {n:"Oriente Medio, fin de la URSS y globalización (1948–presente)",m:[[338,"Israel y Oriente Medio"],[340,"El boom económico y su coste medioambiental"],[342,"La caída del comunismo"],[344,"Guerra en Yugoslavia"],[346,"Globalización"],[348,"Irán y las guerras del Golfo"]]}
+];
+const ROJO=["Uso de la fuerza o agresión armada (art. 2.4 Carta ONU)","Coerción económica: bloqueo, embargo o aranceles punitivos","Disputa de soberanía: delimitación marítima, ZEE, estrechos o secesión","Violación grave de DDHH / DIH: crímenes de guerra o lesa humanidad","Ruptura o incumplimiento unilateral de tratado (pacta sunt servanda)","Intervención en asuntos internos / apoyo a insurgentes (autodeterminación)"];
+const ESC=v=>v<=2?"Crisis diplomática — notas de protesta, retiro de embajadores, canales consulares.":v<=4?"Retorsión y contramedidas — congelamiento de activos, sanciones, suspensión de ventajas.":"Amenaza a la paz — movilización, alianzas colectivas, escenario del Capítulo VII.";
+const BL1=["Tratado o convención (Carta ONU, Convención de Viena 1969, T-MEC)","Costumbre internacional (práctica general + opinio juris)","Principios generales del derecho (buena fe, pacta sunt servanda)","Jurisprudencia (CIJ, Corte IDH — p. ej. Avena 2004)","Doctrina de los publicistas de mayor competencia","Norma de ius cogens (agresión, genocidio, esclavitud)"];
+const BL2=["Negociación diplomática directa","Buenos oficios o mediación (tercer Estado o Secretario General)","Investigación o conciliación internacional","Arbitraje internacional con laudo vinculante","Arreglo judicial ante la CIJ (La Haya)","Organismos y acuerdos regionales (OEA, paneles T-MEC, CILA)"];
+const AM1=["Legítima defensa invocada (art. 51 Carta ONU)","Reserva formal introducida al tratado","Falta de jurisdicción: cláusula facultativa de la CIJ no aceptada","Parálisis por veto en el Consejo de Seguridad","Estado de necesidad o fuerza mayor","Falta de legitimación activa (ius standi) o recursos internos no agotados"];
+/* Pensamiento Político y Social — módulos 1 a 3 de LRIN3PEP8 */
+const MO1=[
+ {n:"Realismo y razón de Estado",a:"Maquiavelo · Hobbes",m:"M1 · Estado moderno"},
+ {n:"Contractualismo e Ilustración",a:"Locke · Rousseau · Kant",m:"M1 · Ilustración"},
+ {n:"Liberalismo clásico",a:"Smith · Mill · Estado mínimo",m:"M2 · Liberalismo"},
+ {n:"Marxismo y sistema-mundo",a:"Marx · Lenin · Wallerstein",m:"M1 y M3 · Marxismo"},
+ {n:"Estructuralismo y funcionalismo",a:"Durkheim · Lévi-Strauss · Althusser",m:"M1 · Corrientes sociales"},
+ {n:"Institucionalismo y Estado de derecho",a:"North · rule of law vs. Rechtsstaat",m:"M2 · Normatividad"},
+ {n:"Posmodernidad y deconstrucción",a:"Lyotard · Derrida · Foucault",m:"M4 · Posmodernidad"}
+];
+const MO2=[
+ "¿Quién gana y quién pierde poder con esta norma?",
+ "¿De dónde saca su legitimidad la norma: del consentimiento, de la fuerza o de la razón?",
+ "¿Qué papel juega el mercado, y dónde falla?",
+ "¿Qué intereses de clase o qué lugar en el sistema-mundo explican el conflicto?",
+ "¿Qué función cumple la institución, aunque nadie la declare?",
+ "¿Cuál es la regla del juego, quién la escribió y quién la puede cambiar?",
+ "¿Qué relato legitima la norma y a quién deja fuera?"
+];
+/* Corrida A: dados fijos (índices) */
+const FIJO_A={era:5,mapa:3,r1:0,b1:0,a1:3};
+/* Corrida B: estaciones en orden histórico */
+const ESTACIONES=[
+ {n:"Pensamiento grecolatino",a:"Platón · Aristóteles · estoicos",m:"PEP M1",p:"La polis existe para vivir bien. ¿Qué parte de la vivienda de Antonio es asunto de la comunidad y no sólo suyo?",f:"Vallespín (2000)"},
+ {n:"Realismo y razón de Estado",a:"Maquiavelo · Hobbes",m:"PEP M1",p:"¿Qué capacidad ha perdido el Estado mexicano para conservarse frente al mercado inmobiliario?",f:"Uvalle (2015): la razón de Estado"},
+ {n:"Contractualismo e Ilustración",a:"Locke · Rousseau · Kant",m:"PEP M1",p:"Si el poder nace del consentimiento, ¿qué parte del contrato incumple un Estado que no garantiza vivienda?",f:"Vallespín (2000); PIDESC, art. 11"},
+ {n:"Liberalismo clásico",a:"Smith · Mill",m:"PEP M2",p:"¿Por qué, según esta corriente, el mercado debería asignar la vivienda, y dónde falla en el caso de Antonio?",f:"Giner (2008); Gray (1994)"},
+ {n:"Marxismo y sistema-mundo",a:"Marx · Lenin · Wallerstein",m:"PEP M1 y M3",p:"¿Quién acumula con la especulación inmobiliaria y quién la paga?",f:"Giner (2008)"},
+ {n:"Estructuralismo y funcionalismo",a:"Durkheim · Lévi-Strauss · Althusser",m:"PEP M1",p:"¿Qué estructura convierte la vivienda en mercancía aunque nadie lo decida?",f:"Giner (2008)"},
+ {n:"Institucionalismo y Estado de derecho",a:"North",m:"PEP M2",p:"El alquiler en CDMX se rige por el Código Civil como relación mercantil. ¿Quién escribió esa regla y quién puede cambiarla?",f:"North (1995); Jaramillo (2022)"},
+ {n:"Posmodernidad y deconstrucción",a:"Lyotard · Derrida · Foucault",m:"PEP M4",p:"¿Qué relato legitima el Estado mínimo y a quién deja fuera?",f:"Pinillos Díaz (1994); Beasley-Murray (2010)"}
+];
+
+/* Fichas. tags: r = ilícitos (0–5), b1, b2, a = trabas, e = eras, l = lentes */
+const ARSENAL=[
+ {c:"tratado",t:"Carta de las Naciones Unidas (1945)",w:"Carta_ONU",x:"Art. 2.4 prohíbe la amenaza o el uso de la fuerza; art. 33 (Cap. VI) es el menú de arreglo pacífico —la tabla del blanco 2—; art. 51 legítima defensa; Cap. VII medidas coercitivas del Consejo, con veto de los cinco permanentes.",lim:"El Consejo es el único con poder de ejecución, y puede paralizarse por veto.",r:[0,5],b1:[0],b2:[0,1,2],a:[0,3],e:[3,4,5]},
+ {c:"tratado",t:"Convención de Viena sobre el Derecho de los Tratados (1969)",w:"Convencion_de_Viena_1969",x:"Art. 26 pacta sunt servanda; arts. 19–23 reservas compatibles con objeto y fin; art. 62 rebus sic stantibus; art. 53 ius cogens: el tratado que lo contradice es nulo.",lim:"No es retroactiva y no regula la responsabilidad del Estado por hechos ilícitos.",r:[4],b1:[0,2],a:[1,4],e:[4,5]},
+ {c:"tratado",t:"Convención de Viena sobre Relaciones Consulares (1963)",w:"Convencion_de_Viena_Relaciones_Consulares",x:"Art. 36: derecho del detenido extranjero a ser informado sin demora de su derecho a aviso consular. Base del Caso Avena.",lim:"Protege la relación Estado–cónsul–nacional; no crea acción individual ante la CIJ.",r:[3],b1:[0,3],a:[5],e:[5]},
+ {c:"tratado",t:"Pacto Briand-Kellogg (1928)",w:"Pacto_Briand-Kellogg",x:"Renuncia a la guerra como instrumento de política nacional. Es la norma vigente antes de la Carta: útil en las eras 1 y 2.",lim:"La Segunda Guerra Mundial ocurrió igual: norma sin ejecución es norma débil.",r:[0],b1:[0],a:[3],e:[0,1,2]},
+ {c:"tratado",t:"T-MEC (en vigor desde 2020)",w:"T-MEC",x:"Tres vías distintas que no conviene mezclar: cap. 10 (paneles binacionales para revisar resoluciones antidumping y compensatorias, heredados del cap. 19 del TLCAN); cap. 31 (controversias entre Estados); y el anexo 31-A, Mecanismo Laboral de Respuesta Rápida, que actúa sobre instalaciones concretas en México.",lim:"Los paneles resuelven entre partes, no crean jurisprudencia general. Para coerción económica entre socios del T-MEC la vía es el tratado, no la CIJ.",r:[1],b1:[0],b2:[5],a:[2],e:[5]},
+ {c:"tratado",t:"Estatuto de la Corte Internacional de Justicia (1945)",w:"Estatuto_CIJ",x:"Art. 38.1: catálogo de fuentes (a tratados, b costumbre, c principios, d jurisprudencia y doctrina como auxiliares); art. 36: jurisdicción por consentimiento; art. 59: la sentencia obliga sólo a las partes.",lim:"El inciso c habla de «naciones civilizadas»: fórmula que el Sur global cuestiona. Mencionarlo suma conciencia crítica.",r:[],b1:[0,1,2,3,4],b2:[4],a:[2],e:[]},
+ {c:"tratado",t:"Convenios de Ginebra (1949) y Protocolos (1977)",w:"Convenios_de_Ginebra",x:"Núcleo del DIH: heridos, náufragos, prisioneros y civiles. Hoy costumbre y, en su núcleo, ius cogens.",lim:"Regulan la conducción del conflicto (ius in bello), no la licitud de la guerra (ius ad bellum). Confundirlos es el error más penalizado.",r:[3],b1:[0,5],a:[4],e:[2,3,4,5]},
+ {c:"tratado",t:"Convención del Chamizal (1963)",w:"Chamizal",x:"Tratado bilateral México–EE. UU. que resolvió la disputa de El Paso–Ciudad Juárez por negociación soberana.",lim:"Los residentes afectados no participaron: la invisibilidad del individuo frente a la soberanía.",r:[2],b1:[0],b2:[0,5],a:[],e:[3,4]},
+ {c:"tratado",t:"Convención de la ONU sobre el Derecho del Mar (1982)",w:"CONVEMAR",x:"Mar territorial de 12 millas, ZEE de 200, plataforma, estrechos, alta mar; Tribunal Internacional del Derecho del Mar y arbitraje del anexo VII.",lim:"EE. UU. no la ratificó, y las disputas de límites marítimos admiten excepción a la jurisdicción obligatoria.",r:[2],b1:[0],b2:[3,4],a:[2],e:[4,5]},
+ {c:"tratado",t:"Convención Americana sobre Derechos Humanos (1969)",w:"Convencion_Americana_DDHH",x:"Crea la Corte IDH, donde el individuo sí litiga tras agotar recursos internos. México la ratificó en 1981 y aceptó la competencia contenciosa de la Corte en 1998.",lim:"Exige agotar recursos internos (la traba ámbar 6) y sólo vincula a quien aceptó la competencia.",r:[3],b1:[0,3],b2:[5],a:[5],e:[5]},
+
+ {c:"principio",t:"Pacta sunt servanda y buena fe",w:"Pacta_Sunt_Servanda",x:"Lo pactado obliga y se cumple honestamente (art. 26 CV; art. 38.1.c). Respuesta estándar contra rebus sic stantibus.",lim:"Obliga, pero no ejecuta.",r:[4],b1:[2],a:[4],e:[]},
+ {c:"principio",t:"Ius cogens",w:"Ius_Cogens",x:"Norma imperativa: agresión, genocidio, esclavitud, tortura, autodeterminación. Obliga erga omnes, sin reserva ni derogación (art. 53 CV).",lim:"Nombrarlo no lo ejecuta: sigue necesitando una vía o el Cap. VII.",r:[0,3],b1:[5],a:[1,4],e:[]},
+ {c:"principio",t:"Costumbre internacional",w:"Costumbre_Internacional",x:"Práctica general, constante y uniforme (diuturnitas) más convicción de obligatoriedad (opinio juris). Se prueba con resoluciones, protestas diplomáticas, manuales militares.",lim:"Si no citas práctica concreta, el argumento se cae.",r:[],b1:[1],a:[],e:[]},
+ {c:"principio",t:"Soberanía, igualdad y no intervención",w:"Principio_de_No_Intervencion",x:"Columna westfaliana: art. 2.1 (igualdad), 2.7 (no intervención) y resolución 2625 de la Asamblea General.",lim:"Protege al Estado, no a su población: la tensión humanitaria clásica.",r:[5],b1:[2],a:[],e:[]},
+ {c:"principio",t:"Autodeterminación de los pueblos",w:"Autodeterminacion",x:"Resoluciones 1514 (1960) y 2625 (1970): motor jurídico de la descolonización.",lim:"Los pueblos sin Estado, como los tuareg del Sahel, son titulares sin foro: capacidad jurídica sin capacidad de obrar.",r:[5,2],b1:[5],a:[5],e:[3,4]},
+ {c:"principio",t:"Mare liberum (Grocio, 1609)",w:"Mare_Liberum",x:"El mar es de todos y de nadie: base doctrinal de la alta mar. Contraste con Selden y el mare clausum.",lim:"Las ZEE convirtieron buena parte del océano en jurisdicción costera; la libertad plena sólo queda en alta mar.",r:[2],b1:[4],a:[],e:[]},
+ {c:"principio",t:"Responsabilidad internacional del Estado",w:"Responsabilidad_Internacional",x:"Todo ilícito genera cesación, reparación (restitución, indemnización, satisfacción) y garantías de no repetición (Artículos de la CDI, 2001). Es el «¿y qué pides?» del alegato.",lim:"Los Artículos de la CDI no son tratado: circulan como costumbre.",r:[0,1,3,4],b1:[1],a:[4],e:[]},
+ {c:"principio",t:"Monismo, dualismo y recepción en México",w:"Recepcion_Derecho_Internacional_Mexico",x:"Art. 133: los tratados celebrados por el Presidente (89-X), aprobados por el Senado (76-I) y publicados en el DOF son ley suprema de la Unión. El derecho interno no justifica incumplir.",lim:"La frontera monismo/dualismo es doctrinal; dos voluntades, dos límites.",r:[4],b1:[0],a:[1,5],e:[]},
+
+ {c:"juris",t:"Caso Avena (México c. EE. UU., CIJ 2004)",w:"Caso_Avena",x:"Nacionales mexicanos condenados a muerte sin aviso consular. Sentencia favorable a México (31 de marzo de 2004) con reparación y no repetición.",lim:"La ejecución quedó sujeta a la voluntad de EE. UU.: ganar en derecho no es obtener el resultado.",r:[3],b1:[3],b2:[4],a:[5],e:[5]},
+ {c:"juris",t:"Nicaragua c. EE. UU. (CIJ 1986) y la línea sobre uso de la fuerza",w:"Nicaragua_vs_EEUU",x:"La Corte evalúa atribución, proporcionalidad e imputabilidad del uso de la fuerza y del apoyo a fuerzas irregulares.",lim:"Nicaragua ganó y el veto en el Consejo impidió la ejecución.",r:[0,5],b1:[3],b2:[4],a:[0,3],e:[4,5]},
+ {c:"juris",t:"Chamizal y la CILA — práctica mexicana",w:"CILA",x:"La CILA administra los ríos internacionales México–EE. UU.: competencia técnica sin poder final, opera por consenso. Capacidad delegada.",lim:"Funciona cuando hay voluntad política; no se traslada automáticamente a contextos de tensión.",r:[2],b1:[3],b2:[0,5],a:[],e:[3,4]},
+ {c:"juris",t:"Caso Atento (visto en el módulo 2)",w:"Foro_2_DER_Fuentes_Atento",x:"Caso mexicano del módulo 2 resuelto por un mecanismo del T-MEC y no por la CIJ: el derecho comercial moderno vive en los paneles del tratado.",lim:"Confirma en tu nota del foro 2 qué mecanismo exacto se activó antes de citarlo.",r:[1],b1:[3],b2:[5],a:[],e:[5]},
+ {c:"juris",t:"Azawad y los pueblos sin Estado",w:"Rebelion_Tuareg_2012",x:"No hay caso, y ésa es la lección: titulares de la autodeterminación sin foro que la reconozca. Viene del seminario AMEI sobre estudios africanos.",lim:"Úsala como reflexión crítica, no como precedente en una tarea escrita.",r:[5],b1:[4],a:[5],e:[4,5]},
+ {c:"juris",t:"Resoluciones de la Asamblea General",w:"Resoluciones_AGNU",x:"No obligan, pero prueban opinio juris: 1514 (descolonización), 2625 (relaciones amistosas), 377A (Unión pro Paz, cuando el Consejo se paraliza).",lim:"Son evidencia, no norma.",r:[5],b1:[1],a:[3],e:[3,4]},
+
+ {c:"mecanismo",t:"La CIJ por dentro",w:"Corte_Internacional_de_Justicia",x:"Sólo Estados, sólo con consentimiento (tratado, cláusula facultativa o compromiso). La ejecución va por el art. 94 de la Carta al Consejo de Seguridad.",lim:"Donde hay veto. Tu alegato siempre debe decir de dónde sale el consentimiento.",r:[],b1:[],b2:[4],a:[2,3],e:[]},
+ {c:"mecanismo",t:"Medidas provisionales y contramedidas",w:"Contramedidas",x:"Provisionales (art. 41 Estatuto): urgencia para proteger derechos en litigio. Contramedidas: represalias no armadas, proporcionadas y reversibles.",lim:"Nunca contra ius cogens ni con fuerza armada. Deciden las escaladas 3–4.",r:[1],b1:[],b2:[4],a:[4],e:[]},
+ {c:"mecanismo",t:"El veto en el Consejo de Seguridad",w:"Veto",x:"Los cinco permanentes bloquean cualquier resolución sustantiva. Rutas alternas: Unión pro Paz (377A), coaliciones regionales, CIJ.",lim:"La Unión pro Paz recomienda, no obliga: la parálisis estructural es el argumento crítico más potente del juego.",r:[0,3],b1:[],a:[3],e:[3,4,5]},
+ {c:"mecanismo",t:"Soft law y codificación progresiva",w:"Soft_Law",x:"Declaraciones, códigos y lineamientos orientan sin obligar. La CDI codifica costumbre que los Estados adoptan.",lim:"No se demanda por incumplir una declaración.",r:[],b1:[4],a:[],e:[]},
+ {c:"principio",t:"Principios normativos de la política exterior mexicana (art. 89-X)",w:"Principios_Politica_Exterior_Mexicana",x:"La Constitución obliga al Ejecutivo a observar: autodeterminación, no intervención, solución pacífica de controversias, proscripción de la amenaza o el uso de la fuerza, igualdad jurídica de los Estados, cooperación para el desarrollo, respeto y promoción de los derechos humanos, y lucha por la paz y la seguridad internacionales.",lim:"Obligan a México como política exterior; no son fuente del art. 38. Úsalos para decir qué posición tomaría México en el caso.",r:[0,5,2],b1:[2],b2:[0,1],a:[],e:[3,4,5]},
+
+ /* ---- Doctrina · Pensamiento Político y Social ---- */
+ {c:"doctrina",t:"Maquiavelo y la razón de Estado",w:"Razon_de_Estado",x:"El gobernante juzga por la conservación del Estado, no por la moral privada. Es la raíz del realismo: la norma internacional dura mientras sirve al interés de quien la cumple.",lim:"Explica por qué se viola la norma, no por qué a veces se cumple sin coerción.",l:[0],r:[0,1],e:[0,1,2],m:"PEP M1"},
+ {c:"doctrina",t:"Hobbes: estado de naturaleza y anarquía",w:"Estado_de_Naturaleza",x:"Sin un poder común, la vida es guerra de todos contra todos. Trasladado al sistema internacional: no hay Leviatán sobre los Estados, y por eso el veto y la falta de ejecución no son accidentes.",lim:"Los Estados no son individuos: cooperan más de lo que Hobbes predice.",l:[0],a:[3],r:[0],e:[],m:"PEP M1"},
+ {c:"doctrina",t:"Locke, Rousseau y el consentimiento",w:"Contrato_Social",x:"El poder legítimo nace del consentimiento de los gobernados. En DIP es la base del pacta sunt servanda y de que la CIJ necesite el consentimiento del Estado demandado.",lim:"El consentimiento del Estado no es el de su pueblo: la brecha de legitimidad.",l:[1],r:[4],a:[2],e:[],m:"PEP M1"},
+ {c:"doctrina",t:"Kant, La paz perpetua (1795)",w:"Paz_Perpetua",x:"Federación de Estados libres, republicanismo y hospitalidad universal como condiciones de la paz. Es la genealogía de la Sociedad de Naciones y de la ONU.",lim:"Supone Estados republicanos; el sistema real mezcla regímenes.",l:[1],r:[0,5],b2:[4],e:[0,3],m:"PEP M1"},
+ {c:"doctrina",t:"Smith, Mill y el Estado mínimo",w:"Estado_Minimo",x:"El mercado coordina mejor que el gobierno; Mill limita al gobierno a impedir el daño a otros. En el tablero, la coerción económica y el comercio se leen como fallas o defensas del libre intercambio.",lim:"No previó monopolios ni crisis cíclicas: el M3 de PEP lo discute.",l:[2],r:[1],b2:[5],e:[0,5],m:"PEP M2"},
+ {c:"doctrina",t:"Marx, Lenin y el imperialismo",w:"Materialismo_Historico",x:"El conflicto se explica por la estructura económica y la lucha de clases. Lenin: el imperialismo como fase del capitalismo. Lee la descolonización y la coerción económica desde quién extrae y quién es extraído.",lim:"Acierta en el diagnóstico de la concentración; falló en la predicción del colapso del capitalismo.",l:[3],r:[1,5],e:[0,1,4],m:"PEP M1 y M3"},
+ {c:"doctrina",t:"Wallerstein y el sistema-mundo",w:"Sistema_Mundo",x:"Centro, semiperiferia y periferia en una sola economía mundial. Sirve para cualquier mapa de la era 5 o 6: el conflicto local es expresión de una posición en la división internacional del trabajo.",lim:"Puede diluir la agencia de los actores locales.",l:[3],r:[1,2],e:[4,5],m:"HIS · clase 2"},
+ {c:"doctrina",t:"Estructuralismo: Lévi-Strauss y Althusser",w:"Estructuralismo",x:"Las categorías con que se clasifica al mundo son estructuras, no hechos. Althusser: los aparatos ideológicos reproducen el orden. Lee el caso preguntando qué categoría —«Estado», «región», «civilizado»— está haciendo el trabajo.",lim:"Dice poco sobre el cambio y la decisión individual.",l:[4],b1:[4],e:[4],m:"PEP M1"},
+ {c:"doctrina",t:"Durkheim y la función de las instituciones",w:"Funcionalismo",x:"Cada institución cumple una función para el todo social. La CILA o un panel comercial existen porque estabilizan una relación, aunque nadie lo declare.",lim:"Tiende a justificar lo existente por el hecho de existir.",l:[4],b2:[5],e:[],m:"PEP M1"},
+ {c:"doctrina",t:"North: las instituciones son las reglas del juego",w:"Instituciones_North",x:"Las instituciones son restricciones creadas por las personas que dan forma a la interacción (North, 1995). Todo el tablero es eso: quién escribió la regla, quién puede cambiarla y cuánto cuesta violarla.",lim:"Describe la regla, no quién tiene poder para imponerla.",l:[5],a:[1,3],e:[],m:"PEP M2"},
+ {c:"doctrina",t:"Estado de derecho: rule of law y Rechtsstaat",w:"Estado_de_Derecho",x:"Dos tradiciones: la anglosajona, centrada en jueces y límites al poder, y la continental, centrada en la ley escrita del Estado. Traducido al DIP: ¿manda el tribunal o manda el tratado?",lim:"En el plano internacional no hay un soberano que garantice ninguna de las dos.",l:[5],b1:[0,3],e:[],m:"PEP M2"},
+ {c:"doctrina",t:"Hayek y el problema del cálculo económico",w:"Problema_del_Calculo_Economico",x:"Sin precios libres no hay información para planificar. Útil para leer la caída del comunismo (mapa 342) y los embargos que distorsionan mercados.",lim:"El Estado de bienestar mostró que la intervención no siempre destruye la información de precios.",l:[2],r:[1],e:[5],m:"PEP M3"},
+
+ /* ---- Fase integradora · Kosovo 1999 ---- */
+ {c:"juris",t:"Resoluciones 1160 y 1199 del Consejo de Seguridad (1998)",w:"Resoluciones_1160_1199_Kosovo",x:"La 1160 (31 de marzo de 1998) impone un embargo de armas a la RFY; la 1199 (23 de septiembre de 1998), bajo el Cap. VII, exige el cese del fuego y el retiro de fuerzas. Ninguna autoriza el uso de la fuerza.",lim:"Cotejar fechas y texto en undocs.org antes de citar. El silencio sobre la fuerza es el nudo jurídico de 1999.",r:[0,3],b1:[0],a:[3],e:[5],integ:true},
+ {c:"mecanismo",t:"Rambouillet y el Grupo de Contacto (febrero de 1999)",w:"Rambouillet_1999",x:"Negociación y mediación entre la RFY y los albanokosovares bajo el Grupo de Contacto, iniciada el 6 de febrero de 1999. Es el último peldaño diplomático antes de la fuerza.",lim:"Para Solana es el presente: no uses lo que ocurrió después del 23 de febrero como evidencia en el informe de HIS.",r:[0,5],b2:[0,1],a:[3],e:[5],integ:true},
+ {c:"mecanismo",t:"Tribunal Penal Internacional para la ex Yugoslavia (res. 827, 1993)",w:"TPIY",x:"Creado por el Consejo de Seguridad con el Cap. VII: el individuo responde ante un tribunal internacional por crímenes de guerra y lesa humanidad. Puente con Tinajero (2005) y la CPI.",lim:"Juzga personas, no Estados: no resuelve la controversia entre Estados.",r:[3],b1:[0,5],b2:[4],a:[3],e:[5],integ:true},
+ {c:"juris",t:"Legalidad del uso de la fuerza (CIJ, fallos de 2004) y opinión consultiva sobre Kosovo (2010)",w:"CIJ_Kosovo",x:"Serbia y Montenegro demandó a diez Estados de la OTAN; en 2004 la Corte se declaró sin competencia en los casos que llegaron a fallo. En 2010 opinó que la declaración de independencia de Kosovo no violó el derecho internacional general.",lim:"La Corte nunca se pronunció sobre el fondo del bombardeo: la traba de jurisdicción en estado puro. Cotejar fechas en icj-cij.org.",r:[0,2],b1:[3],b2:[4],a:[2],e:[5],integ:true},
+ {c:"mecanismo",t:"Restricción del veto ante atrocidades masivas (iniciativa franco-mexicana, 2015)",w:"Restriccion_del_Veto",x:"Declaración política impulsada por Francia y México para que los miembros permanentes se abstengan de vetar en casos de atrocidades masivas. Une el art. 89-X con la reforma del Consejo.",lim:"Es voluntaria (soft law): candidata natural para tu propuesta de reforma en el ensayo de DIP.",r:[0,3],b1:[4],a:[3],e:[5],integ:true},
+ {c:"doctrina",t:"Hamilton y Langhorne: diplomacia preventiva y mediación institucional",w:"Hamilton_Langhorne_2011",x:"The Practice of Diplomacy (2011, pp. 269-270): la Agenda para la Paz de 1992 y la mediación de la ONU y la UE en la ex Yugoslavia, donde la diplomacia «conspicuamente» no evitó la guerra. P. 234: la presión mediática para intervenir.",lim:"Visión británica y de cancillería: contrástala con la mexicana de Flores Liera.",l:[5],b1:[4],b2:[1],a:[3],e:[5],m:"HIS · DIP",integ:true},
+ {c:"doctrina",t:"Lyotard y el fin de los metarrelatos",w:"Posmodernidad",x:"La posmodernidad desconfía de los grandes relatos que legitiman el poder: progreso, mercado, emancipación. Ante el caso pregunta qué historia se cuenta para justificar la norma y quién no aparece en ella.",lim:"Desmonta bien, pero propone poco: úsala como crítica, no como programa.",l:[6],r:[5],e:[5],m:"PEP M4"},
+ {c:"doctrina",t:"Pinillos Díaz: la pérdida del centro y la deconstrucción del sujeto",w:"Pinillos_Diaz_1994",x:"Del orden teocéntrico medieval a Darwin, Freud y Derrida: el sujeto moderno pierde su centro. Sirve para cerrar la línea del tiempo del cartel: ¿quién es el «sujeto de derechos» cuando el sujeto se deconstruye?",lim:"Texto de 1994 escaneado: verifica número de revista y páginas antes de citar.",l:[6],b1:[4],e:[5],m:"PEP M4"},
+ {c:"estante",t:"Tinajero Esquivel, S. — La justicia penal internacional y el marco jurídico mexicano (2005)",w:"Tinajero_Esquivel_Justicia_Penal_Internacional",x:"Breviarios Jurídicos, Porrúa. De los tribunales ad hoc (TPIY) a la CPI y su recepción en México. Ya está digitalizado en tu vault con páginas marcadas.",lim:"Cita con la página impresa del libro, nunca con la del OCR.",r:[3],b1:[0,4],b2:[4],e:[5],estante:true},
+
+ /* ---- Tu estante: libros de la 14ª Feria del Libro de RRII ---- */
+ {c:"estante",t:"Sepúlveda Amor, B. — Orden constitucional y proscripción del uso de la fuerza en las relaciones internacionales",w:"Sepulveda_Amor_Orden_Constitucional",x:"SRE, Acervo Histórico Diplomático. Une lo que el tablero separa: la prohibición internacional de la fuerza (art. 2.4 de la Carta) y su espejo en la Constitución mexicana (art. 89-X). El autor fue canciller y juez de la CIJ: es doctrina de los publicistas de mayor competencia en sentido estricto.",lim:"Ficha de lectura pendiente: anota aquí el argumento central cuando lo leas.",r:[0,5],b1:[4],a:[0],e:[3,4,5],estante:true},
+ {c:"estante",t:"Metodología, métodos y herramientas metodológicas en Relaciones Internacionales",w:"Metodologia_RRII_Ibero",x:"Universidad Iberoamericana (stand AMEI). Es el libro para la presidencia del tribunal: cómo se estructura un argumento y se elige un método. Úsalo cuando la coherencia de tu alegato flojee en la autoevaluación.",lim:"No es fuente de derecho: es herramienta de análisis.",b1:[4],e:[],estante:true},
+ {c:"estante",t:"Revista Mexicana de Política Exterior núm. 134",w:"RMPE_134_Tecnologias_Emergentes",x:"Instituto Matías Romero. Número dedicado a las tecnologías emergentes en la política exterior y la diplomacia de México. Encaja con la era 6 (globalización) y con tus laboratorios sobre contratos inteligentes y gobernanza descentralizada.",lim:"Anota qué artículos del número usarías y para qué caso.",b1:[4],r:[1,4],e:[5],estante:true},
+ {c:"estante",t:"Foreign Affairs Latinoamérica · cuatro números",w:"Foreign_Affairs_Latinoamerica",x:"ITAM. Análisis de coyuntura para darle actualidad a un alegato de la era 6.",lim:"Anota aquí qué números tienes y sus temas: la ficha crece contigo.",b1:[4],e:[5],estante:true}
+];
+const CATN={tratado:"Tratado",principio:"Principio",juris:"Jurisprudencia",mecanismo:"Mecanismo",doctrina:"Doctrina · PEP",estante:"Tu estante"};
+
+/* ============================ ESTADO ============================ */
+const S={modo:null,conV:false,conR:false,conB:false,conA:false,conM:false,era:0,mapa:0,r1:0,r2:0,b1:0,b2:0,a1:0,a2:0,m1:0,m2:0,elegidas:[],tirando:false};
+const T={fin:0,resta:0,total:0,corriendo:false,fase:"",raf:0};
+let DB=null, USER=null, DOWN=null, UID=null, BANCO=[], PUEDE_ESCRIBIR=true;
+
+const $=id=>document.getElementById(id);
+const d6=()=>1+Math.floor(Math.random()*6);
+function toast(m){const t=$("toast"); t.textContent=m; t.hidden=false; clearTimeout(toast.h); toast.h=setTimeout(()=>t.hidden=true,2600);}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);}
+
+/* ============================ TIRADA ============================ */
+function pintarDados(cont,valores,etiquetas,girando){
+  $(cont).innerHTML=valores.map((v,i)=>'<div class="dw"><div class="dado '+(girando?'gira':'cae')+'">'+v+'</div><div class="dl">'+etiquetas[i]+'</div></div>').join("");
+}
+function vaciar(cont,etq){ $(cont).innerHTML=etq.map(e=>'<div class="dw"><div class="dado vacio">·</div><div class="dl">'+e+'</div></div>').join(""); }
+function tirar(modo,repetir){
+  if(S.tirando) return;
+  const rapido=modo==="rapido", integ=modo==="integradora", doctrina=modo==="doctrina"||integ;
+  S.modo=modo; S.tirando=true;
+  S.conV=S.conR=S.conB=S.conA=true; S.conM=doctrina;
+  if(!repetir){
+    S.era=d6()-1; S.mapa=d6()-1; S.r1=d6()-1; S.r2=d6(); S.b1=d6()-1; S.b2=d6()-1; S.a1=d6()-1; S.a2=d6(); S.m1=d6()-1; S.m2=d6()-1;
+    if(integ){ Object.assign(S,FIJO_A); S.m1=Math.floor(Math.random()*MO1.length); S.m2=S.m1===6?6:d6()-1; if(S.a2<4) S.a2=4; }
+    S.elegidas=[]; $("estrategia").value="";
+    if(integ) ["mVerde","mRoja","mAmbar","mMorada"].forEach(id=>$(id).value="");
+    ["s1","s2","s3","s4","s5"].forEach(id=>$(id).value="0");
+  }
+  $("qMorado").classList.toggle("apagado",!doctrina);
+  $("critLente").hidden=!doctrina;
+  $("guiaA").hidden=!integ;
+  if(integ) mostrarTab("mesa");
+  const pares=integ?[["dVerde",["Era fija","Mapa fijo"]],["dRojo",["Ilícito fijo","Escalada"]],["dBlanco",["Fuente fija","Art. 33"]],["dAmbar",["Traba fija","Tiempo"]]]:[["dVerde",rapido?["Era"]:["Era","Mapa"]],["dRojo",rapido?["Ilícito"]:["Ilícito","Escalada"]],["dBlanco",rapido?["Art. 38"]:["Art. 38","Art. 33"]],["dAmbar",rapido?["Traba"]:["Traba","Tiempo"]]];
+  if(doctrina) pares.push(["dMorado",["Corriente","Pregunta"]]); else vaciar("dMorado",["Corriente","Pregunta"]);
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let n=0;
+  const iv=setInterval(()=>{
+    pares.forEach(([c,e])=>pintarDados(c,e.map(()=>d6()),e,true));
+    if(++n>(reduce?0:8)){ clearInterval(iv); asentar(pares,rapido); }
+  },reduce?0:60);
+}
+function asentar(pares,rapido){
+  const v={dVerde:[S.era+1,S.mapa+1],dRojo:[S.r1+1,S.r2],dBlanco:[S.b1+1,S.b2+1],dAmbar:[S.a1+1,S.a2],dMorado:[S.m1+1,S.m2+1]};
+  pares.forEach(([c,e])=>pintarDados(c,v[c].slice(0,e.length),e,false));
+  S.tirando=false;
+  if(rapido){ S.mapa=S.mapa; }
+  pintarResultados(rapido);
+  $("btnRepetir").disabled=false;
+  fijarReloj(60,"prep");
+  guardarBorrador();
+}
+function pintarResultados(rapido){
+  const era=ERAS[S.era], m=era.m[S.mapa];
+  $("rVerde").innerHTML="<b>Era:</b> "+era.n+(rapido?"<span class='pg'>Elige tú el mapa de esa era en el atlas</span>":"<br><b>Mapa:</b> "+m[1]+"<span class='pg'>Atlas DK · pág. "+m[0]+"</span>");
+  $("rRojo").innerHTML="<b>Ilícito:</b> "+ROJO[S.r1]+(rapido?"":"<br><b>Escalada "+S.r2+"/6:</b> "+ESC(S.r2));
+  $("rBlanco").innerHTML="<b>Fuente:</b> "+BL1[S.b1]+(rapido?"":"<br><b>Vía:</b> "+BL2[S.b2]);
+  $("rAmbar").innerHTML="<b>Traba:</b> "+AM1[S.a1]+(rapido?"":"<br><b>Alegato:</b> "+(S.a2*30)+" segundos");
+  if(S.modo==="integradora"){ $("mMoradaPreg").textContent="Desde «"+MO1[S.m1].n+"»: "+MO2[S.m2]+" ¿Se justifica intervenir o abstenerse en Kosovo?"; }
+  if(S.conM){ const L=MO1[S.m1]; $("rMorado").innerHTML="<b>"+L.n+"</b> · "+L.a+"<br><b>Pregunta:</b> "+MO2[S.m2]+"<span class='pg'>"+L.m+" · LRIN3PEP8</span>"; }
+  else $("rMorado").innerHTML="<span class='pend'>Sólo en el modo con doctrina. Pensamiento Político y Social entra aquí.</span>";
+  const l=[];
+  l.push("<div><span class='tag'>Teatro</span>"+(rapido?era.n:m[1]+" — "+era.n+" (atlas pág. "+m[0]+")")+"</div>");
+  l.push("<div><span class='tag'>Imputación</span>"+ROJO[S.r1]+(rapido?"":" · escalada "+S.r2+"/6")+"</div>");
+  l.push("<div><span class='tag'>Fundamento</span>"+BL1[S.b1]+(rapido?"":" vía "+BL2[S.b2].toLowerCase())+"</div>");
+  l.push("<div><span class='tag'>Traba</span>"+AM1[S.a1]+(rapido?"":" · "+(S.a2*30)+" s de alegato")+"</div>");
+  if(S.conM) l.push("<div><span class='tag'>Lente</span>"+MO1[S.m1].n+" — "+MO2[S.m2]+"</div>");
+  $("caso").innerHTML=l.join("");
+  $("fase").textContent=rapido?"Modo rápido · 60 segundos en voz alta: qué pasa, qué norma rige, cómo se resuelve":S.modo==="integradora"?"Corrida A · Kosovo, febrero de 1999 · cancillería de 60 segundos, luego las cuatro mesas":"Caso emplazado · cancillería de 60 segundos";
+  if(S.modo==="integradora") $("caso").insertAdjacentHTML("afterbegin","<div><span class='tag'>Caso fijo</span>Kosovo, febrero de 1999: la RFY frente al UCK, Rambouillet en curso y la OTAN sin mandato del Consejo</div>");
+  pintarSugeridas(); total();
+}
+
+/* ============================ SUGERENCIAS ============================ */
+function puntaje(f){
+  let p=0; const h=(arr,v)=>arr&&arr.includes(v);
+  if(h(f.r,S.r1)) p+=3; if(h(f.b1,S.b1)) p+=2; if(h(f.b2,S.b2)) p+=2; if(h(f.a,S.a1)) p+=3; if(h(f.e,S.era)) p+=1;
+  if(S.conM && h(f.l,S.m1)) p+=4;
+  if(f.estante && S.b1===4) p+=3;
+  if(f.integ && S.modo==="integradora") p+=4;
+  return p;
+}
+function pintarSugeridas(){
+  const lista=ARSENAL.map((f,i)=>({f,i,p:puntaje(f)})).filter(o=>o.p>0).sort((a,b)=>b.p-a.p).slice(0,6);
+  if(S.conM && !lista.some(o=>o.f.c==="doctrina")){ const d=ARSENAL.map((f,i)=>({f,i,p:puntaje(f)})).filter(o=>o.f.c==="doctrina"&&o.f.l&&o.f.l.includes(S.m1))[0]; if(d) lista[lista.length-1]=d; }
+  $("sug").innerHTML=lista.map(o=>'<button class="sug-item" data-i="'+o.i+'" aria-pressed="'+S.elegidas.includes(o.i)+'"><span class="caja"></span><span><span class="cat">'+CATN[o.f.c]+(o.f.estante?' · lo tienes':'')+'</span>'+esc(o.f.t)+'</span></button>').join("")||"<span class='pend' style='color:var(--estrado-sub)'>Sin coincidencias: consulta el arsenal completo.</span>";
+  $("sug").querySelectorAll(".sug-item").forEach(b=>b.addEventListener("click",()=>{
+    const i=+b.dataset.i, k=S.elegidas.indexOf(i);
+    if(k>=0) S.elegidas.splice(k,1);
+    else { if(S.elegidas.length>=2){ toast("Máximo 2 fichas por alegato. Quita una primero."); return; } S.elegidas.push(i); }
+    b.setAttribute("aria-pressed",S.elegidas.includes(i)); guardarBorrador();
+  }));
+}
+
+/* ============================ CRONÓMETRO ============================ */
+function fmt(s){s=Math.max(0,Math.ceil(s)); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function fijarReloj(seg,fase){ parar(); T.total=seg; T.resta=seg; T.fase=fase; const c=$("crono"); c.className="crono "+fase; c.textContent=fmt(seg); }
+function arrancar(){
+  if(!T.total){ toast("Primero tira los dados."); return; }
+  if(T.resta<=0) T.resta=T.total;
+  T.fin=performance.now()+T.resta*1000; T.corriendo=true; $("btnPausa").textContent="Pausa"; ciclo();
+}
+function ciclo(){
+  if(!T.corriendo) return;
+  T.resta=(T.fin-performance.now())/1000;
+  if(T.resta<=0){ T.resta=0; T.corriendo=false; const c=$("crono"); c.className="crono fin"; c.textContent="00:00";
+    $("fase").textContent = T.fase==="prep" ? "Fin de la cancillería · inicia el alegato" : "Tiempo · autoevalúa y archiva el caso"; return; }
+  $("crono").textContent=fmt(T.resta); T.raf=requestAnimationFrame(ciclo);
+}
+function parar(){ T.corriendo=false; cancelAnimationFrame(T.raf); }
+function pausa(){ if(T.corriendo){ parar(); $("btnPausa").textContent="Seguir"; } else arrancar(); }
+
+/* ============================ PUNTAJE ============================ */
+function maximo(){ return S.conM?12:10; }
+function total(){
+  let t=["s1","s2","s3","s4"].reduce((a,id)=>a+(+$(id).value),0); if(S.conM) t+= +$("s5").value;
+  const max=maximo(), corte=S.conM?7:6;
+  $("total").textContent="Total: "+t+" / "+max+(S.modo&&S.modo!=="rapido"&&t<corte?" · repite el caso con los mismos dados":"");
+  return t;
+}
+
+/* ============================ CASO ============================ */
+function datosCaso(){
+  const era=ERAS[S.era], m=era.m[S.mapa], rap=S.modo==="rapido";
+  return {
+    fecha:new Date().toISOString(), modo:{rapido:"Modo rápido",tribunal:"Modo tribunal",doctrina:"Tribunal + doctrina",integradora:"Corrida A · Kosovo 1999"}[S.modo],
+    mesas:S.modo==="integradora"?{verde:$("mVerde").value.trim(),roja:$("mRoja").value.trim(),ambar:$("mAmbar").value.trim(),morada:$("mMorada").value.trim()}:null,
+    duelo:$("chkDuelo").checked, era:era.n, mapa:rap?"":m[1], pagina:rap?null:m[0],
+    ilicito:ROJO[S.r1], escalada:rap?null:S.r2, fuente:BL1[S.b1], via:rap?"":BL2[S.b2], traba:AM1[S.a1], segundos:rap?60:S.a2*30,
+    lente:S.conM?MO1[S.m1].n:"", pregunta:S.conM?MO2[S.m2]:"",
+    fichas:S.elegidas.map(i=>ARSENAL[i].t), fichasWl:S.elegidas.map(i=>ARSENAL[i].w),
+    estrategia:$("estrategia").value.trim(),
+    puntos:{s1:+$("s1").value,s2:+$("s2").value,s3:+$("s3").value,s4:+$("s4").value,s5:S.conM?+$("s5").value:null},
+    total:total(), maximo:maximo(), autor:UID||null
+  };
+}
+async function archivar(){
+  if(!S.modo){ toast("Tira los dados antes de archivar."); return; }
+  const c=datosCaso();
+  if(DB && PUEDE_ESCRIBIR){
+    try{ await DB.collection("casos").add(c); toast("Caso archivado en el banco."); }
+    catch(e){
+      if(e&&e.code==="invalid_argument"){ PUEDE_ESCRIBIR=false; $("estadoBanco").textContent="Puedes jugar, pero con tu nivel de acceso no puedes archivar en el banco compartido."; }
+      else if(e&&e.code==="quota_exceeded"){ toast("El banco está lleno: borra casos viejos para seguir archivando."); }
+      else toast("No se pudo archivar ahora. Intenta de nuevo en un momento.");
+      return;
+    }
+  } else { BANCO.unshift(Object.assign({id:"local-"+Date.now()},c)); pintarBanco(); toast("Caso guardado sólo en esta sesión."); }
+}
+
+/* ============================ OBSIDIAN ============================ */
+function yml(s){return '"'+String(s??"").replace(/\\/g,"\\\\").replace(/"/g,'\\"')+'"';}
+function mdCaso(c){
+  if(c.estaciones) return mdLentes(c);
+  const f=c.fecha.slice(0,10), titulo=(c.mapa||c.era.split(" (")[0])+" · "+c.ilicito.split(/[:(]/)[0].trim();
+  const wl=(c.fichasWl||[]).map(w=>'"[['+w+']]"');
+  let t="---\ntipo: caso-tribunal\nfecha: "+f+"\nmodo: "+yml(c.modo)+(c.duelo?"\nduelo: true":"")+"\nera: "+yml(c.era)+"\nmapa_dk: "+yml(c.mapa?c.mapa+" (pág. "+c.pagina+")":"")+
+  "\nilicito: "+yml(c.ilicito)+(c.escalada?"\nescalada: "+c.escalada:"")+"\nfuente: "+yml(c.fuente)+"\nvia: "+yml(c.via)+"\ntraba: "+yml(c.traba)+
+  (c.lente?"\nlente: "+yml(c.lente):"")+"\nfichas: ["+wl.join(", ")+"]\npuntaje: "+c.total+"\nmaximo: "+c.maximo+"\ntags: [caso-tribunal, der, his"+(c.lente?", pep":"")+"]\n---\n\n";
+  t+="# Caso · "+titulo+"\n\n";
+  t+="| | |\n|---|---|\n| **Teatro** | "+(c.mapa?c.mapa+" — atlas DK pág. "+c.pagina+" · ":"")+c.era+" |\n| **Ilícito** | "+c.ilicito+(c.escalada?" · escalada "+c.escalada+"/6":"")+" |\n| **Fuente** | "+c.fuente+" |\n"+(c.via?"| **Vía** | "+c.via+" |\n":"")+"| **Traba** | "+c.traba+" |\n"+(c.lente?"| **Lente** | "+c.lente+" — "+c.pregunta+" |\n":"")+"\n";
+  t+="## Fichas usadas\n\n"+((c.fichasWl||[]).length?c.fichasWl.map((w,i)=>"- [["+w+"|"+c.fichas[i]+"]]").join("\n"):"- ninguna")+"\n\n";
+  t+="## Estrategia del alegato\n\n"+(c.estrategia||"_(sin notas)_")+"\n\n";
+  if(c.mesas){ const M=c.mesas; t+="## Las tres mesas · borrador de Isaac\n\n### Mesa verde → HIS (procesos 1945-1999)\n\n"+(M.verde||"_(vacía)_")+"\n\n### Mesas roja y blanca → DIP (sujetos, fuentes, medios)\n\n"+(M.roja||"_(vacía)_")+"\n\n### Mesa ámbar → DIP (reforma) y HIS (recomendación a Solana)\n\n"+(M.ambar||"_(vacía)_")+"\n\n### Mesa morada → HIS (reflexión) y PEP\n\n"+(M.morada||"_(vacía)_")+"\n\n"; }
+  const P=c.puntos||{};
+  t+="## Autoevaluación · "+c.total+" / "+c.maximo+"\n\n| Criterio | Puntos |\n|---|---|\n| Dominio conceptual | "+P.s1+" / 3 |\n| Coherencia histórica | "+P.s2+" / 3 |\n| Control del tiempo | "+P.s3+" / 2 |\n| Resolución de la traba | "+P.s4+" / 2 |\n"+(P.s5!=null?"| Lente doctrinal | "+P.s5+" / 2 |\n":"");
+  t+="\n---\n\n[[Ruptura_Tribunal_MOC]] · [[LRIN3DER8_Derecho_Internacional_Publico]] · [[LRIN3HIS8_Historia_Contemporanea_RRII]]"+(c.lente?" · [[LRIN3PEP8_Pensamiento_Politico_y_Social]]":"")+"\n";
+  return t;
+}
+function mdBanco(){
+  let t="---\ntipo: banco-tribunal\nexportado: "+new Date().toISOString().slice(0,10)+"\ncasos: "+BANCO.length+"\ntags: [caso-tribunal, banco]\n---\n\n# Banco de casos · Ruptura & Tribunal\n\n| Fecha | Mapa | Ilícito | Traba | Lente | Puntaje |\n|---|---|---|---|---|---|\n";
+  BANCO.forEach(c=>{ t+="| "+c.fecha.slice(0,10)+" | "+(c.mapa||"—")+" | "+c.ilicito.split(/[:(]/)[0].trim()+" | "+c.traba.split(/[:(]/)[0].trim()+" | "+(c.lente||"—")+" | "+c.total+"/"+c.maximo+" |\n"; });
+  return t+"\n[[Ruptura_Tribunal_MOC]]\n";
+}
+async function ofrecerMd(nombre,texto){
+  if(DOWN){
+    try{ await DOWN.save({filename:nombre,data:texto}); toast("Nota lista. Muévela a 06_Proyectos_Aplicados/Ruptura_Tribunal/Casos."); return; }
+    catch(e){ if(e&&e.code==="declined") return; }
+  }
+  mostrarTab("banco"); $("mdPanel").hidden=false; $("mdTexto").textContent=texto; $("mdPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function mdLentes(c){
+  let t="---\ntipo: caso-tribunal\ncorrida: lentes\nfecha: "+c.fecha.slice(0,10)+"\nmodo: "+yml(c.modo)+"\nilicito: "+yml(c.ilicito)+"\ntraba: \"—\"\npuntaje: "+c.total+"\nmaximo: "+c.maximo+"\ntags: [caso-tribunal, pep, integradora]\n---\n\n# Corrida B · Siete lentes ante el Estado mínimo\n\nCaso: Antonio y la vivienda (incidente crítico de LRIN3PEP8). Frases de Isaac, una por estación, en orden histórico.\n\n";
+  c.estaciones.forEach((e,i)=>{ t+="## "+(i+1)+" · "+e.n+"\n\n*"+e.a+" · "+e.m+"* — fuente base: "+e.f+"\n\n**Pregunta:** "+e.p+"\n\n**Mi frase:** "+(e.frase||"_(vacía)_")+"\n\n**Cómo viajó la idea:** "+(e.viaje||"_(vacía)_")+"\n\n"; });
+  return t+"---\n\n[[Ruptura_Tribunal_MOC]] · [[LRIN3PEP8_Pensamiento_Politico_y_Social]]\n";
+}
+
+/* ============================ CORRIDA B · LENTES ============================ */
+const B={i:0,frases:ESTACIONES.map(()=>""),viajes:ESTACIONES.map(()=>""),fin:0,raf:0,corre:false};
+function guardarB(){ try{ localStorage.setItem("rt_lentes",JSON.stringify({i:B.i,frases:B.frases,viajes:B.viajes})); }catch(e){} }
+function cargarB(){ try{ const b=JSON.parse(localStorage.getItem("rt_lentes")||"null"); if(b&&Array.isArray(b.frases)){ B.i=Math.min(b.i||0,ESTACIONES.length-1); b.frases.forEach((x,k)=>{ if(k<ESTACIONES.length) B.frases[k]=x||""; }); (b.viajes||[]).forEach((x,k)=>{ if(k<ESTACIONES.length) B.viajes[k]=x||""; }); } }catch(e){} }
+function pintarEstacion(){
+  const e=ESTACIONES[B.i];
+  $("estNav").innerHTML=ESTACIONES.map((x,k)=>'<button data-k="'+k+'" aria-current="'+(k===B.i)+'" class="'+(B.frases[k].trim()?'hecha':'')+'">'+(k+1)+' · '+esc(x.n.split(" y ")[0])+'</button>').join("");
+  $("estNav").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{ B.i=+b.dataset.k; pararB(); pintarEstacion(); guardarB(); }));
+  $("estacion").innerHTML='<div class="autores">Estación '+(B.i+1)+' de '+ESTACIONES.length+' · '+esc(e.a)+' · '+esc(e.m)+'</div><h3>'+esc(e.n)+'</h3><div class="pregunta">'+esc(e.p)+'</div><div class="pend">Fuente base para el cartel: '+esc(e.f)+'</div>'+
+    '<label for="estFrase">Mi frase · con mis palabras (bloque 2 del cartel)</label><textarea id="estFrase">'+esc(B.frases[B.i])+'</textarea>'+
+    '<label for="estViaje">¿Cómo viajó esta idea al mundo? (bloque 4 del cartel)</label><textarea id="estViaje" style="min-height:56px">'+esc(B.viajes[B.i])+'</textarea>';
+  $("estFrase").addEventListener("input",ev=>{ B.frases[B.i]=ev.target.value; clearTimeout(guardarB.h); guardarB.h=setTimeout(()=>{guardarB(); marcarNav();},500); });
+  $("estViaje").addEventListener("input",ev=>{ B.viajes[B.i]=ev.target.value; clearTimeout(guardarB.h); guardarB.h=setTimeout(guardarB,500); });
+  $("btnEstAnt").disabled=B.i===0; $("btnEstSig").disabled=B.i===ESTACIONES.length-1;
+  $("crono2").textContent="01:00";
+}
+function marcarNav(){ $("estNav").querySelectorAll("button").forEach(b=>b.classList.toggle("hecha",!!B.frases[+b.dataset.k].trim())); }
+function pararB(){ B.corre=false; cancelAnimationFrame(B.raf); }
+function cicloB(){ if(!B.corre) return; const r=(B.fin-performance.now())/1000; if(r<=0){ B.corre=false; $("crono2").textContent="00:00"; toast("Tiempo: escribe tu frase."); const f=$("estFrase"); if(f) f.focus(); return; } $("crono2").textContent=fmt(r); B.raf=requestAnimationFrame(cicloB); }
+function datosB(){
+  const hechas=B.frases.filter(x=>x.trim()).length;
+  return {fecha:new Date().toISOString(), modo:"Corrida B · Siete lentes", duelo:false, era:"Siete lentes ante el Estado mínimo", mapa:"", pagina:null,
+    ilicito:"Estado mínimo · caso Antonio y la vivienda", escalada:null, fuente:"", via:"", traba:"—", segundos:60,
+    lente:"Siete corrientes", pregunta:"", fichas:[], fichasWl:[], estrategia:"",
+    estaciones:ESTACIONES.map((e,k)=>({n:e.n,a:e.a,m:e.m,p:e.p,f:e.f,frase:B.frases[k].trim(),viaje:B.viajes[k].trim()})),
+    puntos:{}, total:hechas, maximo:ESTACIONES.length, autor:UID||null};
+}
+async function archivarB(){
+  const c=datosB();
+  if(!c.total){ toast("Escribe al menos una frase antes de archivar."); return; }
+  if(DB && PUEDE_ESCRIBIR){
+    try{ await DB.collection("casos").add(c); toast("Corrida B archivada en el banco."); $("estadoB").textContent="Archivada: "+c.total+" de "+c.maximo+" estaciones."; }
+    catch(e){ toast("No se pudo archivar ahora. Intenta de nuevo en un momento."); }
+  } else { BANCO.unshift(Object.assign({id:"local-"+Date.now()},c)); pintarBanco(); toast("Corrida guardada sólo en esta sesión."); }
+}
+
+/* ============================ BANCO ============================ */
+function pintarBanco(){
+  const box=$("listaBanco");
+  if(!BANCO.length){ box.innerHTML="<p class='pend'>Aún no hay casos archivados. Juega una ronda en «La mesa» y usa «Archivar en el banco».</p>"; }
+  else box.innerHTML=BANCO.slice(0,80).map((c,i)=>'<div class="caso-b"><div style="min-width:0"><b>'+esc(c.mapa||c.era)+'</b> · '+esc(c.ilicito.split(/[:(]/)[0])+'<div class="meta">'+new Date(c.fecha).toLocaleDateString("es-MX",{day:"numeric",month:"short",year:"numeric"})+' · '+esc(c.modo)+(c.lente?' · lente: '+esc(c.lente):'')+' · traba: '+esc(c.traba.split(/[:(]/)[0])+'</div></div><div class="fila" style="align-items:center"><span class="pts">'+c.total+'/'+c.maximo+'</span><button class="enlace" data-md="'+i+'">Nota</button>'+(puedeBorrar(c)?'<button class="enlace" data-del="'+i+'">Borrar</button>':'')+'</div></div>').join("");
+  box.querySelectorAll("[data-md]").forEach(b=>b.addEventListener("click",()=>{const c=BANCO[+b.dataset.md]; ofrecerMd("Caso_RT_"+c.fecha.slice(0,10)+"_"+c.fecha.slice(11,16).replace(":","")+".md",mdCaso(c));}));
+  box.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",()=>borrar(+b.dataset.del,b)));
+  pintarStats();
+}
+function puedeBorrar(c){ return String(c.id).startsWith("local-") || (DB && PUEDE_ESCRIBIR && (!c.autor || c.autor===UID)); }
+async function borrar(i,btn){
+  const c=BANCO[i];
+  if(btn.dataset.ok!=="1"){ btn.dataset.ok="1"; btn.textContent="¿Seguro? Borrar"; setTimeout(()=>{btn.dataset.ok="";btn.textContent="Borrar";},3000); return; }
+  if(String(c.id).startsWith("local-")){ BANCO.splice(i,1); pintarBanco(); return; }
+  try{ await DB.doc("casos/"+c.id).delete(); toast("Caso borrado."); }catch(e){ toast("No se pudo borrar."); }
+}
+function pintarStats(){
+  const n=BANCO.length, box=$("stats");
+  if(!n){ box.innerHTML=""; return; }
+  const prom=k=>{const v=BANCO.map(c=>c.puntos&&c.puntos[k]).filter(x=>x!=null); return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
+  const crit=[["s1","Dominio conceptual",3],["s2","Coherencia histórica",3],["s3","Control del tiempo",2],["s4","Resolución de la traba",2],["s5","Lente doctrinal",2]].map(([k,l,m])=>({k,l,m,v:prom(k)})).filter(o=>o.v!=null);
+  const debil=crit.slice().sort((a,b)=>a.v/a.m-b.v/b.m)[0];
+  const pct=Math.round(100*BANCO.reduce((a,c)=>a+c.total/c.maximo,0)/n);
+  const lentes=new Set(BANCO.map(c=>c.lente).filter(Boolean)).size;
+  let h='<div class="stat"><div class="n">'+n+'</div><div class="l">Casos archivados</div></div>';
+  h+='<div class="stat"><div class="n">'+pct+'%</div><div class="l">Rendimiento promedio</div></div>';
+  h+='<div class="stat"><div class="n">'+lentes+'/'+MO1.length+'</div><div class="l">Corrientes practicadas</div></div>';
+  crit.forEach(o=>{ h+='<div class="stat"><div class="l">'+o.l+(o===debil?' · tu punto débil':'')+'</div><div class="n" style="font-size:22px">'+o.v.toFixed(1)+' / '+o.m+'</div><div class="barra'+(o===debil?' debil':'')+'"><i style="width:'+Math.round(100*o.v/o.m)+'%"></i></div></div>'; });
+  box.innerHTML=h;
+}
+
+/* ============================ ARSENAL ============================ */
+let filtro="todas";
+function pintarArsenal(){
+  const q=$("buscar").value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  $("listaArsenal").innerHTML=ARSENAL.filter(f=>(filtro==="todas"||f.c===filtro)&&norm(f.t+" "+f.x+" "+(f.lim||"")).includes(q))
+   .map(f=>'<div class="ficha '+f.c+'"><div class="cat">'+CATN[f.c]+(f.m?' · '+f.m:'')+'</div><div class="tit">'+esc(f.t)+'</div><p>'+esc(f.x)+'</p>'+(f.lim?'<p class="lim">Límite: '+esc(f.lim)+'</p>':'')+(f.estante?'<span class="sello">En tu estante · 14ª FLRI</span>':'')+'</div>').join("")||"<p class='pend'>Sin resultados.</p>";
+}
+
+/* ============================ PESTAÑAS ============================ */
+function mostrarTab(t){
+  ["mesa","lentes","arsenal","banco","tuto"].forEach(k=>{ $("vista-"+k).hidden=k!==t; $("tab-"+k).setAttribute("aria-selected",k===t); });
+  if(t==="arsenal") pintarArsenal();
+  if(t==="lentes") pintarEstacion();
+  try{ localStorage.setItem("rt_tab",t); }catch(e){}
+}
+
+/* ============================ BORRADOR (por navegador) ============================ */
+function guardarBorrador(){ try{ localStorage.setItem("rt_borrador",JSON.stringify({S,estr:$("estrategia").value,mesas:{verde:$("mVerde").value,roja:$("mRoja").value,ambar:$("mAmbar").value,morada:$("mMorada").value}})); }catch(e){} }
+function cargarBorrador(){
+  try{ const b=JSON.parse(localStorage.getItem("rt_borrador")||"null"); if(!b||!b.S||!b.S.modo) return;
+    Object.assign(S,b.S,{tirando:false}); $("estrategia").value=b.estr||"";
+    if(b.mesas){ $("mVerde").value=b.mesas.verde||""; $("mRoja").value=b.mesas.roja||""; $("mAmbar").value=b.mesas.ambar||""; $("mMorada").value=b.mesas.morada||""; }
+    $("guiaA").hidden=S.modo!=="integradora";
+    $("qMorado").classList.toggle("apagado",!S.conM); $("critLente").hidden=!S.conM;
+    const rap=S.modo==="rapido";
+    pintarDados("dVerde",rap?[S.era+1]:[S.era+1,S.mapa+1],rap?["Era"]:["Era","Mapa"]);
+    pintarDados("dRojo",rap?[S.r1+1]:[S.r1+1,S.r2],rap?["Ilícito"]:["Ilícito","Escalada"]);
+    pintarDados("dBlanco",rap?[S.b1+1]:[S.b1+1,S.b2+1],rap?["Art. 38"]:["Art. 38","Art. 33"]);
+    pintarDados("dAmbar",rap?[S.a1+1]:[S.a1+1,S.a2],rap?["Traba"]:["Traba","Tiempo"]);
+    if(S.conM) pintarDados("dMorado",[S.m1+1,S.m2+1],["Corriente","Pregunta"]); else vaciar("dMorado",["Corriente","Pregunta"]);
+    pintarResultados(rap); $("btnRepetir").disabled=false; fijarReloj(60,"prep");
+  }catch(e){}
+}
+
+/* ============================ EVENTOS ============================ */
+$("btnRapido").onclick=()=>tirar("rapido");
+$("btnTribunal").onclick=()=>tirar("tribunal");
+$("btnDoctrina").onclick=()=>tirar("doctrina");
+$("btnCorridaA").onclick=()=>tirar("integradora");
+$("btnCorridaB").onclick=()=>mostrarTab("lentes");
+["mVerde","mRoja","mAmbar","mMorada"].forEach(id=>$(id).addEventListener("input",()=>{ clearTimeout(guardarBorrador.h); guardarBorrador.h=setTimeout(guardarBorrador,600); }));
+$("btnEst60").onclick=()=>{ pararB(); B.fin=performance.now()+60000; B.corre=true; cicloB(); };
+$("btnEstAnt").onclick=()=>{ if(B.i>0){ B.i--; pararB(); pintarEstacion(); guardarB(); } };
+$("btnEstSig").onclick=()=>{ if(B.i<ESTACIONES.length-1){ B.i++; pararB(); pintarEstacion(); guardarB(); } };
+$("btnGuardarB").onclick=archivarB;
+$("btnMdB").onclick=()=>{ const c=datosB(); ofrecerMd("Corrida_B_Lentes_"+c.fecha.slice(0,10)+".md",mdLentes(c)); };
+$("btnLimpiarB").onclick=e=>{ const b=e.currentTarget; if(b.dataset.ok!=="1"){ b.dataset.ok="1"; b.textContent="¿Seguro? Borrar frases"; setTimeout(()=>{b.dataset.ok="";b.textContent="Empezar de nuevo";},3000); return; } B.frases=B.frases.map(()=>""); B.viajes=B.viajes.map(()=>""); B.i=0; guardarB(); pintarEstacion(); b.dataset.ok=""; b.textContent="Empezar de nuevo"; };
+$("btnRepetir").onclick=()=>{ if(S.modo){ tirar(S.modo,true); toast("Mismo caso: mejora tu alegato."); } };
+$("btnPrep").onclick=()=>{ if(!S.modo){toast("Primero tira los dados.");return;} $("fase").textContent="Cancillería · palabras clave y hasta 2 fichas"; fijarReloj(60,"prep"); arrancar(); };
+$("btnAleg").onclick=()=>{ if(!S.modo){toast("Primero tira los dados.");return;} const s=S.modo==="rapido"?60:S.a2*30;
+  $("fase").textContent=($("chkDuelo").checked?"Cancillería A · ":"")+"Alegato · ubica el mapa, imputa, fundamenta y contesta la traba"+(S.conM?", y cierra con la lente":"")+(S.modo==="integradora"?" · después escribe las cuatro mesas":""); fijarReloj(s,"aleg"); arrancar(); };
+$("btnRep").onclick=()=>{ if(!S.modo)return; const s=S.modo==="rapido"?60:S.a2*30; $("fase").textContent="Cancillería B · réplica del demandado con la traba ámbar"; fijarReloj(s,"rep"); arrancar(); };
+$("chkDuelo").onchange=e=>{ $("btnRep").hidden=!e.target.checked; };
+$("btnPausa").onclick=pausa;
+$("btnReinicio").onclick=()=>fijarReloj(T.total||0,T.fase||"prep");
+["s1","s2","s3","s4","s5"].forEach(id=>$(id).addEventListener("change",total));
+$("estrategia").addEventListener("input",()=>{ clearTimeout(guardarBorrador.h); guardarBorrador.h=setTimeout(guardarBorrador,600); });
+$("btnGuardar").onclick=archivar;
+$("btnMdCaso").onclick=()=>{ if(!S.modo){toast("Tira los dados primero.");return;} const c=datosCaso(); ofrecerMd("Caso_RT_"+c.fecha.slice(0,10)+"_"+c.fecha.slice(11,16).replace(":","")+".md",mdCaso(c)); };
+$("btnMdBanco").onclick=()=>{ if(!BANCO.length){toast("El banco está vacío.");return;} ofrecerMd("Banco_Ruptura_Tribunal_"+new Date().toISOString().slice(0,10)+".md",mdBanco()); };
+$("btnCopiarMd").onclick=async()=>{ try{ await navigator.clipboard.writeText($("mdTexto").textContent); toast("Texto copiado."); }catch(e){ const r=document.createRange(); r.selectNodeContents($("mdTexto")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); toast("Texto seleccionado: cópialo con Ctrl+C."); } };
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>mostrarTab(b.dataset.tab)));
+document.querySelectorAll("#filtros .chip").forEach(ch=>ch.addEventListener("click",()=>{ document.querySelectorAll("#filtros .chip").forEach(c=>c.setAttribute("aria-pressed","false")); ch.setAttribute("aria-pressed","true"); filtro=ch.dataset.f; pintarArsenal(); }));
+$("buscar").addEventListener("input",pintarArsenal);
+document.addEventListener("keydown",e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  const k=e.key.toLowerCase();
+  if(k==="r") tirar("rapido"); else if(k==="t") tirar("tribunal"); else if(k==="d") tirar("doctrina");
+  else if(k==="k") tirar("integradora"); else if(k==="l") mostrarTab("lentes");
+  else if(k==="a") mostrarTab("arsenal"); else if(k===" "&&T.total){ e.preventDefault(); pausa(); }
+});
+
+/* ============================ ARRANQUE ============================ */
+["dVerde","dRojo","dBlanco","dAmbar"].forEach(c=>vaciar(c,["·","·"])); vaciar("dMorado",["Corriente","Pregunta"]);
+try{ const t=localStorage.getItem("rt_tab"); if(t&&["mesa","lentes","arsenal","banco","tuto"].includes(t)) mostrarTab(t); }catch(e){}
+$("tabArsenalTxt").textContent="Arsenal · "+ARSENAL.length+" fichas";
+cargarB(); cargarBorrador(); pintarBanco();
+if(!$("vista-lentes").hidden) pintarEstacion();
+
+(async()=>{
+  if(!window.claude||!window.claude.use){ $("notaBanco").textContent="Fuera de la página publicada el banco sólo vive durante esta sesión."; return; }
+  const [db,user,down]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("downloads")]);
+  DB=db; USER=user; DOWN=down;
+  if(USER){ try{ UID=await USER.id(); }catch(e){} try{ const p=await USER.can("data.write"); if(p===false) PUEDE_ESCRIBIR=false; }catch(e){} }
+  if(!DB){ $("notaBanco").textContent="El banco en línea no está disponible en esta vista: los casos se guardan sólo mientras la página esté abierta."; return; }
+  if(!PUEDE_ESCRIBIR) $("estadoBanco").textContent="Puedes jugar y leer el banco; archivar casos requiere acceso de colaborador.";
+  DB.collection("casos").orderBy("fecha","desc").limit(300).onSnapshot(snap=>{
+    const locales=BANCO.filter(c=>String(c.id).startsWith("local-"));
+    BANCO=locales.concat(snap.docs.map(d=>Object.assign({id:d.id},d.data())));
+    pintarBanco();
+  },err=>{ $("notaBanco").textContent="El banco en línea dejó de responder. Recarga la página para reconectarlo."; });
+})();
+</script>
+
+
+</body>
+</html>
