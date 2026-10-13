@@ -29,6 +29,7 @@ const PUBLICADAS = {
  "2|12_america_latina_y_el_caribe|ta|4": "semestre_2/12_america_latina_y_el_caribe/Tarea_Autentica_Isaac_Moctezuma_M4.pdf",
  "3|13_derecho_internacional_publico|foro|2": "semestre_3/13_derecho_internacional_publico/foro2.html",
  "3|13_derecho_internacional_publico|foro|3": "semestre_3/13_derecho_internacional_publico/foro3_moodle.html",
+ "3|13_derecho_internacional_publico|foro|4": "semestre_3/13_derecho_internacional_publico/foro4_moodle.html",
  "3|13_derecho_internacional_publico|tarea|3": "semestre_3/13_derecho_internacional_publico/tarea3.html",
  "3|14_historia_contemporanea_de_las_relaciones_internacionales|foro|1": "semestre_3/14_historia_contemporanea_de_las_relaciones_internacionales/foro1.html",
  "3|14_historia_contemporanea_de_las_relaciones_internacionales|foro|3": "semestre_3/14_historia_contemporanea_de_las_relaciones_internacionales/foro3_moodle.html",
