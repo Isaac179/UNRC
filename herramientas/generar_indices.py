@@ -15,6 +15,7 @@ de verdad: si una UCA no está ahí, no se le genera índice.
 
 import html
 import re
+import subprocess
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -32,6 +33,26 @@ MARCAS_CASCARON = (
 FIRMA_PDF = "moctezuma"
 # Marcador de las páginas ya migradas a la plantilla del portafolio.
 MARCA_MIGRADA = "portafolio.css"
+
+
+def _ignorados():
+    """Archivos que git ignora (.gitignore): están en el disco pero nunca se
+    publican, así que el índice no debe enlazarlos (p. ej. *_compressed.pdf)."""
+    try:
+        salida = subprocess.run(
+            ["git", "ls-files", "--others", "--ignored", "--exclude-standard", "-z"],
+            cwd=RAIZ, capture_output=True, check=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return set()
+    return {(RAIZ / r.decode("utf-8")).resolve() for r in salida.split(b"\0") if r}
+
+
+IGNORADOS = _ignorados()
+
+
+def publicable(ruta):
+    return ruta.resolve() not in IGNORADOS
 
 TIPOS = [
     ("foro", "Foro", "F"),
@@ -108,7 +129,7 @@ def candidatos(carpeta, tipo, modulo):
     pegó en Moodle (*_moodle.html) y, al final, el PDF entregado.
     """
     pdfs = sorted(
-        p for p in carpeta.glob("*.pdf") if FIRMA_PDF in p.name.lower()
+        p for p in carpeta.glob("*.pdf") if FIRMA_PDF in p.name.lower() and publicable(p)
     )
     if tipo == "integradora":
         return (
@@ -183,6 +204,8 @@ def otros(carpeta, usados):
     filas = []
     for ruta in sorted(carpeta.iterdir()):
         if ruta.name in usados or ruta.name == "index.html" or not ruta.is_file():
+            continue
+        if not publicable(ruta):
             continue
         if ruta.suffix.lower() == ".pdf" and FIRMA_PDF not in ruta.name.lower():
             continue
